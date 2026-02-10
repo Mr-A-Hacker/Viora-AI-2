@@ -34,5 +34,5 @@ fi
 # --- AUTOFOCUS PATCH END ---
 
 # 4. Run your custom application
-echo "Starting Pocket AI..."
-python object_detection.py --input rpi
+echo "Starting Pocket AI GUI..."
+python main_gui.py

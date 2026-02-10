@@ -11,6 +11,10 @@ def run_raw_camera_app():
     """
     Runs a simple GStreamer pipeline: Source -> Display (No AI).
     """
+    # --- FIX: FORCE RPI INPUT ---
+    # We simulate passing "--input rpi" to the script so GStreamerApp picks the camera.
+    sys.argv = [sys.argv[0], "--input", "rpi"]
+    
     try:
         import setproctitle
         from hailo_apps.python.core.gstreamer.gstreamer_app import GStreamerApp, dummy_callback, app_callback_class
@@ -56,6 +60,9 @@ def run_detection_app():
     """
     Runs the Object Detection pipeline.
     """
+    # --- FIX: FORCE RPI INPUT ---
+    sys.argv = [sys.argv[0], "--input", "rpi"]
+
     try:
         import hailo
         from hailo_apps.python.pipeline_apps.detection.detection_pipeline import GStreamerDetectionApp
@@ -103,6 +110,9 @@ def run_pose_app():
     """
     Runs the Pose Estimation pipeline.
     """
+    # --- FIX: FORCE RPI INPUT ---
+    sys.argv = [sys.argv[0], "--input", "rpi"]
+
     try:
         import hailo
         from hailo_apps.python.pipeline_apps.pose_estimation.pose_estimation_pipeline import GStreamerPoseEstimationApp
@@ -139,67 +149,3 @@ def run_pose_app():
     user_data = PoseCallback()
     app = GStreamerPoseEstimationApp(app_callback, user_data)
     app.run()
-
-# -----------------------------------------------------------------------------------------------
-# 2. Main Controller
-# -----------------------------------------------------------------------------------------------
-if __name__ == "__main__":
-    current_process = None
-    
-    print("------------------------------------------")
-    print("AI Camera Controller")
-    print("Commands: 'detect', 'pose', 'stream' (reset), 'stop', 'exit'")
-    print("------------------------------------------")
-
-    # --- STARTUP: Automatically launch Raw Camera ---
-    print("Initializing Camera...")
-    current_process = multiprocessing.Process(target=run_raw_camera_app)
-    current_process.start()
-
-    while True:
-        try:
-            cmd = input().strip().lower()
-
-            # Helper to kill current process safely
-            def kill_active_process():
-                if current_process and current_process.is_alive():
-                    # print("\n...Switching...") 
-                    current_process.terminate()
-                    current_process.join()
-
-            # --- COMMANDS ---
-            if cmd == "exit":
-                print("Exiting...")
-                kill_active_process()
-                sys.exit(0)
-
-            elif cmd == "stop":
-                print("\n>>> Stopping video feed.")
-                kill_active_process()
-
-            elif cmd == "stream" or cmd == "reset":
-                kill_active_process()
-                print("\n>>> Switching to Raw Stream...")
-                current_process = multiprocessing.Process(target=run_raw_camera_app)
-                current_process.start()
-
-            elif cmd == "detect":
-                kill_active_process()
-                print("\n>>> Switching to DETECTION...")
-                current_process = multiprocessing.Process(target=run_detection_app)
-                current_process.start()
-
-            elif cmd == "pose":
-                kill_active_process()
-                print("\n>>> Switching to POSE ESTIMATION...")
-                current_process = multiprocessing.Process(target=run_pose_app)
-                current_process.start()
-            
-            else:
-                print(f"Unknown command: '{cmd}'")
-
-        except KeyboardInterrupt:
-            print("\nForce stopping...")
-            if current_process:
-                current_process.terminate()
-            break
