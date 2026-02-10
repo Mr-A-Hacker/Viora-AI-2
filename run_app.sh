@@ -35,4 +35,4 @@ fi
 
 # 4. Run your custom application
 echo "Starting Pocket AI..."
-python app.py --input rpi
+python object_detection.py --input rpi
