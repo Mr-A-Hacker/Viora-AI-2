@@ -1,4 +1,5 @@
 import sys
+import cv2
 from kivy.lang import Builder
 from kivymd.app import MDApp
 from kivymd.uix.button import MDButton, MDButtonText
@@ -9,86 +10,90 @@ from kivy.graphics.texture import Texture
 
 import computer_vision
 
+# Force a portrait resolution
 Window.size = (480, 800)
 
 KV = '''
 MDScreen:
-    md_bg_color: 0, 0, 0, 1  # Black background
+    md_bg_color: 0, 0, 0, 1
 
-    # 1. THE CAMERA DISPLAY
-    Image:
-        id: cam_display
-        source: "" 
-        allow_stretch: True
-        keep_ratio: True
-        pos_hint: {"center_x": 0.5, "center_y": 0.5}
-        size_hint: 1, 1
+    MDFloatLayout:
+        # LAYER 1: The Camera Display (Background)
+        Image:
+            id: cam_display
+            source: "" 
+            allow_stretch: True
+            keep_ratio: False 
+            size_hint: 1, 1
+            pos_hint: {"center_x": 0.5, "center_y": 0.5}
 
-    # 2. STATUS LABEL (On top)
-    MDLabel:
-        id: status_label
-        text: "Status: Ready"
-        halign: "center"
-        pos_hint: {"center_x": 0.5, "top": 0.98}
-        size_hint: 1, 0.05
-        theme_text_color: "Custom"
-        text_color: 1, 1, 1, 1
-        
-        canvas.before:
-            Color:
-                rgba: 0, 0, 0, 0.5
-            Rectangle:
-                pos: self.pos
-                size: self.size
+        # LAYER 2: Status Label
+        MDLabel:
+            id: status_label
+            text: "Status: Ready"
+            halign: "center"
+            pos_hint: {"center_x": 0.5, "top": 0.96}
+            size_hint: 0.8, None
+            height: "40dp"
+            theme_text_color: "Custom"
+            text_color: 1, 1, 1, 1
+            canvas.before:
+                Color:
+                    rgba: 0, 0, 0, 0.6
+                RoundedRectangle:
+                    pos: self.pos
+                    size: self.size
+                    radius: [15]
 
-    # 3. CONTROLS (Bottom)
-    MDBoxLayout:
-        orientation: "vertical"
-        pos_hint: {"center_x": 0.5, "y": 0.02}
-        size_hint: 0.9, 0.25
-        spacing: "15dp"
-
-        # Row 1
+        # LAYER 3: Controls
         MDBoxLayout:
-            orientation: "horizontal"
-            spacing: "15dp"
-            MDButton:
-                style: "filled"
-                md_bg_color: 0, 0.5, 1, 1
-                size_hint_x: 0.5
-                on_release: app.switch_mode("stream")
-                MDButtonText:
-                    text: "STREAM"
-                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            MDButton:
-                style: "filled"
-                md_bg_color: 1, 0.2, 0.2, 1
-                size_hint_x: 0.5
-                on_release: app.switch_mode("stop")
-                MDButtonText:
-                    text: "STOP"
-                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            orientation: "vertical"
+            pos_hint: {"center_x": 0.5, "y": 0.03}
+            size_hint: 0.9, None
+            height: "140dp"
+            spacing: "10dp"
 
-        # Row 2
-        MDBoxLayout:
-            orientation: "horizontal"
-            spacing: "15dp"
-            MDButton:
-                style: "filled"
-                md_bg_color: 0.2, 0.8, 0.2, 1
-                size_hint_x: 0.5
-                on_release: app.switch_mode("detect")
-                MDButtonText:
-                    text: "DETECT"
-                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
-            MDButton:
-                style: "filled"
-                md_bg_color: 0.6, 0.2, 0.8, 1
-                size_hint_x: 0.5
-                on_release: app.switch_mode("pose")
-                MDButtonText:
-                    text: "POSE"
-                    pos_hint: {"center_x": 0.5, "center_y": 0.5}
+            # Row 1: Mode Selectors
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: "15dp"
+                MDButton:
+                    style: "filled"
+                    md_bg_color: 0.2, 0.8, 0.2, 1
+                    size_hint_x: 0.5
+                    on_release: app.switch_mode("detect")
+                    MDButtonText:
+                        text: "DETECT"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                MDButton:
+                    style: "filled"
+                    md_bg_color: 0.6, 0.2, 0.8, 1
+                    size_hint_x: 0.5
+                    on_release: app.switch_mode("pose")
+                    MDButtonText:
+                        text: "POSE"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+
+            # Row 2: Stream / Stop
+            MDBoxLayout:
+                orientation: "horizontal"
+                spacing: "15dp"
+                MDButton:
+                    style: "filled"
+                    md_bg_color: 0, 0.5, 1, 1
+                    size_hint_x: 0.5
+                    on_release: app.switch_mode("stream")
+                    MDButtonText:
+                        text: "STREAM"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
+                MDButton:
+                    style: "filled"
+                    md_bg_color: 1, 0.2, 0.2, 1
+                    size_hint_x: 0.5
+                    on_release: app.switch_mode("stop")
+                    MDButtonText:
+                        text: "STOP"
+                        pos_hint: {"center_x": 0.5, "center_y": 0.5}
 '''
 
 class AICameraApp(MDApp):
@@ -102,7 +107,6 @@ class AICameraApp(MDApp):
         return Builder.load_string(KV)
 
     def on_start(self):
-        # Start the camera update loop (30 FPS)
         self.update_event = Clock.schedule_interval(self.update_texture, 1.0 / 30.0)
         self.switch_mode("stream")
 
@@ -112,24 +116,25 @@ class AICameraApp(MDApp):
         computer_vision.stop_task()
 
     def update_texture(self, dt):
-        """Called every frame. Fetches image from computer_vision thread."""
         frame = computer_vision.get_latest_frame()
         
         if frame is not None:
-            # Note: GStreamer/OpenCV is often BGR, but Kivy needs RGB.
-            # Depending on the Hailo output, you might need to flip colors.
-            # If colors look blue/weird, uncomment the next line:
-            # frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+            # 1. ROTATE (Landscape Camera -> Portrait Screen)
+            try:
+                frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
+            except Exception:
+                pass
 
-            # Flip for Kivy display if needed (vertical flip)
-            # frame = cv2.flip(frame, 0) 
-
-            # Create Texture
+            # 2. COLOR CORRECTION
+            # The pipeline now outputs RGB directly to fix the blue tint.
+            # So we DO NOT use cv2.cvtColor(frame, cv2.COLOR_BGR2RGB) here.
+            # We treat the frame as already RGB.
+            
+            # 3. TEXTURE CREATION
             h, w = frame.shape[:2]
             texture = Texture.create(size=(w, h), colorfmt='rgb')
             texture.blit_buffer(frame.flatten(), colorfmt='rgb', bufferfmt='ubyte')
             
-            # Apply to widget
             self.root.ids.cam_display.texture = texture
 
     def switch_mode(self, mode):
@@ -150,7 +155,7 @@ class AICameraApp(MDApp):
 
         if target_func:
             computer_vision.start_task(target_func)
-            status_label.text = f"Status: Running {mode.upper()}"
+            status_label.text = f"Active: {mode.upper()}"
             self.active_mode = mode
 
 if __name__ == "__main__":
