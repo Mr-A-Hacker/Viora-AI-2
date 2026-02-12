@@ -10,9 +10,8 @@ from typing import Dict, List, Optional
 # Import OpenClawClient from the existing file
 try:
     from openclaw_client import OpenClawClient, load_openclaw_config, DEFAULT_SESSION_KEY
-    from live_cam import CameraStreamer
-except ImportError:
-    print("Error: Could not import openclaw_client or live_cam. Make sure they are in the same directory.")
+except ImportError as e:
+    print(f"Error: Could not import openclaw_client. Details: {e}")
     sys.exit(1)
 
 # Configure logging
@@ -23,6 +22,27 @@ logger = logging.getLogger("fastapi_bridge")
 
 OC_CONFIG, OC_URL, OC_TOKEN = load_openclaw_config()
 OC_URL = OC_URL or "ws://127.0.0.1:18789"
+
+import cv2
+from starlette.background import BackgroundTask
+from fastapi.responses import StreamingResponse
+
+# Import detection module
+# Ensure sys.path includes hailo-apps logic if needed, but detection.py handles it internally?
+# Actually detection.py modifies sys.path if run as main, but as module it might not?
+# Let's add the sys.path modification here regarding hailo-apps just in case,
+# or rely on the environment being set correctly (which run_detection.sh does).
+# Since app.py is likely run from the root, we might need to be careful.
+# But detection.py uses relative imports from hailo_apps.
+# Let's assume the environment is set up (via source setup_env.sh).
+
+try:
+    import detection
+except ImportError:
+    # Fallback if running from root without python path set?
+    # Or maybe it's fine.
+    print("Warning: Could not import detection.py. Make sure environment is set.")
+    detection = None
 
 app = FastAPI()
 
@@ -110,6 +130,20 @@ class OpenClawBridge:
             self.oc_connected = False
             return False
 
+    async def broadcast_detections_loop(self):
+        """Continuously checks and sends detections to the frontend."""
+        last_detections = None
+        while self.active:
+            if shared_detection_state:
+                _, detections = shared_detection_state.get_latest()
+                if detections and detections != last_detections:
+                    await self.safe_send({
+                        "type": "detections",
+                        "data": detections
+                    })
+                    last_detections = detections
+            await asyncio.sleep(0.05) # 20 FPS updates
+
     async def send_history(self):
         """Fetches and sends chat history to the frontend."""
         if not self.oc_connected:
@@ -143,6 +177,9 @@ class OpenClawBridge:
             if await self.connect_openclaw():
                 # 2. Send history immediately
                 await self.send_history()
+
+            # Start detection broadcaster for this connection
+            asyncio.create_task(self.broadcast_detections_loop())
 
             # 3. Handle messages
             while self.active:
@@ -200,41 +237,81 @@ async def websocket_endpoint(websocket: WebSocket):
     bridge = OpenClawBridge(websocket, connection_id)
     await bridge.run()
 
-@app.websocket("/camera")
-async def camera_endpoint(websocket: WebSocket):
-    await websocket.accept()
-    logger.info("Camera client connected")
-    
-    streamer = CameraStreamer()
-    
-    async def send_frame(data):
-        try:
-            # Send binary JPEG data
-            await websocket.send_bytes(data)
-        except Exception:
-            pass
 
-    def camera_callback(data):
-        # We need to run the async send_frame from a sync callback
-        try:
-            loop = asyncio.get_event_loop()
-            if loop.is_running():
-                loop.create_task(send_frame(data))
-        except Exception as e:
-            logger.error(f"Error in camera callback: {e}")
 
-    streamer.start(callback=camera_callback)
-    
-    try:
-        while True:
-            # Just keep the connection alive
-            # Wait for any message from client (e.g. to stop or ping)
-            await websocket.receive_text()
-    except (WebSocketDisconnect, RuntimeError):
-        logger.info("Camera client disconnected")
-    finally:
-        streamer.stop()
+
+# -----------------------------------------------------------------------------------------------
+# Video Streaming & Detection Integration
+# -----------------------------------------------------------------------------------------------
+
+shared_detection_state = None
+
+@app.post("/camera/start")
+async def start_camera():
+    global shared_detection_state
+    print("Received start camera request")
+    if detection:
+         shared_detection_state = detection.start_detection()
+    return {"status": "started"}
+
+@app.post("/camera/stop")
+async def stop_camera():
+    print("Received stop camera request")
+    if detection:
+        detection.stop_detection()
+    return {"status": "stopped"}
+
+
+def generate_frames():
+    """Generates MJPEG frames from the shared state."""
+    first_frame = True
+    while True:
+        if shared_detection_state:
+            frame, _ = shared_detection_state.get_latest()
+            if frame is not None:
+                if first_frame:
+                    print("DEBUG: generate_frames received first frame!")
+                    first_frame = False
+                # Encode frame to JPEG
+                # Frame is RGB, OpenCV expects BGR
+                frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
+                ret, buffer = cv2.imencode('.jpg', frame_bgr)
+                if ret:
+                    frame_bytes = buffer.tobytes()
+                    yield (b'--frame\r\n'
+                           b'Content-Type: image/jpeg\r\n\r\n' + frame_bytes + b'\r\n')
+            else:
+                # Debugging potential stuck state
+                # print("DEBUG: generate_frames waiting for frame...")
+                pass
+        
+        # Avoid tight loop if no frame
+        import time
+        time.sleep(0.03)
+
+@app.get("/video_feed")
+async def video_feed():
+    """Video streaming route. Put this in the src attribute of an img tag."""
+    return StreamingResponse(generate_frames(), media_type="multipart/x-mixed-replace; boundary=frame")
+
+
+# -----------------------------------------------------------------------------------------------
+# WebSocket Broadcasting
+# -----------------------------------------------------------------------------------------------
+
+# We can reuse the existing WebSocket bridge to send detection data, 
+# or use a dedicated method. To keep it simple, we'll modify the loop 
+# to check for detections and send them.
+# However, the bridge loop blocks on receive.
+# Better to have a background task or just rely on the client polling?
+# Or we can push.
+
+# Let's add a background broadcaster that pushes to all active bridges.
+
+# Easier approach: Client requests detections or we piggyback on existing ws connection.
+# Let's modify OpenClawBridge to include a detection broadcasting task.
 
 if __name__ == "__main__":
     import uvicorn
+    # Need to run with setup_env.sh sourced if running directly
     uvicorn.run(app, host="0.0.0.0", port=8000)
