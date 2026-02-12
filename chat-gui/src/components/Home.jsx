@@ -2,33 +2,32 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { MessageCircle, Settings, Camera, Music, Video, Map as MapIcon } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import Avatar from './Avatar';
 
-const Orbiter = ({ icon: Icon, radius, duration, initialAngle }) => {
+const Orbiter = ({ icon: Icon, radius, duration, initialAngle, delay = 0 }) => {
+    // Calculate static position based on angle and radius
+    const radian = (initialAngle * Math.PI) / 180;
+    const x = Math.cos(radian) * radius;
+    const y = Math.sin(radian) * radius;
+
     return (
         <motion.div
             className="absolute top-1/2 left-1/2 w-0 h-0 z-10"
-            initial={{ rotate: initialAngle }}
-            animate={{ rotate: initialAngle + 360 }}
+            initial={{ x, y }}
+            animate={{
+                y: [y - 8, y + 8, y - 8],
+            }}
             transition={{
-                duration: duration,
-                ease: 'linear',
+                duration: 4,
+                ease: 'easeInOut',
                 repeat: Infinity,
+                delay: delay,
             }}
         >
-            <div style={{ transform: `translate(${radius}px, -50%)` }}>
-                <motion.div
-                    animate={{ rotate: -(initialAngle + 360) }}
-                    initial={{ rotate: -initialAngle }}
-                    transition={{
-                        duration: duration,
-                        ease: 'linear',
-                        repeat: Infinity,
-                    }}
-                >
-                    <div className="p-4 bg-white/20 backdrop-blur-md rounded-2xl text-cyan-400 shadow-[0_0_15px_rgba(34,211,238,0.3)] border border-white/10 cursor-pointer hover:bg-white/30 transition-colors">
-                        <Icon size={28} />
-                    </div>
-                </motion.div>
+            <div className="-translate-x-1/2 -translate-y-1/2 absolute top-1/2 left-1/2">
+                <div className="w-16 h-16 bg-white/80 backdrop-blur-md rounded-2xl text-blue-500 shadow-[0_4px_20px_rgba(0,0,0,0.08)] border border-slate-100 cursor-pointer hover:scale-110 transition-transform flex items-center justify-center">
+                    <Icon size={28} />
+                </div>
             </div>
         </motion.div>
     );
@@ -42,89 +41,35 @@ export default function Home() {
     };
 
     return (
-        <div className="relative w-screen h-screen overflow-hidden bg-slate-900">
-            {/* Background Gradient */}
-            <div className="absolute inset-0 bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900 z-0" />
+        <div className="relative w-screen h-screen overflow-hidden bg-slate-50">
+            {/* Background Gradient - Light Theme */}
+            <div className="absolute inset-0 bg-gradient-to-br from-blue-50 via-slate-50 to-indigo-50 z-0" />
 
-            {/* Orbitals Layer */}
+            {/* Decorative circles */}
+            <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-200/20 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-purple-200/20 rounded-full blur-3xl pointer-events-none" />
+
+            {/* Icons Layer - Floating */}
             <div className="absolute inset-0 z-10 pointer-events-none">
-                <div className="w-full h-full relative">
-                    <Orbiter icon={MessageCircle} radius={140} duration={25} initialAngle={0} />
-                    <Orbiter icon={Camera} radius={140} duration={25} initialAngle={120} />
-                    <Orbiter icon={Music} radius={140} duration={25} initialAngle={240} />
-
-                    <Orbiter icon={Settings} radius={220} duration={35} initialAngle={60} />
-                    <Orbiter icon={Video} radius={220} duration={35} initialAngle={180} />
-                    <Orbiter icon={MapIcon} radius={220} duration={35} initialAngle={300} />
+                <div className="w-full h-full relative flex items-center justify-center">
+                    <Orbiter icon={MessageCircle} radius={150} initialAngle={270} delay={0} />
+                    <Orbiter icon={Camera} radius={150} initialAngle={330} delay={0.2} />
+                    <Orbiter icon={Music} radius={150} initialAngle={30} delay={0.4} />
+                    <Orbiter icon={Settings} radius={150} initialAngle={90} delay={0.6} />
+                    <Orbiter icon={Video} radius={150} initialAngle={150} delay={0.8} />
+                    <Orbiter icon={MapIcon} radius={150} initialAngle={210} delay={1.0} />
                 </div>
             </div>
 
-            {/* Avatar Layer - Centered absolutely on top */}
+            {/* Avatar Layer - Centered */}
             <div className="absolute inset-0 z-50 flex items-center justify-center pointer-events-none">
-                <motion.div
-                    className="relative bg-cyan-500 rounded-full flex items-center justify-center w-48 h-48 shadow-[0_0_60px_rgba(6,182,212,0.8)] border-4 border-cyan-300/50 cursor-pointer pointer-events-auto"
-                    onClick={handleAvatarClick}
-                    whileHover={{ scale: 1.1, boxShadow: "0 0 80px rgba(6,182,212,1)" }}
-                    whileTap={{ scale: 0.95 }}
-                    initial={{ opacity: 0, scale: 0.5 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ duration: 0.5 }}
-                >
-                    {/* Face Container */}
-                    <motion.div
-                        className="flex flex-col items-center gap-4 pointer-events-none"
-                        initial={{ x: 0, y: 0 }}
-                        animate={{
-                            x: [0, -8, 8, 0, 0],
-                            y: [0, -4, 4, 0, 0],
-                        }}
-                        transition={{
-                            duration: 5,
-                            repeat: Infinity,
-                            repeatDelay: 2,
-                            ease: "easeInOut"
-                        }}
-                    >
-                        {/* Eyes */}
-                        <div className="flex gap-6">
-                            <div className="w-8 h-8 bg-white rounded-full relative shadow-inner">
-                                <motion.div
-                                    className="w-3 h-3 bg-slate-900 rounded-full absolute top-2 left-2"
-                                    animate={{
-                                        x: [0, 3, -3, 0],
-                                        y: [0, 2, -2, 0]
-                                    }}
-                                    transition={{
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        repeatDelay: 1
-                                    }}
-                                />
-                            </div>
-                            <div className="w-8 h-8 bg-white rounded-full relative shadow-inner">
-                                <motion.div
-                                    className="w-3 h-3 bg-slate-900 rounded-full absolute top-2 left-2"
-                                    animate={{
-                                        x: [0, 3, -3, 0],
-                                        y: [0, 2, -2, 0]
-                                    }}
-                                    transition={{
-                                        duration: 4,
-                                        repeat: Infinity,
-                                        repeatDelay: 1
-                                    }}
-                                />
-                            </div>
-                        </div>
-                        {/* Smile */}
-                        <div className="w-16 h-8 border-b-[6px] border-white rounded-full" />
-                    </motion.div>
-
-                    {/* Tap Hint */}
-                    <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 text-cyan-400 text-sm font-medium tracking-wider animate-pulse whitespace-nowrap">
-                        TAP TO CHAT
-                    </div>
-                </motion.div>
+                <div className="pointer-events-auto relative">
+                    <Avatar
+                        onClick={handleAvatarClick}
+                        variant="lg"
+                        animate={true}
+                    />
+                </div>
             </div>
         </div>
     );
