@@ -1,0 +1,23 @@
+INFO:     Started server process [65971]
+INFO:     Waiting for application startup.
+INFO:     Application startup complete.
+INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+INFO:fastapi_bridge:[e2b5a4df] New connection request
+INFO:     127.0.0.1:40958 - "WebSocket /ws" [accepted]
+INFO:fastapi_bridge:[e2b5a4df] Connection accepted
+INFO:     connection open
+INFO:     connection closed
+INFO:fastapi_bridge:[80c678df] New connection request
+INFO:     127.0.0.1:40962 - "WebSocket /ws" [accepted]
+INFO:fastapi_bridge:[80c678df] Connection accepted
+INFO:     connection open
+INFO:fastapi_bridge:[e2b5a4df] Connected to OpenClaw
+WARNING:fastapi_bridge:[e2b5a4df] Frontend send failed: 
+INFO:fastapi_bridge:[e2b5a4df] Disconnecting OpenClaw client
+INFO:fastapi_bridge:[80c678df] Connected to OpenClaw
+INFO:fastapi_bridge:[80c678df] Disconnecting OpenClaw client
+INFO:     connection closed
+INFO:     Shutting down
+INFO:     Waiting for application shutdown.
+INFO:     Application shutdown complete.
+INFO:     Finished server process [65971]
