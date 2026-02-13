@@ -5,6 +5,7 @@ from gi.repository import Gst, GLib
 import cv2
 import hailo
 import multiprocessing
+import queue
 
 from hailo_apps.python.core.common.hailo_logger import get_logger
 from hailo_apps.python.core.gstreamer.gstreamer_app import app_callback_class
@@ -402,73 +403,235 @@ class CustomGStreamerDetectionApp(GStreamerDetectionApp):
         return pipeline_string
 
 # -----------------------------------------------------------------------------------------------
-# Background Thread Runner
+# Multiprocessing Support
 # -----------------------------------------------------------------------------------------------
-# -----------------------------------------------------------------------------------------------
-# Background Thread Runner
-# -----------------------------------------------------------------------------------------------
-current_app = None
-detection_thread = None
-app_lock = threading.Lock()
+detection_process = None
+monitor_thread = None
+stop_event = multiprocessing.Event()
+frame_queue = None
 
-def run_detection_thread():
-    global current_app
-    hailo_logger.info("Starting Detection App in background thread.")
+def run_detection_process(frame_queue, stop_event):
+    """
+    Runs the detection app in a separate process.
+    """
+    # Set proctitle for easier identification
+    try:
+        import setproctitle
+        setproctitle.setproctitle("pocket-ai-detection")
+    except ImportError:
+        pass
+
+    hailo_logger.info("Starting Detection Process.")
     
+    # Ensure correct args for the process
     if "--input" not in sys.argv:
         sys.argv.extend(["--input", "rpi"])
     
-    # Enable use-frame by default for this integration
-    if "--use-frame" not in sys.argv:
-        sys.argv.append("--use-frame")
-    
-    # We pass headless=True explicitly for background execution
-    user_data = user_app_callback_class()
-    app = CustomGStreamerDetectionApp(app_callback, user_data, headless=True)
-    
-    # Set current_app safely
-    with app_lock:
-        current_app = app
+    # DO NOT add --use-frame to sys.argv here.
+    # This ensures options_menu.use_frame is False, preventing the display process from spawning
+    # inside CustomGStreamerDetectionApp.run().
+    # We still get frames in our callback because user_data.use_frame is manually set to True below.
+
+    # Define a custom callback that pushes to the queue
+    def process_callback(element, buffer, user_data):
+        if buffer is None:
+             return Gst.PadProbeReturn.OK
+
+        pad = element.get_static_pad("src")
+        format, width, height = robust_get_caps_from_pad(pad)
+
+        frame = None
+        # Always capture frame if we have valid format, width, height, regardless of user_data.use_frame
+        # This is because we disabled --use-frame to prevent display process from spawning,
+        # but we still need frames for the queue.
+        if format and width and height:
+            frame = get_numpy_from_buffer(buffer, format, width, height)
+
+        # Get detections
+        roi = hailo.get_roi_from_buffer(buffer)
+        detections = roi.get_objects_typed(hailo.HAILO_DETECTION)
+
+        detection_list = []
+        for detection in detections:
+            bbox = detection.get_bbox()
+            detection_list.append({
+                "label": detection.get_label(),
+                "confidence": detection.get_confidence(),
+                "bbox": [bbox.xmin(), bbox.ymin(), bbox.xmax(), bbox.ymax()]
+            })
+
+        if frame is not None:
+            # Push to queue (non-blocking, drop if full)
+            if not frame_queue.full():
+                try:
+                    frame_queue.put_nowait((frame, detection_list))
+                except queue.Full:
+                    pass
+            #else:
+            #    hailo_logger.warning("Frame queue full. Skipping frame.")
+        else:
+             hailo_logger.warning(f"Frame is None! Caps: Fmt={format}, W={width}, H={height}, UseFrame={user_data.use_frame}")
         
+        return Gst.PadProbeReturn.OK
+
+    # Initialize App
+    user_data = user_app_callback_class()
+    user_data.use_frame = True # Explicitly enable frame capture for callback
+    app = CustomGStreamerDetectionApp(process_callback, user_data, headless=True)
+
+    # Monitor thread to check stop_event and quit loop gracefully
+    def monitor_stop_signal():
+        while True:
+            if stop_event.is_set():
+                hailo_logger.info("Stop event received in process. Shutting down app.")
+                # Call shutdown from the main loop thread to avoid signal issues
+                GLib.idle_add(app.shutdown)
+                break
+            time.sleep(0.5)
+
+    stop_monitor = threading.Thread(target=monitor_stop_signal, daemon=True)
+    stop_monitor.start()
+
+    # Run Loop
     try:
         app.run()
+    except Exception as e:
+        hailo_logger.error(f"Process Exception: {e}")
     finally:
-        with app_lock:
-            current_app = None
-        hailo_logger.info("Detection App thread exited.")
+        hailo_logger.info("Detection Process Exiting.")
 
-def start_detection():
-    global detection_thread
-    with app_lock:
-        if current_app is not None:
-            hailo_logger.info("Detection is already running.")
-            return shared_state
+def monitor_queue_loop(q):
+    """
+    Reads from the multiprocessing queue and updates shared_state.
+    Runs in a thread in the MAIN process.
+    """
+    hailo_logger.info("Queue monitor thread started.")
+    while True:
+        try:
+            # verify process is alive
+            if detection_process is None or not detection_process.is_alive():
+                break
+            
+            try:
+                # Timeout allows checking liveness
+                frame, detections = q.get(timeout=1.0) 
+                shared_state.update(frame, detections)
+            except queue.Empty:
+                hailo_logger.debug("Monitor queue empty.")
+                continue
+        except Exception as e:
+            hailo_logger.error(f"Monitor error: {e}")
+            break
+    hailo_logger.info("Queue monitor thread exited.")
+
+# Track active users to handle React Strict Mode and rapid navigation
+ref_count = 0
+shutdown_timer = None
+session_lock = threading.Lock()
+
+def start_detection(session_id=None):
+    """
+    Starts the detection process if not already running.
+    Increments a reference count to track active sessions.
+    """
+    global detection_process, monitor_thread, frame_queue, ref_count, shutdown_timer
+    
+    with session_lock:
+        ref_count += 1
+        hailo_logger.info(f"Start requested (session_id={session_id}). Ref count: {ref_count}")
         
-        # Check if thread is still alive even if current_app is None (cleanup phase)
-        if detection_thread is not None and detection_thread.is_alive():
-             hailo_logger.info("Detection thread is still cleaning up. Please wait.")
-             return shared_state
+        # Cancel any pending shutdown if a new user arrives
+        if shutdown_timer is not None:
+            hailo_logger.info("Cancelling pending shutdown.")
+            shutdown_timer.cancel()
+            shutdown_timer = None
 
-        t = threading.Thread(target=run_detection_thread, daemon=True)
-        t.start()
-        detection_thread = t
+    # If process is ALIVE, just return the existing shared state
+    if detection_process is not None and detection_process.is_alive():
+        hailo_logger.info("Detection process is already running.")
+        return shared_state
+
+    hailo_logger.info("Spawning detection process...")
+    
+    # Reset communication primitives
+    stop_event.clear()
+    frame_queue = multiprocessing.Queue(maxsize=2)
+    
+    # Spawn Process
+    # daemon=False to allow potential child processes (legacy display app logic)
+    detection_process = multiprocessing.Process(
+        target=run_detection_process, 
+        args=(frame_queue, stop_event),
+        daemon=False
+    )
+    detection_process.start()
+    
+    # Start Monitor Thread in parent process to update shared_state
+    monitor_thread = threading.Thread(
+        target=monitor_queue_loop, 
+        args=(frame_queue,), 
+        daemon=True
+    )
+    monitor_thread.start()
+    
     return shared_state
 
-def stop_detection():
-    # We don't need lock here to call shutdown, but we should check safely
-    # shutdown() is thread-safe usually (sets a flag or signal)
-    app_copy = None
-    with app_lock:
-        app_copy = current_app
+def stop_detection(session_id=None):
+    """
+    Decrements reference count. If 0, schedules a delayed shutdown.
+    """
+    global ref_count, shutdown_timer
+    
+    with session_lock:
+        if ref_count > 0:
+            ref_count -= 1
+        hailo_logger.info(f"Stop requested (session_id={session_id}). Ref count: {ref_count}")
         
-    if app_copy:
-        hailo_logger.info("Stopping detection...")
-        app_copy.shutdown()
-        # Thread will exit and clear current_app
-    else:
-        hailo_logger.info("Detection is not running.")
+        if ref_count == 0:
+            hailo_logger.info("No active users. Scheduling immediate shutdown (100ms)...")
+            if shutdown_timer is not None:
+                shutdown_timer.cancel()
+            shutdown_timer = threading.Timer(0.1, perform_actual_shutdown)
+            shutdown_timer.start()
+    
     return True
 
+def perform_actual_shutdown():
+    """
+    Actually kills the process. Called by the shutdown_timer.
+    """
+    global detection_process, frame_queue, shutdown_timer
+    
+    with session_lock:
+        # Re-check ref_count in case someone started while we were waiting
+        if ref_count > 0:
+            hailo_logger.info("Shutdown aborted: ref_count increased while waiting.")
+            return
+
+        hailo_logger.info("Performing actual shutdown of detection process...")
+        
+        # Signal graceful exit via stop_event
+        stop_event.set()
+        
+        if detection_process and detection_process.is_alive():
+            # Wait for graceful exit
+            detection_process.join(timeout=5.0)
+            
+            if detection_process.is_alive():
+                 hailo_logger.warning("Process did not exit gracefully; terminating.")
+                 detection_process.terminate()
+                 detection_process.join(timeout=2.0)
+                 
+                 if detection_process.is_alive():
+                    hailo_logger.warning("Process did not terminate; killing.")
+                    detection_process.kill()
+                    detection_process.join()
+                
+        hailo_logger.info("Detection process stopped.")
+        
+        detection_process = None
+        frame_queue = None
+        shutdown_timer = None
 
 def main():
     # Standalone run

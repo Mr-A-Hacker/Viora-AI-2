@@ -5,6 +5,7 @@ import json
 import logging
 import sys
 import uuid
+import pydantic
 from typing import Dict, List, Optional
 
 # Import OpenClawClient from the existing file
@@ -246,19 +247,22 @@ async def websocket_endpoint(websocket: WebSocket):
 
 shared_detection_state = None
 
+class CameraRequest(pydantic.BaseModel):
+    session_id: str = "default"
+
 @app.post("/camera/start")
-async def start_camera():
+async def start_camera(request: CameraRequest):
     global shared_detection_state
-    print("Received start camera request")
+    print(f"Received start camera request for session {request.session_id}")
     if detection:
-         shared_detection_state = detection.start_detection()
+         shared_detection_state = detection.start_detection(request.session_id)
     return {"status": "started"}
 
 @app.post("/camera/stop")
-async def stop_camera():
-    print("Received stop camera request")
+async def stop_camera(request: CameraRequest):
+    print(f"Received stop camera request for session {request.session_id}")
     if detection:
-        detection.stop_detection()
+        detection.stop_detection(request.session_id)
     return {"status": "stopped"}
 
 

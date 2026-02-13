@@ -17,12 +17,17 @@ export default function CameraView() {
 
     useEffect(() => {
         let isMounted = true;
+        const sessionId = Math.random().toString(36).substring(7); // Simple unique ID
 
         // Start the camera when the component mounts
         const startCamera = async () => {
             try {
-                console.log("Starting camera...");
-                await fetch(startUrl, { method: 'POST' });
+                console.log(`Starting camera session: ${sessionId}`);
+                await fetch(startUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ session_id: sessionId })
+                });
                 if (isMounted) console.log("Camera started signal sent");
             } catch (error) {
                 console.error("Failed to start camera:", error);
@@ -31,6 +36,7 @@ export default function CameraView() {
         };
 
         const connectWebSocket = () => {
+            // ... existing websocket logic ...
             console.log('Connecting to WebSocket:', wsUrl);
             const ws = new WebSocket(wsUrl);
             wsRef.current = ws;
@@ -38,8 +44,6 @@ export default function CameraView() {
             ws.onopen = () => {
                 if (isMounted) setStatus('connected');
                 console.log('WebSocket connected');
-                // Optional: Send initial handshake if required by backend, 
-                // but openclaw_bridge typically waits for messages or sends history.
             };
 
             ws.onmessage = (event) => {
@@ -60,7 +64,7 @@ export default function CameraView() {
 
             ws.onclose = () => {
                 console.log('WebSocket disconnected');
-                if (isMounted) setStatus('connecting'); // Try to reconnect behavior handled by useEffect dependency if needed
+                if (isMounted) setStatus('connecting');
             };
         };
 
@@ -71,15 +75,20 @@ export default function CameraView() {
         // Cleanup
         return () => {
             isMounted = false;
-            console.log("Stopping camera...");
-            // Use sendBeacon for reliable delivery on unload/navigation? 
-            // Or just simple fetch (might be cancelled). 
-            // For navigation within SPA, fetch is fine.
-            fetch(stopUrl, { method: 'POST' }).catch(console.error);
+            console.log(`Stopping camera session: ${sessionId}`);
 
             if (wsRef.current) {
                 wsRef.current.close();
             }
+
+            // Immediately send stop request.
+            // The backend handles the race condition (Strict Mode) with a 2s reference-count delay.
+            fetch(stopUrl, {
+                method: 'POST',
+                keepalive: true,
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ session_id: sessionId })
+            }).catch(console.error);
         };
     }, []);
 
