@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { MessageCircle, Settings, Camera, Music, Video, Image as GalleryIcon, Clock, Activity, Cpu } from 'lucide-react';
+import { MessageCircle, Settings, Camera, Music, Video, Image as GalleryIcon, Clock, Activity, Cpu, Code } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 
@@ -61,23 +61,27 @@ export default function Home() {
                         onClick={() => navigate('/chat')}
                     />
                     <Orbiter
-                        icon={Camera} radius={150} initialAngle={330} delay={0.1}
+                        icon={Camera} radius={150} initialAngle={321} delay={0.1}
                         onClick={() => navigate('/camera')}
                     />
                     <Orbiter
-                        icon={Activity} radius={150} initialAngle={30} delay={0.2}
+                        icon={Code} radius={150} initialAngle={12} delay={0.2}
+                        onClick={() => navigate('/agent')}
+                    />
+                    <Orbiter
+                        icon={Activity} radius={150} initialAngle={63} delay={0.3}
                         onClick={() => navigate('/heartbeat')}
                     />
                     <Orbiter
-                        icon={Cpu} radius={150} initialAngle={90} delay={0.3}
+                        icon={Cpu} radius={150} initialAngle={114} delay={0.4}
                         onClick={() => navigate('/gpio')}
                     />
                     <Orbiter
-                        icon={Clock} radius={150} initialAngle={150} delay={0.4}
+                        icon={Clock} radius={150} initialAngle={165} delay={0.5}
                         onClick={() => navigate('/cron')}
                     />
                     <Orbiter
-                        icon={GalleryIcon} radius={150} initialAngle={210} delay={0.5}
+                        icon={GalleryIcon} radius={150} initialAngle={216} delay={0.6}
                         onClick={() => navigate('/gallery')}
                     />
                 </div>

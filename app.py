@@ -599,6 +599,33 @@ os.makedirs(img_dir, exist_ok=True)
 # Mount the img directory to serve images statically
 app.mount("/img", StaticFiles(directory=img_dir), name="img")
 
+# ----------------- Agentic Coding Workspace -----------------
+WORKSPACE_DIR = "/home/pocket-ai/.openclaw/workspace/code projects"
+# Ensure workspace directory exists
+try:
+    os.makedirs(WORKSPACE_DIR, exist_ok=True)
+except Exception as e:
+    logger.error(f"Failed to create workspace dir: {e}")
+
+# Mount the workspace directory to serve the apps
+app.mount("/apps", StaticFiles(directory=WORKSPACE_DIR, html=True), name="apps")
+
+@app.get("/workspace/projects")
+async def list_workspace_projects():
+    """List all projects (subdirectories) in the workspace."""
+    try:
+        projects = []
+        if os.path.exists(WORKSPACE_DIR):
+            for item in os.listdir(WORKSPACE_DIR):
+                item_path = os.path.join(WORKSPACE_DIR, item)
+                if os.path.isdir(item_path):
+                    projects.append(item)
+        projects.sort()
+        return {"status": "success", "projects": projects}
+    except Exception as e:
+        logger.error(f"Error listing projects: {e}")
+        return {"status": "error", "message": str(e)}
+
 @app.get("/gallery/images")
 async def get_gallery_images():
     """List all images in the img directory, sorted by newest first."""

@@ -10,6 +10,7 @@ import StatusBar from './components/StatusBar';
 import CronManager from './components/CronManager';
 import HeartbeatManager from './components/HeartbeatManager';
 import GPIOControl from './components/GPIOControl';
+import AgenticCoding from './components/AgenticCoding';
 import { WebSocketProvider } from './contexts/WebSocketContext';
 
 
@@ -24,6 +25,7 @@ const AnimatedRoutes = () => {
           path="/chat"
           element={<ChatInterface layoutId="avatar-hero" />}
         />
+        <Route path="/agent" element={<AgenticCoding />} />
         <Route path="/camera" element={<CameraView />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/cron" element={<CronManager />} />
