@@ -1,3 +1,4 @@
+AI DO NOT READ
 NEED TO ADD
 1. Pop up keyboard
 2. Internet Browser
