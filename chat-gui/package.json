@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "dev": "electron-vite dev",
+    "backend": "python ../app.py",
     "build": "electron-vite build",
     "preview": "electron-vite preview",
     "lint": "eslint ."

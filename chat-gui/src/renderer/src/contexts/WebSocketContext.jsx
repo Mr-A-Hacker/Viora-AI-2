@@ -2,9 +2,9 @@ import React, { createContext, useContext, useEffect, useRef, useState, useCallb
 
 const WebSocketContext = createContext(null);
 
-const WS_URL = `ws://${window.location.hostname || '127.0.0.1'}:8001/ws`;
-const CHAT_WS_URL = `ws://${window.location.hostname || '127.0.0.1'}:8001/ws/chat`;
-const API_URL = `http://${window.location.hostname || '127.0.0.1'}:8001`;
+const WS_URL = `ws://${window.location.hostname || '127.0.0.1'}:8000/ws/voice`;
+const CHAT_WS_URL = `ws://${window.location.hostname || '127.0.0.1'}:8000/ws/chat`;
+const API_URL = `http://${window.location.hostname || '127.0.0.1'}:8000`;
 
 export function WebSocketProvider({ children }) {
     const [connStatus, setConnStatus] = useState('connecting'); // connected | disconnected | connecting

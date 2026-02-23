@@ -17,7 +17,7 @@ export default function CameraView() {
     const wsRef = useRef(null);
 
     const videoFeedUrl = `http://${window.location.hostname}:8000/video_feed`;
-    const wsUrl = `ws://${window.location.hostname}:8000/ws`;
+    const wsUrl = `ws://${window.location.hostname}:8000/ws/detections`;
     const startUrl = `http://${window.location.hostname}:8000/camera/start`;
     const stopUrl = `http://${window.location.hostname}:8000/camera/stop`;
     const detectionStartUrl = `http://${window.location.hostname}:8000/camera/detection/start`;

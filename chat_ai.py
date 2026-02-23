@@ -3,8 +3,7 @@ import json
 import uuid
 import time
 import asyncio
-from fastapi import FastAPI, WebSocket, WebSocketDisconnect, HTTPException
-from fastapi.middleware.cors import CORSMiddleware
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect, HTTPException
 from pydantic import BaseModel
 from llama_cpp import Llama
 from huggingface_hub import hf_hub_download
@@ -13,17 +12,6 @@ import re
 from stt_whisper import STTEngine as WhisperEngine
 from stt_vosk import STTEngine as VoskEngine
 from tts_piper import PocketAudio
-
-app = FastAPI()
-
-# Enable CORS
-app.add_middleware(
-    CORSMiddleware,
-    allow_origins=["*"],
-    allow_credentials=True,
-    allow_methods=["*"],
-    allow_headers=["*"],
-)
 
 # --- Model Configuration ---
 REPO_ID = "Qwen/Qwen3-0.6B-GGUF"
@@ -158,30 +146,26 @@ class AIState:
         ))
         return response
 
+# --- Router Initialization ---
+router = APIRouter()
 ai = AIState()
 
-@app.on_event("startup")
-async def startup_event():
-    ai.load_model()
-
-# --- REST Endpoints ---
-
-@app.get("/conversations")
+@router.get("/conversations")
 async def list_conversations():
     return ai.conv_manager.list_conversations()
 
-@app.post("/conversations")
+@router.post("/conversations")
 async def create_conversation():
     return ai.conv_manager.create_conversation()
 
-@app.get("/conversations/{conv_id}")
+@router.get("/conversations/{conv_id}")
 async def get_conversation(conv_id: str):
     conv = ai.conv_manager.get_conversation(conv_id)
     if not conv:
         raise HTTPException(status_code=404, detail="Conversation not found")
     return conv
 
-@app.patch("/conversations/{conv_id}")
+@router.patch("/conversations/{conv_id}")
 async def rename_conversation(conv_id: str, data: dict):
     new_title = data.get("title")
     if not new_title:
@@ -191,14 +175,12 @@ async def rename_conversation(conv_id: str, data: dict):
         raise HTTPException(status_code=404, detail="Conversation not found")
     return conv
 
-@app.delete("/conversations/{conv_id}")
+@router.delete("/conversations/{conv_id}")
 async def delete_conversation(conv_id: str):
     ai.conv_manager.delete_conversation(conv_id)
     return {"status": "success"}
 
-# --- WebSocket Endpoint ---
-
-@app.websocket("/ws/chat/{conv_id}")
+@router.websocket("/ws/chat/{conv_id}")
 async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
     await websocket.accept()
     
@@ -208,7 +190,6 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
         await websocket.close()
         return
 
-    # Send history
     await websocket.send_json({
         "type": "history", 
         "messages": [{"role": m["role"], "text": m["content"]} for m in conv["messages"]]
@@ -229,7 +210,6 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
 
     try:
         while True:
-            # Wait for next message from queue
             data = await message_queue.get()
             
             if data["type"] == "send":
@@ -238,10 +218,8 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
                 if not user_text:
                     continue
 
-                # Add user message to history
                 conv["messages"].append({"role": "user", "content": user_text, "timestamp": time.time()})
                 
-                # Update title if it's the first message
                 if len(conv["messages"]) == 1:
                     conv["title"] = user_text[:30] + ("..." if len(user_text) > 30 else "")
                 
@@ -250,16 +228,13 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
                 await websocket.send_json({"type": "stream_start"})
                 
                 full_reply = ""
-                # Use unified generator
                 response = await ai.generate_response(conv["messages"], thinking=True)
 
                 for chunk in response:
-                    # Check for abort command in queue without blocking
                     while not message_queue.empty():
                         msg = await message_queue.get()
                         if msg.get("type") == "abort":
                             abort_event.set()
-                        # If it's another command while generating, we could handle it here
 
                     if abort_event.is_set():
                         await websocket.send_json({"type": "stream_aborted"})
@@ -275,7 +250,6 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
 
                 if not abort_event.is_set():
                     await websocket.send_json({"type": "stream_final", "text": full_reply})
-                    # Add assistant message to history
                     conv["messages"].append({"role": "assistant", "content": full_reply, "timestamp": time.time()})
                     ai.conv_manager.update_conversation(conv_id, conv["messages"])
             
@@ -287,9 +261,7 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
     finally:
         receive_task.cancel()
 
-# --- Voice WebSocket Endpoint (Migrated from app.py) ---
-
-@app.websocket("/ws")
+@router.websocket("/ws/voice")
 async def voice_websocket(websocket: WebSocket):
     await websocket.accept()
     print("Voice client connected")
@@ -341,13 +313,9 @@ async def voice_websocket(websocket: WebSocket):
                     
                     if text:
                         await websocket.send_json({"type": "transcription", "text": text})
-                        
-                        # Process with LLM (Voice mode: thinking=False)
                         ai.voice_messages.append({"role": "user", "content": text})
-                        
                         await websocket.send_json({"type": "ai_start"})
                         full_response = ""
-                        
                         response = await ai.generate_response(ai.voice_messages, thinking=False)
                         
                         for chunk in response:
@@ -371,17 +339,13 @@ async def voice_websocket(websocket: WebSocket):
 
                         if not abort_event.is_set():
                             ai.voice_messages.append({"role": "assistant", "content": full_response})
-                            
-                            # History limit for voice
                             if len(ai.voice_messages) > 11:
                                 ai.voice_messages = [ai.voice_messages[0]] + ai.voice_messages[-10:]
 
-                            # Clean response for TTS (strip <think> tags)
                             clean_reply = re.sub(r'<think>.*?</think>', '', full_response, flags=re.DOTALL).strip()
                             
                             if clean_reply:
                                 await websocket.send_json({"type": "ai_final", "text": full_response})
-                                # Trigger TTS
                                 ai.tts.speak(clean_reply)
                             else:
                                 await websocket.send_json({"type": "ai_final", "text": full_response})
@@ -397,7 +361,3 @@ async def voice_websocket(websocket: WebSocket):
         print(f"WebSocket error: {e}")
     finally:
         receive_task.cancel()
-
-if __name__ == "__main__":
-    import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8001)
