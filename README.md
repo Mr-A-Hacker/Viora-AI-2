@@ -31,13 +31,226 @@ A **Raspberry Pi 5**–focused, local-first AI assistant with voice, chat, and c
 | Requirement | Notes |
 |-------------|--------|
 | **Raspberry Pi 5** | 4 GB or 8 GB RAM; 8 GB recommended for running the LLM plus camera/GUI comfortably. |
-| **Raspberry Pi OS (64-bit)** | Bookworm or later. Use the **desktop** image if you want to run the Electron GUI on the Pi; **lite** is fine if you only run the backend and use the GUI from another machine. |
+| **Raspberry Pi OS (64-bit)** | Bookworm or later; **Trixie** recommended when using the Hailo NPU (see [Hailo-8 HAT setup](#hailo-8--hailo-8l-ai-hat-setup)). Use the **desktop** image to run the Electron GUI on the Pi; **lite** is fine if you only run the backend and use the GUI from another machine. |
 | **Storage** | SD card or (better) SSD. Plan for **at least 4–5 GB free** for models (Qwen GGUF ~500 MB, Piper, Whisper cache, Vosk). |
 | **Python 3.10+** | Raspberry Pi OS Bookworm ships with Python 3.11; that’s fine. |
 | **Node.js 18+** (and npm) | For building and running the Electron GUI. Install on the Pi (see below). |
 | **Microphone** | USB microphone or the Pi’s 3.5 mm jack input (if configured). Needed for voice (STT). |
 | **Speaker / USB audio** | For TTS. The code defaults to a USB audio device; see [TTS playback](#other-setup-notes-pi-5-gotchas) below. |
 | **Camera (optional)** | Official Raspberry Pi Camera Module (or compatible libcamera camera) for the camera stream. |
+| **Hailo-8 / Hailo-8L (optional)** | For computer vision acceleration. Use either the **Raspberry Pi 5 AI Kit** (M.2 HAT + Hailo-8L) or the **Raspberry Pi 5 AI HAT**. See [Hailo-8 HAT setup](#hailo-8--hailo-8l-ai-hat-setup) below. |
+
+---
+
+## Hailo-8 / Hailo-8L AI HAT setup
+
+This section is for adding a **Hailo-8 or Hailo-8L** AI accelerator (e.g. for computer vision). Follow the official [Hailo Raspberry Pi 5 install guide](https://github.com/hailo-ai/hailo-rpi5-examples/blob/main/doc/install-raspberry-pi5.md); the steps below summarize it.
+
+### What you need (Hailo)
+
+- **Raspberry Pi 5** (8 GB recommended when using Hailo)
+- **One of:**
+  - **Raspberry Pi 5 AI Kit:** M.2 M-Key HAT + Hailo-8L M.2 module (Hailo-8 also supported). See [Raspberry Pi AI Kit Guide](https://www.raspberrypi.com/documentation/accessories/ai-kit.html#ai-kit).
+  - **Raspberry Pi 5 AI HAT:** standalone HAT with Hailo-8L (26 or 13 TOPs). See [Raspberry Pi AI HAT Guide](https://www.raspberrypi.com/documentation/accessories/ai-hat-plus.html#ai-hat-plus).
+- **Active cooler** for the Pi 5 (recommended); optional heat sink if the board is in a case.
+- **Official 27 W (or adequate) USB-C power supply** so the board can power the HAT.
+- Optional: Raspberry Pi camera (e.g. Camera Module 3) or USB camera.
+
+### Install Raspberry Pi OS
+
+Use [Raspberry Pi Imager](https://www.raspberrypi.com/software/) to flash the latest **Raspberry Pi OS (64-bit)** to your SD card or SSD.
+
+### Install the AI Kit or AI HAT (hardware)
+
+- **AI Kit (M.2 HAT):** [Raspberry Pi AI Kit Guide](https://www.raspberrypi.com/documentation/accessories/ai-kit.html#ai-kit) — use the thermal pad between the M.2 module and the HAT.
+- **AI HAT:** [Raspberry Pi AI HAT Guide](https://www.raspberrypi.com/documentation/accessories/ai-hat-plus.html#ai-hat-plus).
+
+### Update Raspberry Pi OS
+
+Ensure the Raspberry Pi 5 is running **Raspberry Pi OS Trixie** with the latest software and the latest Raspberry Pi firmware:
+
+```bash
+sudo apt update
+sudo apt full-upgrade -y
+sudo rpi-eeprom-update -a
+sudo reboot
+```
+
+For more information, see [Update software](https://www.raspberrypi.com/documentation/computers/os.html#update-software) and [Update the bootloader configuration](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#updating-the-eeprom).
+
+### Set PCIe to Gen3
+
+For best performance with the Hailo device, set PCIe to Gen3. (The AI HAT is often auto-detected as Gen3; the M.2 HAT usually needs this set manually.)
+
+```bash
+sudo raspi-config
+```
+
+Go to **6 Advanced Options** → **A8 PCIe Speed** → choose **Yes** to enable PCIe Gen 3 → **Finish**, then reboot if prompted.
+
+### Install required dependencies
+
+The NPU needs the Hailo kernel device driver and firmware, Hailo RT middleware, and Hailo TAPPAS core post-processing libraries. Install them via apt. **Choose the package that matches your hardware** (these packages cannot co-exist):
+
+- **AI Kit and AI HAT+:** use `hailo-all`
+- **AI HAT+ 2:** use `hailo-h10-all`
+
+In the Raspberry Pi Terminal:
+
+```bash
+sudo apt install dkms
+sudo apt install hailo-all
+```
+
+For **AI HAT+ 2** only, use instead:
+
+```bash
+sudo apt install dkms
+sudo apt install hailo-h10-all
+```
+
+### Reboot and verify
+
+After installing the dependencies, reboot:
+
+```bash
+sudo reboot
+```
+
+When the Raspberry Pi 5 has finished booting, run:
+
+```bash
+hailortcli fw-control identify
+```
+
+If the NPU and software are installed correctly, you should see output similar to:
+
+```
+Executing on device: 0000:01:00.0
+Identifying board
+Control Protocol Version: 2
+Firmware Version: 4.17.0 (release,app,extended context switch buffer)
+Logger Version: 0
+Board Name: Hailo-8
+Device Architecture: HAILO8L
+Serial Number: HLDDLBB234500054
+Part Number: HM21LB1C2LAE
+Product Name: HAILO-8L AI ACC M.2 B+M KEY MODULE EXT TMP
+```
+
+**AI HAT+ and AI HAT+ 2** may show `<N/A>` for Serial Number, Part Number, and Product Name. This is expected and does not affect functionality.
+
+You can also check the kernel logs:
+
+```bash
+dmesg | grep -i hailo
+```
+
+Expected output is similar to:
+
+```
+[    3.049657] hailo: Init module. driver version 4.17.0
+[    3.051983] hailo 0000:01:00.0: Probing on: 1e60:2864...
+[    3.051989] hailo 0000:01:00.0: Probing: Allocate memory for device extension, 11600
+[    3.052006] hailo 0000:01:00.0: enabling device (0000 -> 0002)
+[    3.052011] hailo 0000:01:00.0: Probing: Device enabled
+[    3.052028] hailo 0000:01:00.0: Probing: mapped bar 0 - 000000000d8baaf1 16384
+[    3.052034] hailo 0000:01:00.0: Probing: mapped bar 2 - 000000009eeaa33c 4096
+[    3.052039] hailo 0000:01:00.0: Probing: mapped bar 4 - 00000000b9b3d17d 16384
+[    3.052044] hailo 0000:01:00.0: Probing: Force setting max_desc_page_size to 4096 (recommended value is 16384)
+[    3.052052] hailo 0000:01:00.0: Probing: Enabled 64 bit dma
+[    3.052055] hailo 0000:01:00.0: Probing: Using userspace allocated vdma buffers
+[    3.052059] hailo 0000:01:00.0: Disabling ASPM L0s
+[    3.052070] hailo 0000:01:00.0: Successfully disabled ASPM L0s
+[    3.221043] hailo 0000:01:00.0: Firmware was loaded successfully
+[    3.231845] hailo 0000:01:00.0: Probing: Added board 1e60-2864, /dev/hailo0
+```
+
+### Run vision AI models on Raspberry Pi 5
+
+These steps let you run real-time vision AI (e.g. object detection) on camera input using the Hailo NPU. They apply to the AI Kit, AI HAT+, and AI HAT+ 2.
+
+#### Step 1. Install camera dependencies
+
+Install the Raspberry Pi camera stack. The `rpicam-apps` package includes the Hailo post-processing demo stages used for vision AI pipelines:
+
+```bash
+sudo apt update && sudo apt install rpicam-apps
+```
+
+Verify the camera works (a preview window should appear for a few seconds):
+
+```bash
+rpicam-hello
+```
+
+#### Step 2. Run real-time visual AI demos
+
+After the camera and Hailo stack are working, you can run AI demos with `rpicam-apps`. The demos use pre-trained networks on the NPU; results can be shown in the live preview or as text in the terminal. Use `-n` to disable the viewfinder and `-v 2` for text-only output.
+
+**Object detection** (YOLO models; bounding boxes around detected objects):
+
+| Model   | Command | Description |
+|--------|---------|-------------|
+| YOLOv6 | `rpicam-hello -t 0 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov6_inference.json` | Object detection. |
+| YOLOv8 | `rpicam-hello -t 0 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov8_inference.json` | Object detection. |
+| YOLOX  | `rpicam-hello -t 0 --post-process-file /usr/share/rpi-camera-assets/hailo_yolox_inference.json` | Lightweight, fast object detection. |
+| YOLOv5 | `rpicam-hello -t 0 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov5_inference.json` | People and face detection. |
+
+**Image segmentation** (detection + colour mask on the viewfinder):
+
+```bash
+rpicam-hello -t 0 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov5_segmentation.json --framerate 20
+```
+
+**Pose estimation** (17-point human pose, lines connecting points):
+
+```bash
+rpicam-hello -t 0 --post-process-file /usr/share/rpi-camera-assets/hailo_yolov8_pose.json
+```
+
+You can use other `rpicam-apps` (e.g. `rpicam-vid`, `rpicam-still`) with the same `--post-process-file` option; some apps may need extra or modified command-line options.
+
+### GStreamer plugins (optional check)
+
+Check that GStreamer plugins are installed:
+
+```bash
+gst-inspect-1.0 hailotools
+gst-inspect-1.0 hailo
+```
+
+If `hailo` or `hailotools` are not found, clear the GStreamer registry and try again:
+
+```bash
+rm ~/.cache/gstreamer-1.0/registry.aarch64.bin
+gst-inspect-1.0 hailotools
+gst-inspect-1.0 hailo
+```
+
+If you see a **“cannot allocate memory in static TLS block”** error (common on aarch64), add this and restart the terminal (or reboot):
+
+```bash
+echo 'export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1' >> ~/.bashrc
+```
+
+Then:
+
+```bash
+export LD_PRELOAD=/usr/lib/aarch64-linux-gnu/libgomp.so.1
+rm ~/.cache/gstreamer-1.0/registry.aarch64.bin
+```
+
+### PCIe / driver troubleshooting
+
+- **PCIe not seen:** Run `lspci | grep Hailo`. If nothing appears, check connections, power, and that PCIe is enabled. New boards may need a [Raspberry Pi 5 firmware update](https://www.raspberrypi.com/documentation/computers/raspberry-pi.html#updating-the-eeprom).
+- **Driver / kernel:** Hailo expects kernel **≥ 6.6.31**. Check with `uname -a`. If lower, run `sudo apt update` and `sudo apt full-upgrade`, then reboot.
+- **PCIe descriptor page size error:** If you see `max_desc_page_size given 16384 is bigger than hw max desc page size 4096`, ensure `/etc/modprobe.d/hailo_pci.conf` exists with:
+  ```bash
+  options hailo_pci force_desc_page_size=4096
+  ```
+
+For more help, see the [Hailo Raspberry Pi 5 install doc](https://github.com/hailo-ai/hailo-rpi5-examples/blob/main/doc/install-raspberry-pi5.md) and the [Hailo Community Forum](https://community.hailo.ai/).
 
 ---
 
@@ -190,15 +403,16 @@ The GUI expects the backend at **port 8000** on the same machine. To use the GUI
 ## Order of operations (Pi 5 checklist)
 
 1. **Raspberry Pi OS** up to date; **Node.js** and **system packages** installed (NodeSource, `portaudio19-dev`, `python3-picamera2`, etc.).  
-2. **Camera (if used):** Enable in `raspi-config`, connect module, reboot.  
-3. **Backend:**  
+2. **Hailo-8 (if used):** Install AI Kit or AI HAT hardware and software, set PCIe to Gen3, reboot, and verify with `hailortcli fw-control identify` and `gst-inspect-1.0 hailotools` / `hailo` (see [Hailo-8 HAT setup](#hailo-8--hailo-8l-ai-hat-setup)).  
+3. **Camera (if used):** Enable in `raspi-config`, connect module, reboot.  
+4. **Backend:**  
    - Clone/open project, create venv (optionally `--system-site-packages` for picamera2).  
    - `pip install -r requirements.txt`.  
    - Download and place the **Vosk** model; set `MODEL_PATH` in `stt_vosk.py`.  
    - Run `python app.py` and wait for first-time model downloads.  
-4. **Frontend:**  
+5. **Frontend:**  
    - `cd chat-gui`, `npm install`, `npm run dev`.  
-5. Use the app; for voice, ensure a microphone is connected and (for Vosk) `MODEL_PATH` is correct.
+6. Use the app; for voice, ensure a microphone is connected and (for Vosk) `MODEL_PATH` is correct.
 
 ---
 
