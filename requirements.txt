@@ -29,3 +29,8 @@ huggingface-hub==1.4.1
 
 # Optional: Raspberry Pi camera (install on device; often via apt or --system-site-packages)
 # picamera2==0.3.34
+
+# Hailo object detection (object_detection.py + hailo_od)
+lap
+cython_bbox
+PyYAML

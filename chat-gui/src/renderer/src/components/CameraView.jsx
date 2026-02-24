@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, RefreshCw, AlertCircle, Image as GalleryIcon, Camera } from 'lucide-react';
+import { ArrowLeft, RefreshCw, AlertCircle, Image as GalleryIcon, Camera, Scan } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 // Shared across instances so second mount can cancel first mount's pending stop (React Strict Mode)
@@ -334,8 +334,20 @@ export default function CameraView() {
                     </div>
                 </button>
 
-                {/* Spacer to balance layout (Right) */}
-                <div className="w-16 pointer-events-none" />
+                {/* Object detection (Hailo) */}
+                <button
+                    onClick={toggleDetection}
+                    title={detectionActive ? 'Stop object detection' : 'Start object detection'}
+                    className={`pointer-events-auto flex flex-col items-center gap-2 group transition-transform active:scale-95 ${detectionActive ? 'opacity-100' : 'opacity-80'}`}
+                >
+                    <div className={`w-16 h-16 rounded-2xl flex items-center justify-center border-2 transition-all shadow-lg ${detectionActive ? 'bg-cyan-500 border-cyan-400 shadow-cyan-500/30' : 'bg-black/50 backdrop-blur border-white/50 group-hover:bg-white/20 group-hover:border-white'}`}>
+                        <Scan size={28} className={detectionActive ? 'text-white' : 'text-white drop-shadow-md'} />
+                    </div>
+                    <span className="text-[10px] font-['Press_Start_2P'] text-white/80 drop-shadow-md tracking-wider">
+                        {detectionActive ? 'DETECT ON' : 'DETECT'}
+                    </span>
+                    {detectionError && <span className="text-[8px] text-red-400 max-w-[80px] truncate">{detectionError}</span>}
+                </button>
             </div>
         </motion.div>
     );
