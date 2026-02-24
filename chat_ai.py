@@ -320,12 +320,16 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
                     if 'content' in delta:
                         content = delta['content']
                         full_reply += content
-                        await websocket.send_json({"type": "stream_delta", "text": strip_think_for_ui(full_reply)})
+                        # If thinking mode is ON, send raw text to UI so it can render the think box.
+                        # If OFF, strip it.
+                        display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
+                        await websocket.send_json({"type": "stream_delta", "text": display_text})
                     
                     await asyncio.sleep(0.01)
 
                 if not abort_event.is_set():
-                    await websocket.send_json({"type": "stream_final", "text": strip_think_for_ui(full_reply)})
+                    display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
+                    await websocket.send_json({"type": "stream_final", "text": display_text})
                     conv["messages"].append({"role": "assistant", "content": full_reply, "timestamp": time.time()})
                     ai.conv_manager.update_conversation(conv_id, conv["messages"])
             

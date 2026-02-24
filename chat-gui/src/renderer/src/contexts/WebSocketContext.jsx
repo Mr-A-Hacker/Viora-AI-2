@@ -265,24 +265,37 @@ export function WebSocketProvider({ children }) {
             console.warn("WS not connected, cannot send", type);
         }
     }, []);
+    const sendVoiceCommand = useCallback((type, payload = {}) => {
+        if (wsRef.current && wsRef.current.readyState === WebSocket.OPEN) {
+            wsRef.current.send(JSON.stringify({ type, ...payload }));
+        } else {
+            console.warn("Voice WS not connected, cannot send", type);
+        }
+    }, []);
+
     const toggleVoice = useCallback(() => {
-        sendMessage('toggle_voice');
-    }, [sendMessage]);
+        sendVoiceCommand('toggle_voice');
+    }, [sendVoiceCommand]);
 
     const startVosk = useCallback(() => {
         setIsVoskRecording(true);
         setVoskText('');
-        sendMessage('start_vosk');
-    }, [sendMessage]);
+        sendVoiceCommand('start_vosk');
+    }, [sendVoiceCommand]);
 
     const stopVosk = useCallback(() => {
         setIsVoskRecording(false);
-        sendMessage('stop_vosk');
-    }, [sendMessage]);
+        sendVoiceCommand('stop_vosk');
+    }, [sendVoiceCommand]);
 
     const abort = useCallback(() => {
-        sendMessage('abort');
-    }, [sendMessage]);
+        if (chatWsRef.current?.readyState === WebSocket.OPEN) {
+            chatWsRef.current.send(JSON.stringify({ type: 'abort' }));
+        }
+        if (wsRef.current?.readyState === WebSocket.OPEN) {
+            wsRef.current.send(JSON.stringify({ type: 'abort' }));
+        }
+    }, []);
 
     const toggleThinking = useCallback(() => {
         setThinking(prev => !prev);

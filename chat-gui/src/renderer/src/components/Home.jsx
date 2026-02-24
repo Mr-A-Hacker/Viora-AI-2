@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Settings, Camera, Image as GalleryIcon, Clock, Cpu, Code } from 'lucide-react';
+import { MessageCircle, Settings, Camera, Image as GalleryIcon, Shield, Cpu, Code } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
@@ -96,13 +96,13 @@ export default function Home() {
 
             {/* Avatar - Centered (higher z when bubble visible so it's not covered by buttons) */}
             <div
-                className={`mb-8 relative ${showBubble ? 'z-20' : 'z-10'}`}
+                className={`mb-12 relative ${showBubble ? 'z-20' : 'z-10'}`}
                 onMouseDown={handleMouseDown}
                 onMouseUp={handleMouseUp}
                 onMouseLeave={handleMouseLeave}
             >
                 <Avatar
-                    variant="lg"
+                    variant="xl"
                     animate={true}
                     expression={voiceStatus}
                     className={`cursor-pointer transition-all duration-300 ${isRecording ? 'scale-110' : 'hover:scale-105'}`}
@@ -145,24 +145,14 @@ export default function Home() {
                 </AnimatePresence>
             </div>
 
-            {/* Settings Button - Top Left */}
-            <div className="absolute top-4 left-4 z-20">
-                <button
-                    onClick={() => navigate('/settings')}
-                    className="pixel-btn flex items-center justify-center p-4"
-                >
-                    <Settings size={32} />
-                </button>
-            </div>
-
             {/* Main Menu Grid */}
             <div className="grid grid-cols-2 gap-4 z-10 w-full max-w-[400px]">
                 <MenuButton icon={MessageCircle} label="CHAT" onClick={() => navigate('/chat')} color="var(--pixel-primary)" />
                 <MenuButton icon={Camera} label="VISION" onClick={() => navigate('/camera')} color="var(--pixel-accent)" />
                 <MenuButton icon={GalleryIcon} label="GALLERY" onClick={() => navigate('/gallery')} color="var(--pixel-secondary)" />
                 <MenuButton icon={Code} label="AGENT" onClick={() => navigate('/agent')} color="#f7768e" />
-                <MenuButton icon={Clock} label="TASKS" onClick={() => navigate('/cron')} color="#e0af68" />
-                <MenuButton icon={Cpu} label="GPIO" onClick={() => navigate('/gpio')} color="#7dcfff" />
+                <MenuButton icon={Shield} label="SECURITY" onClick={() => navigate('/cron')} color="#e0af68" />
+                <MenuButton icon={Settings} label="SETTINGS" onClick={() => navigate('/settings')} color="#7dcfff" />
             </div>
 
             {/* Decorative BG Elements */}

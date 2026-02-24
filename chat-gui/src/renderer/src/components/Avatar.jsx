@@ -9,7 +9,8 @@ export default function Avatar({
     expression: externalExpression
 }) {
     const isSmall = variant === 'sm';
-    const scale = isSmall ? 0.4 : 1;
+    const isXl = variant === 'xl';
+    const scale = isSmall ? 0.4 : (isXl ? 1.3 : 1);
 
     // States for random behavior
     // Expressions: neutral, happy, thinking, surprised, listening, speaking
@@ -79,8 +80,8 @@ export default function Avatar({
     };
 
     const containerStyle = {
-        width: isSmall ? '48px' : '160px',
-        height: isSmall ? '48px' : '160px',
+        width: isSmall ? '48px' : (isXl ? '176px' : '160px'),
+        height: isSmall ? '48px' : (isXl ? '176px' : '160px'),
         position: 'relative',
         display: 'flex',
         alignItems: 'center',

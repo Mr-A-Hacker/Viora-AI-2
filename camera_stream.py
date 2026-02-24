@@ -259,13 +259,29 @@ def _schedule_broadcast():
         return
     asyncio.run_coroutine_threadsafe(_broadcast_detections(), _detection_loop)
 
+def get_cpu_temp():
+    try:
+        temps = psutil.sensors_temperatures()
+        # Common keys for Pi: 'cpu_thermal' or 'rp1_adc'
+        if 'cpu_thermal' in temps and temps['cpu_thermal']:
+            return temps['cpu_thermal'][0].current
+        if 'rp1_adc' in temps and temps['rp1_adc']:
+            return temps['rp1_adc'][0].current
+        # Fallback to any sensor if neither exist
+        for k, v in temps.items():
+            if v:
+                return v[0].current
+    except Exception:
+        pass
+    return 0
+
 @router.get("/system/stats")
 async def get_stats():
     return {
         "time": time.strftime("%H:%M:%S"),
         "cpu_percent": psutil.cpu_percent(),
         "memory_percent": psutil.virtual_memory().percent,
-        "temperature": 0
+        "temperature": get_cpu_temp()
     }
 
 @router.post("/camera/start")

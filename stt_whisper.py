@@ -129,12 +129,34 @@ class STTEngine:
     # "press it, it start to transcribe... press it again it stops... then that transcription is sent"
     
     def _get_input_device_index(self):
-        """Find the first available input device."""
+        """Find the best available input device that supports our target rate, or any rate."""
+        # First, try to find a device that supports 16000Hz directly
         for i in range(self.p.get_device_count()):
             dev = self.p.get_device_info_by_index(i)
             if dev.get('maxInputChannels') > 0:
-                print(f"Using input device: {dev.get('name')} (index {i})")
+                try:
+                    if self.p.is_format_supported(RATE, input_device=i, input_channels=CHANNELS, input_format=FORMAT):
+                        print(f"Using device {i}: {dev.get('name')} (Supports {RATE}Hz)")
+                        return i
+                except:
+                    continue
+        
+        # If not, find the default input device
+        try:
+            default_dev = self.p.get_default_input_device_info()
+            idx = default_dev.get('index')
+            print(f"Using default device {idx}: {default_dev.get('name')}")
+            return idx
+        except:
+            pass
+
+        # Last resort: just find any input device
+        for i in range(self.p.get_device_count()):
+            dev = self.p.get_device_info_by_index(i)
+            if dev.get('maxInputChannels') > 0:
+                print(f"Falling back to device {i}: {dev.get('name')}")
                 return i
+                
         return None
 
     def start_capture(self):
@@ -145,24 +167,29 @@ class STTEngine:
             print("Error: No input device found.")
             return
 
-        device_info = self.p.get_device_info_by_index(device_index)
-        self.current_rate = int(device_info.get('defaultSampleRate', RATE))
-        self.current_channels = int(device_info.get('maxInputChannels', CHANNELS))
+        # Whisper needs exactly 16000Hz and Mono
+        self.current_rate = RATE
+        self.current_channels = CHANNELS
         
-        print(f"Opening stream: {self.current_rate}Hz, {self.current_channels} channels")
+        print(f"Opening stream for Whisper: {self.current_rate}Hz, {self.current_channels} channels")
 
         self.listening = True
         self.audio_frames = []
         
         if not self.model: self.load_model()
 
-        self.stream = self.p.open(format=FORMAT,
-                        channels=self.current_channels,
-                        rate=self.current_rate,
-                        input=True,
-                        input_device_index=device_index,
-                        frames_per_buffer=CHUNK_SIZE,
-                        stream_callback=self._capture_callback)
+        try:
+            self.stream = self.p.open(format=FORMAT,
+                            channels=self.current_channels,
+                            rate=self.current_rate,
+                            input=True,
+                            input_device_index=device_index,
+                            frames_per_buffer=CHUNK_SIZE,
+                            stream_callback=self._capture_callback)
+        except Exception as e:
+            print(f"Failed to open PyAudio stream natively at {self.current_rate}Hz: {e}")
+            self.listening = False
+            return
         print("Capture Started")
 
     def _capture_callback(self, in_data, frame_count, time_info, status):
@@ -191,15 +218,9 @@ class STTEngine:
         # Convert to float32
         audio_np = np.frombuffer(current_audio, dtype=np.int16).astype(np.float32) / 32768.0
         
-        # Handle multiple channels (take first channel)
-        if self.current_channels > 1:
-            audio_np = audio_np.reshape(-1, self.current_channels)[:, 0]
-
-        # Resample if not 16kHz
-        if self.current_rate != 16000:
-            import scipy.signal
-            num_samples = int(len(audio_np) * 16000 / self.current_rate)
-            audio_np = scipy.signal.resample(audio_np, num_samples)
+        # We now capture exactly at 16000Hz, 1 channel so we don't need expensive resampling.
+        # Just convert to float32
+        audio_np = np.frombuffer(current_audio, dtype=np.int16).astype(np.float32) / 32768.0
         
         # Transcribe
         segments, _ = self.model.transcribe(audio_np, beam_size=1, language="en", vad_filter=True)
