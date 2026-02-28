@@ -582,8 +582,34 @@
         "role": "user",
         "content": "Hello, how are you?",
         "timestamp": 1772145917.7619905
+      },
+      {
+        "role": "user",
+        "content": "hello",
+        "timestamp": 1772248309.8254523
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\n\n</think>\n\nHello! How can I assist you? \ud83d\ude0a",
+        "timestamp": 1772248337.537048
+      },
+      {
+        "role": "user",
+        "content": "weather atl",
+        "timestamp": 1772248346.97161
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>London<escape>}<end_function_call>",
+        "timestamp": 1772248354.9199753,
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for London: Rain/Drizzle, 9.7\u00b0C, humidity 90%, wind 8.6 km/h.",
+        "timestamp": 1772248354.9199772
       }
     ],
-    "updated_at": 1772145917.7619975
+    "updated_at": 1772248354.9199827
   }
 ]

@@ -11,11 +11,11 @@ const MenuButton = ({ icon: Icon, label, onClick, color }) => (
         whileHover={{ scale: 1.05 }}
         whileTap={{ scale: 0.95 }}
         onClick={onClick}
-        className="pixel-btn flex flex-col items-center justify-center gap-2 w-full min-h-[72px] min-w-0"
+        className="pixel-btn flex flex-col items-center justify-center gap-3 w-full min-h-[100px] flex-1 min-w-0"
         style={{ borderColor: color, color: color }}
     >
-        <Icon size={32} />
-        <span className="text-xs">{label}</span>
+        <Icon size={40} />
+        <span className="text-sm">{label}</span>
     </motion.button>
 );
 
@@ -106,6 +106,16 @@ export default function Home() {
                 <Settings size={36} />
             </motion.button>
 
+            {/* Avatar name + status */}
+            <div className="flex flex-col items-center gap-2 mb-4 z-10">
+                <h1 className="text-2xl font-['Press_Start_2P'] tracking-tight text-[var(--pixel-primary)]">
+                    POCKET AI
+                </h1>
+                <span className="text-xs font-['Press_Start_2P'] tracking-widest text-[var(--pixel-accent)]">
+                    SYSTEMS ONLINE
+                </span>
+            </div>
+
             {/* Avatar - Centered (higher z when bubble visible so it's not covered by buttons) */}
             <div
                 className={`mb-12 relative ${showBubble ? 'z-20' : 'z-10'}`}
@@ -158,7 +168,7 @@ export default function Home() {
             </div>
 
             {/* Main Menu Grid - 4 buttons: Chat, Vision, Agent, Gallery */}
-            <div className="grid grid-cols-2 gap-3 z-10 w-full max-w-[520px]">
+            <div className="grid grid-cols-2 grid-rows-[1fr_1fr] gap-3 z-10 w-full max-w-[520px] flex-1 min-h-0">
                 <MenuButton icon={MessageCircle} label="CHAT" onClick={() => navigate('/chat')} color="var(--pixel-primary)" />
                 <MenuButton icon={Camera} label="VISION" onClick={() => navigate('/camera')} color="var(--pixel-accent)" />
                 <MenuButton icon={Code} label="AGENT" onClick={() => navigate('/tasks')} color="#f7768e" />
