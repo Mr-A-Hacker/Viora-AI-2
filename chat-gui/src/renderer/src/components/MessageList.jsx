@@ -2,15 +2,15 @@ import React, { useEffect, useRef, useState } from 'react';
 import MessageBubble from './MessageBubble';
 
 function ThoughtBlock({ children }) {
-    const [expanded, setExpanded] = useState(true); // Default expanded for streaming
+    const [expanded, setExpanded] = useState(true);
     return (
-        <div className={`thought-container ${expanded ? 'thought-expanded' : ''}`}>
-            <div className="thought-header" onClick={() => setExpanded(!expanded)}>
-                <span className="thought-title">Thought Process</span>
-                <span className="thought-icon">▼</span>
+        <div className="thought-container">
+            <div className="thought-header flex items-center gap-2 px-3 py-2 bg-[var(--ai-bg)] rounded-xl cursor-pointer text-sm font-['Plus_Jakarta_Sans'] text-[var(--ai-color)] hover:bg-[var(--ai-color)]/20 transition-colors" onClick={() => setExpanded(!expanded)}>
+                <span className="text-xs uppercase tracking-wider">Thinking</span>
+                <span className={`transition-transform duration-200 ${expanded ? 'rotate-0' : '-rotate-90'}`}>▼</span>
             </div>
             {expanded && (
-                <div className="thought-content">
+                <div className="thought-content px-3 py-2 text-sm text-[var(--text-mid)] font-['Plus_Jakarta_Sans']">
                     {children}
                 </div>
             )}
@@ -21,9 +21,8 @@ function ThoughtBlock({ children }) {
 export default function MessageList({ messages, streaming, streamText }) {
     const bottomRef = useRef(null);
     const scrollContainerRef = useRef(null);
-    const dragScrollRef = useRef(null); // { clientY, scrollTop } when pointer-drag scrolling
+    const dragScrollRef = useRef(null);
 
-    // Pointer-drag scroll: touch screens often send touch as mouse/pointer, so native touch scroll never runs. Manually scroll on pointer move.
     const onPointerDown = (e) => {
         if (e.target.closest?.('button, a, input, select, textarea, [role="button"]')) return;
         const el = scrollContainerRef.current;
@@ -50,13 +49,11 @@ export default function MessageList({ messages, streaming, streamText }) {
         }
     };
 
-    // Auto-scroll when messages change or stream updates
     useEffect(() => {
         bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }, [messages, streamText]);
 
-    // Parse streamText for thinking logic
-    const thinkRegex = /<think>([\s\S]*?)(?:<\/think>|$)/; // Non-greedy or until end
+    const thinkRegex = /<think>([\s\S]*?)(?:<\/think>|$)/;
     const match = streamText.match(thinkRegex);
     let thoughtText = '';
     let hasCompleteThink = false;
@@ -65,12 +62,10 @@ export default function MessageList({ messages, streaming, streamText }) {
     if (match) {
         thoughtText = match[1];
         hasCompleteThink = streamText.includes('</think>');
-        // If it's complete, remove it from main content. 
-        // If not, mainContent is usually empty or small until </think> is reached.
         if (hasCompleteThink) {
             mainContent = streamText.replace(/<think>[\s\S]*?<\/think>/, '').trim();
         } else {
-            mainContent = ''; // Wait for finish
+            mainContent = '';
         }
     }
 
@@ -79,7 +74,7 @@ export default function MessageList({ messages, streaming, streamText }) {
     return (
         <div
             ref={scrollContainerRef}
-            className="flex-1 min-h-0 overflow-x-hidden p-3 flex flex-col gap-3 scroller-pixel touch-scroll-y"
+            className="flex-1 min-h-0 overflow-x-hidden p-4 flex flex-col gap-4"
             data-chat-messages
             onPointerDown={onPointerDown}
             onPointerMove={onPointerMove}
@@ -88,11 +83,13 @@ export default function MessageList({ messages, streaming, streamText }) {
             onPointerLeave={onPointerUp}
         >
             {isEmpty && (
-                <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center p-10 opacity-50">
-                    <div className="text-6xl font-['Press_Start_2P'] text-[var(--pixel-secondary)] animate-pulse">?</div>
-                    <div className="text-xl font-['VT323'] text-[var(--pixel-text)]">INITIALIZE CHAT PROTOCOL</div>
-                    <div className="text-sm font-['VT323'] text-[var(--pixel-border)]">
-                        WAITING FOR INPUT...
+                <div className="flex-1 flex flex-col items-center justify-center gap-4 text-center p-10">
+                    <div className="w-20 h-20 rounded-full bg-[var(--ai-bg)] flex items-center justify-center">
+                        <span className="text-4xl">✨</span>
+                    </div>
+                    <div className="text-xl font-['Syne'] font-semibold text-[var(--text)]">Start a conversation</div>
+                    <div className="text-sm text-[var(--text-light)] font-['Plus_Jakarta_Sans']">
+                        Ask me anything!
                     </div>
                 </div>
             )}
@@ -101,32 +98,30 @@ export default function MessageList({ messages, streaming, streamText }) {
                 <MessageBubble key={i} role={msg.role} text={msg.text} />
             ))}
 
-            {/* Streaming AI response */}
             {streaming && streamText && (
                 <div className="flex justify-start animate-message-in">
-                    <div className="max-w-[85%] px-4 py-3 text-[16px] leading-relaxed break-words border-2 font-['VT323'] shadow-[4px_4px_0_0_rgba(0,0,0,0.3)] bg-[var(--pixel-bg)] border-[var(--pixel-secondary)] text-[var(--pixel-text)]">
-                        <div className="text-[12px] font-['Press_Start_2P'] uppercase tracking-wider mb-2 opacity-80 text-[var(--pixel-secondary)]">
-                            {'> SYSTEM'}
+                    <div className="max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] bg-[var(--surface)] text-[var(--text)] rounded-2xl rounded-bl-md border border-[var(--border)] shadow-sm">
+                        <div className="text-[11px] uppercase tracking-wider mb-2 opacity-70 text-[var(--ai-color)] font-semibold">
+                            Viora AI
                         </div>
 
                         {thoughtText && (
-                            <ThoughtBlock>{thoughtText}{!hasCompleteThink && <span className="animate-blink">_</span>}</ThoughtBlock>
+                            <ThoughtBlock>{thoughtText}{!hasCompleteThink && <span className="animate-pulse">▊</span>}</ThoughtBlock>
                         )}
 
                         <div className="markdown-content">
-                            {mainContent} {(!thoughtText || hasCompleteThink) && <span className="animate-blink">_</span>}
+                            {mainContent} {(!thoughtText || hasCompleteThink) && <span className="animate-pulse">▊</span>}
                         </div>
                     </div>
                 </div>
             )}
 
-            {/* Typing indicator (shown while streaming but no text yet) */}
             {streaming && !streamText && (
                 <div className="flex justify-start animate-message-in">
-                    <div className="flex gap-2 px-4 py-4 bg-[var(--pixel-bg)] border-2 border-[var(--pixel-secondary)] shadow-[4px_4px_0_0_rgba(0,0,0,0.3)]">
-                        <div className="w-3 h-3 bg-[var(--pixel-secondary)] animate-bounce [animation-delay:0s]" />
-                        <div className="w-3 h-3 bg-[var(--pixel-secondary)] animate-bounce [animation-delay:0.2s]" />
-                        <div className="w-3 h-3 bg-[var(--pixel-secondary)] animate-bounce [animation-delay:0.4s]" />
+                    <div className="flex gap-2 px-5 py-5 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-sm">
+                        <div className="w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0s]" />
+                        <div className="w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0.15s]" />
+                        <div className="w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0.3s]" />
                     </div>
                 </div>
             )}

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Pocket AI voice loop: STT -> semantic router -> Qwen or Function Gemma -> TTS.
+Viora AI voice loop: STT -> semantic router -> Qwen or Function Gemma -> TTS.
 
 - Press Enter to use Whisper for speech-to-text.
 - Press V then Enter to use Vosk for speech-to-text (lighter, faster).

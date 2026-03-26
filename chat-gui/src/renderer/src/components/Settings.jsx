@@ -26,33 +26,38 @@ export default function Settings() {
 
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="relative w-full h-full max-w-full mx-auto overflow-hidden bg-[var(--pixel-bg)] flex flex-col"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="relative w-full h-full max-w-full mx-auto overflow-hidden bg-[var(--bg)] flex flex-col"
         >
-            {/* Header */}
-            <div className="flex items-center p-4 bg-[var(--pixel-surface)] border-b-4 border-[var(--pixel-border)] z-10">
+            <div className="ambient-bg fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="blob-1 absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]" />
+                <div className="blob-2 absolute w-[400px] h-[400px] rounded-full opacity-15 blur-[80px] top-1/3 right-1/4" />
+            </div>
+
+            <div className="flex items-center p-4 bg-[var(--surface)]/80 backdrop-blur-lg border-b border-[var(--border)] z-10">
                 <button
                     onClick={() => navigate('/')}
-                    className="pixel-btn flex items-center justify-center p-2"
+                    className="ai-btn p-2.5 rounded-xl flex items-center justify-center bg-[var(--ai-bg)] text-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white transition-all"
                 >
                     <ArrowLeft size={20} />
                 </button>
-                <h1 className="ml-4 text-xl font-['Press_Start_2P'] text-[var(--pixel-primary)]">SETTINGS</h1>
+                <h1 className="ml-4 text-lg font-['Syne'] font-bold text-[var(--text)]">Settings</h1>
             </div>
 
-            {/* Content */}
-            <div className="flex-1 p-6 flex flex-col items-center justify-center space-y-8">
+            <div className="flex-1 p-6 flex flex-col items-center justify-center space-y-6">
                 <div className="text-center">
-                    <h2 className="text-2xl font-['VT323'] text-[var(--pixel-text)] mb-2 uppercase tracking-widest">System Configuration</h2>
-                    <p className="text-[var(--pixel-secondary)] font-['VT323'] text-lg">MANAGE TERMINAL PREFERENCES</p>
+                    <h2 className="text-2xl font-['Syne'] font-semibold text-[var(--text)] mb-2">System Configuration</h2>
+                    <p className="text-[var(--text-mid)] font-['Plus_Jakarta_Sans'] text-sm">Manage your preferences</p>
                 </div>
 
-                <div className="w-full max-w-xs space-y-4 p-6 border-4 border-[var(--pixel-border)] bg-[var(--pixel-surface)] shadow-[8px_8px_0_0_rgba(0,0,0,0.3)]">
-                    <div className="flex items-center justify-between gap-4 py-3 border-b-2 border-[var(--pixel-border)]">
-                        <span className="font-['VT323'] text-xl text-[var(--pixel-text)] flex items-center gap-2">
-                            <Keyboard size={22} className="text-[var(--pixel-primary)]" />
+                <div className="w-full max-w-sm ai-card p-6 space-y-6">
+                    <div className="flex items-center justify-between gap-4 py-3">
+                        <span className="font-['Plus_Jakarta_Sans'] text-[var(--text)] flex items-center gap-3">
+                            <div className="w-10 h-10 rounded-xl bg-[var(--ai-bg)] flex items-center justify-center">
+                                <Keyboard size={20} className="text-[var(--ai-color)]" />
+                            </div>
                             Popup keyboard
                         </span>
                         <button
@@ -60,30 +65,30 @@ export default function Settings() {
                             role="switch"
                             aria-checked={keyboardEnabled}
                             onClick={() => setKeyboardEnabled(!keyboardEnabled)}
-                            className={`relative w-14 h-8 border-4 flex-shrink-0 transition-colors ${
+                            className={`relative w-14 h-8 rounded-full flex-shrink-0 transition-all duration-300 ${
                                 keyboardEnabled
-                                    ? 'bg-[var(--pixel-accent)] border-[var(--pixel-accent)]'
-                                    : 'bg-[var(--pixel-bg)] border-[var(--pixel-border)]'
+                                    ? 'bg-[var(--ai-color)]'
+                                    : 'bg-[var(--border)]'
                             }`}
                         >
                             <span
-                                className={`absolute top-0.5 left-0.5 w-6 h-6 border-2 border-[var(--pixel-border)] bg-[var(--pixel-text)] transition-transform ${
-                                    keyboardEnabled ? 'translate-x-7' : 'translate-x-0'
+                                className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-transform duration-300 ${
+                                    keyboardEnabled ? 'translate-x-7' : 'translate-x-1'
                                 }`}
                             />
                         </button>
                     </div>
                     <button
                         onClick={handleCloseApp}
-                        className="w-full py-6 px-8 bg-red-500 text-white font-['Press_Start_2P'] text-sm border-4 border-white shadow-[4px_4px_0_0_rgba(0,0,0,1)] hover:bg-red-600 active:translate-y-1 active:shadow-none transition-all flex items-center justify-center gap-4"
+                        className="ai-btn w-full py-4 px-6 bg-red-500 text-white font-['Plus_Jakarta_Sans'] font-semibold text-sm rounded-2xl hover:bg-red-600 active:scale-[0.98] transition-all flex items-center justify-center gap-3 shadow-lg shadow-red-500/25"
                     >
-                        <Power size={24} />
-                        <span>SHUTDOWN</span>
+                        <Power size={20} />
+                        <span>Shutdown</span>
                     </button>
                 </div>
 
-                <div className="text-xs font-['Press_Start_2P'] text-[var(--pixel-border)] mt-auto pt-12">
-                    VER 1.0.0
+                <div className="text-xs font-['Plus_Jakarta_Sans'] text-[var(--text-light)] mt-auto pt-12">
+                    Version 1.0.0
                 </div>
             </div>
         </motion.div>

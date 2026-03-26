@@ -4,7 +4,7 @@
 export default function ErrorMessage({ message, onRetry, className = '' }) {
     return (
         <div
-            className={`p-4 bg-red-500/20 border-b-2 border-red-500 text-red-200 text-[10px] font-['Press_Start_2P'] flex items-center justify-between gap-2 ${className}`}
+            className={`p-4 bg-red-500/10 border-b border-red-500/30 text-red-400 text-sm font-['Plus_Jakarta_Sans'] flex items-center justify-between gap-3 ${className}`}
             role="alert"
         >
             <span className="flex-1 truncate" title={message}>{message}</span>
@@ -12,9 +12,9 @@ export default function ErrorMessage({ message, onRetry, className = '' }) {
                 <button
                     type="button"
                     onClick={onRetry}
-                    className="pixel-btn px-2 py-1 text-[8px]"
+                    className="ai-btn px-4 py-2 text-sm bg-red-500/10 hover:bg-red-500/20 text-red-400 border border-red-500/30 rounded-xl"
                 >
-                    RETRY
+                    Retry
                 </button>
             )}
         </div>

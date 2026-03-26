@@ -8,9 +8,9 @@ export default function ConnectionBar({ status, onRetry }) {
     };
 
     const styles = {
-        connected: 'bg-[var(--pixel-bg)] text-green-500 border-green-500',
-        disconnected: 'bg-[var(--pixel-bg)] text-red-500 border-red-500',
-        connecting: 'bg-[var(--pixel-bg)] text-yellow-500 border-yellow-500',
+        connected: 'bg-green-500/10 text-green-500 border-green-500/30',
+        disconnected: 'bg-red-500/10 text-red-500 border-red-500/30',
+        connecting: 'bg-yellow-500/10 text-yellow-500 border-yellow-500/30',
     };
 
     const handleClick = () => {
@@ -23,9 +23,9 @@ export default function ConnectionBar({ status, onRetry }) {
             tabIndex={status === 'disconnected' && onRetry ? 0 : undefined}
             onClick={handleClick}
             onKeyDown={(e) => { if ((e.key === 'Enter' || e.key === ' ') && status === 'disconnected' && onRetry) onRetry(); }}
-            className={`flex items-center justify-center gap-2 p-1 text-xs font-['Press_Start_2P'] uppercase border-2 ${styles[status] || ''} ${status === 'disconnected' && onRetry ? 'cursor-pointer hover:opacity-90' : ''}`}
+            className={`flex items-center justify-center gap-2 py-2 px-4 text-xs font-['Plus_Jakarta_Sans'] font-medium uppercase border rounded-full ${styles[status] || ''} ${status === 'disconnected' && onRetry ? 'cursor-pointer hover:opacity-80' : ''}`}
         >
-            <span className={`w-2 h-2 ${status === 'connecting' ? 'animate-pulse' : ''} bg-current opacity-100`} />
+            <span className={`w-2 h-2 ${status === 'connecting' ? 'animate-pulse' : ''} bg-current rounded-full`} />
             <span>{labels[status] || status}</span>
         </div>
     );

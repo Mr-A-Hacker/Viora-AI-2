@@ -1,4 +1,5 @@
 import httpx
+import subprocess
 from fastapi import APIRouter, Query
 
 router = APIRouter(prefix="/maps", tags=["maps"])
@@ -42,3 +43,19 @@ async def reverse_geocode(lat: float, lon: float):
         "display_name": data.get("display_name", "Unknown location"),
         "address": data.get("address", {}),
     }
+
+
+@router.post("/open")
+async def open_organic_maps():
+    """Launch Organic Maps via Flatpak."""
+    subprocess.Popen(["flatpak", "run", "app.organicmaps.desktop"])
+    return {"msg": "Organic Maps opened!"}
+
+
+OPENCODE_PATH = "/home/admin/.opencode/bin/opencode"
+
+@router.post("/open-dev")
+async def open_dev_ai():
+    """Launch OpenCode (Dev AI) via subprocess."""
+    subprocess.Popen([OPENCODE_PATH])
+    return {"msg": "Dev AI opened!"}

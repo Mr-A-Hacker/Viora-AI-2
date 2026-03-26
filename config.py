@@ -1,5 +1,5 @@
 """
-Central configuration for Pocket AI backend.
+Central configuration for Viora AI backend.
 Reads from environment (and optional .env file) with sensible defaults.
 """
 import logging

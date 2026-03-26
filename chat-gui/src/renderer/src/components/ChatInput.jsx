@@ -1,5 +1,5 @@
 import React, { useState, useRef, useCallback, useEffect } from 'react';
-import { Mic } from 'lucide-react';
+import { Mic, Send, Square } from 'lucide-react';
 import { useFocusableInput, useKeyboardSettings } from '../contexts/KeyboardContext.jsx';
 
 export default function ChatInput({ onSend, onAbort, onMicPress, isRecording, streaming, disabled }) {
@@ -8,7 +8,6 @@ export default function ChatInput({ onSend, onAbort, onMicPress, isRecording, st
     const { onFocus: onKeyboardFocus, onBlur: onKeyboardBlur } = useFocusableInput(true);
     const { syncInputValueRef } = useKeyboardSettings();
 
-    // Sync React state when virtual keyboard types (controlled input otherwise stays empty)
     useEffect(() => {
         if (!syncInputValueRef) return;
         const sync = (value) => setText(value ?? '');
@@ -37,7 +36,6 @@ export default function ChatInput({ onSend, onAbort, onMicPress, isRecording, st
         if (!trimmed || streaming || disabled) return;
         onSend(trimmed);
         setText('');
-        // Reset textarea height
         if (textareaRef.current) {
             textareaRef.current.style.height = 'auto';
         }
@@ -55,24 +53,23 @@ export default function ChatInput({ onSend, onAbort, onMicPress, isRecording, st
 
     const handleInput = useCallback((e) => {
         setText(e.target.value);
-        // Auto-resize textarea
         const el = e.target;
         el.style.height = 'auto';
         el.style.height = Math.min(el.scrollHeight, 120) + 'px';
     }, []);
 
     return (
-        <div className="min-h-[64px] px-3 py-2 bg-[var(--pixel-surface)] border-t-4 border-[var(--pixel-border)] flex items-end gap-2 pb-[max(12px,env(safe-area-inset-bottom,12px))]" data-chat-input-bar>
-            <div className="flex-1 flex items-end bg-[var(--pixel-bg)] border-2 border-[var(--pixel-border)] px-4 py-2 focus-within:border-[var(--pixel-primary)]">
+        <div className="min-h-[72px] px-4 py-3 bg-[var(--surface)]/80 backdrop-blur-lg border-t border-[var(--border)] flex items-end gap-3 pb-[max(12px,env(safe-area-inset-bottom,12px))]" data-chat-input-bar>
+            <div className="flex-1 ai-input bg-[var(--bg)] rounded-2xl px-4 py-3 flex items-end border border-[var(--border)] focus-within:border-[var(--ai-color)] focus-within:shadow-[0_0_0_3px_var(--ai-bg)] transition-all duration-200">
                 <textarea
                     ref={textareaRef}
-                    className="flex-1 border-none bg-transparent text-[var(--pixel-text)] font-['VT323'] text-xl leading-relaxed min-h-[32px] max-h-[120px] resize-none outline-none py-1 placeholder:text-gray-600"
+                    className="flex-1 border-none bg-transparent text-[var(--text)] font-['Plus_Jakarta_Sans'] text-base leading-relaxed min-h-[28px] max-h-[120px] resize-none outline-none py-0.5 placeholder:text-[var(--text-light)]"
                     value={text}
                     onChange={handleInput}
                     onKeyDown={handleKeyDown}
                     onFocus={onFocus}
                     onBlur={onBlur}
-                    placeholder="INSERT COINTOS..."
+                    placeholder="Message Viora AI..."
                     rows={1}
                     disabled={disabled}
                     autoComplete="off"
@@ -82,11 +79,11 @@ export default function ChatInput({ onSend, onAbort, onMicPress, isRecording, st
 
             {streaming ? (
                 <button
-                    className="w-14 h-14 border-4 border-[var(--pixel-text)] bg-red-500 text-white flex items-center justify-center cursor-pointer shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all"
+                    className="ai-btn w-12 h-12 rounded-2xl bg-red-500 text-white flex items-center justify-center cursor-pointer hover:bg-red-600 active:scale-95 transition-all duration-200 shadow-lg shadow-red-500/25"
                     onClick={onAbort}
                     aria-label="Stop response"
                 >
-                    <span className="font-['Press_Start_2P'] text-xs">STOP</span>
+                    <Square size={18} fill="currentColor" />
                 </button>
             ) : (
                 <>
@@ -95,20 +92,22 @@ export default function ChatInput({ onSend, onAbort, onMicPress, isRecording, st
                         onClick={onMicPress}
                         aria-label={isRecording ? 'Stop recording' : 'Record voice message'}
                         disabled={disabled}
-                        className={`flex-shrink-0 flex items-center justify-center w-14 h-14 border-4 border-[var(--pixel-text)] touch-manipulation transition-all active:translate-y-1 active:shadow-none ${isRecording
-                            ? 'bg-red-500 text-white shadow-[2px_2px_0_0_rgba(0,0,0,1)] animate-pulse'
-                            : 'bg-[var(--pixel-surface)] text-[var(--pixel-text)] shadow-[2px_2px_0_0_rgba(0,0,0,1)] disabled:opacity-50'}`}
+                        className={`flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl touch-manipulation transition-all duration-200 active:scale-95 border-2 disabled:cursor-not-allowed ${
+                            isRecording
+                                ? 'bg-red-500 border-red-400 text-white shadow-lg shadow-red-500/25 animate-pulse'
+                                : 'bg-transparent border-[var(--border)] text-[var(--text-mid)] hover:border-[#38bdf8] hover:text-[#38bdf8] disabled:opacity-40'
+                        }`}
                     >
-                        <Mic size={24} />
+                        <Mic size={20} />
                     </button>
                     <button
                         type="button"
-                        className="w-14 h-14 border-4 border-[var(--pixel-text)] bg-[var(--pixel-primary)] text-black flex items-center justify-center cursor-pointer shadow-[2px_2px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all disabled:opacity-50 disabled:cursor-not-allowed touch-manipulation"
+                        className="flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl cursor-pointer active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed touch-manipulation bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[#7c3aed]/30"
                         onClick={handleSend}
                         disabled={!text.trim() || disabled}
                         aria-label="Send message"
                     >
-                        <span className="font-['Press_Start_2P'] text-xs">SEND</span>
+                        <Send size={18} className="translate-x-0.5" />
                     </button>
                 </>
             )}

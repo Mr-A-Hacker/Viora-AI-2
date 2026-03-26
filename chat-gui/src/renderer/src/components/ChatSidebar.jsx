@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Pencil, Trash2, Check, X, Plus } from 'lucide-react';
+import { Pencil, Trash2, Check, X, Plus, ArrowLeft } from 'lucide-react';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 import { useFocusableInput } from '../contexts/KeyboardContext.jsx';
 
@@ -23,7 +23,7 @@ export default function ChatSidebar({ isOpen, onClose }) {
         const conv = await createConversation();
         if (conv) {
             setCurrentConvId(conv.id);
-            onClose(); // Close sidebar on mobile/small screens if needed, but here we just follow user request
+            onClose();
         }
     };
 
@@ -50,45 +50,68 @@ export default function ChatSidebar({ isOpen, onClose }) {
 
     return (
         <>
-            {/* Backdrop for overlay effect */}
             {isOpen && (
                 <div
-                    className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+                    className="fixed inset-0 bg-black/30 backdrop-blur-sm z-40 lg:hidden"
                     onClick={onClose}
                 />
             )}
 
-            {/* Sidebar Overlay - slides in from the right */}
             <aside
-                className={`fixed top-16 right-0 bottom-0 z-50 bg-[var(--pixel-surface)] border-l-4 border-[var(--pixel-border)] transition-transform duration-300 ease-in-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} w-72 max-w-[85vw] flex flex-col`}
+                className={`fixed top-0 right-0 bottom-0 z-50 bg-[var(--surface)] backdrop-blur-lg border-l border-[var(--border)] transition-transform duration-300 ease-out ${isOpen ? 'translate-x-0' : 'translate-x-full'} w-80 max-w-[85vw] flex flex-col shadow-2xl`}
             >
-                <div className="p-4 border-b-4 border-[var(--pixel-border)] flex flex-col gap-2">
+                <div className="p-4 border-b border-[var(--border)] flex items-center gap-3">
+                    <button
+                        onClick={onClose}
+                        className="p-2.5 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all duration-200 flex items-center justify-center min-h-[44px] min-w-[44px]"
+                        aria-label="Close sidebar"
+                    >
+                        <ArrowLeft size={20} />
+                    </button>
+                    <span style={{ fontFamily: 'var(--font-head)', fontWeight: 800, color: 'var(--ai-color)', fontSize: '1rem' }}>
+                        Conversations
+                    </span>
+                    <div className="flex-1" />
+                    <button
+                        onClick={onClose}
+                        className="p-2 rounded-xl text-[var(--text-light)] hover:text-[var(--text)] hover:bg-[var(--border)] transition-all duration-200"
+                        aria-label="Close"
+                    >
+                        <X size={18} />
+                    </button>
+                </div>
+
+                <div className="px-4 pb-3">
                     {lastApiError && (
-                        <div className="flex items-center justify-between gap-2 p-2 bg-red-500/20 border-2 border-red-500 text-red-200 text-[10px] font-['Press_Start_2P']">
+                        <div className="flex items-center justify-between gap-2 p-3 bg-red-500/10 border border-red-500/30 rounded-xl text-sm text-red-400">
                             <span className="flex-1 truncate" title={lastApiError}>{lastApiError}</span>
-                            <button type="button" onClick={clearApiError} className="shrink-0 p-1 hover:bg-red-500/30" aria-label="Dismiss"><X size={12} /></button>
+                            <button type="button" onClick={clearApiError} className="shrink-0 p-1 hover:bg-red-500/20 rounded-lg" aria-label="Dismiss"><X size={14} /></button>
                         </div>
                     )}
                     <button
                         onClick={handleNewChat}
-                        className="pixel-btn w-full py-3 min-h-[44px] bg-[var(--pixel-primary)] text-white text-[10px] font-['Press_Start_2P'] flex items-center justify-center gap-2"
+                        className="ai-btn w-full py-3 min-h-[44px] bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white font-medium text-sm flex items-center justify-center gap-2 rounded-2xl shadow-lg shadow-[var(--ai-color)]/20"
                     >
-                        <Plus size={16} /> NEW CHAT
+                        <Plus size={18} /> New Chat
                     </button>
                 </div>
 
-                <div className="flex-1 min-h-0 overflow-y-auto p-2 flex flex-col gap-2 custom-scrollbar touch-scroll-y">
+                <div className="flex-1 min-h-0 overflow-y-auto p-3 flex flex-col gap-2">
                     {conversations.map(conv => (
                         <div
                             key={conv.id}
-                            className={`p-3 min-h-[44px] border-2 border-[var(--pixel-border)] cursor-pointer hover:bg-[var(--pixel-bg-alt)] relative group flex items-center justify-between gap-2 ${currentConvId === conv.id ? 'bg-[var(--pixel-bg-alt)] border-[var(--pixel-primary)]' : ''}`}
+                            className={`p-3 min-h-[48px] border border-[var(--border)] rounded-2xl cursor-pointer hover:bg-[var(--ai-bg)] relative group flex items-center justify-between gap-2 transition-all duration-200 ${
+                                currentConvId === conv.id 
+                                    ? 'bg-[var(--ai-bg)] border-[var(--ai-color)]' 
+                                    : 'hover:border-[var(--text-light)]'
+                            }`}
                             onClick={() => { setCurrentConvId(conv.id); }}
                         >
                             {editingId === conv.id ? (
-                                <div className="flex items-center gap-1 w-full" onClick={e => e.stopPropagation()}>
+                                <div className="flex items-center gap-2 w-full" onClick={e => e.stopPropagation()}>
                                     <input
                                         type="text"
-                                        className="bg-[var(--pixel-bg)] text-xs font-['VT323'] border-2 border-[var(--pixel-border)] px-1 py-0.5 w-full focus:outline-none"
+                                        className="ai-input bg-[var(--bg)] text-sm px-3 py-2 w-full rounded-xl"
                                         value={editTitle}
                                         onChange={e => setEditTitle(e.target.value)}
                                         onFocus={onKeyboardFocus}
@@ -99,30 +122,30 @@ export default function ChatSidebar({ isOpen, onClose }) {
                                         }}
                                         autoFocus
                                     />
-                                    <button onClick={e => saveRename(e, conv.id)} className="text-green-500 hover:text-green-400">
-                                        <Check size={14} />
+                                    <button onClick={e => saveRename(e, conv.id)} className="p-2 rounded-xl hover:bg-green-500/20 text-green-500 transition-colors">
+                                        <Check size={16} />
                                     </button>
-                                    <button onClick={e => cancelEditing(e)} className="text-red-500 hover:text-red-400">
-                                        <X size={14} />
+                                    <button onClick={e => cancelEditing(e)} className="p-2 rounded-xl hover:bg-red-500/20 text-red-500 transition-colors">
+                                        <X size={16} />
                                     </button>
                                 </div>
                             ) : (
                                 <>
-                                    <div className="text-xs font-['VT323'] truncate flex-1">{conv.title || "Untitled Chat"}</div>
+                                    <div className="text-sm truncate flex-1 text-[var(--text)]">{conv.title || "Untitled Chat"}</div>
                                     <div className="flex items-center gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
                                         <button
                                             onClick={(e) => startEditing(e, conv)}
-                                            className="p-1 hover:text-[var(--pixel-primary)] transition-colors"
+                                            className="p-2 rounded-xl hover:bg-[var(--ai-bg)] text-[var(--ai-color)] transition-colors"
                                             title="Rename"
                                         >
-                                            <Pencil size={14} />
+                                            <Pencil size={16} />
                                         </button>
                                         <button
                                             onClick={(e) => { e.stopPropagation(); deleteConversation(conv.id); }}
-                                            className="p-1 hover:text-red-500 transition-colors"
+                                            className="p-2 rounded-xl hover:bg-red-500/20 text-red-500 transition-colors"
                                             title="Delete"
                                         >
-                                            <Trash2 size={14} />
+                                            <Trash2 size={16} />
                                         </button>
                                     </div>
                                 </>
@@ -131,19 +154,6 @@ export default function ChatSidebar({ isOpen, onClose }) {
                     ))}
                 </div>
             </aside>
-
-            <style>{`
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 6px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: transparent;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: var(--pixel-border);
-                    border-radius: 3px;
-                }
-            `}</style>
         </>
     );
 }

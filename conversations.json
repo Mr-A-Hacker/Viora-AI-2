@@ -177,26 +177,36 @@
     "updated_at": 1772911416.1973336
   },
   {
-    "id": "392bda2f-c285-4c45-a15d-e2f76033e347",
-    "title": "Scan my network.",
+    "id": "56b311a7-4a74-405c-9bc3-84cfd0cf9502",
+    "title": "New Chat",
+    "messages": [],
+    "updated_at": 1774549206.4583867
+  },
+  {
+    "id": "222b4b02-f95b-4bf1-ac7d-b6a8f9def242",
+    "title": "Hello, my name is Abdullah.",
     "messages": [
       {
         "role": "user",
-        "content": "Scan my network.",
-        "timestamp": 1772911488.98259
+        "content": "Hello, my name is Abdullah.",
+        "timestamp": 1774549486.1443245
       },
       {
         "role": "assistant",
-        "content": "<start_function_call>call:network_scan{}<end_function_call>",
-        "timestamp": 1772911495.7315094,
-        "hidden": true
+        "content": "<think>\n\n</think>\n\nHello, Abdullah! How can I assist you today?",
+        "timestamp": 1774549497.0024586
+      },
+      {
+        "role": "user",
+        "content": "This is a test.",
+        "timestamp": 1774549746.6891463
       },
       {
         "role": "assistant",
-        "content": "Network scan:\n10.0.0.1  70:13:01:8c:10:0f\nfe80::7213:1ff:fe8c:100f  70:13:01:8c:10:0f",
-        "timestamp": 1772911495.731512
+        "content": "<think>\n\n</think>\n\nHello, Abdullah! I'm here to help. If this is a test, feel free to ask any questions you have! \ud83d\ude0a",
+        "timestamp": 1774549761.7204664
       }
     ],
-    "updated_at": 1772911495.7315214
+    "updated_at": 1774549761.7204802
   }
 ]

@@ -10,27 +10,29 @@ export default function ChatHeader({ connected, onToggleSidebar, onCloseKeyboard
     };
 
     return (
-        <header className="h-16 min-h-[64px] grid grid-cols-3 items-center px-3 bg-[var(--pixel-surface)] border-b-4 border-[var(--pixel-border)] z-10">
+        <header className="h-16 min-h-[64px] grid grid-cols-3 items-center px-4 bg-[var(--surface)]/80 backdrop-blur-lg border-b border-[var(--border)] z-10">
             <div className="flex justify-start">
                 <button
                     onClick={handleBack}
-                    className="pixel-btn p-2 flex items-center justify-center min-h-[44px] min-w-[44px]"
+                    className="p-2.5 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px] border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all duration-200"
                     aria-label="Go back"
                 >
-                    <ArrowLeft size={22} />
+                    <ArrowLeft size={20} />
                 </button>
             </div>
             <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-xl font-['Press_Start_2P'] tracking-tight text-[var(--pixel-primary)] leading-none mb-1">POCKET AI</div>
-                <div className="text-xs text-[var(--pixel-secondary)] font-['VT323'] leading-none tracking-widest uppercase">{connected ? 'Chat Engine Online' : 'Connecting to AI...'}</div>
+                <div className="text-lg font-['Syne'] font-bold tracking-tight text-[var(--text)] leading-none mb-1">Viora AI</div>
+                <div className="text-xs text-[var(--text-light)] font-['Plus_Jakarta_Sans'] leading-none">
+                    {connected ? 'Ready to assist' : 'Connecting...'}
+                </div>
             </div>
             <div className="flex justify-end">
                 <button
                     onClick={onToggleSidebar}
-                    className="pixel-btn p-2 flex items-center justify-center min-h-[44px] min-w-[44px]"
+                    className="p-2.5 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px] border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[#38bdf8] hover:text-[#38bdf8] transition-all duration-200"
                     aria-label="Toggle sidebar"
                 >
-                    <Menu size={22} />
+                    <Menu size={20} />
                 </button>
             </div>
         </header>

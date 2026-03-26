@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Avatar({
     className = "",
-    variant = "lg", // 'sm' | 'lg'
+    variant = "lg",
     onClick,
     animate = true,
     expression: externalExpression
@@ -12,20 +12,16 @@ export default function Avatar({
     const isXl = variant === 'xl';
     const scale = isSmall ? 0.4 : (isXl ? 1.3 : 1);
 
-    // States for random behavior
-    // Expressions: neutral, happy, thinking, surprised, listening, speaking
     const [expression, setExpression] = useState('neutral');
     const [blink, setBlink] = useState(false);
     const [glitch, setGlitch] = useState(false);
 
-    // Sync external expression prop if provided
     useEffect(() => {
         if (externalExpression) {
             setExpression(externalExpression);
         }
     }, [externalExpression]);
 
-    // Random blinking
     useEffect(() => {
         if (!animate || expression === 'listening') return;
         const interval = setInterval(() => {
@@ -37,7 +33,6 @@ export default function Avatar({
         return () => clearInterval(interval);
     }, [animate, expression]);
 
-    // Random Personality / Expression Changes (only when idle)
     useEffect(() => {
         if (!animate || (expression !== 'neutral' && expression !== 'idle')) return;
         const interval = setInterval(() => {
@@ -46,18 +41,16 @@ export default function Avatar({
                 const exprs = ['happy', 'thinking', 'surprised', 'neutral'];
                 const nextExpr = exprs[Math.floor(Math.random() * exprs.length)];
                 setExpression(nextExpr);
-                // Reset to neutral after a few seconds
                 setTimeout(() => setExpression('neutral'), 2000 + Math.random() * 2000);
             }
         }, 4000);
         return () => clearInterval(interval);
     }, [animate, expression]);
 
-    // Random glitch effect
     useEffect(() => {
         if (!animate || expression === 'speaking') return;
         const interval = setInterval(() => {
-            if (Math.random() > 0.95) { // Less frequent glitch
+            if (Math.random() > 0.95) {
                 setGlitch(true);
                 setTimeout(() => setGlitch(false), 200);
             }
@@ -65,17 +58,13 @@ export default function Avatar({
         return () => clearInterval(interval);
     }, [animate, expression]);
 
-    // Pixel sizes
-    const pixelSize = 4;
-
-    // Colors
     const c = {
-        primary: 'var(--pixel-primary)',
-        secondary: 'var(--pixel-secondary)',
-        accent: 'var(--pixel-accent)',
+        primary: 'var(--ai-color)',
+        secondary: 'var(--ai-color)',
+        accent: 'var(--ai-color)',
         dark: '#1a1b26',
         screen: '#24283b',
-        eye: '#00ffff', // Cyan
+        eye: '#00ffff',
         highlight: '#ffffff'
     };
 
@@ -88,8 +77,6 @@ export default function Avatar({
         justifyContent: 'center',
         cursor: onClick ? 'pointer' : 'default',
     };
-
-    // --- Animation Variants ---
 
     const floatVariants = {
         animate: {
@@ -138,17 +125,15 @@ export default function Avatar({
             }
         },
     };
-    // Use prop directly so thinking shows immediately (no state sync delay)
     const effectiveExpression = externalExpression != null && externalExpression !== '' ? externalExpression : expression;
     const isThinking = effectiveExpression === 'thinking' || effectiveExpression === 'processing';
 
-    // Expression-based Eye Variants
     const getEyeScale = (side) => {
         if (blink) return { scaleY: 0.1 };
 
         switch (expression) {
             case 'happy':
-                return { scaleY: 0.5, translateY: -5, borderRadius: '50%' }; // squinty/happy
+                return { scaleY: 0.5, translateY: -5, borderRadius: '50%' };
             case 'listening':
                 return {
                     scale: [1, 1.1, 1],
@@ -186,50 +171,44 @@ export default function Avatar({
                 variants={floatVariants}
                 animate={animate ? (expression === 'speaking' ? "speaking" : expression === 'thinking' || expression === 'processing' ? "animate" : "animate") : "initial"}
             >
-                {/* --- ROBOT HEAD CONSTRUCTION --- */}
                 <motion.div
                     variants={glitchVariants}
                     animate={glitch ? "glitch" : "idle"}
                     className="relative w-full h-full"
                 >
-                    {/* Thinking Halo */}
-                    {/* Antenna */}
                     <motion.div
                         className="absolute left-1/2 top-0"
                         style={{ x: '-50%', transformOrigin: 'bottom center' }}
                         variants={antennaVariants}
                         animate={animate ? (expression === 'listening' ? "listening" : "animate") : "initial"}
                     >
-                        <div className="w-1 h-6 bg-[var(--pixel-secondary)] mx-auto" />
+                        <div className="w-1 h-6 bg-[var(--ai-color)] mx-auto" />
                         <div
-                            className={`w-3 h-3 relative -top-1 rounded-none ${
+                            className={`w-3 h-3 relative -top-1 rounded-full ${
                                 effectiveExpression === 'listening' ? 'bg-[#ff0000] animate-pulse duration-75' :
                                 isThinking ? 'bg-[#ffff00]' :
-                                'bg-[var(--pixel-accent)] animate-pulse'
+                                'bg-[var(--ai-color)] animate-pulse'
                             }`}
                         />
                     </motion.div>
 
-                    {/* Head Shape (Main Box) */}
-                    <div className="absolute top-6 left-12 right-12 bottom-20 bg-[var(--pixel-primary)] shadow-[4px_4px_0_0_rgba(0,0,0,0.5)] z-0"
+                    <div className="absolute top-6 left-12 right-12 bottom-20 bg-[var(--ai-color)] shadow-lg z-0"
                         style={{
                             left: '24px', right: '24px', top: '24px', bottom: '24px',
                             clipPath: 'polygon(10% 0, 90% 0, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0 90%, 0 10%)'
                         }}>
 
-                        {/* Highlights/Shadows on metal */}
-                        <div className="absolute top-2 left-2 w-4 h-4 bg-white/30" />
+                        <div className="absolute top-2 left-2 w-4 h-4 bg-white/30 rounded" />
                         <div className="absolute top-2 right-2 w-full h-2 bg-black/10" />
                     </div>
 
-                    {/* Face Screen */}
-                    <div className="absolute bg-[var(--pixel-surface)]"
+                    <div className="absolute bg-[var(--surface)]"
                         style={{
                             left: '32px', right: '32px', top: '40px', bottom: '40px',
-                            boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.5)'
+                            boxShadow: 'inset 2px 2px 4px rgba(0,0,0,0.5)',
+                            borderRadius: '12px'
                         }}>
 
-                        {/* Eyes: circular loading bars when thinking, else normal eyes */}
                         <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-full flex justify-center items-center gap-4">
                             {isThinking ? (
                                 <>
@@ -271,7 +250,7 @@ export default function Avatar({
                             ) : (
                                 <>
                                     <motion.div
-                                        className="w-5 h-8 bg-[#00ffff] shadow-[0_0_10px_#00ffff]"
+                                        className="w-5 h-8 bg-[#00ffff] shadow-[0_0_10px_#00ffff] rounded-lg"
                                         animate={getEyeScale('left')}
                                         transition={{
                                             type: "spring",
@@ -281,7 +260,7 @@ export default function Avatar({
                                         }}
                                     />
                                     <motion.div
-                                        className="w-5 h-8 bg-[#00ffff] shadow-[0_0_10px_#00ffff]"
+                                        className="w-5 h-8 bg-[#00ffff] shadow-[0_0_10px_#00ffff] rounded-lg"
                                         animate={getEyeScale('right')}
                                         transition={{
                                             type: "spring",
@@ -294,9 +273,8 @@ export default function Avatar({
                             )}
                         </div>
 
-                        {/* Mouth - Appears when happy/speaking */}
                         <motion.div
-                            className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-[#00ffff] opacity-80"
+                            className="absolute bottom-3 left-1/2 transform -translate-x-1/2 bg-[#00ffff] opacity-80 rounded"
                             animate={{
                                 height: expression === 'speaking' ? [2, 6, 2, 4, 1] : (expression === 'happy' ? 4 : 2),
                                 width: expression === 'happy' ? 24 : 12,
@@ -310,32 +288,29 @@ export default function Avatar({
                         />
                     </div>
 
-                    {/* Earpieces / Headphones */}
-                    <div className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-12 bg-[var(--pixel-border)] shadow-[-2px_2px_0_0_rgba(0,0,0,0.3)]" />
-                    <div className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-12 bg-[var(--pixel-border)] shadow-[2px_2px_0_0_rgba(0,0,0,0.3)]" />
+                    <div className="absolute left-2 top-1/2 transform -translate-y-1/2 w-4 h-12 bg-[var(--border)] rounded-lg shadow-lg" />
+                    <div className="absolute right-2 top-1/2 transform -translate-y-1/2 w-4 h-12 bg-[var(--border)] rounded-lg shadow-lg" />
 
                 </motion.div>
 
-                {/* Orbital Particles (Optional, for 'Amazing' effect) */}
                 {!isSmall && animate && (
                     <>
                         <motion.div
-                            className="absolute -inset-4 border-2 border-[var(--pixel-primary)] opacity-20"
+                            className="absolute -inset-4 border-2 border-[var(--ai-color)] opacity-20"
                             animate={{
                                 rotate: 360,
                                 scale: [1, 1.05, 1]
                             }}
                             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-                            style={{ borderRadius: '40%' }} // Semi-circle glitchy orbit
+                            style={{ borderRadius: '40%' }}
                         />
                     </>
                 )}
             </motion.div>
 
-            {/* Shadow beneath */}
             {!isSmall && (
                 <motion.div
-                    className="absolute -bottom-4 w-24 h-4 bg-black/20 rounded-[50%]"
+                    className="absolute -bottom-4 w-24 h-4 bg-black/20 rounded-full"
                     animate={{
                         scaleX: [1, 0.8, 1],
                         opacity: [0.3, 0.5, 0.3]

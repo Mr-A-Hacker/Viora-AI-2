@@ -125,7 +125,7 @@ if __name__ == "__main__":
         ("medium", "en_US-lessac-medium"),
         ("large", "en_US-lessac-high"),
     ]
-    msg = "Hello, my name is Pocket. Nice to meet you."
+    msg = "Hello, my name is Viora. Nice to meet you."
 
     for label, model_name in models:
         print(f"\n{'='*60}\n  Model: {label} ({model_name})\n{'='*60}")

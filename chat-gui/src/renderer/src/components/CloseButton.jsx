@@ -7,7 +7,6 @@ const CloseButton = () => {
             window.electron.quit();
         } else {
             console.log('Close button clicked (Electron API not available)');
-            // Fallback for non-electron environments or if API is missing
             window.close();
         }
     };
@@ -15,11 +14,11 @@ const CloseButton = () => {
     return (
         <button
             onClick={handleClose}
-            className="absolute top-4 right-4 z-[9999] w-10 h-10 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white border-2 border-white shadow-[4px_4px_0_0_rgba(0,0,0,1)] active:translate-y-1 active:shadow-none transition-all"
+            className="absolute top-4 right-4 z-[9999] w-12 h-12 flex items-center justify-center bg-red-500 hover:bg-red-600 text-white rounded-2xl active:scale-95 transition-all shadow-lg shadow-red-500/25"
             aria-label="Close Application"
-            title="CLOSE SYSTEM"
+            title="Close"
         >
-            <X size={20} classname="pixel-icon" />
+            <X size={20} />
         </button>
     );
 };

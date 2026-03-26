@@ -85,32 +85,37 @@ export default function TaskManager() {
     };
 
     return (
-        <div className="w-full h-full mx-auto flex flex-col bg-[var(--pixel-bg)] text-[var(--pixel-text)] font-['VT323'] overflow-hidden min-h-0">
-            <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 bg-[var(--pixel-surface)] border-b-4 border-[var(--pixel-border)] z-10">
+        <div className="w-full h-full mx-auto flex flex-col bg-[var(--bg)] text-[var(--text)] font-['Plus_Jakarta_Sans'] overflow-hidden min-h-0">
+            <div className="ambient-bg fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="blob-1 absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]" />
+                <div className="blob-2 absolute w-[400px] h-[400px] rounded-full opacity-15 blur-[80px] top-1/3 right-1/4" />
+            </div>
+
+            <div className="flex-shrink-0 flex items-center justify-between px-4 py-4 bg-[var(--surface)]/80 backdrop-blur-lg border-b border-[var(--border)] z-10">
                 <div className="flex items-center gap-3">
                     <button
                         type="button"
                         onClick={() => navigate('/')}
-                        className="pixel-btn p-3 min-h-[48px] min-w-[48px] touch-manipulation"
+                        className="p-2.5 rounded-xl min-h-[44px] min-w-[44px] border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all duration-200 flex items-center justify-center"
                         aria-label="Back"
                     >
-                        <ArrowLeft size={24} />
+                        <ArrowLeft size={20} />
                     </button>
-                    <h1 className="text-lg font-['Press_Start_2P'] text-[var(--pixel-primary)] leading-tight">TASKS</h1>
+                    <h1 className="text-lg font-['Syne'] font-bold text-[var(--text)]">Tasks</h1>
                 </div>
                 <button
                     type="button"
                     onClick={() => navigate('/tasks/add')}
-                    className="pixel-btn p-3 min-h-[48px] min-w-[48px] touch-manipulation bg-[var(--pixel-accent)] text-black"
+                    className="ai-btn p-2.5 rounded-xl min-h-[44px] min-w-[44px] bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white transition-all shadow-lg shadow-[var(--ai-color)]/30"
                     aria-label="New task"
                 >
-                    <Plus size={24} />
+                    <Plus size={20} />
                 </button>
             </div>
 
             <div
                 ref={scrollContainerRef}
-                className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4 scroller-pixel touch-scroll-y"
+                className="flex-1 min-h-0 overflow-y-auto p-4 space-y-4"
                 onPointerDown={onScrollPointerDown}
                 onPointerMove={onScrollPointerMove}
                 onPointerUp={onScrollPointerUp}
@@ -118,9 +123,11 @@ export default function TaskManager() {
                 onPointerLeave={onScrollPointerUp}
             >
                 {jobs.length === 0 ? (
-                    <div className="flex flex-col items-center justify-center py-20 text-[var(--pixel-border)]">
-                        <Clock size={48} className="mb-4 opacity-50" />
-                        <p className="text-xl">NO ACTIVE TASKS</p>
+                    <div className="flex flex-col items-center justify-center py-20 text-[var(--text-light)]">
+                        <div className="w-16 h-16 rounded-full bg-[var(--ai-bg)] flex items-center justify-center mb-4">
+                            <Clock size={32} className="text-[var(--ai-color)] opacity-50" />
+                        </div>
+                        <p className="text-base font-medium">No active tasks</p>
                     </div>
                 ) : (
                     jobs.map((job) => (
@@ -128,51 +135,51 @@ export default function TaskManager() {
                             key={job.id}
                             initial={{ opacity: 0, y: 10 }}
                             animate={{ opacity: 1, y: 0 }}
-                            className="bg-[var(--pixel-surface)] p-5 border-4 border-[var(--pixel-border)] shadow-[4px_4px_0_0_rgba(0,0,0,0.5)] group"
+                            className="ai-card p-5 group"
                         >
-                            <div className="flex justify-between items-start gap-3 mb-3">
+                            <div className="flex justify-between items-start gap-3 mb-4">
                                 <div className="min-w-0 flex-1">
-                                    <h3 className="font-['Press_Start_2P'] text-[var(--pixel-text)] text-xs mb-1 uppercase leading-relaxed">{job.name}</h3>
+                                    <h3 className="font-['Syne'] font-semibold text-[var(--text)] text-base mb-1">{job.name}</h3>
                                     {job.description && (
-                                        <p className="text-lg text-gray-500 mt-0.5">{job.description}</p>
+                                        <p className="text-sm text-[var(--text-mid)]">{job.description}</p>
                                     )}
                                 </div>
-                                <div className="flex items-center gap-1">
+                                <div className="flex items-center gap-2">
                                     <button
                                         type="button"
                                         onClick={() => handleEditJob(job)}
-                                        className="p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-[var(--pixel-primary)] hover:bg-[var(--pixel-primary)]/20 border-2 border-transparent hover:border-[var(--pixel-primary)] transition-all touch-manipulation"
+                                        className="p-2.5 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-[var(--ai-color)] hover:bg-[var(--ai-bg)] border border-transparent hover:border-[var(--ai-color)] transition-all"
                                         aria-label="Edit task"
                                     >
-                                        <Pencil size={20} />
+                                        <Pencil size={18} />
                                     </button>
                                     <button
                                         type="button"
                                         onClick={() => handleRemoveJob(job.id)}
-                                        className="p-3 min-h-[44px] min-w-[44px] flex items-center justify-center text-red-500 hover:bg-red-900/30 border-2 border-transparent hover:border-red-500 transition-all touch-manipulation"
+                                        className="p-2.5 rounded-xl min-h-[44px] min-w-[44px] flex items-center justify-center text-red-500 hover:bg-red-500/10 border border-transparent hover:border-red-500 transition-all"
                                         aria-label="Delete task"
                                     >
-                                        <Trash2 size={20} />
+                                        <Trash2 size={18} />
                                     </button>
                                 </div>
                             </div>
 
-                            <div className="flex flex-col gap-2">
-                                <div className="flex items-center text-sm text-[var(--pixel-secondary)]">
-                                    <div className="w-6 flex justify-center mr-2 opacity-70">
+                            <div className="flex flex-col gap-3">
+                                <div className="flex items-center text-sm text-[var(--text-mid)]">
+                                    <div className="w-8 flex justify-center mr-2 opacity-70">
                                         <Clock size={16} />
                                     </div>
-                                    <span className="font-medium bg-[var(--pixel-bg)] px-2 py-1 border border-[var(--pixel-border)]">
+                                    <span className="font-medium bg-[var(--ai-bg)] px-3 py-1.5 rounded-xl text-[var(--ai-color)]">
                                         {formatSchedule(job.schedule)}
                                     </span>
                                 </div>
 
                                 {job.payload && (
-                                    <div className="flex items-start text-sm text-gray-400 mt-1">
-                                        <div className="w-6 flex justify-center mr-2 opacity-70 mt-0.5">
+                                    <div className="flex items-start text-sm text-[var(--text-mid)]">
+                                        <div className="w-8 flex justify-center mr-2 opacity-70 mt-0.5">
                                             <Zap size={16} />
                                         </div>
-                                        <div className="flex-1 bg-[var(--pixel-bg)] p-2 border border-[var(--pixel-border)] text-[var(--pixel-primary)] text-sm font-['VT323']">
+                                        <div className="flex-1 bg-[var(--ai-bg)] p-3 rounded-xl text-[var(--ai-color)] text-sm">
                                             {job.payload.text || job.payload.message || JSON.stringify(job.payload)}
                                         </div>
                                     </div>

@@ -6,6 +6,8 @@ import ChatInterface from './components/ChatInterface';
 import CameraView from './components/CameraView';
 import Gallery from './components/Gallery';
 import Settings from './components/Settings';
+import Maps from './components/Maps';
+import DevAI from './components/DevAI';
 import StatusBar from './components/StatusBar';
 import TaskManager from './components/TaskManager';
 import TaskAdd from './components/TaskAdd';
@@ -15,8 +17,6 @@ import ErrorBoundary from './components/ErrorBoundary';
 import VirtualKeyboard from './components/VirtualKeyboard';
 import { WebSocketProvider } from './contexts/WebSocketContext';
 import { KeyboardProvider, useKeyboardSettings } from './contexts/KeyboardContext';
-
-// HashRouter so routes work when the app is loaded from file:// (built Electron app)
 
 function OverlayKeyboard() {
   const location = useLocation();
@@ -34,10 +34,7 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<Home />} />
-        <Route
-          path="/chat"
-          element={<ChatInterface />}
-        />
+        <Route path="/chat" element={<ChatInterface />} />
         <Route path="/camera" element={<CameraView />} />
         <Route path="/gallery" element={<Gallery />} />
         <Route path="/tasks" element={<TaskManager />} />
@@ -46,6 +43,8 @@ const AnimatedRoutes = () => {
         <Route path="/heartbeat" element={<HeartbeatManager />} />
         <Route path="/gpio" element={<GPIOControl />} />
         <Route path="/settings" element={<Settings />} />
+        <Route path="/maps" element={<Maps />} />
+        <Route path="/devai" element={<DevAI />} />
       </Routes>
     </AnimatePresence>
   );
@@ -56,7 +55,18 @@ export default function App() {
     <HashRouter>
       <WebSocketProvider>
         <KeyboardProvider>
-          <div className="flex flex-col h-screen w-screen overflow-hidden bg-[var(--pixel-bg)] text-[var(--pixel-text)]">
+          <div
+            className="flex flex-col h-screen w-screen overflow-hidden"
+            style={{
+              background: 'var(--bg)',
+              color: 'var(--text)',
+              fontFamily: 'var(--font-body)',
+              paddingTop: 'env(safe-area-inset-top, 0px)',
+              paddingRight: 'env(safe-area-inset-right, 0px)',
+              paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+              paddingLeft: 'env(safe-area-inset-left, 0px)',
+            }}
+          >
             <StatusBar />
             <div className="flex-1 overflow-hidden relative w-full">
               <ErrorBoundary>

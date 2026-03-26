@@ -9,11 +9,12 @@ from camera_stream import router as camera_router
 from chat_ai import router as chat_router, ai as ai_state
 from weather import router as weather_router
 from maps import router as maps_router
+from devai import router as devai_router
 
 setup_logging()
 logger = logging.getLogger(__name__)
 
-app = FastAPI(title="Pocket AI Unified Backend")
+app = FastAPI(title="Viora AI Unified Backend")
 
 # Enable CORS for the frontend
 app.add_middleware(
@@ -33,6 +34,7 @@ app.include_router(camera_router)
 app.include_router(chat_router)
 app.include_router(weather_router)
 app.include_router(maps_router)
+app.include_router(devai_router)
 
 @app.get("/health")
 async def health():

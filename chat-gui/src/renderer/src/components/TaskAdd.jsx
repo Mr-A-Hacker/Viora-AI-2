@@ -57,7 +57,6 @@ export default function TaskAdd() {
     const { keyboardEnabled, focusState, setFocusState, focusedElementRef, syncInputValueRef } = useKeyboardSettings();
     const showInlineKeyboard = keyboardEnabled && !!focusState;
 
-    // When keyboard opens, scroll the focused field into view so it stays above the keyboard
     const scrollFocusedIntoView = useCallback((el) => {
         if (!el) return;
         const timer = setTimeout(() => {
@@ -184,136 +183,149 @@ export default function TaskAdd() {
 
     return (
         <div
-            className="w-full h-full flex flex-col bg-[var(--pixel-bg)] text-[var(--pixel-text)] font-['VT323'] overflow-hidden min-h-0"
+            className="w-full h-full flex flex-col bg-[var(--bg)] text-[var(--text)] font-['Plus_Jakarta_Sans'] overflow-hidden min-h-0"
             onPointerDown={handleAreaPointerDown}
         >
-            <header className="flex-shrink-0 flex items-center justify-between px-4 py-4 bg-[var(--pixel-surface)] border-b-4 border-[var(--pixel-border)] z-10">
+            <div className="ambient-bg fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="blob-1 absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]" />
+                <div className="blob-2 absolute w-[400px] h-[400px] rounded-full opacity-15 blur-[80px] bottom-1/3 right-1/4" />
+            </div>
+
+            <header className="flex-shrink-0 flex items-center justify-between px-4 py-4 bg-[var(--surface)]/80 backdrop-blur-lg border-b border-[var(--border)] z-10">
                 <button
                     type="button"
                     onClick={() => navigate('/tasks')}
-                    className="pixel-btn p-3 min-h-[48px] min-w-[48px] touch-manipulation"
+                    className="ai-btn p-2.5 rounded-xl min-h-[44px] min-w-[44px] bg-[var(--ai-bg)] text-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white transition-all"
                     aria-label="Back to tasks"
                 >
-                    <ArrowLeft size={24} />
+                    <ArrowLeft size={20} />
                 </button>
-                <h1 className="text-lg font-['Press_Start_2P'] text-[var(--pixel-primary)] leading-tight">{isEdit ? 'EDIT TASK' : 'NEW TASK'}</h1>
-                <div className="w-12" />
+                <h1 className="text-lg font-['Syne'] font-bold text-[var(--text)]">{isEdit ? 'Edit Task' : 'New Task'}</h1>
+                <div className="w-10" />
             </header>
 
             <div
                 ref={scrollContainerRef}
                 data-task-scroll
-                className="flex-1 min-h-0 overflow-y-auto p-4 scroller-pixel touch-scroll-y"
+                className="flex-1 min-h-0 overflow-y-auto p-4"
                 onPointerDown={onScrollAreaPointerDown}
                 onPointerMove={onScrollAreaPointerMove}
                 onPointerUp={onScrollAreaPointerUp}
                 onPointerCancel={onScrollAreaPointerUp}
                 onPointerLeave={onScrollAreaPointerUp}
             >
-                <div className="bg-[var(--pixel-surface)] border-4 border-[var(--pixel-border)] p-5 shadow-[8px_8px_0_0_rgba(0,0,0,0.5)]" data-task-form>
-                    <form ref={formRef} onSubmit={handleSubmit} onKeyDown={handleFormKeyDown} className="space-y-5">
+                <div className="ai-card p-6" data-task-form>
+                    <form ref={formRef} onSubmit={handleSubmit} onKeyDown={handleFormKeyDown} className="space-y-6">
                         <div className="space-y-2">
-                            <label className="block text-sm font-['Press_Start_2P'] text-[var(--pixel-border)] uppercase">Name</label>
+                            <label className="block text-sm font-medium text-[var(--text-mid)]">Name</label>
                             <input
                                 value={name}
                                 onChange={(e) => setName(e.target.value)}
                                 {...bindKeyboardSync(setName)}
-                                className="w-full p-4 min-h-[48px] text-xl bg-[var(--pixel-bg)] border-2 border-[var(--pixel-border)] text-[var(--pixel-text)] placeholder-[var(--pixel-border)] focus:border-[var(--pixel-primary)] outline-none touch-manipulation"
-                                placeholder="TASK NAME..."
+                                className="ai-input w-full p-4 min-h-[48px] text-base"
+                                placeholder="Task name..."
                                 required
                             />
                         </div>
                         <div className="space-y-2">
-                            <label className="block text-sm font-['Press_Start_2P'] text-[var(--pixel-border)] uppercase">Description (optional)</label>
+                            <label className="block text-sm font-medium text-[var(--text-mid)]">Description (optional)</label>
                             <input
                                 value={description}
                                 onChange={(e) => setDescription(e.target.value)}
                                 {...bindKeyboardSync(setDescription)}
-                                className="w-full p-4 min-h-[48px] text-xl bg-[var(--pixel-bg)] border-2 border-[var(--pixel-border)] text-[var(--pixel-text)] placeholder-[var(--pixel-border)] focus:border-[var(--pixel-primary)] outline-none touch-manipulation"
-                                placeholder="OPTIONAL..."
+                                className="ai-input w-full p-4 min-h-[48px] text-base"
+                                placeholder="Optional description..."
                             />
                         </div>
                         <div className="space-y-3">
-                            <label className="block text-xs font-['Press_Start_2P'] text-[var(--pixel-secondary)]">SCHEDULE TYPE</label>
-                            <div className="flex bg-[var(--pixel-bg)] p-1.5 border-2 border-[var(--pixel-border)] gap-1">
+                            <label className="block text-sm font-medium text-[var(--text-mid)]">Schedule Type</label>
+                            <div className="flex bg-[var(--bg)] p-1.5 rounded-2xl gap-1">
                                 <button
                                     type="button"
                                     onClick={() => setScheduleType('every')}
-                                    className={`flex-1 py-4 text-center font-['VT323'] text-xl min-h-[48px] touch-manipulation transition-colors border-2 ${scheduleType === 'every' ? 'bg-[var(--pixel-primary)] text-black border-[var(--pixel-primary)]' : 'border-transparent text-[var(--pixel-text)] hover:bg-[var(--pixel-surface)]'}`}
+                                    className={`flex-1 py-3.5 text-center text-sm font-medium min-h-[48px] rounded-xl transition-all ${
+                                        scheduleType === 'every' 
+                                            ? 'bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[var(--ai-color)]/20' 
+                                            : 'text-[var(--text-mid)] hover:bg-[var(--ai-bg)]'
+                                    }`}
                                 >
-                                    INTERVAL
+                                    Interval
                                 </button>
                                 <button
                                     type="button"
                                     onClick={() => setScheduleType('at')}
-                                    className={`flex-1 py-4 text-center font-['VT323'] text-xl min-h-[48px] touch-manipulation transition-colors border-2 ${scheduleType === 'at' ? 'bg-[var(--pixel-primary)] text-black border-[var(--pixel-primary)]' : 'border-transparent text-[var(--pixel-text)] hover:bg-[var(--pixel-surface)]'}`}
+                                    className={`flex-1 py-3.5 text-center text-sm font-medium min-h-[48px] rounded-xl transition-all ${
+                                        scheduleType === 'at' 
+                                            ? 'bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[var(--ai-color)]/20' 
+                                            : 'text-[var(--text-mid)] hover:bg-[var(--ai-bg)]'
+                                    }`}
                                 >
-                                    DATE & TIME
+                                    Date & Time
                                 </button>
                             </div>
                         </div>
                         {scheduleType === 'every' && (
                             <div className="flex flex-col sm:flex-row gap-4">
                                 <div className="flex-1 space-y-2">
-                                    <label className="block text-xs font-['Press_Start_2P'] text-[var(--pixel-secondary)]">INTERVAL</label>
+                                    <label className="block text-sm font-medium text-[var(--text-mid)]">Interval</label>
                                     <input
                                         type="number"
                                         min="1"
                                         value={intervalValue}
                                         onChange={(e) => setIntervalValue(parseInt(e.target.value) || 1)}
                                         {...bindKeyboardSyncNumber(setIntervalValue)}
-                                        className="pixel-input w-full min-h-[48px] text-xl p-4 touch-manipulation"
+                                        className="ai-input w-full min-h-[48px] text-base p-4"
                                     />
                                 </div>
                                 <div className="flex-1 space-y-2">
-                                    <label className="block text-xs font-['Press_Start_2P'] text-[var(--pixel-secondary)]">UNIT</label>
+                                    <label className="block text-sm font-medium text-[var(--text-mid)]">Unit</label>
                                     <select
                                         value={intervalUnit}
                                         onChange={(e) => setIntervalUnit(e.target.value)}
-                                        className="pixel-select w-full min-h-[48px] text-xl p-4 touch-manipulation"
+                                        className="ai-input w-full min-h-[48px] text-base p-4"
                                     >
-                                        <option value="minutes">MINUTES</option>
-                                        <option value="hours">HOURS</option>
-                                        <option value="days">DAYS</option>
+                                        <option value="minutes">Minutes</option>
+                                        <option value="hours">Hours</option>
+                                        <option value="days">Days</option>
                                     </select>
                                 </div>
                             </div>
                         )}
                         {scheduleType === 'at' && (
                             <div className="space-y-2">
-                                <label className="block text-xs font-['Press_Start_2P'] text-[var(--pixel-secondary)]">DATE & TIME</label>
+                                <label className="block text-sm font-medium text-[var(--text-mid)]">Date & Time</label>
                                 <input
                                     type="datetime-local"
                                     value={targetDate}
                                     onChange={(e) => setTargetDate(e.target.value)}
                                     {...bindKeyboardSync(setTargetDate)}
-                                    className="w-full p-4 min-h-[48px] text-xl bg-[var(--pixel-surface)] border-2 border-[var(--pixel-border)] text-[var(--pixel-text)] touch-manipulation"
+                                    className="ai-input w-full min-h-[48px] text-base p-4"
                                     required={scheduleType === 'at'}
                                 />
                             </div>
                         )}
                         <div className="space-y-2">
-                            <label className="block text-xs font-['Press_Start_2P'] text-[var(--pixel-secondary)] flex items-center gap-2">
-                                <MessageSquare size={14} /> Agent Instruction
+                            <label className="block text-sm font-medium text-[var(--text-mid)] flex items-center gap-2">
+                                <MessageSquare size={16} /> Agent Instruction
                             </label>
                             <textarea
                                 value={agentMessage}
                                 onChange={(e) => setAgentMessage(e.target.value)}
                                 {...bindKeyboardSync(setAgentMessage)}
-                                className="w-full p-4 bg-[var(--pixel-bg)] border-2 border-[var(--pixel-border)] text-[var(--pixel-text)] text-xl focus:border-[var(--pixel-primary)] outline-none min-h-[100px] resize-none touch-manipulation"
-                                placeholder="INSTRUCTIONS FOR AGENT..."
+                                className="ai-input w-full p-4 bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-base focus:border-[var(--ai-color)] outline-none min-h-[100px] resize-none"
+                                placeholder="Instructions for agent..."
                             />
                         </div>
                         <div className="flex flex-col-reverse sm:flex-row gap-3 pt-2">
                             <button
                                 type="button"
                                 onClick={() => navigate('/tasks')}
-                                className="pixel-btn flex-1 py-4 min-h-[52px] text-sm touch-manipulation bg-[var(--pixel-bg)] text-[var(--pixel-text)]"
+                                className="ai-btn flex-1 py-4 min-h-[52px] text-sm bg-[var(--surface)] text-[var(--text)] border border-[var(--border)]"
                             >
-                                CANCEL
+                                Cancel
                             </button>
-                            <button type="submit" className="pixel-btn flex-1 py-4 min-h-[52px] text-sm touch-manipulation bg-[var(--pixel-primary)] text-black">
-                                {isEdit ? 'SAVE TASK' : 'ADD TASK'}
+                            <button type="submit" className="ai-btn flex-1 py-4 min-h-[52px] text-sm bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[var(--ai-color)]/30">
+                                {isEdit ? 'Save Task' : 'Add Task'}
                             </button>
                         </div>
                     </form>

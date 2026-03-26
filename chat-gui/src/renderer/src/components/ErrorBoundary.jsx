@@ -18,19 +18,22 @@ export default class ErrorBoundary extends React.Component {
     render() {
         if (this.state.hasError) {
             return (
-                <div className="w-full h-full flex flex-col items-center justify-center gap-4 p-6 bg-[var(--pixel-bg)] text-[var(--pixel-text)]">
-                    <p className="text-center font-['Press_Start_2P'] text-sm text-[var(--pixel-primary)]">
+                <div className="w-full h-full flex flex-col items-center justify-center gap-6 p-8 bg-[var(--bg)] text-[var(--text)]">
+                    <div className="w-20 h-20 rounded-full bg-red-500/10 flex items-center justify-center">
+                        <span className="text-4xl">⚠️</span>
+                    </div>
+                    <p className="text-center font-['Syne'] font-semibold text-xl text-[var(--text)]">
                         Something went wrong
                     </p>
-                    <p className="text-center text-xs opacity-80 max-w-md">
+                    <p className="text-center text-sm text-[var(--text-mid)] max-w-md">
                         {this.state.error?.message || 'An unexpected error occurred.'}
                     </p>
                     <button
                         type="button"
                         onClick={this.handleRetry}
-                        className="pixel-btn px-6 py-3 bg-[var(--pixel-primary)] text-white text-[10px] font-['Press_Start_2P']"
+                        className="ai-btn px-8 py-4 bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white font-['Plus_Jakarta_Sans'] font-medium rounded-2xl shadow-lg shadow-[var(--ai-color)]/30"
                     >
-                        Retry
+                        Try Again
                     </button>
                 </div>
             );

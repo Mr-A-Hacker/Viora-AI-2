@@ -1,5 +1,5 @@
 """
-Pytest configuration and fixtures for Pocket AI backend tests.
+Pytest configuration and fixtures for Viora AI backend tests.
 Set SKIP_MODEL_LOAD so startup does not load LLM/camera (faster tests).
 """
 import os

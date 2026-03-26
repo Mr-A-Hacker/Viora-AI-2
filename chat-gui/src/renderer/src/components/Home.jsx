@@ -1,187 +1,328 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code } from 'lucide-react';
+import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Bot } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 import { useRef, useState, useEffect } from 'react';
 
+const AI_COLOR = '#7c3aed';
+const AI_BG    = 'rgba(124, 58, 237, .12)';
+const AI_SEND  = 'linear-gradient(135deg, #7c3aed, #6d28d9)';
+
 const MenuButton = ({ icon: Icon, label, onClick, color }) => (
-    <motion.button
-        whileHover={{ scale: 1.05 }}
-        whileTap={{ scale: 0.95 }}
-        onClick={onClick}
-        className="pixel-btn flex flex-col items-center justify-center gap-3 w-full min-h-[100px] flex-1 min-w-0"
-        style={{ borderColor: color, color: color }}
-    >
-        <Icon size={40} />
-        <span className="text-sm">{label}</span>
-    </motion.button>
+  <motion.button
+    whileHover={{ scale: 1.05, y: -2 }}
+    whileTap={{ scale: 0.95 }}
+    onClick={onClick}
+    style={{
+      width: '100%',
+      minHeight: 100,
+      flex: 1,
+      minWidth: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      alignItems: 'center',
+      justifyContent: 'center',
+      gap: 10,
+      border: '1.5px solid var(--border)',
+      borderRadius: 20,
+      background: 'var(--surface)',
+      color: color,
+      cursor: 'pointer',
+      fontFamily: 'var(--font-body)',
+      transition: 'all .2s',
+      boxShadow: '0 2px 12px rgba(0,0,0,.06)',
+    }}
+  >
+    <Icon size={36} />
+    <span style={{ fontSize: '.75rem', fontWeight: 600, letterSpacing: '.04em' }}>{label}</span>
+  </motion.button>
 );
 
 export default function Home() {
-    const navigate = useNavigate();
-    const {
-        toggleVoice,
-        startVosk,
-        stopVosk,
-        isRecording,
-        isVoskRecording,
-        voiceStatus,
-        voskText,
-        voiceStreamText,
-        isVoiceStreaming
-    } = useWebSocket();
+  const navigate = useNavigate();
+  const {
+    toggleVoice,
+    startVosk,
+    stopVosk,
+    isRecording,
+    isVoskRecording,
+    voiceStatus,
+    voskText,
+    voiceStreamText,
+    isVoiceStreaming
+  } = useWebSocket();
 
-    const [showBubble, setShowBubble] = useState(false);
-    const bubbleTimeoutRef = useRef(null);
+  const [showBubble, setShowBubble] = useState(false);
+  const bubbleTimeoutRef = useRef(null);
 
-    useEffect(() => {
-        const active = isVoiceStreaming || voiceStatus === 'speaking';
-        if (active) {
-            if (bubbleTimeoutRef.current) clearTimeout(bubbleTimeoutRef.current);
-            setShowBubble(true);
-        } else if (showBubble) {
-            bubbleTimeoutRef.current = setTimeout(() => {
-                setShowBubble(false);
-            }, 1000);
-        }
-        return () => {
-            if (bubbleTimeoutRef.current) clearTimeout(bubbleTimeoutRef.current);
-        };
-    }, [isVoiceStreaming, voiceStatus, showBubble]);
-
-    const displayVoiceText = voiceStreamText.trim();
-
-    const pressTimer = useRef(null);
-    const [isHoldMode, setIsHoldMode] = useState(false);
-
-    const handleMouseDown = () => {
-        setIsHoldMode(false);
-        pressTimer.current = setTimeout(() => {
-            setIsHoldMode(true);
-            startVosk();
-        }, 400); // 400ms threshold for hold
+  useEffect(() => {
+    const active = isVoiceStreaming || voiceStatus === 'speaking';
+    if (active) {
+      if (bubbleTimeoutRef.current) clearTimeout(bubbleTimeoutRef.current);
+      setShowBubble(true);
+    } else if (showBubble) {
+      bubbleTimeoutRef.current = setTimeout(() => {
+        setShowBubble(false);
+      }, 1000);
+    }
+    return () => {
+      if (bubbleTimeoutRef.current) clearTimeout(bubbleTimeoutRef.current);
     };
+  }, [isVoiceStreaming, voiceStatus, showBubble]);
 
-    const handleMouseUp = () => {
-        if (pressTimer.current) {
-            clearTimeout(pressTimer.current);
-            pressTimer.current = null;
-        }
+  const displayVoiceText = voiceStreamText.trim();
 
-        if (isHoldMode) {
-            stopVosk();
-            setIsHoldMode(false);
-        } else {
-            // It was a quick tap
-            toggleVoice();
-        }
-    };
+  const pressTimer = useRef(null);
+  const [isHoldMode, setIsHoldMode] = useState(false);
 
-    // Also handle mouse leave to prevent getting stuck in hold mode
-    const handleMouseLeave = () => {
-        if (isHoldMode) {
-            stopVosk();
-            setIsHoldMode(false);
-        }
-        if (pressTimer.current) {
-            clearTimeout(pressTimer.current);
-            pressTimer.current = null;
-        }
-    };
+  const handleMouseDown = () => {
+    setIsHoldMode(false);
+    pressTimer.current = setTimeout(() => {
+      setIsHoldMode(true);
+      startVosk();
+    }, 400);
+  };
 
-    return (
-        <div className="relative w-full h-full overflow-hidden bg-[var(--pixel-bg)] flex flex-col items-center justify-center p-4">
+  const handleMouseUp = () => {
+    if (pressTimer.current) {
+      clearTimeout(pressTimer.current);
+      pressTimer.current = null;
+    }
+    if (isHoldMode) {
+      stopVosk();
+      setIsHoldMode(false);
+    } else {
+      toggleVoice();
+    }
+  };
 
-            {/* Settings button top left */}
-            <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                onClick={() => navigate('/settings')}
-                className="absolute top-3 left-3 z-30 p-4 rounded-lg border-2 border-[var(--pixel-border)] bg-[var(--pixel-surface)] shadow-[4px_4px_0_0_rgba(0,0,0,0.5)]"
-                style={{ color: '#7dcfff' }}
-                aria-label="Settings"
+  const handleMouseLeave = () => {
+    if (isHoldMode) {
+      stopVosk();
+      setIsHoldMode(false);
+    }
+    if (pressTimer.current) {
+      clearTimeout(pressTimer.current);
+      pressTimer.current = null;
+    }
+  };
+
+  return (
+    <div
+      className="relative w-full h-full overflow-hidden flex flex-col items-center justify-center"
+      style={{
+        background: 'var(--bg)',
+        fontFamily: 'var(--font-body)',
+        color: 'var(--text)',
+      }}
+    >
+      {/* Ambient background */}
+      <div className="ambient-bg" />
+      <div className="blob blob-1" />
+      <div className="blob blob-2" />
+
+      {/* Settings button top left */}
+      <motion.button
+        whileHover={{ scale: 1.05 }}
+        whileTap={{ scale: 0.95 }}
+        onClick={() => navigate('/settings')}
+        style={{
+          position: 'absolute',
+          top: 16,
+          left: 16,
+          zIndex: 30,
+          width: 44,
+          height: 44,
+          borderRadius: 14,
+          border: '1.5px solid var(--border)',
+          background: 'rgba(255,255,255,.9)',
+          backdropFilter: 'blur(10px)',
+          cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          color: AI_COLOR,
+          boxShadow: '0 2px 12px rgba(0,0,0,.08)',
+          transition: 'all .2s',
+        }}
+        aria-label="Settings"
+      >
+        <Settings size={22} />
+      </motion.button>
+
+      {/* Avatar name + status */}
+      <div
+        className="flex flex-col items-center gap-2 mb-6 z-10"
+        style={{ animation: 'fadeUp .4s ease both' }}
+      >
+        <h1
+          style={{
+            fontFamily: 'var(--font-head)',
+            fontWeight: 800,
+            color: AI_COLOR,
+            fontSize: 'clamp(1.1rem, 4vw, 1.5rem)',
+            letterSpacing: '-.02em',
+          }}
+        >
+          VIORA AI
+        </h1>
+        <span
+          style={{
+            fontSize: 'clamp(.6rem, 1.8vw, .7rem)',
+            fontWeight: 600,
+            color: 'var(--text-mid)',
+            letterSpacing: '.08em',
+            textTransform: 'uppercase',
+          }}
+        >
+          SYSTEMS ONLINE
+        </span>
+      </div>
+
+      {/* Avatar */}
+      <div
+        className={`mb-10 relative ${showBubble ? 'z-20' : 'z-10'}`}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
+        onMouseLeave={handleMouseLeave}
+        style={{ animation: 'fadeUp .4s ease both .1s' }}
+      >
+        <Avatar
+          variant="xl"
+          animate={true}
+          expression={voiceStatus}
+          className={`cursor-pointer transition-all duration-300 ${isRecording ? 'scale-110' : 'hover:scale-105'}`}
+        />
+
+        {/* Vosk Transcription Overlay */}
+        <AnimatePresence>
+          {isVoskRecording && voskText && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0.8, y: -10 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              style={{
+                position: 'absolute',
+                left: 90,
+                top: 60,
+                width: 200,
+                background: 'rgba(30, 16, 48, .92)',
+                backdropFilter: 'blur(12px)',
+                padding: 12,
+                borderRadius: 14,
+                border: '1.5px solid rgba(124,58,237,.4)',
+                boxShadow: '0 8px 24px rgba(0,0,0,.3)',
+                zIndex: 50,
+              }}
             >
-                <Settings size={36} />
-            </motion.button>
-
-            {/* Avatar name + status */}
-            <div className="flex flex-col items-center gap-2 mb-4 z-10">
-                <h1 className="text-2xl font-['Press_Start_2P'] tracking-tight text-[var(--pixel-primary)]">
-                    POCKET AI
-                </h1>
-                <span className="text-xs font-['Press_Start_2P'] tracking-widest text-[var(--pixel-accent)]">
-                    SYSTEMS ONLINE
-                </span>
-            </div>
-
-            {/* Avatar - Centered (higher z when bubble visible so it's not covered by buttons) */}
-            <div
-                className={`mb-12 relative ${showBubble ? 'z-20' : 'z-10'}`}
-                onMouseDown={handleMouseDown}
-                onMouseUp={handleMouseUp}
-                onMouseLeave={handleMouseLeave}
-            >
-                <Avatar
-                    variant="xl"
-                    animate={true}
-                    expression={voiceStatus}
-                    className={`cursor-pointer transition-all duration-300 ${isRecording ? 'scale-110' : 'hover:scale-105'}`}
-                />
-
-                {/* Vosk Real-time Transcription Overlay */}
-                <AnimatePresence>
-                    {isVoskRecording && voskText && (
-                        <motion.div
-                            initial={{ opacity: 0, scale: 0.8, y: -10 }}
-                            animate={{ opacity: 1, scale: 1, y: 0 }}
-                            exit={{ opacity: 0, scale: 0.8 }}
-                            className="absolute left-[90px] top-[70px] w-[180px] bg-black/80 backdrop-blur-md p-3 border-2 border-[var(--pixel-accent)] shadow-[4px_4px_0_0_rgba(0,0,0,0.5)] z-50 rounded-lg rounded-tl-none"
-                        >
-                            <p className="text-[var(--pixel-accent)] text-[10px] leading-relaxed break-words whitespace-pre-wrap max-h-[120px] overflow-y-auto touch-scroll-y">
-                                {voskText}
-                            </p>
-                            {/* Decorative pointer arrow (top left pointing to avatar) */}
-                            <div className="absolute left-[-10px] top-[-2px] w-0 h-0 border-r-[10px] border-r-[var(--pixel-accent)] border-b-[10px] border-b-transparent" />
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-
-                {/* AI Response Bubble - below avatar, pointer up toward avatar */}
-                <AnimatePresence>
-                    {showBubble && displayVoiceText && (
-                        <motion.div
-                            initial={{ opacity: 0, x: -20, scale: 0.9 }}
-                            animate={{ opacity: 1, x: 0, scale: 1 }}
-                            exit={{ opacity: 0, scale: 0.9 }}
-                            className="absolute left-1/2 top-[150px] -translate-x-1/2 w-[220px] bg-[var(--pixel-surface)] p-4 border-4 border-[var(--pixel-primary)] shadow-[6px_6px_0_0_rgba(0,0,0,0.5)] z-50 rounded-xl"
-                        >
-                            {/* Pointer arrow at top center pointing up to avatar */}
-                            <div className="absolute left-1/2 top-[-14px] -translate-x-1/2 w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-b-[14px] border-b-[var(--pixel-primary)]" />
-                            <p className="text-[var(--pixel-primary)] text-sm font-['VT323'] leading-tight break-words">
-                                {displayVoiceText}
-                            </p>
-                        </motion.div>
-                    )}
-                </AnimatePresence>
-            </div>
-
-            {/* Main Menu Grid - 4 buttons: Chat, Vision, Agent, Gallery */}
-            <div className="grid grid-cols-2 grid-rows-[1fr_1fr] gap-3 z-10 w-full max-w-[520px] flex-1 min-h-0">
-                <MenuButton icon={MessageCircle} label="CHAT" onClick={() => navigate('/chat')} color="var(--pixel-primary)" />
-                <MenuButton icon={Camera} label="VISION" onClick={() => navigate('/camera')} color="var(--pixel-accent)" />
-                <MenuButton icon={Code} label="AGENT" onClick={() => navigate('/tasks')} color="#f7768e" />
-                <MenuButton icon={GalleryIcon} label="GALLERY" onClick={() => navigate('/gallery')} color="var(--pixel-secondary)" />
-            </div>
-
-            {/* Decorative BG Elements */}
-            <div className="absolute inset-0 pointer-events-none opacity-10"
+              <p
                 style={{
-                    backgroundImage: 'linear-gradient(var(--pixel-border) 1px, transparent 1px), linear-gradient(90deg, var(--pixel-border) 1px, transparent 1px)',
-                    backgroundSize: '40px 40px'
+                  color: '#c084fc',
+                  fontSize: '.78rem',
+                  lineHeight: 1.6,
+                  wordBreak: 'break-word',
+                  whiteSpace: 'pre-wrap',
+                  maxHeight: 120,
+                  overflowY: 'auto',
                 }}
-            />
-        </div>
-    );
+              >
+                {voskText}
+              </p>
+              <div
+                style={{
+                  position: 'absolute',
+                  left: -8,
+                  top: -2,
+                  width: 0,
+                  height: 0,
+                  borderRight: '10px solid rgba(124,58,237,.4)',
+                  borderBottom: '10px solid transparent',
+                }}
+              />
+            </motion.div>
+          )}
+        </AnimatePresence>
+
+        {/* AI Response Bubble */}
+        <AnimatePresence>
+          {showBubble && displayVoiceText && (
+            <motion.div
+              initial={{ opacity: 0, y: 10, scale: 0.95 }}
+              animate={{ opacity: 1, y: 0, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.95 }}
+              style={{
+                position: 'absolute',
+                left: '50%',
+                top: 160,
+                transform: 'translateX(-50%)',
+                width: 240,
+                background: 'rgba(255,255,255,.96)',
+                backdropFilter: 'blur(12px)',
+                padding: 16,
+                borderRadius: 18,
+      border: '1.5px solid var(--border)',
+      borderColor: color,
+                boxShadow: '0 8px 32px rgba(0,0,0,.12)',
+                zIndex: 50,
+              }}
+            >
+              <div
+                style={{
+                  position: 'absolute',
+                  left: '50%',
+                  top: -10,
+                  transform: 'translateX(-50%)',
+                  width: 0,
+                  height: 0,
+                  borderLeft: '10px solid transparent',
+                  borderRight: '10px solid transparent',
+                  borderBottom: '10px solid var(--border)',
+                }}
+              />
+              <p
+                style={{
+                  color: 'var(--text)',
+                  fontSize: '.88rem',
+                  lineHeight: 1.6,
+                  wordBreak: 'break-word',
+                  fontFamily: 'var(--font-body)',
+                }}
+              >
+                {displayVoiceText}
+              </p>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* Main Menu Grid - 5 buttons */}
+      <div
+        className="grid gap-3 z-10 w-full max-w-[460px] px-4"
+        style={{
+          gridTemplateColumns: 'repeat(3, 1fr)',
+          gridTemplateRows: 'repeat(2, 1fr)',
+          animation: 'fadeUp .4s ease both .2s',
+        }}
+      >
+        <MenuButton icon={MessageCircle} label="CHAT" onClick={() => navigate('/chat')} color={AI_COLOR} />
+        <MenuButton icon={Camera} label="VISION" onClick={() => navigate('/camera')} color="#38bdf8" />
+        <MenuButton icon={Code} label="AGENT" onClick={() => navigate('/tasks')} color="#f7768e" />
+        <MenuButton icon={GalleryIcon} label="GALLERY" onClick={() => navigate('/gallery')} color="var(--text-mid)" />
+        <MenuButton
+          icon={Map}
+          label="MAPS"
+          onClick={async () => { await fetch('http://localhost:8000/maps/open', { method: 'POST' }); }}
+          color="#9ece6a"
+        />
+        <MenuButton
+          icon={Bot}
+          label="DEV AI"
+          onClick={() => navigate('/devai')}
+          color="#f97316"
+        />
+      </div>
+    </div>
+  );
 }

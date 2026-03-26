@@ -5,20 +5,15 @@ const ROW1 = 'QWERTYUIOP'.split('');
 const ROW2 = 'ASDFGHJKL'.split('');
 const ROW3 = 'ZXCVBNM'.split('');
 
-// Large touch targets for 480×800 / 4.3" screen — keys fill width and are easy to tap
-const KEY_STYLE =
-    'flex-1 min-w-0 h-14 px-1 flex items-center justify-center font-["VT323"] text-2xl border-2 border-[var(--pixel-border)] bg-[var(--pixel-surface)] text-[var(--pixel-text)] active:translate-y-0.5 active:shadow-none shadow-[2px_2px_0_0_var(--pixel-border)] transition-all select-none touch-manipulation';
+const KEY_STYLE = 'flex-1 min-w-0 h-12 px-1 flex items-center justify-center font-[\'Plus_Jakarta_Sans\'] text-base bg-[var(--surface)] text-[var(--text)] rounded-xl border border-[var(--border)] hover:bg-[var(--ai-bg)] hover:border-[var(--ai-color)] active:scale-95 transition-all duration-150 select-none';
 
-const KEY_SPECIAL =
-    'flex-[1.2] min-w-0 h-14 px-2 flex items-center justify-center font-["Press_Start_2P"] text-xs border-2 border-[var(--pixel-border)] bg-[var(--pixel-surface)] text-[var(--pixel-text)] active:translate-y-0.5 active:shadow-none shadow-[2px_2px_0_0_var(--pixel-border)] transition-all select-none touch-manipulation';
+const KEY_SPECIAL = 'flex-[1.2] min-w-0 h-12 px-2 flex items-center justify-center font-[\'Plus_Jakarta_Sans\'] text-sm font-medium bg-[var(--surface)] text-[var(--text)] rounded-xl border border-[var(--border)] hover:bg-[var(--ai-bg)] hover:border-[var(--ai-color)] active:scale-95 transition-all duration-150 select-none';
 
-const KEY_ACCENT =
-    'h-14 px-2 flex items-center justify-center font-["Press_Start_2P"] text-xs border-2 border-[var(--pixel-primary)] bg-[var(--pixel-primary)] text-black active:translate-y-0.5 active:shadow-none shadow-[2px_2px_0_0_var(--pixel-border)] transition-all select-none touch-manipulation';
+const KEY_ACCENT = 'h-12 px-2 flex items-center justify-center font-[\'Plus_Jakarta_Sans\'] text-sm font-semibold bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white rounded-xl active:scale-95 transition-all duration-150 select-none shadow-lg shadow-[var(--ai-color)]/20';
 
 const KEY_SPACE = 'flex-[3] min-w-0 ' + KEY_ACCENT;
 const KEY_ENTER = 'flex-1 min-w-[72px] ' + KEY_ACCENT;
 
-// Only text-like inputs support setSelectionRange; number/date/time etc. do not
 const SELECTION_TYPES = new Set(['text', 'search', 'url', 'tel', 'password']);
 function supportsSelection(el) {
     if (!el) return false;
@@ -60,7 +55,6 @@ function backspace(el) {
 
 function keyEnter(el) {
     if (!el) return;
-    // Dispatch Enter keydown so the target's onKeyDown runs (e.g. chat sends message, other fields get newline)
     el.dispatchEvent(new KeyboardEvent('keydown', { key: 'Enter', shiftKey: false, bubbles: true }));
 }
 
@@ -73,7 +67,6 @@ function syncStateAfterChange(el, syncRef) {
 export default function VirtualKeyboard({ visible, mode = 'inline', focusedElementRef = null, syncInputValueRef = null }) {
     const [shift, setShift] = useState(false);
 
-    // Prefer ref from context so we still type into the input after key taps (which move focus to the button)
     const getTarget = useCallback(() => {
         if (focusedElementRef?.current) return focusedElementRef.current;
         const el = document.activeElement;
@@ -144,8 +137,8 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
 
     const containerClass =
         mode === 'overlay'
-            ? 'fixed bottom-0 left-0 right-0 z-50 border-t-4 border-[var(--pixel-border)] bg-[var(--pixel-surface)] p-2 pb-[max(12px,env(safe-area-inset-bottom))] shadow-[0_-4px_0_0_var(--pixel-border)]'
-            : 'flex-shrink-0 border-t-4 border-[var(--pixel-border)] bg-[var(--pixel-surface)] p-2 pb-[max(8px,env(safe-area-inset-bottom))]';
+            ? 'fixed bottom-0 left-0 right-0 z-50 bg-[var(--surface)]/95 backdrop-blur-lg border-t border-[var(--border)] p-3 pb-[max(12px,env(safe-area-inset-bottom))] shadow-2xl'
+            : 'flex-shrink-0 bg-[var(--surface)]/95 backdrop-blur-lg border-t border-[var(--border)] p-3 pb-[max(8px,env(safe-area-inset-bottom))]';
 
     return (
         <div
@@ -154,8 +147,8 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
             aria-label="On-screen keyboard"
             data-virtual-keyboard
         >
-            <div className="w-full max-w-[100%] px-2 flex flex-col gap-2">
-                <div className="flex w-full gap-1">
+            <div className="w-full max-w-[100%] px-1 flex flex-col gap-2">
+                <div className="flex w-full gap-1.5">
                     {ROW_NUM.map((char) => (
                         <button
                             key={char}
@@ -174,7 +167,7 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
                         </button>
                     ))}
                 </div>
-                <div className="flex w-full gap-1">
+                <div className="flex w-full gap-1.5">
                     {(shift ? ROW1 : ROW1.map((c) => c.toLowerCase())).map((char) => (
                         <button
                             key={char}
@@ -193,7 +186,7 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
                         </button>
                     ))}
                 </div>
-                <div className="flex w-full gap-1">
+                <div className="flex w-full gap-1.5">
                     {(shift ? ROW2 : ROW2.map((c) => c.toLowerCase())).map((char) => (
                         <button
                             key={char}
@@ -209,7 +202,7 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
                         </button>
                     ))}
                 </div>
-                <div className="flex w-full gap-1">
+                <div className="flex w-full gap-1.5">
                     <button
                         type="button"
                         className={KEY_SPECIAL}
@@ -219,7 +212,7 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
                             handleShift(e);
                         }}
                     >
-                        {shift ? 'CAPS' : 'shift'}
+                        {shift ? 'Caps' : 'Shift'}
                     </button>
                     {(shift ? ROW3 : ROW3.map((c) => c.toLowerCase())).map((char) => (
                         <button
@@ -257,7 +250,7 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
                             handleSpace(e);
                         }}
                     >
-                        SPACE
+                        Space
                     </button>
                     <button
                         type="button"
@@ -268,7 +261,7 @@ export default function VirtualKeyboard({ visible, mode = 'inline', focusedEleme
                             handleEnter(e);
                         }}
                     >
-                        ENTER
+                        Enter
                     </button>
                 </div>
             </div>

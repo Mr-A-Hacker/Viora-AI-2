@@ -19,7 +19,6 @@ export default function HeartbeatManager() {
 
         const removeStatusListener = addEventListener("heartbeat_status", (data) => {
             setStatus(data.status);
-            // Parse interval from schedule if possible: */30 * * * *
             if (data.status.schedule) {
                 const match = data.status.schedule.match(/\*\/(\d+)/);
                 if (match) {
@@ -29,7 +28,6 @@ export default function HeartbeatManager() {
         });
 
         const removeUpdateListener = addEventListener("heartbeat_updated", (data) => {
-            // Refresh
             checkStatus();
         });
 
@@ -49,8 +47,6 @@ export default function HeartbeatManager() {
     const toggleActive = () => {
         const newActive = !status.active;
         setStatus({ ...status, active: newActive });
-        // Auto-save on toggle? Or let user click save? 
-        // Let's auto-save for better UX on toggle
         sendMessage("heartbeat.set", {
             active: newActive,
             interval: intervalStart
@@ -58,71 +54,76 @@ export default function HeartbeatManager() {
     };
 
     return (
-        <div className="w-full h-full mx-auto flex flex-col bg-[var(--pixel-bg)] text-[var(--pixel-text)] font-['VT323'] relative overflow-hidden">
-            {/* Header */}
-            <div className="flex items-center justify-between p-4 bg-[var(--pixel-surface)] border-b-4 border-[var(--pixel-border)] z-10">
-                <div className="flex items-center">
+        <div className="w-full h-full mx-auto flex flex-col bg-[var(--bg)] text-[var(--text)] font-['Plus_Jakarta_Sans'] relative overflow-hidden">
+            <div className="ambient-bg fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="blob-1 absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]" />
+                <div className="blob-2 absolute w-[400px] h-[400px] rounded-full opacity-15 blur-[80px] top-1/3 right-1/4" />
+            </div>
+
+            <div className="flex items-center justify-between p-4 bg-[var(--surface)]/80 backdrop-blur-lg border-b border-[var(--border)] z-10">
+                <div className="flex items-center gap-3">
                     <button
                         onClick={() => navigate('/')}
-                        className="pixel-btn p-2 mr-4"
+                        className="ai-btn p-2.5 rounded-xl bg-[var(--ai-bg)] text-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white transition-all"
                     >
                         <ArrowLeft size={20} />
                     </button>
-                    <h1 className="text-xl font-['Press_Start_2P'] text-[var(--pixel-primary)] uppercase">Heartbeat</h1>
+                    <h1 className="text-lg font-['Syne'] font-bold text-[var(--text)]">Heartbeat</h1>
                 </div>
                 <div className="flex items-center gap-2">
-                    <Activity size={20} className={status.active ? "animate-pulse text-[var(--pixel-accent)]" : "text-[var(--pixel-border)]"} />
+                    <Activity size={20} className={status.active ? "animate-pulse text-[var(--ai-color)]" : "text-[var(--text-light)]"} />
                 </div>
             </div>
 
             <div className="flex-1 p-6 flex flex-col items-center justify-center relative">
 
-                {/* Background Grid Pattern */}
-                <div className="absolute inset-0 opacity-10 pointer-events-none" style={{
-                    backgroundImage: `linear-gradient(var(--pixel-border) 1px, transparent 1px), linear-gradient(90deg, var(--pixel-border) 1px, transparent 1px)`,
-                    backgroundSize: '20px 20px'
-                }} />
-
                 <motion.div
                     initial={{ scale: 0.9, opacity: 0 }}
                     animate={{ scale: 1, opacity: 1 }}
-                    className="w-full max-w-sm bg-[var(--pixel-surface)] p-8 border-4 border-[var(--pixel-border)] shadow-[8px_8px_0_0_rgba(0,0,0,0.5)] relative"
+                    className="w-full max-w-sm ai-card p-8 relative"
                 >
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--pixel-bg)] px-2 text-[var(--pixel-primary)] font-['Press_Start_2P'] text-xs border-2 border-[var(--pixel-border)] uppercase">
-                        SYSTEM STATUS
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-[var(--ai-bg)] px-4 py-1 text-sm font-medium text-[var(--ai-color)] rounded-full border border-[var(--ai-color)]/20">
+                        System Status
                     </div>
 
                     <div className="flex flex-col items-center text-center mt-4">
-                        <div className={`w-24 h-24 border-4 border-[var(--pixel-text)] flex items-center justify-center mb-6 transition-colors duration-500 ${status.active ? 'bg-[var(--pixel-accent)] text-black shadow-[4px_4px_0_0_rgba(0,0,0,1)]' : 'bg-[var(--pixel-bg)] text-[var(--pixel-border)]'}`}>
+                        <div className={`w-24 h-24 rounded-3xl flex items-center justify-center mb-6 transition-all duration-500 ${
+                            status.active 
+                                ? 'bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[var(--ai-color)]/30' 
+                                : 'bg-[var(--surface)] text-[var(--text-light)] border border-[var(--border)]'
+                        }`}>
                             <Activity size={48} className={status.active ? "animate-bounce" : ""} />
                         </div>
 
-                        <h2 className="text-2xl font-['Press_Start_2P'] text-[var(--pixel-text)] mb-4 uppercase">
-                            {status.active ? "ONLINE" : "OFFLINE"}
+                        <h2 className="text-2xl font-['Syne'] font-bold text-[var(--text)] mb-4">
+                            {status.active ? "Online" : "Offline"}
                         </h2>
-                        <p className="text-[var(--pixel-secondary)] text-lg mb-8 uppercase leading-tight">
+                        <p className="text-[var(--text-mid)] text-sm mb-8">
                             {status.active
-                                ? "AUTOMATED SYSTEM CHECK: ENABLED"
-                                : "AUTOMATED SYSTEM CHECK: DISABLED"}
+                                ? "Automated system check enabled"
+                                : "Automated system check disabled"}
                         </p>
 
-                        {/* Controls */}
                         <div className="w-full space-y-6">
-                            <div className="flex items-center justify-between p-4 bg-[var(--pixel-bg)] border-2 border-[var(--pixel-border)]">
-                                <span className="text-xl font-medium uppercase">Active</span>
+                            <div className="flex items-center justify-between p-4 bg-[var(--ai-bg)] rounded-2xl">
+                                <span className="text-sm font-medium">Active</span>
                                 <button
                                     onClick={toggleActive}
-                                    className={`w-16 h-8 border-2 border-[var(--pixel-text)] relative transition-all active:translate-y-1 ${status.active ? 'bg-[var(--pixel-primary)]' : 'bg-[var(--pixel-surface)]'}`}
+                                    className={`w-14 h-8 rounded-full relative transition-all ${
+                                        status.active ? 'bg-[var(--ai-color)]' : 'bg-[var(--border)]'
+                                    }`}
                                 >
-                                    <div className={`absolute top-0 bottom-0 w-1/2 bg-black transition-all ${status.active ? 'right-0' : 'left-0'}`} />
+                                    <div className={`absolute top-1 w-6 h-6 bg-white rounded-full shadow-md transition-all duration-300 ${
+                                        status.active ? 'translate-x-7' : 'translate-x-1'
+                                    }`} />
                                 </button>
                             </div>
 
                             <div className={`transition-opacity duration-300 ${status.active ? 'opacity-100' : 'opacity-50 pointer-events-none'}`}>
-                                <label className="text-xs font-['Press_Start_2P'] text-[var(--pixel-secondary)] uppercase mb-2 block text-left">
-                                    INTERVAL (MIN)
+                                <label className="text-sm text-[var(--text-mid)] mb-2 block text-left">
+                                    Interval (minutes)
                                 </label>
-                                <div className="flex gap-2">
+                                <div className="flex gap-3">
                                     <input
                                         type="number"
                                         min="1"
@@ -131,11 +132,11 @@ export default function HeartbeatManager() {
                                         onChange={(e) => setIntervalStart(parseInt(e.target.value))}
                                         onFocus={onKeyboardFocus}
                                         onBlur={onKeyboardBlur}
-                                        className="flex-1 p-3 bg-[var(--pixel-bg)] border-2 border-[var(--pixel-border)] text-center text-xl text-[var(--pixel-text)] focus:border-[var(--pixel-primary)] outline-none font-bold"
+                                        className="ai-input flex-1 p-3 text-center font-semibold"
                                     />
                                     <button
                                         onClick={handleSave}
-                                        className="pixel-btn bg-[var(--pixel-primary)] text-black px-4 flex items-center justify-center"
+                                        className="ai-btn bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white px-5 rounded-2xl shadow-lg shadow-[var(--ai-color)]/30"
                                     >
                                         <Save size={18} />
                                     </button>

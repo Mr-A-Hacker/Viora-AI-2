@@ -26,55 +26,48 @@ const StatusBar = () => {
         return () => clearInterval(interval);
     }, []);
 
-    // Helper to determine color based on usage/temp
     const getStatusColor = (value, type) => {
         if (type === 'temp') {
             if (value > 80) return 'text-red-500';
             if (value > 60) return 'text-yellow-500';
             return 'text-green-500';
         }
-        // usage percentage
         if (value > 80) return 'text-red-500';
         if (value > 50) return 'text-yellow-500';
         return 'text-green-500';
     };
 
     return (
-        <div className="w-full h-7 bg-[var(--pixel-surface)] z-50 flex items-center justify-between px-2 text-[10px] uppercase font-['Press_Start_2P'] border-b-4 border-[var(--pixel-border)] select-none">
-
-            {/* Time */}
-            <div className="flex items-center gap-2 text-[var(--pixel-primary)]">
-                <Clock size={12} />
-                <span className="tracking-widest">{stats.time}</span>
+        <div className="w-full h-10 bg-[var(--surface)] border-b border-[var(--border)] z-50 flex items-center justify-between px-4 text-sm font-['Plus_Jakarta_Sans'] select-none backdrop-blur-md">
+            <div className="flex items-center gap-2 text-[var(--ai-color)]">
+                <Clock size={14} />
+                <span>{stats.time}</span>
             </div>
 
-            {/* System Stats Container */}
-            <div className="flex items-center gap-4">
-
-                {/* CPU */}
-                <div className="flex items-center gap-1 text-[var(--pixel-text)]">
-                    <span className="text-[var(--pixel-secondary)]">CPU:</span>
-                    <span className={`${getStatusColor(stats.cpu_percent, 'usage')}`}>
+            <div className="flex items-center gap-5">
+                <div className="flex items-center gap-1.5 text-[var(--text-mid)]">
+                    <Cpu size={12} className="text-[var(--text-light)]" />
+                    <span>CPU</span>
+                    <span className={`font-semibold ${getStatusColor(stats.cpu_percent, 'usage')}`}>
                         {Math.round(stats.cpu_percent)}%
                     </span>
                 </div>
 
-                {/* RAM */}
-                <div className="flex items-center gap-1 text-[var(--pixel-text)]">
-                    <span className="text-[var(--pixel-secondary)]">RAM:</span>
-                    <span className={`${getStatusColor(stats.memory_percent, 'usage')}`}>
+                <div className="flex items-center gap-1.5 text-[var(--text-mid)]">
+                    <Activity size={12} className="text-[var(--text-light)]" />
+                    <span>RAM</span>
+                    <span className={`font-semibold ${getStatusColor(stats.memory_percent, 'usage')}`}>
                         {Math.round(stats.memory_percent)}%
                     </span>
                 </div>
 
-                {/* Temp */}
-                <div className="flex items-center gap-1 text-[var(--pixel-text)]">
-                    <span className="text-[var(--pixel-secondary)]">TMP:</span>
-                    <span className={`${getStatusColor(stats.temperature, 'temp')}`}>
+                <div className="flex items-center gap-1.5 text-[var(--text-mid)]">
+                    <Thermometer size={12} className="text-[var(--text-light)]" />
+                    <span>TEMP</span>
+                    <span className={`font-semibold ${getStatusColor(stats.temperature, 'temp')}`}>
                         {Math.round(stats.temperature)}°
                     </span>
                 </div>
-
             </div>
         </div>
     );

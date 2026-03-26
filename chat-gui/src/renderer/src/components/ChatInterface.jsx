@@ -55,7 +55,6 @@ export default function ChatInterface() {
         [focusState?.isChatInput, closeKeyboard]
     );
 
-    // ─── Actions ───────────────────────────────────────────────────────
     const send = useCallback(
         async (text, images = []) => {
             let activeConvId = currentConvId;
@@ -69,28 +68,24 @@ export default function ChatInterface() {
                     return;
                 }
             }
-            // Add user message immediately
             setMessages((prev) => [...prev, { role: 'user', text }]);
             sendMessage('send', { message: text, images, conv_id: activeConvId, thinking });
         },
         [sendMessage, setMessages, currentConvId, createConversation, setCurrentConvId, thinking]
     );
 
-    // ─── Auto-select/create conversation ──────────────────────────────
     useEffect(() => {
         if (!currentConvId && conversations.length > 0) {
             setCurrentConvId(conversations[0].id);
         }
     }, [currentConvId, conversations, setCurrentConvId]);
 
-    // Refetch conversations when Chat is shown and on an interval so task-created conversations appear without restart
     useEffect(() => {
         fetchConversations();
         const interval = setInterval(fetchConversations, 15000);
         return () => clearInterval(interval);
     }, [fetchConversations]);
 
-    // ─── Auto-send from Gallery navigation ─────────────────────────────
     useEffect(() => {
         if (chatConnStatus === 'connected' && location.state?.prompt && location.state?.image && currentConvId) {
             const { prompt, image } = location.state;
@@ -99,7 +94,6 @@ export default function ChatInterface() {
         }
     }, [chatConnStatus, location.state, send, currentConvId]);
 
-    // When Whisper transcription is received in chat, send it to the backend so the AI responds
     useEffect(() => {
         const remove = addEventListener('voice_transcription', async (data) => {
             const text = (data.text || '').trim();
@@ -131,14 +125,13 @@ export default function ChatInterface() {
         if (conv) setCurrentConvId(conv.id);
     };
 
-    // ─── Render ────────────────────────────────────────────────────────
     return (
         <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ duration: 0.5, type: "spring" }}
-            className="w-full h-full mx-auto flex bg-[var(--pixel-bg)] relative overflow-hidden"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+            className="w-full h-full mx-auto flex bg-[var(--bg)] relative overflow-hidden"
         >
             <ChatSidebar
                 isOpen={sidebarOpen}
@@ -150,7 +143,6 @@ export default function ChatInterface() {
                 deleteConversation={deleteConversation}
             />
 
-            {/* Main Chat Area: keyboard in flow so it pushes content up (phone-style); tap outside input/keyboard closes keyboard */}
             <div
                 className="flex-1 flex flex-col h-full min-w-0 min-h-0 touch-pan-y"
                 onPointerDown={handleChatAreaPointerDown}
@@ -177,6 +169,12 @@ export default function ChatInterface() {
                     disabled={connStatus !== 'connected'}
                 />
                 <VirtualKeyboard visible={showInlineKeyboard} mode="inline" focusedElementRef={focusedElementRef} syncInputValueRef={syncInputValueRef} />
+            </div>
+
+            <div className="ambient-bg fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+                <div className="blob-1 absolute w-[500px] h-[500px] rounded-full opacity-20 blur-[100px]" />
+                <div className="blob-2 absolute w-[400px] h-[400px] rounded-full opacity-15 blur-[80px] top-1/3 right-1/4" />
+                <div className="blob-3 absolute w-[350px] h-[350px] rounded-full opacity-10 blur-[60px] bottom-1/4 left-1/3" />
             </div>
         </motion.div>
     );
