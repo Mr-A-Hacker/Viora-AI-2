@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Start Pocket AI: backend (FastAPI) then Electron GUI.
+# Start Viora AI: backend (FastAPI) then Electron GUI.
 # When you close the GUI, the backend is stopped too.
 
 # When run from desktop, PATH may not include node/npm — load your shell profile
@@ -27,7 +27,7 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 PROJECT_ROOT="$(cd "$SCRIPT_DIR/.." && pwd)"
 cd "$PROJECT_ROOT"
 
-echo "=== Pocket AI launcher ==="
+echo "=== Viora AI launcher ==="
 echo "Project: $PROJECT_ROOT"
 
 # Activate venv if present
@@ -63,7 +63,7 @@ if ! command -v npm &>/dev/null; then
     exit 1
 fi
 
-echo "Starting Pocket AI window..."
+echo "Starting Viora AI window..."
 if [ -f "out/main/index.js" ]; then
     npx electron . 2>/dev/null || npm run dev
 else

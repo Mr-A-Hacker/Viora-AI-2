@@ -10,8 +10,58 @@ from piper.voice import PiperVoice
 
 os.environ['ORT_LOGGING_LEVEL'] = '3'
 
-# ALSA device for playback (e.g. plughw:3,0 for USB). Use "default" for system default.
-TTS_ALSA_DEVICE = os.environ.get("TTS_ALSA_DEVICE", "default")
+def find_available_speaker():
+    """Find an available audio output device (speaker)."""
+    devices = []
+    
+    # Try PulseAudio first (most common on modern Linux)
+    try:
+        result = subprocess.run(
+            ['pacmd', 'list-sinks'],
+            capture_output=True, text=True, timeout=5
+        )
+        if result.returncode == 0:
+            for line in result.stdout.split('\n'):
+                if 'name:' in line:
+                    sink_name = line.split('name:')[1].strip()
+                    devices.append(sink_name)
+                elif 'device.description' in line:
+                    desc = line.split('device.description')[1].strip('= "').strip('"')
+                    print(f"Found PulseAudio sink: {desc}")
+    except Exception:
+        pass
+    
+    # Try to find HDMI or audio jack
+    try:
+        result = subprocess.run(
+            ['aplay', '-l'],
+            capture_output=True, text=True, timeout=5
+        )
+        if result.returncode == 0:
+            for line in result.stdout.split('\n'):
+                if 'card' in line and 'device' in line:
+                    # Extract card number
+                    card_match = re.search(r'card (\d+)', line)
+                    if card_match:
+                        card_num = card_match.group(1)
+                        device = f'plughw:{card_num},0'
+                        if device not in devices:
+                            devices.append(device)
+                            print(f"Found ALSA device: {line.strip()}")
+    except Exception:
+        pass
+    
+    # Try default
+    devices.insert(0, 'default')
+    
+    # Try pulse if PulseAudio is running
+    devices.insert(1, 'pulse')
+    
+    return devices[0] if devices else 'default'
+
+# Auto-detect speaker
+DETECTED_SPEAKER = find_available_speaker()
+TTS_ALSA_DEVICE = os.environ.get("TTS_ALSA_DEVICE", DETECTED_SPEAKER)
 
 # Sentence-ending punctuation (split on these, keep delimiter with sentence)
 SENTENCE_END_RE = re.compile(r'(?<=[.!?\n])\s*')

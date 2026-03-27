@@ -36,6 +36,14 @@ TOOL_MODEL_PATH = os.path.join(LOCAL_DIR, TOOL_FILENAME)
 LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
 LOG_FILE = os.environ.get("LOG_FILE", "")
 
+# Speech-to-text options
+USE_WHISPER = os.environ.get("USE_WHISPER", "true").lower() == "true"
+USE_VOSK = os.environ.get("USE_VOSK", "false").lower() == "true"
+VOSK_MODEL = os.environ.get("VOSK_MODEL", os.path.join(LOCAL_DIR, "vosk/vosk-model-small-en-us-0.15"))
+
+# Text-to-speech
+PIPER_MODEL = os.environ.get("PIPER_MODEL", "en_US-lessac-medium.onnx")
+
 
 def setup_logging() -> None:
     """Configure root logger with LOG_LEVEL and optional LOG_FILE. Call once at app startup."""

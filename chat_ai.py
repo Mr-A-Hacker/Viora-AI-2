@@ -72,6 +72,8 @@ from config import (
     CHAT_REPO_ID as REPO_ID,
     CHAT_FILENAME as FILENAME,
     CHAT_MODEL_PATH as MODEL_PATH,
+    USE_VOSK,
+    USE_WHISPER,
 )
 
 def strip_think_for_ui(text: str) -> str:
@@ -176,8 +178,15 @@ class AIState:
 
         logger.info("Loading LLM...")
         self.llm = Llama(model_path=MODEL_PATH, n_ctx=4096, n_threads=4, verbose=False)
-        self.stt.load_model()
-        self.vosk.load_model()
+        
+        if USE_WHISPER:
+            logger.info("Loading Whisper...")
+            self.stt.load_model()
+        
+        if USE_VOSK:
+            logger.info("Loading Vosk...")
+            self.vosk.load_model()
+        
         logger.info("Chat AI Ready.")
 
     async def generate_response(self, messages, thinking=True):

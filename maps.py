@@ -6,7 +6,7 @@ router = APIRouter(prefix="/maps", tags=["maps"])
 
 NOMINATIM = "https://nominatim.openstreetmap.org/search"
 REVERSE    = "https://nominatim.openstreetmap.org/reverse"
-HEADERS    = {"User-Agent": "PocketAI/2.0 (pocket-ai-project)"}
+HEADERS    = {"User-Agent": "VioraAI/2.0 (viora-ai-project)"}
 
 
 @router.get("/search")

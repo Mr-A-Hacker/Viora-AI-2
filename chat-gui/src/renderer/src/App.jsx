@@ -17,6 +17,7 @@ import ErrorBoundary from './components/ErrorBoundary';
 import VirtualKeyboard from './components/VirtualKeyboard';
 import { WebSocketProvider } from './contexts/WebSocketContext';
 import { KeyboardProvider, useKeyboardSettings } from './contexts/KeyboardContext';
+import { DarkModeProvider } from './contexts/DarkModeContext';
 
 function OverlayKeyboard() {
   const location = useLocation();
@@ -53,30 +54,32 @@ const AnimatedRoutes = () => {
 export default function App() {
   return (
     <HashRouter>
-      <WebSocketProvider>
-        <KeyboardProvider>
-          <div
-            className="flex flex-col h-screen w-screen overflow-hidden"
-            style={{
-              background: 'var(--bg)',
-              color: 'var(--text)',
-              fontFamily: 'var(--font-body)',
-              paddingTop: 'env(safe-area-inset-top, 0px)',
-              paddingRight: 'env(safe-area-inset-right, 0px)',
-              paddingBottom: 'env(safe-area-inset-bottom, 0px)',
-              paddingLeft: 'env(safe-area-inset-left, 0px)',
-            }}
-          >
-            <StatusBar />
-            <div className="flex-1 overflow-hidden relative w-full">
-              <ErrorBoundary>
-                <AnimatedRoutes />
-              </ErrorBoundary>
+      <DarkModeProvider>
+        <WebSocketProvider>
+          <KeyboardProvider>
+            <div
+              className="flex flex-col h-screen w-screen overflow-hidden"
+              style={{
+                background: 'var(--bg)',
+                color: 'var(--text)',
+                fontFamily: 'var(--font-body)',
+                paddingTop: 'env(safe-area-inset-top, 0px)',
+                paddingRight: 'env(safe-area-inset-right, 0px)',
+                paddingBottom: 'env(safe-area-inset-bottom, 0px)',
+                paddingLeft: 'env(safe-area-inset-left, 0px)',
+              }}
+            >
+              <StatusBar />
+              <div className="flex-1 overflow-hidden relative w-full">
+                <ErrorBoundary>
+                  <AnimatedRoutes />
+                </ErrorBoundary>
+              </div>
+              <OverlayKeyboard />
             </div>
-            <OverlayKeyboard />
-          </div>
-        </KeyboardProvider>
-      </WebSocketProvider>
+          </KeyboardProvider>
+        </WebSocketProvider>
+      </DarkModeProvider>
     </HashRouter>
   );
 }

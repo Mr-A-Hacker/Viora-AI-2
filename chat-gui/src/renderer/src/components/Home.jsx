@@ -78,22 +78,27 @@ export default function Home() {
   const [isHoldMode, setIsHoldMode] = useState(false);
 
   const handleMouseDown = () => {
+    console.log('[Voice] Mouse down, starting timer...');
     setIsHoldMode(false);
     pressTimer.current = setTimeout(() => {
+      console.log('[Voice] Long press detected, starting Vosk...');
       setIsHoldMode(true);
       startVosk();
     }, 400);
   };
 
   const handleMouseUp = () => {
+    console.log('[Voice] Mouse up, isHoldMode:', isHoldMode);
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
       pressTimer.current = null;
     }
     if (isHoldMode) {
+      console.log('[Voice] Stopping Vosk...');
       stopVosk();
       setIsHoldMode(false);
     } else {
+      console.log('[Voice] Toggle voice (short press)...');
       toggleVoice();
     }
   };
@@ -252,46 +257,10 @@ export default function Home() {
               initial={{ opacity: 0, y: 10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, scale: 0.95 }}
-              style={{
-                position: 'absolute',
-                left: '50%',
-                top: 160,
-                transform: 'translateX(-50%)',
-                width: 240,
-                background: 'rgba(255,255,255,.96)',
-                backdropFilter: 'blur(12px)',
-                padding: 16,
-                borderRadius: 18,
-      border: '1.5px solid var(--border)',
-      borderColor: color,
-                boxShadow: '0 8px 32px rgba(0,0,0,.12)',
-                zIndex: 50,
-              }}
+              className="response-bubble"
             >
-              <div
-                style={{
-                  position: 'absolute',
-                  left: '50%',
-                  top: -10,
-                  transform: 'translateX(-50%)',
-                  width: 0,
-                  height: 0,
-                  borderLeft: '10px solid transparent',
-                  borderRight: '10px solid transparent',
-                  borderBottom: '10px solid var(--border)',
-                }}
-              />
-              <p
-                style={{
-                  color: 'var(--text)',
-                  fontSize: '.88rem',
-                  lineHeight: 1.6,
-                  wordBreak: 'break-word',
-                  fontFamily: 'var(--font-body)',
-                }}
-              >
-                {displayVoiceText}
-              </p>
+              <div className="response-bubble-arrow" />
+              <p>{displayVoiceText}</p>
             </motion.div>
           )}
         </AnimatePresence>

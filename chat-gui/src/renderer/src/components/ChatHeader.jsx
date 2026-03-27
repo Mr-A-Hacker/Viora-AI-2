@@ -1,8 +1,10 @@
-import { ArrowLeft, Menu } from 'lucide-react';
+import { ArrowLeft, Menu, Moon, Sun } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { useDarkMode } from '../contexts/DarkModeContext.jsx';
 
 export default function ChatHeader({ connected, onToggleSidebar, onCloseKeyboard }) {
     const navigate = useNavigate();
+    const { isDark, toggleDark } = useDarkMode();
 
     const handleBack = () => {
         onCloseKeyboard?.();
@@ -10,26 +12,33 @@ export default function ChatHeader({ connected, onToggleSidebar, onCloseKeyboard
     };
 
     return (
-        <header className="h-16 min-h-[64px] grid grid-cols-3 items-center px-4 bg-[var(--surface)]/80 backdrop-blur-lg border-b border-[var(--border)] z-10">
+        <header className="chat-header">
             <div className="flex justify-start">
                 <button
                     onClick={handleBack}
-                    className="p-2.5 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px] border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all duration-200"
+                    className="header-btn"
                     aria-label="Go back"
                 >
                     <ArrowLeft size={20} />
                 </button>
             </div>
             <div className="flex flex-col items-center justify-center text-center">
-                <div className="text-lg font-['Syne'] font-bold tracking-tight text-[var(--text)] leading-none mb-1">Viora AI</div>
+                <div className="ai-name">Viora AI</div>
                 <div className="text-xs text-[var(--text-light)] font-['Plus_Jakarta_Sans'] leading-none">
                     {connected ? 'Ready to assist' : 'Connecting...'}
                 </div>
             </div>
-            <div className="flex justify-end">
+            <div className="flex justify-end gap-2">
+                <button
+                    onClick={toggleDark}
+                    className="header-btn dark-toggle"
+                    aria-label="Toggle dark mode"
+                >
+                    {isDark ? <Sun size={18} /> : <Moon size={18} />}
+                </button>
                 <button
                     onClick={onToggleSidebar}
-                    className="p-2.5 rounded-xl flex items-center justify-center min-h-[44px] min-w-[44px] border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[#38bdf8] hover:text-[#38bdf8] transition-all duration-200"
+                    className="header-btn"
                     aria-label="Toggle sidebar"
                 >
                     <Menu size={20} />

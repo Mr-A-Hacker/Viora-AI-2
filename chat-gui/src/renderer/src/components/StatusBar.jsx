@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Activity, Thermometer, Cpu, Clock } from 'lucide-react';
+import { Activity, Thermometer, Cpu, Clock, Moon, Sun } from 'lucide-react';
 import { apiFetch } from '../apiClient.js';
+import { useDarkMode } from '../contexts/DarkModeContext.jsx';
 
 const StatusBar = () => {
     const [stats, setStats] = useState({
@@ -9,6 +10,7 @@ const StatusBar = () => {
         memory_percent: 0,
         temperature: 0
     });
+    const { isDark, toggleDark } = useDarkMode();
 
     useEffect(() => {
         const fetchStats = async () => {
@@ -68,6 +70,14 @@ const StatusBar = () => {
                         {Math.round(stats.temperature)}°
                     </span>
                 </div>
+
+                <button
+                    onClick={toggleDark}
+                    className="p-1.5 rounded-lg flex items-center justify-center text-[var(--text-mid)] hover:text-[var(--ai-color)] hover:bg-[var(--ai-bg)] transition-all duration-200"
+                    aria-label="Toggle dark mode"
+                >
+                    {isDark ? <Sun size={14} /> : <Moon size={14} />}
+                </button>
             </div>
         </div>
     );

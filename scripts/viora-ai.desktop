@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Viora AI
+Comment=Start Viora AI (backend + chat GUI)
+Exec=bash -l -c "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/scripts/start_viora_ai.sh"
+Path=/home/admin/Mr-A-Hacker-pocket-Ai-version-2
+Terminal=true
+Icon=applications-internet
+Categories=Utility;

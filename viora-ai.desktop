@@ -1,0 +1,10 @@
+[Desktop Entry]
+Type=Application
+Name=Viora AI
+Comment=Run Viora AI personal assistant
+Exec=bash -l -c "cd /home/admin/Mr-A-Hacker-pocket-Ai-version-2 && ./run.sh"
+Path=/home/admin/Mr-A-Hacker-pocket-Ai-version-2
+Terminal=true
+Icon=🧠
+Categories=Utility;AI;
+StartupNotify=true

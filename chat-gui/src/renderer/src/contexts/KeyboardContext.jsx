@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect, useRef } from 'react';
 
-const STORAGE_KEY = 'pocket-ai.popupKeyboard';
+const STORAGE_KEY = 'viora-ai.popupKeyboard';
 
 const KeyboardContext = createContext(null);
 

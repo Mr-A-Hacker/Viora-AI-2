@@ -22,7 +22,7 @@ logger = logging.getLogger(__name__)
 
 # User-Agent for HTTP requests (some APIs expect a browser-like agent)
 _URL_OPENER = urllib.request.build_opener()
-_URL_OPENER.addheaders = [("User-Agent", "PocketAI/1.0 (Raspberry Pi)")]
+_URL_OPENER.addheaders = [("User-Agent", "VioraAI/1.0 (Raspberry Pi)")]
 
 # 1. Model configuration (from config)
 from config import LOCAL_DIR, TOOLS_PATH, TOOL_REPO_ID, TOOL_FILENAME, TOOL_MODEL_PATH
