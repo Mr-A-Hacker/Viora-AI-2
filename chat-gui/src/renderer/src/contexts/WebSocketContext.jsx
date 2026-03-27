@@ -314,6 +314,7 @@ export function WebSocketProvider({ children }) {
             targetWs.send(JSON.stringify({ type, ...payload }));
         } else {
             console.warn("WS not connected, cannot send", type);
+            alert("Not connected to backend. Please refresh the page.");
         }
     }, []);
     const sendVoiceCommand = useCallback((type, payload = {}) => {

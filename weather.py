@@ -4,18 +4,45 @@ from fastapi import APIRouter
 router = APIRouter(prefix="/weather", tags=["weather"])
 
 @router.get("")
-async def get_weather(lat: float = 52.52, lon: float = 13.41):
+async def get_weather(lat: float = None, lon: float = None, city: str = None, unit: str = "fahrenheit"):
     """
     Fetch current weather using Open-Meteo (free, no API key needed).
-    Defaults to Berlin; the frontend passes the user's coordinates.
+    Supports: lat/lon coordinates OR city name search OR "my location" for geolocation.
+    Use ?unit=celsius for Celsius, ?unit=fahrenheit (default) for Fahrenheit.
     """
+    if city:
+        # Geocode city name
+        geo_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1&language=en&format=json"
+        async with httpx.AsyncClient(timeout=10) as client:
+            resp = await client.get(geo_url)
+            resp.raise_for_status()
+            geo_data = resp.json()
+        results = geo_data.get("results", [])
+        if not results:
+            return {"error": f"City '{city}' not found"}
+        lat = results[0]["latitude"]
+        lon = results[0]["longitude"]
+        location_name = results[0].get("name", city)
+    elif lat is None or lon is None:
+        # Default to Berlin if no location provided
+        lat = 52.52
+        lon = 13.41
+        location_name = "Berlin"
+    else:
+        location_name = "Current Location"
+
+    # Determine units
+    use_fahrenheit = unit.lower() in ("fahrenheit", "f", "imperial")
+    temp_unit = "fahrenheit" if use_fahrenheit else "celsius"
+    wind_unit = "mph" if use_fahrenheit else "mph"  # Open-Meteo uses mph for both when using imperial
+
     url = (
         "https://api.open-meteo.com/v1/forecast"
         f"?latitude={lat}&longitude={lon}"
         "&current=temperature_2m,apparent_temperature,weather_code,"
         "wind_speed_10m,relative_humidity_2m,precipitation"
-        "&temperature_unit=celsius"
-        "&wind_speed_unit=mph"
+        f"&temperature_unit={temp_unit}"
+        f"&wind_speed_unit={wind_unit}"
         "&timezone=auto"
     )
     async with httpx.AsyncClient(timeout=10) as client:
@@ -29,16 +56,21 @@ async def get_weather(lat: float = 52.52, lon: float = 13.41):
     code = current.get("weather_code", 0)
     description, emoji = _wmo_description(code)
 
+    temp = current["temperature_2m"]
+    feels_like = current["apparent_temperature"]
+    unit_symbol = "°F" if use_fahrenheit else "°C"
+
     return {
-        "temperature": current["temperature_2m"],
-        "feels_like": current["apparent_temperature"],
+        "temperature": temp,
+        "feels_like": feels_like,
         "humidity": current["relative_humidity_2m"],
         "wind_speed": current["wind_speed_10m"],
         "precipitation": current["precipitation"],
         "description": description,
         "emoji": emoji,
-        "unit": "°C",
+        "unit": unit_symbol,
         "timezone": data.get("timezone", ""),
+        "location": location_name,
     }
 
 

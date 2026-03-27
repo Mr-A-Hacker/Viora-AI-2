@@ -253,5 +253,123 @@
       }
     ],
     "updated_at": 1774625437.041943
+  },
+  {
+    "id": "4f25d5e9-cd24-44c6-a63c-726af5f18f02",
+    "title": "Test Agent Task",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What is the weather?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
+      },
+      {
+        "role": "user",
+        "content": "What is the weather?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
+      },
+      {
+        "role": "user",
+        "content": "What is the weather?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
+      },
+      {
+        "role": "user",
+        "content": "What is the weather?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
+      },
+      {
+        "role": "user",
+        "content": "What is the weather?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 46%, wind 11.9 km/h."
+      }
+    ],
+    "updated_at": 1774646565.18821
+  },
+  {
+    "id": "038cb9b2-d169-4131-8136-0ce1f2363a93",
+    "title": "Every 2 min Agent Test",
+    "messages": [
+      {
+        "role": "user",
+        "content": "What time is it?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>time<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Time: Clear, 9.8\u00b0C, humidity 47%, wind 25.0 km/h."
+      },
+      {
+        "role": "user",
+        "content": "What time is it?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>time<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Time: Clear, 9.8\u00b0C, humidity 47%, wind 25.0 km/h."
+      },
+      {
+        "role": "user",
+        "content": "What time is it?"
+      },
+      {
+        "role": "assistant",
+        "content": "<start_function_call>call:get_weather{location:<escape>time<escape>}<end_function_call>",
+        "hidden": true
+      },
+      {
+        "role": "assistant",
+        "content": "Weather for Time: Clear, 10.0\u00b0C, humidity 46%, wind 25.0 km/h."
+      }
+    ],
+    "updated_at": 1774646565.392898
   }
 ]

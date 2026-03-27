@@ -366,6 +366,30 @@ async def delete_conversation(conv_id: str):
     ai.conv_manager.delete_conversation(conv_id)
     return {"status": "success"}
 
+# Task REST endpoints
+@router.get("/tasks")
+async def list_tasks():
+    from task_scheduler import list_jobs
+    return list_jobs()
+
+class CreateTaskBody(BaseModel):
+    name: str
+    description: Optional[str] = ""
+    schedule: dict
+    payload: Optional[dict] = {}
+
+@router.post("/tasks")
+async def create_task(body: CreateTaskBody):
+    from task_scheduler import add_job
+    job = add_job(name=body.name, description=body.description or "", schedule=body.schedule, payload=body.payload or {})
+    return job
+
+@router.delete("/tasks/{job_id}")
+async def delete_task(job_id: str):
+    from task_scheduler import remove_job
+    remove_job(job_id)
+    return {"status": "success"}
+
 @router.websocket("/ws/chat/{conv_id}")
 async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
     await websocket.accept()

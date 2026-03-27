@@ -94,8 +94,8 @@ export default function Maps() {
         {/* Header */}
         <header style={{
           display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px',
-          borderBottom: '1.5px solid #ede9f8', flexShrink: 0,
-          background: 'rgba(250,248,255,.96)',
+          borderBottom: '1.5px solid var(--border)', flexShrink: 0,
+          background: 'var(--surface)',
           backdropFilter: 'blur(14px)', minHeight: 56,
         }}>
           <button

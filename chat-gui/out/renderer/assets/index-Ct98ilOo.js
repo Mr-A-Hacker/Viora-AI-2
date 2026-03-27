@@ -22680,7 +22680,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$U = [
   [
     "path",
     {
@@ -22689,14 +22689,14 @@ const __iconNode$C = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$C);
+const Activity = createLucideIcon("activity", __iconNode$U);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$B = [
+const __iconNode$T = [
   ["circle", { cx: "12", cy: "13", r: "8", key: "3y4lt7" }],
   ["path", { d: "M12 9v4l2 2", key: "1c63tq" }],
   ["path", { d: "M5 3 2 6", key: "18tl5t" }],
@@ -22704,25 +22704,25 @@ const __iconNode$B = [
   ["path", { d: "M6.38 18.7 4 21", key: "17xu3x" }],
   ["path", { d: "M17.64 18.67 20 21", key: "kv2oe2" }]
 ];
-const AlarmClock = createLucideIcon("alarm-clock", __iconNode$B);
+const AlarmClock = createLucideIcon("alarm-clock", __iconNode$T);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$A = [
+const __iconNode$S = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$A);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$S);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$z = [
+const __iconNode$R = [
   ["path", { d: "M12 8V4H8", key: "hb8ula" }],
   ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
   ["path", { d: "M2 14h2", key: "vft8re" }],
@@ -22730,14 +22730,51 @@ const __iconNode$z = [
   ["path", { d: "M15 13v2", key: "1xurst" }],
   ["path", { d: "M9 13v2", key: "rq6x2g" }]
 ];
-const Bot = createLucideIcon("bot", __iconNode$z);
+const Bot = createLucideIcon("bot", __iconNode$R);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$Q = [
+  ["path", { d: "M12 18V5", key: "adv99a" }],
+  ["path", { d: "M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4", key: "1e3is1" }],
+  ["path", { d: "M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5", key: "1gqd8o" }],
+  ["path", { d: "M17.997 5.125a4 4 0 0 1 2.526 5.77", key: "iwvgf7" }],
+  ["path", { d: "M18 18a4 4 0 0 0 2-7.464", key: "efp6ie" }],
+  ["path", { d: "M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517", key: "1gq6am" }],
+  ["path", { d: "M6 18a4 4 0 0 1-2-7.464", key: "k1g0md" }],
+  ["path", { d: "M6.003 5.125a4 4 0 0 0-2.526 5.77", key: "q97ue3" }]
+];
+const Brain = createLucideIcon("brain", __iconNode$Q);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$P = [
+  ["path", { d: "M12 20v-9", key: "1qisl0" }],
+  ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z", key: "uouzyp" }],
+  ["path", { d: "M14.12 3.88 16 2", key: "qol33r" }],
+  ["path", { d: "M21 21a4 4 0 0 0-3.81-4", key: "1b0z45" }],
+  ["path", { d: "M21 5a4 4 0 0 1-3.55 3.97", key: "5cxbf6" }],
+  ["path", { d: "M22 13h-4", key: "1jl80f" }],
+  ["path", { d: "M3 21a4 4 0 0 1 3.81-4", key: "1fjd4g" }],
+  ["path", { d: "M3 5a4 4 0 0 0 3.55 3.97", key: "1d7oge" }],
+  ["path", { d: "M6 13H2", key: "82j7cp" }],
+  ["path", { d: "m8 2 1.88 1.88", key: "fmnt4t" }],
+  ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13", key: "1vgav8" }]
+];
+const Bug = createLucideIcon("bug", __iconNode$P);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$O = [
   [
     "path",
     {
@@ -22747,72 +22784,125 @@ const __iconNode$y = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("camera", __iconNode$y);
+const Camera = createLucideIcon("camera", __iconNode$O);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$x);
+const __iconNode$N = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$N);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$w = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$w);
+const __iconNode$M = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$M);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$v = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$v);
+const __iconNode$L = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$L);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
+const __iconNode$K = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$K);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$J = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
   ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$u);
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$J);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [
+const __iconNode$I = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
+  ["path", { d: "M12 17h.01", key: "p32p05" }]
+];
+const CircleQuestionMark = createLucideIcon("circle-question-mark", __iconNode$I);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$H = [
   ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$t);
+const Clock = createLucideIcon("clock", __iconNode$H);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [
+const __iconNode$G = [
+  ["path", { d: "M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057", key: "1uxyv8" }],
+  ["path", { d: "M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78", key: "99tcn7" }],
+  ["path", { d: "m2 2 20 20", key: "1ooewy" }]
+];
+const CloudOff = createLucideIcon("cloud-off", __iconNode$G);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$F = [
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
+];
+const Cloud = createLucideIcon("cloud", __iconNode$F);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$E = [
   ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
   ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
 ];
-const Code = createLucideIcon("code", __iconNode$s);
+const Code = createLucideIcon("code", __iconNode$E);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [
+const __iconNode$D = [
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
+];
+const Copy = createLucideIcon("copy", __iconNode$D);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$C = [
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M17 20v2", key: "1rnc9c" }],
@@ -22828,26 +22918,166 @@ const __iconNode$r = [
   ["rect", { x: "4", y: "4", width: "16", height: "16", rx: "2", key: "1vbyd7" }],
   ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "1", key: "z9xiuo" }]
 ];
-const Cpu = createLucideIcon("cpu", __iconNode$r);
+const Cpu = createLucideIcon("cpu", __iconNode$C);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [
+const __iconNode$B = [
+  ["path", { d: "M12 15V3", key: "m9g1x1" }],
+  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
+  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
+];
+const Download = createLucideIcon("download", __iconNode$B);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$A = [
+  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
+  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
+  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
+];
+const ExternalLink = createLucideIcon("external-link", __iconNode$A);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$z = [
+  [
+    "path",
+    {
+      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
+      key: "1nclc0"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+const Eye = createLucideIcon("eye", __iconNode$z);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$y = [
+  [
+    "path",
+    {
+      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+      key: "1oefj6"
+    }
+  ],
+  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
+  ["path", { d: "M10 12.5 8 15l2 2.5", key: "1tg20x" }],
+  ["path", { d: "m14 12.5 2 2.5-2 2.5", key: "yinavb" }]
+];
+const FileCode = createLucideIcon("file-code", __iconNode$y);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$x = [
+  [
+    "path",
+    {
+      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+      key: "1oefj6"
+    }
+  ],
+  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
+  ["path", { d: "M9 15h6", key: "cctwl0" }],
+  ["path", { d: "M12 18v-6", key: "17g6i2" }]
+];
+const FilePlus = createLucideIcon("file-plus", __iconNode$x);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$w = [
+  [
+    "path",
+    {
+      d: "m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2",
+      key: "usdka0"
+    }
+  ]
+];
+const FolderOpen = createLucideIcon("folder-open", __iconNode$w);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$v = [
+  ["line", { x1: "6", x2: "10", y1: "11", y2: "11", key: "1gktln" }],
+  ["line", { x1: "8", x2: "8", y1: "9", y2: "13", key: "qnk9ow" }],
+  ["line", { x1: "15", x2: "15.01", y1: "12", y2: "12", key: "krot7o" }],
+  ["line", { x1: "18", x2: "18.01", y1: "10", y2: "10", key: "1lcuu1" }],
+  [
+    "path",
+    {
+      d: "M17.32 5H6.68a4 4 0 0 0-3.978 3.59c-.006.052-.01.101-.017.152C2.604 9.416 2 14.456 2 16a3 3 0 0 0 3 3c1 0 1.5-.5 2-1l1.414-1.414A2 2 0 0 1 9.828 16h4.344a2 2 0 0 1 1.414.586L17 18c.5.5 1 1 2 1a3 3 0 0 0 3-3c0-1.545-.604-6.584-.685-7.258-.007-.05-.011-.1-.017-.151A4 4 0 0 0 17.32 5z",
+      key: "mfqc10"
+    }
+  ]
+];
+const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$v);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$u = [
+  ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
+  ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
+  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
+  ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
+];
+const GitBranch = createLucideIcon("git-branch", __iconNode$u);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$t = [
+  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
+  ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
+  ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
+];
+const History = createLucideIcon("history", __iconNode$t);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$s = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
   ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
   ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
 ];
-const Image = createLucideIcon("image", __iconNode$q);
+const Image = createLucideIcon("image", __iconNode$s);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$p = [
+const __iconNode$r = [
   ["path", { d: "M10 8h.01", key: "1r9ogq" }],
   ["path", { d: "M12 12h.01", key: "1mp3jc" }],
   ["path", { d: "M14 8h.01", key: "1primd" }],
@@ -22858,31 +23088,31 @@ const __iconNode$p = [
   ["path", { d: "M8 12h.01", key: "czm47f" }],
   ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }]
 ];
-const Keyboard = createLucideIcon("keyboard", __iconNode$p);
+const Keyboard = createLucideIcon("keyboard", __iconNode$r);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$o = [
-  ["path", { d: "M12 2v4", key: "3427ic" }],
-  ["path", { d: "m16.2 7.8 2.9-2.9", key: "r700ao" }],
-  ["path", { d: "M18 12h4", key: "wj9ykh" }],
-  ["path", { d: "m16.2 16.2 2.9 2.9", key: "1bxg5t" }],
-  ["path", { d: "M12 18v4", key: "jadmvz" }],
-  ["path", { d: "m4.9 19.1 2.9-2.9", key: "bwix9q" }],
-  ["path", { d: "M2 12h4", key: "j09sii" }],
-  ["path", { d: "m4.9 4.9 2.9 2.9", key: "giyufr" }]
+const __iconNode$q = [
+  [
+    "path",
+    {
+      d: "M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0",
+      key: "1r0f0z"
+    }
+  ],
+  ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
 ];
-const Loader = createLucideIcon("loader", __iconNode$o);
+const MapPin = createLucideIcon("map-pin", __iconNode$q);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$n = [
+const __iconNode$p = [
   [
     "path",
     {
@@ -22893,26 +23123,26 @@ const __iconNode$n = [
   ["path", { d: "M15 5.764v15", key: "1pn4in" }],
   ["path", { d: "M9 3.236v15", key: "1uimfh" }]
 ];
-const Map$1 = createLucideIcon("map", __iconNode$n);
+const Map$1 = createLucideIcon("map", __iconNode$p);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$m = [
+const __iconNode$o = [
   ["path", { d: "M4 5h16", key: "1tepv9" }],
   ["path", { d: "M4 12h16", key: "1lakjw" }],
   ["path", { d: "M4 19h16", key: "1djgab" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$m);
+const Menu = createLucideIcon("menu", __iconNode$o);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$l = [
+const __iconNode$n = [
   [
     "path",
     {
@@ -22921,7 +23151,35 @@ const __iconNode$l = [
     }
   ]
 ];
-const MessageCircle = createLucideIcon("message-circle", __iconNode$l);
+const MessageCircle = createLucideIcon("message-circle", __iconNode$n);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [
+  [
+    "path",
+    {
+      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
+      key: "18887p"
+    }
+  ]
+];
+const MessageSquare = createLucideIcon("message-square", __iconNode$m);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$l = [
+  ["path", { d: "M12 19v3", key: "npa21l" }],
+  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
+  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
+];
+const Mic = createLucideIcon("mic", __iconNode$l);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22932,12 +23190,12 @@ const __iconNode$k = [
   [
     "path",
     {
-      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
-      key: "18887p"
+      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+      key: "kfwtm"
     }
   ]
 ];
-const MessageSquare = createLucideIcon("message-square", __iconNode$k);
+const Moon = createLucideIcon("moon", __iconNode$k);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22945,11 +23203,16 @@ const MessageSquare = createLucideIcon("message-square", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["path", { d: "M12 19v3", key: "npa21l" }],
-  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
-  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
+  ["path", { d: "M13 21h8", key: "1jsn5i" }],
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ]
 ];
-const Mic = createLucideIcon("mic", __iconNode$j);
+const PenLine = createLucideIcon("pen-line", __iconNode$j);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22960,12 +23223,13 @@ const __iconNode$i = [
   [
     "path",
     {
-      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
-      key: "kfwtm"
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
     }
-  ]
+  ],
+  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Moon = createLucideIcon("moon", __iconNode$i);
+const Pencil = createLucideIcon("pencil", __iconNode$i);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22973,16 +23237,10 @@ const Moon = createLucideIcon("moon", __iconNode$i);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$h = [
-  [
-    "path",
-    {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
-    }
-  ],
-  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$h);
+const Plus = createLucideIcon("plus", __iconNode$h);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22990,10 +23248,10 @@ const Pencil = createLucideIcon("pencil", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
+  ["path", { d: "M12 2v10", key: "mnfbl" }],
+  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
 ];
-const Plus = createLucideIcon("plus", __iconNode$g);
+const Power = createLucideIcon("power", __iconNode$g);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23001,10 +23259,12 @@ const Plus = createLucideIcon("plus", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  ["path", { d: "M12 2v10", key: "mnfbl" }],
-  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
 ];
-const Power = createLucideIcon("power", __iconNode$f);
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$f);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23012,19 +23272,6 @@ const Power = createLucideIcon("power", __iconNode$f);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$e = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
-];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$e);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$d = [
   [
     "path",
     {
@@ -23035,7 +23282,20 @@ const __iconNode$d = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$d);
+const Save = createLucideIcon("save", __iconNode$e);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$d = [
+  ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
+  ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
+  ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
+  ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
+];
+const Scan = createLucideIcon("scan", __iconNode$d);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23043,12 +23303,10 @@ const Save = createLucideIcon("save", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
-  ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
-  ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
-  ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
-  ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-const Scan = createLucideIcon("scan", __iconNode$c);
+const Search = createLucideIcon("search", __iconNode$c);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23109,9 +23367,16 @@ const Sparkles = createLucideIcon("sparkles", __iconNode$9);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$8 = [
-  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }]
+  ["path", { d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7", key: "1m0v6g" }],
+  [
+    "path",
+    {
+      d: "M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z",
+      key: "ohrbg2"
+    }
+  ]
 ];
-const Square = createLucideIcon("square", __iconNode$8);
+const SquarePen = createLucideIcon("square-pen", __iconNode$8);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23119,6 +23384,16 @@ const Square = createLucideIcon("square", __iconNode$8);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$7 = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }]
+];
+const Square = createLucideIcon("square", __iconNode$7);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$6 = [
   ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
@@ -23129,17 +23404,7 @@ const __iconNode$7 = [
   ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
   ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
 ];
-const Sun = createLucideIcon("sun", __iconNode$7);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$6 = [
-  ["path", { d: "M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z", key: "17jzev" }]
-];
-const Thermometer = createLucideIcon("thermometer", __iconNode$6);
+const Sun = createLucideIcon("sun", __iconNode$6);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23147,13 +23412,10 @@ const Thermometer = createLucideIcon("thermometer", __iconNode$6);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$5 = [
-  ["path", { d: "M10 11v6", key: "nco0om" }],
-  ["path", { d: "M14 11v6", key: "outv1u" }],
-  ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
+  ["path", { d: "M12 19h8", key: "baeox8" }],
+  ["path", { d: "m4 17 6-6-6-6", key: "1yngyt" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$5);
+const Terminal = createLucideIcon("terminal", __iconNode$5);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23161,6 +23423,30 @@ const Trash2 = createLucideIcon("trash-2", __iconNode$5);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$4 = [
+  ["path", { d: "M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z", key: "17jzev" }]
+];
+const Thermometer = createLucideIcon("thermometer", __iconNode$4);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$3 = [
+  ["path", { d: "M10 11v6", key: "nco0om" }],
+  ["path", { d: "M14 11v6", key: "outv1u" }],
+  ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
+];
+const Trash2 = createLucideIcon("trash-2", __iconNode$3);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$2 = [
   [
     "path",
     {
@@ -23171,36 +23457,7 @@ const __iconNode$4 = [
   ["path", { d: "M16 9a5 5 0 0 1 0 6", key: "1q6k2b" }],
   ["path", { d: "M19.364 18.364a9 9 0 0 0 0-12.728", key: "ijwkga" }]
 ];
-const Volume2 = createLucideIcon("volume-2", __iconNode$4);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$3 = [
-  ["path", { d: "M12 20h.01", key: "zekei9" }],
-  ["path", { d: "M8.5 16.429a5 5 0 0 1 7 0", key: "1bycff" }],
-  ["path", { d: "M5 12.859a10 10 0 0 1 5.17-2.69", key: "1dl1wf" }],
-  ["path", { d: "M19 12.859a10 10 0 0 0-2.007-1.523", key: "4k23kn" }],
-  ["path", { d: "M2 8.82a15 15 0 0 1 4.177-2.643", key: "1grhjp" }],
-  ["path", { d: "M22 8.82a15 15 0 0 0-11.288-3.764", key: "z3jwby" }],
-  ["path", { d: "m2 2 20 20", key: "1ooewy" }]
-];
-const WifiOff = createLucideIcon("wifi-off", __iconNode$3);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$2 = [
-  ["path", { d: "M12 20h.01", key: "zekei9" }],
-  ["path", { d: "M2 8.82a15 15 0 0 1 20 0", key: "dnpr2z" }],
-  ["path", { d: "M5 12.859a10 10 0 0 1 14 0", key: "1x1e6c" }],
-  ["path", { d: "M8.5 16.429a5 5 0 0 1 7 0", key: "1bycff" }]
-];
-const Wifi = createLucideIcon("wifi", __iconNode$2);
+const Volume2 = createLucideIcon("volume-2", __iconNode$2);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23868,6 +24125,7 @@ function WebSocketProvider({ children }) {
       targetWs.send(JSON.stringify({ type, ...payload }));
     } else {
       console.warn("WS not connected, cannot send", type);
+      alert("Not connected to backend. Please refresh the page.");
     }
   }, []);
   const sendVoiceCommand = reactExports.useCallback((type, payload = {}) => {
@@ -24020,6 +24278,84 @@ function Home() {
     };
   }, [isVoiceStreaming, voiceStatus, showBubble]);
   const displayVoiceText = voiceStreamText.trim();
+  const [showWeatherModal, setShowWeatherModal] = reactExports.useState(false);
+  const [weatherData, setWeatherData] = reactExports.useState(null);
+  const [weatherLoading, setWeatherLoading] = reactExports.useState(false);
+  const [weatherError, setWeatherError] = reactExports.useState(null);
+  const [locationInput, setLocationInput] = reactExports.useState("");
+  const [showGamesModal, setShowGamesModal] = reactExports.useState(false);
+  const [gamesList, setGamesList] = reactExports.useState([]);
+  const [gamesLoading, setGamesLoading] = reactExports.useState(false);
+  const fetchGames = async () => {
+    setGamesLoading(true);
+    try {
+      const resp = await fetch("http://localhost:8000/games");
+      const data = await resp.json();
+      setGamesList(data.games || []);
+    } catch (err) {
+      console.error("Failed to load games:", err);
+    } finally {
+      setGamesLoading(false);
+    }
+  };
+  const launchGame = async (game) => {
+    try {
+      await fetch("http://localhost:8000/games/launch", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ game_id: game.id, executable: game.executable })
+      });
+    } catch (err) {
+      console.error("Failed to launch game:", err);
+    }
+  };
+  const handleGamesClick = () => {
+    setShowGamesModal(true);
+    fetchGames();
+  };
+  const fetchWeather = async (city = null) => {
+    setWeatherLoading(true);
+    setWeatherError(null);
+    try {
+      let url = "http://localhost:8000/weather";
+      if (city) {
+        url += `?city=${encodeURIComponent(city)}`;
+      } else if (navigator.geolocation) {
+        const pos = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5e3 });
+        });
+        url += `?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+      }
+      const resp = await fetch(url);
+      const data = await resp.json();
+      if (data.error) {
+        setWeatherError(data.error);
+      } else {
+        setWeatherData(data);
+      }
+    } catch (err) {
+      setWeatherError(err.message || "Failed to fetch weather");
+    } finally {
+      setWeatherLoading(false);
+    }
+  };
+  const handleWeatherClick = () => {
+    setShowWeatherModal(true);
+    setWeatherData(null);
+    setWeatherError(null);
+    setLocationInput("");
+    fetchWeather();
+  };
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (locationInput.trim()) {
+      fetchWeather(locationInput.trim());
+    }
+  };
+  const handleMyLocation = () => {
+    setLocationInput("");
+    fetchWeather();
+  };
   const pressTimer = reactExports.useRef(null);
   const [isHoldMode, setIsHoldMode] = reactExports.useState(false);
   const handleMouseDown = () => {
@@ -24233,6 +24569,8 @@ function Home() {
               /* @__PURE__ */ jsxRuntimeExports.jsx(MenuButton, { icon: Camera, label: "VISION", onClick: () => navigate("/camera"), color: "#38bdf8" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(MenuButton, { icon: Code, label: "AGENT", onClick: () => navigate("/tasks"), color: "#f7768e" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(MenuButton, { icon: Image, label: "GALLERY", onClick: () => navigate("/gallery"), color: "var(--text-mid)" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(MenuButton, { icon: Cloud, label: "WEATHER", onClick: handleWeatherClick, color: "#38bdf8" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(MenuButton, { icon: Gamepad2, label: "GAMES", onClick: handleGamesClick, color: "#f472b6" }),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 MenuButton,
                 {
@@ -24255,7 +24593,229 @@ function Home() {
               )
             ]
           }
-        )
+        ),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showWeatherModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            style: {
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 100,
+              padding: 20
+            },
+            onClick: () => setShowWeatherModal(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, y: 20 },
+                animate: { scale: 1, y: 0 },
+                exit: { scale: 0.9, y: 20 },
+                style: {
+                  background: "var(--surface)",
+                  borderRadius: 24,
+                  padding: 24,
+                  maxWidth: 400,
+                  width: "100%",
+                  border: "1.5px solid var(--border)",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.3)"
+                },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--text)" }, children: "Weather" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        onClick: () => setShowWeatherModal(false),
+                        style: { background: "none", border: "none", cursor: "pointer", color: "var(--text-mid)", fontSize: "1.5rem" },
+                        children: "×"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: handleSearch, style: { display: "flex", gap: 8, marginBottom: 16 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "input",
+                      {
+                        type: "text",
+                        value: locationInput,
+                        onChange: (e) => setLocationInput(e.target.value),
+                        placeholder: "Search city...",
+                        style: {
+                          flex: 1,
+                          padding: "12px 16px",
+                          borderRadius: 12,
+                          border: "1.5px solid var(--border)",
+                          background: "var(--bg)",
+                          color: "var(--text)",
+                          fontSize: "1rem",
+                          outline: "none"
+                        }
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        type: "submit",
+                        style: {
+                          padding: 12,
+                          borderRadius: 12,
+                          border: "none",
+                          background: AI_COLOR,
+                          color: "white",
+                          cursor: "pointer"
+                        },
+                        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Search, { size: 20 })
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "button",
+                    {
+                      onClick: handleMyLocation,
+                      style: {
+                        display: "flex",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 8,
+                        width: "100%",
+                        padding: 12,
+                        marginBottom: 16,
+                        borderRadius: 12,
+                        border: "1.5px solid var(--border)",
+                        background: "var(--bg)",
+                        color: "var(--text)",
+                        cursor: "pointer",
+                        fontSize: "0.9rem"
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(MapPin, { size: 18 }),
+                        "Use My Location"
+                      ]
+                    }
+                  ),
+                  weatherLoading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: 20, color: "var(--text-mid)" }, children: "Loading weather..." }),
+                  weatherError && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: 16, color: "#f7768e", background: "rgba(247,118,142,0.1)", borderRadius: 12 }, children: weatherError }),
+                  weatherData && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { textAlign: "center", padding: 20, background: "var(--bg)", borderRadius: 16 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "3rem", marginBottom: 8 }, children: weatherData.emoji }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "2rem", fontWeight: 700, color: "var(--text)" }, children: [
+                      weatherData.temperature,
+                      weatherData.unit
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "1.1rem", color: "var(--text-mid)", marginTop: 4 }, children: weatherData.description }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.9rem", color: AI_COLOR, marginTop: 8, fontWeight: 600 }, children: weatherData.location }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "center", gap: 16, marginTop: 16, fontSize: "0.85rem", color: "var(--text-mid)" }, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                        "💧 ",
+                        weatherData.humidity,
+                        "%"
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                        "💨 ",
+                        weatherData.wind_speed,
+                        " mph"
+                      ] })
+                    ] })
+                  ] })
+                ]
+              }
+            )
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showGamesModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            style: {
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 100,
+              padding: 20
+            },
+            onClick: () => setShowGamesModal(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, y: 20 },
+                animate: { scale: 1, y: 0 },
+                exit: { scale: 0.9, y: 20 },
+                style: {
+                  background: "var(--surface)",
+                  borderRadius: 24,
+                  padding: 24,
+                  maxWidth: 500,
+                  width: "100%",
+                  maxHeight: "80vh",
+                  border: "1.5px solid var(--border)",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.3)",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column"
+                },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--text)" }, children: "Games" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        onClick: () => setShowGamesModal(false),
+                        style: { background: "none", border: "none", cursor: "pointer", color: "var(--text-mid)", fontSize: "1.5rem" },
+                        children: "×"
+                      }
+                    )
+                  ] }),
+                  gamesLoading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: 40, color: "var(--text-mid)" }, children: "Loading games..." }),
+                  !gamesLoading && gamesList.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: 40, color: "var(--text-mid)" }, children: "No games found. Add games to /opt or /usr/games" }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: {
+                    display: "grid",
+                    gridTemplateColumns: "repeat(auto-fill, minmax(100px, 1fr))",
+                    gap: 12,
+                    overflowY: "auto",
+                    paddingBottom: 16
+                  }, children: gamesList.map((game) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    motion.button,
+                    {
+                      whileHover: { scale: 1.05 },
+                      whileTap: { scale: 0.95 },
+                      onClick: () => launchGame(game),
+                      style: {
+                        display: "flex",
+                        flexDirection: "column",
+                        alignItems: "center",
+                        justifyContent: "center",
+                        gap: 8,
+                        padding: 12,
+                        borderRadius: 16,
+                        border: "1.5px solid var(--border)",
+                        background: "var(--bg)",
+                        cursor: "pointer",
+                        minHeight: 90
+                      },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: "2rem" }, children: game.icon }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: "0.7rem", color: "var(--text)", fontWeight: 500, textAlign: "center", lineHeight: 1.2 }, children: game.name })
+                      ]
+                    },
+                    game.id
+                  )) })
+                ]
+              }
+            )
+          }
+        ) })
       ]
     }
   );
@@ -38683,9 +39243,9 @@ function Maps() {
             alignItems: "center",
             gap: 10,
             padding: "10px 16px",
-            borderBottom: "1.5px solid #ede9f8",
+            borderBottom: "1.5px solid var(--border)",
             flexShrink: 0,
-            background: "rgba(250,248,255,.96)",
+            background: "var(--surface)",
             backdropFilter: "blur(14px)",
             minHeight: 56
           }, children: [
@@ -39026,38 +39586,162 @@ function Maps() {
   );
 }
 const API = "http://localhost:8000";
+const DEBUG_PROMPTS = [
+  { label: "Debug Error", prompt: "Find and fix this bug: ", icon: Bug },
+  { label: "Explain Code", prompt: "Explain this code: ", icon: Code },
+  { label: "Fix Bug", prompt: "Find and fix the bug in: ", icon: Zap },
+  { label: "Review Code", prompt: "Review this code for issues: ", icon: Eye }
+];
+const PROJECT_ACTIONS = [
+  { label: "Analyze Project", prompt: "Analyze this entire project. Show me: 1) Project structure, 2) Tech stack, 3) Main entry points, 4) Dependencies, 5) What it does", icon: FolderOpen },
+  { label: "Add Feature", prompt: "Add a new feature to this project: ", icon: Plus },
+  { label: "Refactor", prompt: "Refactor and improve this code: ", icon: PenLine },
+  { label: "Create API", prompt: "Create a new API endpoint for: ", icon: Code },
+  { label: "Add Tests", prompt: "Add unit tests for: ", icon: FileCode },
+  { label: "Fix Issues", prompt: "Find and fix all issues in: ", icon: Zap },
+  { label: "Plan + Write", prompt: "PLAN_WRITE /path/to/file:reason for change:code to write", icon: SquarePen }
+];
+const SCRIPT_ACTIONS = [
+  { label: "Python Script", prompt: "Write a production-ready Python script with argparse, logging, and error handling for: ", icon: FileCode },
+  { label: "Bash Script", prompt: "Write a professional bash script with usage function and error handling for: ", icon: Terminal },
+  { label: "Node Script", prompt: "Write a Node.js script with async/await and proper error handling for: ", icon: FileCode },
+  { label: "API Script", prompt: "Write a REST API client script in Python with requests library for: ", icon: Code }
+];
+const QUICK_ACTIONS = [
+  { label: "Git Status", cmd: "GIT_STATUS ", icon: GitBranch },
+  { label: "System Info", cmd: "SYSTEM_INFO ", icon: Cpu },
+  { label: "Project Tree", cmd: "PROJECT_STRUCTURE .", icon: FolderOpen },
+  { label: "Count Lines", cmd: "COUNT_LINES .", icon: Activity },
+  { label: "New Python", prompt: "Create a new Python script for: ", icon: FilePlus },
+  { label: "New Bash", prompt: "Create a new bash script for: ", icon: Terminal }
+];
+const ONLINE_ACTIONS = [
+  { label: "Install Tool", prompt: "INSTALL ", icon: Download },
+  { label: "Check Installed", prompt: "CHECK_INSTALLED ", icon: Search },
+  { label: "Download File", prompt: "DOWNLOAD_URL ", icon: ExternalLink },
+  { label: "Read URL", prompt: "READ_URL ", icon: Activity }
+];
 function DevAI() {
   const navigate = useNavigate();
   const [input, setInput] = reactExports.useState("");
   const [messages, setMessages] = reactExports.useState([]);
   const [loading, setLoading] = reactExports.useState(false);
   const [isOffline, setIsOffline] = reactExports.useState(null);
+  const [offlineMode, setOfflineMode] = reactExports.useState(true);
+  const [showHelp, setShowHelp] = reactExports.useState(false);
+  const [commandHistory, setCommandHistory] = reactExports.useState([]);
+  const [historyIndex, setHistoryIndex] = reactExports.useState(-1);
+  const [copiedIndex, setCopiedIndex] = reactExports.useState(null);
+  const [showHistory, setShowHistory] = reactExports.useState(false);
+  const [showAllThinking, setShowAllThinking] = reactExports.useState(false);
+  const [debugMode, setDebugMode] = reactExports.useState(false);
+  const [debugInput, setDebugInput] = reactExports.useState("");
+  const [currentThinking, setCurrentThinking] = reactExports.useState("");
   const bottomRef = reactExports.useRef(null);
   const inputRef = reactExports.useRef(null);
+  reactExports.useRef({});
   reactExports.useEffect(() => {
-    fetch(`${API}/devai/status`).then((r) => r.json()).then((d) => setIsOffline(!d.status?.includes("ready"))).catch(() => setIsOffline(true));
+    fetch(`${API}/devai/status`).then((r) => r.json()).then((d) => {
+      setIsOffline(!d.status?.includes("ready"));
+      setOfflineMode(d.offline !== false);
+    }).catch(() => setIsOffline(true));
   }, []);
   reactExports.useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages]);
-  const send = async (text2) => {
+  }, [messages, currentThinking]);
+  const send = async (text2, skipHistory = false) => {
     const trimmed = text2.trim();
     if (!trimmed || loading) return;
-    setMessages((prev) => [...prev, { role: "user", text: trimmed }]);
+    if (!skipHistory) {
+      setCommandHistory((prev) => [trimmed, ...prev.slice(0, 49)]);
+      setHistoryIndex(-1);
+    }
+    const userMsg = { role: "user", text: trimmed };
+    const assistantMsg = { role: "assistant", text: "", thinking: "", showThinking: true };
+    setMessages((prev) => [...prev, userMsg, assistantMsg]);
     setInput("");
     setLoading(true);
+    setCurrentThinking("🤔 Analyzing your request and planning...");
+    setDebugInput("");
     try {
-      const res = await fetch(`${API}/devai/chat`, {
+      const response = await fetch(`${API}/devai/chat/stream`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed })
+        body: JSON.stringify({ message: trimmed, stream: true })
       });
-      const data = await res.json();
-      setMessages((prev) => [...prev, { role: "assistant", text: data.response || "No response" }]);
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder();
+      let fullResponse = "";
+      let thinkingBuffer = "";
+      let inThinking = false;
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value);
+        const lines = chunk.split("\n");
+        for (const line of lines) {
+          if (line.startsWith("data: ")) {
+            const data = line.slice(6);
+            if (data === "[DONE]") continue;
+            if (data.includes("<think>")) {
+              inThinking = true;
+              thinkingBuffer = data.replace(/[\s\S]*<think>/, "");
+              if (thinkingBuffer) {
+                setCurrentThinking(thinkingBuffer);
+              }
+            } else if (data.includes("</think>")) {
+              inThinking = false;
+              thinkingBuffer += data.replace(/<\/think>[\s\S]*/, "");
+              setCurrentThinking("");
+              setMessages((prev) => {
+                const updated = [...prev];
+                updated[updated.length - 1] = {
+                  ...updated[updated.length - 1],
+                  thinking: thinkingBuffer,
+                  showThinking: true
+                };
+                return updated;
+              });
+            } else if (inThinking) {
+              thinkingBuffer += data;
+              setCurrentThinking(thinkingBuffer + "...");
+            } else {
+              fullResponse += data;
+              setMessages((prev) => {
+                const updated = [...prev];
+                updated[updated.length - 1] = {
+                  ...updated[updated.length - 1],
+                  text: fullResponse
+                };
+                return updated;
+              });
+            }
+          }
+        }
+      }
+      if (thinkingBuffer) {
+        setMessages((prev) => {
+          const updated = [...prev];
+          updated[updated.length - 1] = {
+            ...updated[updated.length - 1],
+            thinking: thinkingBuffer,
+            showThinking: true
+          };
+          return updated;
+        });
+      }
     } catch (err) {
-      setMessages((prev) => [...prev, { role: "assistant", text: "Failed to reach Dev AI. Is the backend running?" }]);
+      setMessages((prev) => {
+        const updated = [...prev];
+        updated[updated.length - 1] = {
+          ...updated[updated.length - 1],
+          text: "Failed to reach Dev AI Pro. Is the backend running?"
+        };
+        return updated;
+      });
     } finally {
       setLoading(false);
+      setCurrentThinking("");
     }
   };
   const handleKeyDown = (e) => {
@@ -39065,6 +39749,104 @@ function DevAI() {
       e.preventDefault();
       send(input);
     }
+    if (e.key === "ArrowUp" && e.target.tagName !== "TEXTAREA") {
+      e.preventDefault();
+      if (historyIndex < commandHistory.length - 1) {
+        const newIndex = historyIndex + 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      }
+    }
+    if (e.key === "ArrowDown" && e.target.tagName !== "TEXTAREA") {
+      e.preventDefault();
+      if (historyIndex > 0) {
+        const newIndex = historyIndex - 1;
+        setHistoryIndex(newIndex);
+        setInput(commandHistory[newIndex]);
+      } else if (historyIndex === 0) {
+        setHistoryIndex(-1);
+        setInput("");
+      }
+    }
+  };
+  const copyToClipboard = (text2, index2) => {
+    navigator.clipboard.writeText(text2);
+    setCopiedIndex(index2);
+    setTimeout(() => setCopiedIndex(null), 2e3);
+  };
+  const downloadText = (text2, filename = "output.txt") => {
+    const blob = new Blob([text2], { type: "text/plain" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  };
+  const extractCodeBlocks = (text2) => {
+    const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
+    const blocks = [];
+    let match;
+    while ((match = codeBlockRegex.exec(text2)) !== null) {
+      blocks.push({
+        language: match[1] || "txt",
+        code: match[2].trim()
+      });
+    }
+    return blocks;
+  };
+  const downloadCode = (code2, language, index2) => {
+    const extensions = {
+      python: "py",
+      javascript: "js",
+      typescript: "ts",
+      bash: "sh",
+      shell: "sh",
+      html: "html",
+      css: "css",
+      json: "json",
+      markdown: "md",
+      sql: "sql",
+      go: "go",
+      rust: "rs",
+      java: "java",
+      c: "c",
+      cpp: "cpp"
+    };
+    const ext = extensions[language.toLowerCase()] || "txt";
+    const filename = `devai_script_${index2 + 1}.${ext}`;
+    downloadText(code2, filename);
+  };
+  const toggleThinking = (index2) => {
+    setMessages((prev) => {
+      const updated = [...prev];
+      if (updated[index2] && updated[index2].role === "assistant") {
+        updated[index2] = { ...updated[index2], showThinking: !updated[index2].showThinking };
+      }
+      return updated;
+    });
+  };
+  const handleDebug = (type) => {
+    const prompt = DEBUG_PROMPTS.find((p) => p.label === type)?.prompt || "";
+    setDebugMode(true);
+    setInput(prompt);
+    inputRef.current?.focus();
+  };
+  const formatOutput = (text2) => {
+    if (!text2) return "";
+    return text2.split("\n").map((line, i) => {
+      const formatted = line.replace(/✅/g, '<span class="text-green-400">✅</span>').replace(/❌/g, '<span class="text-red-400">❌</span>').replace(/📄/g, '<span class="text-blue-400">📄</span>').replace(/📁/g, '<span class="text-yellow-400">📁</span>').replace(/📂/g, '<span class="text-purple-400">📂</span>').replace(/🔍/g, '<span class="text-cyan-400">🔍</span>').replace(/🌐/g, '<span class="text-blue-400">🌐</span>').replace(/🌳/g, '<span class="text-green-400">🌳</span>').replace(/🖥️/g, '<span class="text-gray-400">🖥️</span>').replace(/💻/g, '<span class="text-blue-400">💻</span>').replace(/🧠/g, '<span class="text-pink-400">🧠</span>').replace(/💾/g, '<span class="text-orange-400">💾</span>').replace(/⚡/g, '<span class="text-yellow-400">⚡</span>').replace(/📊/g, '<span class="text-indigo-400">📊</span>').replace(/🔒/g, '<span class="text-red-400">🔒</span>').replace(/🔧/g, '<span class="text-orange-400">🔧</span>').replace(/🐛/g, '<span class="text-red-400">🐛</span>').replace(/💡/g, '<span class="text-yellow-400">💡</span>').replace(/📌/g, '<span class="text-blue-400">📌</span>').replace(/<!--/g, '<span class="text-gray-500">&lt;!--</span>').replace(/-->/g, '<span class="text-gray-500">--&gt;</span>');
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block whitespace-pre-wrap", dangerouslySetInnerHTML: { __html: formatted } }, i);
+    });
+  };
+  const formatThinking = (thinking) => {
+    if (!thinking) return "";
+    return thinking.split("\n").map((line, i) => {
+      const formatted = line.replace(/^[\s]*\*\*?(.*?)\*\*?:?/g, '<span class="text-purple-400 font-semibold">$1:</span>').replace(/`([^`]+)`/g, '<span class="text-green-400 bg-black/30 px-1 rounded">$1</span>').replace(/\*\*([^*]+)\*\*/g, '<span class="font-bold text-white">$1</span>');
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block", dangerouslySetInnerHTML: { __html: formatted || "&nbsp;" } }, i);
+    });
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
@@ -39078,9 +39860,9 @@ function DevAI() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "div",
           {
-            className: "flex-shrink-0 flex items-center gap-3 px-4 py-3 z-10",
+            className: "flex-shrink-0 flex items-center gap-2 px-3 py-2 z-10",
             style: {
-              background: "rgba(250,248,255,.96)",
+              background: "var(--surface)",
               backdropFilter: "blur(14px)",
               borderBottom: "1.5px solid var(--border)"
             },
@@ -39089,7 +39871,7 @@ function DevAI() {
                 "button",
                 {
                   onClick: () => navigate("/"),
-                  className: "p-2.5 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all duration-200 flex items-center justify-center min-h-[44px] min-w-[44px]",
+                  className: "p-2 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all flex items-center justify-center min-h-[44px] min-w-[44px]",
                   "aria-label": "Back",
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { size: 20 })
                 }
@@ -39102,112 +39884,341 @@ function DevAI() {
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { size: 20, style: { color: "var(--ai-color)" } })
                 }
               ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem" }, children: "Dev AI" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".68rem", color: "var(--text-mid)" }, className: "flex items-center gap-1", children: isOffline === false ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(WifiOff, { size: 10 }),
-                  " Offline"
-                ] }) : isOffline === true ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Wifi, { size: 10 }),
-                  " Online"
-                ] }) : "Loading..." })
-              ] })
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem" }, children: "Dev AI Pro" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "button",
+                    {
+                      onClick: () => setOfflineMode(!offlineMode),
+                      className: "flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105",
+                      style: {
+                        background: offlineMode ? "rgba(34,197,94,.2)" : "rgba(59,130,246,.2)",
+                        color: offlineMode ? "#22c55e" : "#3b82f6",
+                        border: `2px solid ${offlineMode ? "#22c55e" : "#3b82f6"}`
+                      },
+                      children: [
+                        offlineMode ? /* @__PURE__ */ jsxRuntimeExports.jsx(CloudOff, { size: 12 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Cloud, { size: 12 }),
+                        offlineMode ? "OFFLINE" : "ONLINE"
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".6rem", color: "var(--text-mid)" }, children: offlineMode ? "Local AI" : "Cloud AI" })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  onClick: () => setShowHistory(true),
+                  className: "p-2 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all flex items-center justify-center min-h-[44px] min-w-[44px]",
+                  "aria-label": "History",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(History, { size: 18 })
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  onClick: () => setShowHelp(true),
+                  className: "p-2 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all flex items-center justify-center min-h-[44px] min-w-[44px]",
+                  "aria-label": "Help",
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleQuestionMark, { size: 18 })
+                }
+              )
             ]
           }
         ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-h-0 overflow-y-auto p-4 flex flex-col gap-4 scroller-ai touch-scroll-y", children: [
-          messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center gap-4 text-center py-16", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 px-2 py-2 flex flex-col gap-2", style: { background: "var(--surface)" }, children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "PROJECT:" }),
+            PROJECT_ACTIONS.map(({ label, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => {
+                  setInput(prompt);
+                  inputRef.current?.focus();
+                },
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(124,58,237,.15)", color: "#7c3aed", border: "1px solid rgba(124,58,237,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "SCRIPT:" }),
+            SCRIPT_ACTIONS.map(({ label, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => {
+                  setInput(prompt);
+                  inputRef.current?.focus();
+                },
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(34,197,94,.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "DEBUG:" }),
+            DEBUG_PROMPTS.map(({ label, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => handleDebug(label),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(239,68,68,.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "QUICK:" }),
+            QUICK_ACTIONS.map(({ label, cmd, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "var(--ai-bg)", color: "var(--ai-color)", border: "1px solid var(--ai-color)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          offlineMode === false && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#3b82f6", whiteSpace: "nowrap" }, children: "🌐 ONLINE:" }),
+            ONLINE_ACTIONS.map(({ label, cmd, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(59,130,246,.15)", color: "#3b82f6", border: "1px solid rgba(59,130,246,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-h-0 overflow-y-auto p-3 flex flex-col gap-3 scroller-ai touch-scroll-y", children: [
+          messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center gap-3 text-center py-10", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               motion.div,
               {
                 initial: { opacity: 0, scale: 0.8 },
                 animate: { opacity: 1, scale: 1 },
-                className: "w-20 h-20 rounded-2xl flex items-center justify-center text-4xl",
+                className: "w-18 h-18 rounded-2xl flex items-center justify-center",
                 style: { background: "var(--ai-bg)" },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Bot, { style: { color: "var(--ai-color)" }, size: 40 })
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 36, style: { color: "var(--ai-color)" } })
               }
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1.1rem", marginBottom: 6 }, children: "Dev AI" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--text-mid)", fontSize: ".88rem", maxWidth: 280, lineHeight: 1.6 }, children: "Your offline coding assistant. Ask me anything about coding, debugging, or software engineering." })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem", marginBottom: 4 }, children: "Dev AI Pro" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--text-mid)", fontSize: ".8rem", maxWidth: 260, lineHeight: 1.5 }, children: "Your smart coding assistant. Ask anything - I'll show my thinking!" })
             ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", maxWidth: 380 }, children: ["Write a Python function", "Explain this code", "Debug my script", "Refactor this code"].map((hint) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap justify-center gap-2 max-w-xs", children: ["fix this bug", "explain this code", "write a function", "debug error"].map((hint, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
               "button",
               {
                 onClick: () => send(hint),
-                className: "ai-chip",
+                className: "px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105",
+                style: { background: "var(--surface)", color: "var(--text)", border: "1px solid var(--border)" },
                 children: hint
               },
-              hint
+              i
             )) })
           ] }),
-          messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+          /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
               initial: { opacity: 0, y: 10 },
               animate: { opacity: 1, y: 0 },
-              className: `flex ${msg.role === "user" ? "justify-end" : "justify-start"}`,
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              className: `flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`,
+              children: msg.role === "user" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "div",
                 {
-                  className: "max-w-[85%] px-5 py-4 rounded-2xl text-base leading-relaxed",
+                  className: "max-w-[85%] px-4 py-2.5 rounded-2xl text-sm",
                   style: {
-                    fontFamily: "var(--font-body)",
-                    ...msg.role === "user" ? {
-                      background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
-                      color: "#fff",
-                      borderRadius: "18px 18px 4px 18px",
-                      boxShadow: "0 4px 14px rgba(124,58,237,.3)"
-                    } : {
+                    background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
+                    color: "#fff",
+                    borderRadius: "18px 18px 4px 18px"
+                  },
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "whitespace-pre-wrap break-words text-xs leading-relaxed", style: { fontFamily: "var(--font-body)" }, children: msg.text })
+                }
+              ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full max-w-[95%]", children: [
+                msg.thinking && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "div",
+                    {
+                      className: "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs",
+                      style: { background: "rgba(168,85,247,.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,.3)" },
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 12 }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: "My Thinking" }),
+                        msg.showThinking && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "button",
+                          {
+                            onClick: () => toggleThinking(i),
+                            className: "ml-auto hover:opacity-70",
+                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { size: 12 })
+                          }
+                        )
+                      ]
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: msg.thinking && /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    motion.div,
+                    {
+                      initial: { opacity: 0, height: 0 },
+                      animate: { opacity: 1, height: "auto" },
+                      exit: { opacity: 0, height: 0 },
+                      className: "mt-2 p-3 rounded-xl overflow-hidden",
+                      style: { background: "rgba(0,0,0,.6)", border: "1px solid rgba(168,85,247,.3)" },
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "text-xs leading-relaxed whitespace-pre-wrap font-mono", style: { color: "#e9d5ff" }, children: formatThinking(msg.thinking) })
+                    }
+                  ) })
+                ] }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                  "div",
+                  {
+                    className: "px-4 py-3 rounded-2xl",
+                    style: {
                       background: "var(--surface)",
                       color: "var(--text)",
                       border: "1.5px solid var(--border)",
-                      borderRadius: "18px 18px 18px 4px",
-                      boxShadow: "0 2px 12px rgba(0,0,0,.06)"
-                    }
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "div",
-                      {
-                        className: "text-[11px] uppercase tracking-wider mb-2 opacity-70 font-semibold",
-                        style: { color: msg.role === "user" ? "#fff" : "var(--ai-color)" },
-                        children: msg.role === "user" ? "You" : "Dev AI"
-                      }
-                    ),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "pre",
-                      {
-                        className: "whitespace-pre-wrap break-words",
-                        style: { fontFamily: "var(--font-body)", fontSize: ".9rem", lineHeight: 1.7 },
-                        children: msg.text
-                      }
-                    )
-                  ]
-                }
-              )
+                      borderRadius: "18px 18px 18px 4px"
+                    },
+                    children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-2 mb-2", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "button",
+                          {
+                            onClick: () => downloadText(msg.text, `devai_response_${i + 1}.txt`),
+                            className: "p-1.5 rounded hover:bg-[var(--bg)] transition-colors flex items-center gap-1",
+                            title: "Download",
+                            style: { color: "var(--text-mid)" },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { size: 12 }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem" }, children: "Txt" })
+                            ]
+                          }
+                        ),
+                        extractCodeBlocks(msg.text).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                          "button",
+                          {
+                            onClick: () => {
+                              const blocks = extractCodeBlocks(msg.text);
+                              if (blocks.length === 1) {
+                                downloadCode(blocks[0].code, blocks[0].language, i);
+                              } else {
+                                blocks.forEach((block, bi) => downloadCode(block.code, block.language, i + bi));
+                              }
+                            },
+                            className: "p-1.5 rounded hover:bg-[var(--bg)] transition-colors flex items-center gap-1",
+                            title: "Download Code",
+                            style: { color: "var(--ai-color)" },
+                            children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { size: 12 }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem" }, children: "Code" })
+                            ]
+                          }
+                        ),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(
+                          "button",
+                          {
+                            onClick: () => copyToClipboard(msg.text, i),
+                            className: "p-1.5 rounded hover:bg-[var(--bg)] transition-colors flex items-center gap-1",
+                            title: "Copy",
+                            style: { color: "var(--text-mid)" },
+                            children: copiedIndex === i ? /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { size: 12, className: "text-green-400" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { size: 12 })
+                          }
+                        )
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "pre",
+                        {
+                          className: "whitespace-pre-wrap break-words text-xs leading-relaxed font-mono",
+                          style: { color: "var(--text)" },
+                          children: formatOutput(msg.text)
+                        }
+                      )
+                    ]
+                  }
+                )
+              ] })
             },
             i
-          )),
+          )) }),
           loading && /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
             {
               initial: { opacity: 0, y: 10 },
               animate: { opacity: 1, y: 0 },
-              className: "flex justify-start",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
+              className: "flex flex-col items-start w-full",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                motion.div,
                 {
-                  className: "px-5 py-4 rounded-2xl rounded-bl-md",
+                  initial: { opacity: 0, scale: 0.95 },
+                  animate: { opacity: 1, scale: 1 },
+                  className: "p-4 rounded-2xl w-full",
                   style: {
-                    background: "var(--surface)",
-                    border: "1.5px solid var(--border)",
-                    boxShadow: "0 2px 12px rgba(0,0,0,.06)"
+                    background: "linear-gradient(135deg, rgba(124,58,237,.25), rgba(139,92,246,.2))",
+                    border: "2px solid rgba(168,85,247,.6)",
+                    boxShadow: "0 0 30px rgba(168,85,247,.4)"
                   },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(Loader, { size: 16, style: { color: "var(--ai-color)" }, className: "animate-spin" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { color: "var(--text-mid)", fontSize: ".85rem" }, children: "Dev AI is thinking..." })
-                  ] })
+                  children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-3", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 18, className: "text-purple-400 animate-pulse" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-bold text-purple-300", children: "🤔 Dev AI is Thinking..." }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                        motion.div,
+                        {
+                          animate: { opacity: [0.4, 1, 0.4] },
+                          transition: { repeat: Infinity, duration: 1.5 },
+                          className: "ml-auto flex gap-1",
+                          children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2 h-2 rounded-full bg-purple-400" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2 h-2 rounded-full bg-purple-400", style: { animationDelay: "0.2s" } }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2 h-2 rounded-full bg-purple-400", style: { animationDelay: "0.4s" } })
+                          ]
+                        }
+                      )
+                    ] }),
+                    currentThinking ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "pre",
+                      {
+                        className: "text-xs leading-relaxed whitespace-pre-wrap font-mono p-3 rounded-lg",
+                        style: {
+                          color: "#e9d5ff",
+                          maxHeight: 250,
+                          overflow: "auto",
+                          background: "rgba(0,0,0,.4)",
+                          textShadow: "0 0 10px rgba(168,85,247,.5)",
+                          border: "1px solid rgba(168,85,247,.3)"
+                        },
+                        children: currentThinking
+                      }
+                    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-purple-300/70 italic p-2", children: "Analyzing your request and formulating a response..." })
+                  ]
                 }
               )
             }
@@ -39217,9 +40228,9 @@ function DevAI() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "div",
           {
-            className: "flex-shrink-0 flex items-end gap-3 px-4 py-3 z-10",
+            className: "flex-shrink-0 flex items-end gap-2 px-3 py-3 z-10",
             style: {
-              background: "rgba(250,248,255,.96)",
+              background: "var(--surface)",
               backdropFilter: "blur(14px)",
               borderTop: "1.5px solid var(--border)"
             },
@@ -39227,7 +40238,7 @@ function DevAI() {
               /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "div",
                 {
-                  className: "flex-1 rounded-2xl px-4 py-3 flex items-end border",
+                  className: "flex-1 rounded-2xl px-3 py-2 flex items-end border",
                   style: {
                     background: "var(--surface)",
                     borderColor: "var(--border)"
@@ -39239,19 +40250,18 @@ function DevAI() {
                       value: input,
                       onChange: (e) => setInput(e.target.value),
                       onKeyDown: handleKeyDown,
-                      placeholder: "Ask Dev AI something...",
+                      placeholder: "Ask me anything... (code, debug, explain)",
                       rows: 1,
-                      className: "flex-1 border-none bg-transparent resize-none outline-none",
+                      className: "flex-1 border-none bg-transparent resize-none outline-none text-sm",
                       style: {
                         color: "var(--text)",
-                        fontFamily: "var(--font-body)",
-                        fontSize: ".95rem",
+                        fontFamily: "monospace",
                         lineHeight: 1.5,
-                        maxHeight: 120
+                        maxHeight: 100
                       },
                       onInput: (e) => {
                         e.target.style.height = "auto";
-                        e.target.style.height = Math.min(e.target.scrollHeight, 120) + "px";
+                        e.target.style.height = Math.min(e.target.scrollHeight, 100) + "px";
                       }
                     }
                   )
@@ -39262,17 +40272,116 @@ function DevAI() {
                 {
                   onClick: () => send(input),
                   disabled: !input.trim() || loading,
-                  className: "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl cursor-pointer transition-all duration-200 disabled:opacity-40",
+                  className: "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl cursor-pointer transition-all disabled:opacity-40 hover:scale-105",
                   style: {
                     background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
-                    color: "#fff",
-                    boxShadow: "0 4px 14px rgba(124,58,237,.3)"
+                    color: "#fff"
                   },
                   "aria-label": "Send",
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { size: 18 })
                 }
               )
             ]
+          }
+        ),
+        showHelp && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            className: "fixed inset-0 z-50 flex items-center justify-center p-2",
+            style: { background: "rgba(0,0,0,0.7)" },
+            onClick: () => setShowHelp(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, opacity: 0 },
+                animate: { scale: 1, opacity: 1 },
+                className: "w-full max-w-lg max-h-[80vh] overflow-hidden rounded-2xl",
+                style: { background: "var(--surface)", border: "1.5px solid var(--border)" },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-4 py-3 border-b", style: { borderColor: "var(--border)" }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem" }, children: "Dev AI Pro Help" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setShowHelp(false), className: "p-1.5 rounded-lg hover:bg-[var(--bg)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 18, style: { color: "var(--text-mid)" } }) })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 overflow-y-auto max-h-[68vh]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 rounded-xl", style: { background: "rgba(168,85,247,.1)", border: "1px solid rgba(168,85,247,.3)" }, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-2", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 16, className: "text-purple-400" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-sm", style: { color: "var(--text)" }, children: "💡 Show My Thinking" })
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".75rem", color: "var(--text-mid)" }, children: 'Click "See My Thinking" on any response to see how I analyzed your question!' })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 rounded-xl", style: { background: "rgba(239,68,68,.1)", border: "1px solid rgba(239,68,68,.3)" }, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-2", children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(Bug, { size: 16, className: "text-red-400" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-sm", style: { color: "var(--text)" }, children: "🐛 Debug Mode" })
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".75rem", color: "var(--text-mid)" }, children: "Use debug buttons to: Debug Error, Explain Code, Fix Bug, Review Code" })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-semibold text-sm mb-2", style: { color: "var(--ai-color)" }, children: "Quick Commands" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-2", children: QUICK_ACTIONS.map(({ label, cmd }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "button",
+                        {
+                          onClick: () => {
+                            send(cmd, true);
+                            setShowHelp(false);
+                          },
+                          className: "text-left px-3 py-2 rounded-lg text-xs",
+                          style: { background: "var(--bg)", color: "var(--text)" },
+                          children: label
+                        },
+                        label
+                      )) })
+                    ] })
+                  ] }) })
+                ]
+              }
+            )
+          }
+        ),
+        showHistory && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            className: "fixed inset-0 z-50 flex items-center justify-center p-2",
+            style: { background: "rgba(0,0,0,0.7)" },
+            onClick: () => setShowHistory(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, opacity: 0 },
+                animate: { scale: 1, opacity: 1 },
+                className: "w-full max-w-md max-h-[70vh] overflow-hidden rounded-2xl",
+                style: { background: "var(--surface)", border: "1.5px solid var(--border)" },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-4 py-3 border-b", style: { borderColor: "var(--border)" }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(History, { size: 16, style: { color: "var(--ai-color)" } }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 700, color: "var(--text)", fontSize: ".95rem" }, children: "History" })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setShowHistory(false), className: "p-1.5 rounded-lg hover:bg-[var(--bg)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 16, style: { color: "var(--text-mid)" } }) })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-y-auto max-h-[55vh]", children: commandHistory.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-8 text-center", style: { color: "var(--text-mid)", fontSize: ".85rem" }, children: "No history yet" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divide-y", style: { borderColor: "var(--border)" }, children: commandHistory.map((cmd, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      onClick: () => {
+                        setInput(cmd);
+                        setShowHistory(false);
+                        inputRef.current?.focus();
+                      },
+                      className: "w-full text-left px-4 py-2.5 hover:bg-[var(--bg)] transition-colors",
+                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { style: { color: "var(--text)", fontSize: ".8rem", fontFamily: "monospace" }, children: cmd })
+                    },
+                    i
+                  )) }) })
+                ]
+              }
+            )
           }
         )
       ]
@@ -39823,7 +40932,7 @@ function TaskAdd() {
                     }
                   )
                 ] })
-              ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+              ] }) : taskType !== "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Schedule Type" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex bg-[var(--bg)] p-1.5 rounded-2xl gap-1", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -39880,28 +40989,17 @@ function TaskAdd() {
               ] }),
               scheduleType === "at" && taskType !== "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Date & Time" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      type: "datetime-local",
-                      value: targetDate,
-                      onChange: (e) => setTargetDate(e.target.value),
-                      ...bindKeyboardSync(setTargetDate),
-                      className: "ai-input flex-1 min-h-[48px] text-base p-4",
-                      required: scheduleType === "at"
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      type: "button",
-                      onClick: setTodayNow,
-                      className: "ai-btn px-4 min-h-[48px] text-sm bg-[var(--ai-bg)] text-[var(--ai-color)] border border-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white",
-                      children: "Today"
-                    }
-                  )
-                ] })
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "input",
+                  {
+                    type: "datetime-local",
+                    value: targetDate,
+                    onChange: (e) => setTargetDate(e.target.value),
+                    ...bindKeyboardSync(setTargetDate),
+                    className: "ai-input w-full min-h-[48px] text-base p-4",
+                    required: scheduleType === "at"
+                  }
+                )
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "block text-sm font-medium text-[var(--text-mid)] flex items-center gap-2", children: [

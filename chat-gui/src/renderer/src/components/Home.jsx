@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Bot } from 'lucide-react';
+import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Bot, Cloud, MapPin, Search, Gamepad2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
@@ -73,6 +73,97 @@ export default function Home() {
   }, [isVoiceStreaming, voiceStatus, showBubble]);
 
   const displayVoiceText = voiceStreamText.trim();
+
+  // Weather modal state
+  const [showWeatherModal, setShowWeatherModal] = useState(false);
+  const [weatherData, setWeatherData] = useState(null);
+  const [weatherLoading, setWeatherLoading] = useState(false);
+  const [weatherError, setWeatherError] = useState(null);
+  const [locationInput, setLocationInput] = useState('');
+
+  // Games modal state
+  const [showGamesModal, setShowGamesModal] = useState(false);
+  const [gamesList, setGamesList] = useState([]);
+  const [gamesLoading, setGamesLoading] = useState(false);
+
+  const fetchGames = async () => {
+    setGamesLoading(true);
+    try {
+      const resp = await fetch('http://localhost:8000/games');
+      const data = await resp.json();
+      setGamesList(data.games || []);
+    } catch (err) {
+      console.error('Failed to load games:', err);
+    } finally {
+      setGamesLoading(false);
+    }
+  };
+
+  const launchGame = async (game) => {
+    try {
+      await fetch('http://localhost:8000/games/launch', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ game_id: game.id, executable: game.executable })
+      });
+    } catch (err) {
+      console.error('Failed to launch game:', err);
+    }
+  };
+
+  const handleGamesClick = () => {
+    setShowGamesModal(true);
+    fetchGames();
+  };
+
+  const fetchWeather = async (city = null) => {
+    setWeatherLoading(true);
+    setWeatherError(null);
+    try {
+      let url = 'http://localhost:8000/weather';
+      if (city) {
+        url += `?city=${encodeURIComponent(city)}`;
+      } else if (navigator.geolocation) {
+        // Use geolocation for "My location"
+        const pos = await new Promise((resolve, reject) => {
+          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
+        });
+        url += `?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+      }
+      const resp = await fetch(url);
+      const data = await resp.json();
+      if (data.error) {
+        setWeatherError(data.error);
+      } else {
+        setWeatherData(data);
+      }
+    } catch (err) {
+      setWeatherError(err.message || 'Failed to fetch weather');
+    } finally {
+      setWeatherLoading(false);
+    }
+  };
+
+  const handleWeatherClick = () => {
+    setShowWeatherModal(true);
+    setWeatherData(null);
+    setWeatherError(null);
+    setLocationInput('');
+    // Auto-fetch for "My location" by default
+    fetchWeather();
+  };
+
+  const handleSearch = (e) => {
+    e.preventDefault();
+    if (locationInput.trim()) {
+      fetchWeather(locationInput.trim());
+    }
+  };
+
+  const handleMyLocation = () => {
+    setLocationInput('');
+    fetchWeather();
+  };
 
   const pressTimer = useRef(null);
   const [isHoldMode, setIsHoldMode] = useState(false);
@@ -279,6 +370,8 @@ export default function Home() {
         <MenuButton icon={Camera} label="VISION" onClick={() => navigate('/camera')} color="#38bdf8" />
         <MenuButton icon={Code} label="AGENT" onClick={() => navigate('/tasks')} color="#f7768e" />
         <MenuButton icon={GalleryIcon} label="GALLERY" onClick={() => navigate('/gallery')} color="var(--text-mid)" />
+        <MenuButton icon={Cloud} label="WEATHER" onClick={handleWeatherClick} color="#38bdf8" />
+        <MenuButton icon={Gamepad2} label="GAMES" onClick={handleGamesClick} color="#f472b6" />
         <MenuButton
           icon={Map}
           label="MAPS"
@@ -292,6 +385,238 @@ export default function Home() {
           color="#f97316"
         />
       </div>
+
+      {/* Weather Modal */}
+      <AnimatePresence>
+        {showWeatherModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(0,0,0,0.6)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 100,
+              padding: 20,
+            }}
+            onClick={() => setShowWeatherModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              style={{
+                background: 'var(--surface)',
+                borderRadius: 24,
+                padding: 24,
+                maxWidth: 400,
+                width: '100%',
+                border: '1.5px solid var(--border)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>Weather</h2>
+                <button
+                  onClick={() => setShowWeatherModal(false)}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-mid)', fontSize: '1.5rem' }}
+                >
+                  ×
+                </button>
+              </div>
+
+              <form onSubmit={handleSearch} style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
+                <input
+                  type="text"
+                  value={locationInput}
+                  onChange={(e) => setLocationInput(e.target.value)}
+                  placeholder="Search city..."
+                  style={{
+                    flex: 1,
+                    padding: '12px 16px',
+                    borderRadius: 12,
+                    border: '1.5px solid var(--border)',
+                    background: 'var(--bg)',
+                    color: 'var(--text)',
+                    fontSize: '1rem',
+                    outline: 'none',
+                  }}
+                />
+                <button
+                  type="submit"
+                  style={{
+                    padding: 12,
+                    borderRadius: 12,
+                    border: 'none',
+                    background: AI_COLOR,
+                    color: 'white',
+                    cursor: 'pointer',
+                  }}
+                >
+                  <Search size={20} />
+                </button>
+              </form>
+
+              <button
+                onClick={handleMyLocation}
+                style={{
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 8,
+                  width: '100%',
+                  padding: 12,
+                  marginBottom: 16,
+                  borderRadius: 12,
+                  border: '1.5px solid var(--border)',
+                  background: 'var(--bg)',
+                  color: 'var(--text)',
+                  cursor: 'pointer',
+                  fontSize: '0.9rem',
+                }}
+              >
+                <MapPin size={18} />
+                Use My Location
+              </button>
+
+              {weatherLoading && (
+                <div style={{ textAlign: 'center', padding: 20, color: 'var(--text-mid)' }}>
+                  Loading weather...
+                </div>
+              )}
+
+              {weatherError && (
+                <div style={{ textAlign: 'center', padding: 16, color: '#f7768e', background: 'rgba(247,118,142,0.1)', borderRadius: 12 }}>
+                  {weatherError}
+                </div>
+              )}
+
+              {weatherData && (
+                <div style={{ textAlign: 'center', padding: 20, background: 'var(--bg)', borderRadius: 16 }}>
+                  <div style={{ fontSize: '3rem', marginBottom: 8 }}>{weatherData.emoji}</div>
+                  <div style={{ fontSize: '2rem', fontWeight: 700, color: 'var(--text)' }}>
+                    {weatherData.temperature}{weatherData.unit}
+                  </div>
+                  <div style={{ fontSize: '1.1rem', color: 'var(--text-mid)', marginTop: 4 }}>
+                    {weatherData.description}
+                  </div>
+                  <div style={{ fontSize: '0.9rem', color: AI_COLOR, marginTop: 8, fontWeight: 600 }}>
+                    {weatherData.location}
+                  </div>
+                  <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 16, fontSize: '0.85rem', color: 'var(--text-mid)' }}>
+                    <span>💧 {weatherData.humidity}%</span>
+                    <span>💨 {weatherData.wind_speed} mph</span>
+                  </div>
+                </div>
+              )}
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Games Modal */}
+      <AnimatePresence>
+        {showGamesModal && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            style={{
+              position: 'fixed',
+              inset: 0,
+              background: 'rgba(0,0,0,0.6)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              zIndex: 100,
+              padding: 20,
+            }}
+            onClick={() => setShowGamesModal(false)}
+          >
+            <motion.div
+              initial={{ scale: 0.9, y: 20 }}
+              animate={{ scale: 1, y: 0 }}
+              exit={{ scale: 0.9, y: 20 }}
+              style={{
+                background: 'var(--surface)',
+                borderRadius: 24,
+                padding: 24,
+                maxWidth: 500,
+                width: '100%',
+                maxHeight: '80vh',
+                border: '1.5px solid var(--border)',
+                boxShadow: '0 20px 60px rgba(0,0,0,0.3)',
+                overflow: 'hidden',
+                display: 'flex',
+                flexDirection: 'column',
+              }}
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
+                <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: 'var(--text)' }}>Games</h2>
+                <button
+                  onClick={() => setShowGamesModal(false)}
+                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: 'var(--text-mid)', fontSize: '1.5rem' }}
+                >
+                  ×
+                </button>
+              </div>
+
+              {gamesLoading && (
+                <div style={{ textAlign: 'center', padding: 40, color: 'var(--text-mid)' }}>
+                  Loading games...
+                </div>
+              )}
+
+              {!gamesLoading && gamesList.length === 0 && (
+                <div style={{ textAlign: 'center', padding: 40, color: 'var(--text-mid)' }}>
+                  No games found. Add games to /opt or /usr/games
+                </div>
+              )}
+
+              <div style={{ 
+                display: 'grid', 
+                gridTemplateColumns: 'repeat(auto-fill, minmax(100px, 1fr))', 
+                gap: 12,
+                overflowY: 'auto',
+                paddingBottom: 16,
+              }}>
+                {gamesList.map((game) => (
+                  <motion.button
+                    key={game.id}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    onClick={() => launchGame(game)}
+                    style={{
+                      display: 'flex',
+                      flexDirection: 'column',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 8,
+                      padding: 12,
+                      borderRadius: 16,
+                      border: '1.5px solid var(--border)',
+                      background: 'var(--bg)',
+                      cursor: 'pointer',
+                      minHeight: 90,
+                    }}
+                  >
+                    <span style={{ fontSize: '2rem' }}>{game.icon}</span>
+                    <span style={{ fontSize: '0.7rem', color: 'var(--text)', fontWeight: 500, textAlign: 'center', lineHeight: 1.2 }}>
+                      {game.name}
+                    </span>
+                  </motion.button>
+                ))}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 }

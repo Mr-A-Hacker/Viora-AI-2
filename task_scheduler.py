@@ -177,7 +177,7 @@ def _schedule_one(job: dict) -> bool:
         if at_ms is None:
             return False
         from datetime import datetime
-        run_date = datetime.utcfromtimestamp(at_ms / 1000.0)
+        run_date = datetime.fromtimestamp(at_ms / 1000.0)
         _scheduler.add_job(_run_job, DateTrigger(run_date=run_date), id=job_id, args=[job_id], replace_existing=True)
         return True
     return False

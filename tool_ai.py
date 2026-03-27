@@ -392,9 +392,9 @@ def run_set_alarm(arguments: dict) -> str:
             return f"Alarm: task scheduler not available — {e}"
         schedule = {"kind": "at", "atMs": at_ms}
         payload = {"taskType": "alarm", "message": message}
-        alarm_name = f"Alarm {alarm_dt.strftime('%Y-%m-%d %H:%M')}"
+        alarm_name = f"Alarm {alarm_dt.strftime('%Y-%m-%d %I:%M %p')}"
         job = add_job(name=alarm_name, description="", schedule=schedule, payload=payload)
-        return f"Alarm set for {alarm_dt.strftime('%Y-%m-%d at %H:%M')}. I'll speak: \"{message}\""
+        return f"Alarm set for {alarm_dt.strftime('%Y-%m-%d at %I:%M %p')}. I'll speak: \"{message}\""
     except Exception as e:
         return f"Alarm: error — {e}"
 

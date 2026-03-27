@@ -10,6 +10,7 @@ from chat_ai import router as chat_router, ai as ai_state
 from weather import router as weather_router
 from maps import router as maps_router
 from devai import router as devai_router
+from games import router as games_router
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -35,6 +36,7 @@ app.include_router(chat_router)
 app.include_router(weather_router)
 app.include_router(maps_router)
 app.include_router(devai_router)
+app.include_router(games_router)
 
 @app.get("/health")
 async def health():
