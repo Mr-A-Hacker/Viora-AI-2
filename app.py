@@ -46,7 +46,7 @@ async def startup_event():
     logger.info("Unified Backend starting up...")
     if not os.environ.get("SKIP_MODEL_LOAD"):
         ai_state.load_model()
-        # Tool model is loaded in a subprocess when needed (avoids thread/crash issues)
+        # Dev AI model loads on first request (lazy)
     try:
         from task_scheduler import init_scheduler
         init_scheduler(ai_state.conv_manager)

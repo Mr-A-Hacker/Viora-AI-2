@@ -318,7 +318,7 @@ def get_cpu_temp():
 @router.get("/system/stats")
 async def get_stats():
     return {
-        "time": time.strftime("%H:%M:%S"),
+        "time": time.strftime("%I:%M:%S %p"),
         "cpu_percent": psutil.cpu_percent(),
         "memory_percent": psutil.virtual_memory().percent,
         "temperature": get_cpu_temp()

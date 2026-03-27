@@ -369,12 +369,43 @@ def run_get_stock_price(arguments: dict) -> str:
         return f"Stock {symbol}: error — {e}"
 
 
+def run_set_alarm(arguments: dict) -> str:
+    from datetime import datetime
+    datetime_str = (arguments.get("datetime") or "").strip()
+    message = (arguments.get("message") or "").strip()
+    logger.info("[tool] set_alarm(datetime=%s, message=%s)", datetime_str, message[:50] if message else "")
+    if not datetime_str:
+        return "Alarm: no date/time provided."
+    if not message:
+        return "Alarm: no message provided."
+    try:
+        try:
+            alarm_dt = datetime.fromisoformat(datetime_str)
+        except ValueError:
+            return f"Alarm: invalid date format. Use ISO format like '2024-12-31T09:00'."
+        if alarm_dt <= datetime.now():
+            return "Alarm: date/time must be in the future."
+        at_ms = int(alarm_dt.timestamp() * 1000)
+        try:
+            from task_scheduler import add_job
+        except Exception as e:
+            return f"Alarm: task scheduler not available — {e}"
+        schedule = {"kind": "at", "atMs": at_ms}
+        payload = {"taskType": "alarm", "message": message}
+        alarm_name = f"Alarm {alarm_dt.strftime('%Y-%m-%d %H:%M')}"
+        job = add_job(name=alarm_name, description="", schedule=schedule, payload=payload)
+        return f"Alarm set for {alarm_dt.strftime('%Y-%m-%d at %H:%M')}. I'll speak: \"{message}\""
+    except Exception as e:
+        return f"Alarm: error — {e}"
+
+
 TOOL_RUNNERS = {
     "get_weather": run_get_weather,
     "activate_security_mode": run_activate_security_mode,
     "web_search": run_web_search,
     "network_scan": run_network_scan,
     "get_stock_price": run_get_stock_price,
+    "set_alarm": run_set_alarm,
 }
 
 

@@ -220,8 +220,38 @@
         "role": "user",
         "content": "Hi.",
         "timestamp": 1774573292.8260782
+      },
+      {
+        "role": "user",
+        "content": "What is your name",
+        "timestamp": 1774610850.9873211
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\n\n</think>\n\nMy name is an AI assistant, and I don't have a personal name. However, I can help with a wide range of questions and tasks! How can I assist you today? \ud83d\ude0a",
+        "timestamp": 1774610860.6694121
+      },
+      {
+        "role": "user",
+        "content": "remember: your name is Viora AI",
+        "timestamp": 1774610872.676062
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\n\n</think>\n\nHello! My name is Viora AI. I'm here to help with questions, tasks, or assistance whenever you need it. Let me know how I can assist you! \ud83d\ude0a",
+        "timestamp": 1774610880.483043
+      },
+      {
+        "role": "user",
+        "content": "hi",
+        "timestamp": 1774625411.838584
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\n\n</think>\n\nHello! I'm Viora AI. How can I assist you today? \ud83d\ude0a",
+        "timestamp": 1774625437.0419307
       }
     ],
-    "updated_at": 1774573292.8261917
+    "updated_at": 1774625437.041943
   }
 ]

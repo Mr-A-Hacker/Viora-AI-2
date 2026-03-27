@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Send, Bot, Sparkles, Loader } from 'lucide-react';
+import { ArrowLeft, Send, Bot, Sparkles, Loader, Wifi, WifiOff } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const API = 'http://localhost:8000';
@@ -10,8 +10,16 @@ export default function DevAI() {
   const [input, setInput] = useState('');
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isOffline, setIsOffline] = useState(null);
   const bottomRef = useRef(null);
   const inputRef = useRef(null);
+
+  useEffect(() => {
+    fetch(`${API}/devai/status`)
+      .then(r => r.json())
+      .then(d => setIsOffline(!d.status?.includes('ready')))
+      .catch(() => setIsOffline(true));
+  }, []);
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' });
@@ -83,7 +91,19 @@ export default function DevAI() {
           <h1 style={{ fontFamily: 'var(--font-head)', fontWeight: 800, color: 'var(--ai-color)', fontSize: '1rem' }}>
             Dev AI
           </h1>
-          <p style={{ fontSize: '.68rem', color: 'var(--text-mid)' }}>Powered by OpenCode</p>
+          <p style={{ fontSize: '.68rem', color: 'var(--text-mid)' }} className="flex items-center gap-1">
+            {isOffline === false ? (
+              <>
+                <WifiOff size={10} /> Offline
+              </>
+            ) : isOffline === true ? (
+              <>
+                <Wifi size={10} /> Online
+              </>
+            ) : (
+              'Loading...'
+            )}
+          </p>
         </div>
       </div>
 
@@ -104,7 +124,7 @@ export default function DevAI() {
                 Dev AI
               </h2>
               <p style={{ color: 'var(--text-mid)', fontSize: '.88rem', maxWidth: 280, lineHeight: 1.6 }}>
-                Ask me anything about coding, debugging, or software engineering tasks.
+                Your offline coding assistant. Ask me anything about coding, debugging, or software engineering.
               </p>
             </div>
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, justifyContent: 'center', maxWidth: 380 }}>

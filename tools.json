@@ -62,5 +62,25 @@
         "symbol"
       ]
     }
+  },
+  {
+    "name": "set_alarm",
+    "description": "Sets an alarm that will speak a message at a specific date and time.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "datetime": {
+          "type": "string",
+          "description": "The date and time for the alarm in ISO format, e.g., '2024-12-31T09:00' or '2024-12-25T18:30:00'"
+        },
+        "message": {
+          "type": "string",
+          "description": "The message the AI should speak when the alarm goes off"
+        }
+      },
+      "required": [
+        "datetime",
+        "message"
+      ]
+    }
   }
-]

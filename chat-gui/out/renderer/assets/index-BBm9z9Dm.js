@@ -22680,7 +22680,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$C = [
   [
     "path",
     {
@@ -22689,25 +22689,40 @@ const __iconNode$y = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$y);
+const Activity = createLucideIcon("activity", __iconNode$C);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [
+const __iconNode$B = [
+  ["circle", { cx: "12", cy: "13", r: "8", key: "3y4lt7" }],
+  ["path", { d: "M12 9v4l2 2", key: "1c63tq" }],
+  ["path", { d: "M5 3 2 6", key: "18tl5t" }],
+  ["path", { d: "m22 6-3-3", key: "1opdir" }],
+  ["path", { d: "M6.38 18.7 4 21", key: "17xu3x" }],
+  ["path", { d: "M17.64 18.67 20 21", key: "kv2oe2" }]
+];
+const AlarmClock = createLucideIcon("alarm-clock", __iconNode$B);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$A = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$x);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$A);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$w = [
+const __iconNode$z = [
   ["path", { d: "M12 8V4H8", key: "hb8ula" }],
   ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
   ["path", { d: "M2 14h2", key: "vft8re" }],
@@ -22715,14 +22730,14 @@ const __iconNode$w = [
   ["path", { d: "M15 13v2", key: "1xurst" }],
   ["path", { d: "M9 13v2", key: "rq6x2g" }]
 ];
-const Bot = createLucideIcon("bot", __iconNode$w);
+const Bot = createLucideIcon("bot", __iconNode$z);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$v = [
+const __iconNode$y = [
   [
     "path",
     {
@@ -22732,31 +22747,65 @@ const __iconNode$v = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("camera", __iconNode$v);
+const Camera = createLucideIcon("camera", __iconNode$y);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$u);
+const __iconNode$x = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$x);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$t);
+const __iconNode$w = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$w);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$s);
+const __iconNode$v = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$v);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$u = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$u);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$t = [
+  ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
+];
+const Clock = createLucideIcon("clock", __iconNode$t);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$s = [
+  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
+  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
+];
+const Code = createLucideIcon("code", __iconNode$s);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22764,40 +22813,6 @@ const ChevronRight = createLucideIcon("chevron-right", __iconNode$s);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$r = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
-];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$r);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$q = [
-  ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
-];
-const Clock = createLucideIcon("clock", __iconNode$q);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$p = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
-];
-const Code = createLucideIcon("code", __iconNode$p);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$o = [
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M17 20v2", key: "1rnc9c" }],
@@ -22813,26 +22828,26 @@ const __iconNode$o = [
   ["rect", { x: "4", y: "4", width: "16", height: "16", rx: "2", key: "1vbyd7" }],
   ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "1", key: "z9xiuo" }]
 ];
-const Cpu = createLucideIcon("cpu", __iconNode$o);
+const Cpu = createLucideIcon("cpu", __iconNode$r);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$n = [
+const __iconNode$q = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
   ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
   ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
 ];
-const Image = createLucideIcon("image", __iconNode$n);
+const Image = createLucideIcon("image", __iconNode$q);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$m = [
+const __iconNode$p = [
   ["path", { d: "M10 8h.01", key: "1r9ogq" }],
   ["path", { d: "M12 12h.01", key: "1mp3jc" }],
   ["path", { d: "M14 8h.01", key: "1primd" }],
@@ -22843,14 +22858,14 @@ const __iconNode$m = [
   ["path", { d: "M8 12h.01", key: "czm47f" }],
   ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }]
 ];
-const Keyboard = createLucideIcon("keyboard", __iconNode$m);
+const Keyboard = createLucideIcon("keyboard", __iconNode$p);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$l = [
+const __iconNode$o = [
   ["path", { d: "M12 2v4", key: "3427ic" }],
   ["path", { d: "m16.2 7.8 2.9-2.9", key: "r700ao" }],
   ["path", { d: "M18 12h4", key: "wj9ykh" }],
@@ -22860,14 +22875,14 @@ const __iconNode$l = [
   ["path", { d: "M2 12h4", key: "j09sii" }],
   ["path", { d: "m4.9 4.9 2.9 2.9", key: "giyufr" }]
 ];
-const Loader = createLucideIcon("loader", __iconNode$l);
+const Loader = createLucideIcon("loader", __iconNode$o);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$k = [
+const __iconNode$n = [
   [
     "path",
     {
@@ -22878,7 +22893,51 @@ const __iconNode$k = [
   ["path", { d: "M15 5.764v15", key: "1pn4in" }],
   ["path", { d: "M9 3.236v15", key: "1uimfh" }]
 ];
-const Map$1 = createLucideIcon("map", __iconNode$k);
+const Map$1 = createLucideIcon("map", __iconNode$n);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$m = [
+  ["path", { d: "M4 5h16", key: "1tepv9" }],
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 19h16", key: "1djgab" }]
+];
+const Menu = createLucideIcon("menu", __iconNode$m);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$l = [
+  [
+    "path",
+    {
+      d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
+      key: "1sd12s"
+    }
+  ]
+];
+const MessageCircle = createLucideIcon("message-circle", __iconNode$l);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$k = [
+  [
+    "path",
+    {
+      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
+      key: "18887p"
+    }
+  ]
+];
+const MessageSquare = createLucideIcon("message-square", __iconNode$k);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22886,11 +22945,11 @@ const Map$1 = createLucideIcon("map", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["path", { d: "M4 5h16", key: "1tepv9" }],
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 19h16", key: "1djgab" }]
+  ["path", { d: "M12 19v3", key: "npa21l" }],
+  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
+  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$j);
+const Mic = createLucideIcon("mic", __iconNode$j);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22901,12 +22960,12 @@ const __iconNode$i = [
   [
     "path",
     {
-      d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
-      key: "1sd12s"
+      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+      key: "kfwtm"
     }
   ]
 ];
-const MessageCircle = createLucideIcon("message-circle", __iconNode$i);
+const Moon = createLucideIcon("moon", __iconNode$i);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22917,12 +22976,13 @@ const __iconNode$h = [
   [
     "path",
     {
-      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
-      key: "18887p"
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
     }
-  ]
+  ],
+  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const MessageSquare = createLucideIcon("message-square", __iconNode$h);
+const Pencil = createLucideIcon("pencil", __iconNode$h);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22930,11 +22990,10 @@ const MessageSquare = createLucideIcon("message-square", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
-  ["path", { d: "M12 19v3", key: "npa21l" }],
-  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
-  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-const Mic = createLucideIcon("mic", __iconNode$g);
+const Plus = createLucideIcon("plus", __iconNode$g);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22942,15 +23001,10 @@ const Mic = createLucideIcon("mic", __iconNode$g);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$f = [
-  [
-    "path",
-    {
-      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
-      key: "kfwtm"
-    }
-  ]
+  ["path", { d: "M12 2v10", key: "mnfbl" }],
+  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
 ];
-const Moon = createLucideIcon("moon", __iconNode$f);
+const Power = createLucideIcon("power", __iconNode$f);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22958,16 +23012,12 @@ const Moon = createLucideIcon("moon", __iconNode$f);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$e = [
-  [
-    "path",
-    {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
-    }
-  ],
-  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$e);
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$e);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22975,41 +23025,6 @@ const Pencil = createLucideIcon("pencil", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
-];
-const Plus = createLucideIcon("plus", __iconNode$d);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$c = [
-  ["path", { d: "M12 2v10", key: "mnfbl" }],
-  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
-];
-const Power = createLucideIcon("power", __iconNode$c);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$b = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
-];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$b);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$a = [
   [
     "path",
     {
@@ -23020,27 +23035,27 @@ const __iconNode$a = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$a);
+const Save = createLucideIcon("save", __iconNode$d);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$9 = [
+const __iconNode$c = [
   ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
   ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
   ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
   ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
 ];
-const Scan = createLucideIcon("scan", __iconNode$9);
+const Scan = createLucideIcon("scan", __iconNode$c);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$8 = [
+const __iconNode$b = [
   [
     "path",
     {
@@ -23050,14 +23065,14 @@ const __iconNode$8 = [
   ],
   ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ];
-const Send = createLucideIcon("send", __iconNode$8);
+const Send = createLucideIcon("send", __iconNode$b);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$7 = [
+const __iconNode$a = [
   [
     "path",
     {
@@ -23067,14 +23082,14 @@ const __iconNode$7 = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Settings$1 = createLucideIcon("settings", __iconNode$7);
+const Settings$1 = createLucideIcon("settings", __iconNode$a);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$6 = [
+const __iconNode$9 = [
   [
     "path",
     {
@@ -23086,24 +23101,24 @@ const __iconNode$6 = [
   ["path", { d: "M22 4h-4", key: "gwowj6" }],
   ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
 ];
-const Sparkles = createLucideIcon("sparkles", __iconNode$6);
+const Sparkles = createLucideIcon("sparkles", __iconNode$9);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$5 = [
+const __iconNode$8 = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }]
 ];
-const Square = createLucideIcon("square", __iconNode$5);
+const Square = createLucideIcon("square", __iconNode$8);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$4 = [
+const __iconNode$7 = [
   ["circle", { cx: "12", cy: "12", r: "4", key: "4exip2" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
@@ -23114,7 +23129,49 @@ const __iconNode$4 = [
   ["path", { d: "m6.34 17.66-1.41 1.41", key: "1m8zz5" }],
   ["path", { d: "m19.07 4.93-1.41 1.41", key: "1shlcs" }]
 ];
-const Sun = createLucideIcon("sun", __iconNode$4);
+const Sun = createLucideIcon("sun", __iconNode$7);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$6 = [
+  ["path", { d: "M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z", key: "17jzev" }]
+];
+const Thermometer = createLucideIcon("thermometer", __iconNode$6);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$5 = [
+  ["path", { d: "M10 11v6", key: "nco0om" }],
+  ["path", { d: "M14 11v6", key: "outv1u" }],
+  ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
+  ["path", { d: "M3 6h18", key: "d0wm0j" }],
+  ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
+];
+const Trash2 = createLucideIcon("trash-2", __iconNode$5);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$4 = [
+  [
+    "path",
+    {
+      d: "M11 4.702a.705.705 0 0 0-1.203-.498L6.413 7.587A1.4 1.4 0 0 1 5.416 8H3a1 1 0 0 0-1 1v6a1 1 0 0 0 1 1h2.416a1.4 1.4 0 0 1 .997.413l3.383 3.384A.705.705 0 0 0 11 19.298z",
+      key: "uqj9uw"
+    }
+  ],
+  ["path", { d: "M16 9a5 5 0 0 1 0 6", key: "1q6k2b" }],
+  ["path", { d: "M19.364 18.364a9 9 0 0 0 0-12.728", key: "ijwkga" }]
+];
+const Volume2 = createLucideIcon("volume-2", __iconNode$4);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23122,9 +23179,15 @@ const Sun = createLucideIcon("sun", __iconNode$4);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$3 = [
-  ["path", { d: "M14 4v10.54a4 4 0 1 1-4 0V4a2 2 0 0 1 4 0Z", key: "17jzev" }]
+  ["path", { d: "M12 20h.01", key: "zekei9" }],
+  ["path", { d: "M8.5 16.429a5 5 0 0 1 7 0", key: "1bycff" }],
+  ["path", { d: "M5 12.859a10 10 0 0 1 5.17-2.69", key: "1dl1wf" }],
+  ["path", { d: "M19 12.859a10 10 0 0 0-2.007-1.523", key: "4k23kn" }],
+  ["path", { d: "M2 8.82a15 15 0 0 1 4.177-2.643", key: "1grhjp" }],
+  ["path", { d: "M22 8.82a15 15 0 0 0-11.288-3.764", key: "z3jwby" }],
+  ["path", { d: "m2 2 20 20", key: "1ooewy" }]
 ];
-const Thermometer = createLucideIcon("thermometer", __iconNode$3);
+const WifiOff = createLucideIcon("wifi-off", __iconNode$3);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23132,13 +23195,12 @@ const Thermometer = createLucideIcon("thermometer", __iconNode$3);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$2 = [
-  ["path", { d: "M10 11v6", key: "nco0om" }],
-  ["path", { d: "M14 11v6", key: "outv1u" }],
-  ["path", { d: "M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6", key: "miytrc" }],
-  ["path", { d: "M3 6h18", key: "d0wm0j" }],
-  ["path", { d: "M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2", key: "e791ji" }]
+  ["path", { d: "M12 20h.01", key: "zekei9" }],
+  ["path", { d: "M2 8.82a15 15 0 0 1 20 0", key: "dnpr2z" }],
+  ["path", { d: "M5 12.859a10 10 0 0 1 14 0", key: "1x1e6c" }],
+  ["path", { d: "M8.5 16.429a5 5 0 0 1 7 0", key: "1bycff" }]
 ];
-const Trash2 = createLucideIcon("trash-2", __iconNode$2);
+const Wifi = createLucideIcon("wifi", __iconNode$2);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23178,7 +23240,6 @@ function Avatar({
   const scale2 = isSmall ? 0.4 : isXl ? 1.3 : 1;
   const [expression, setExpression] = reactExports.useState("neutral");
   const [blink, setBlink] = reactExports.useState(false);
-  const [glitch, setGlitch] = reactExports.useState(false);
   reactExports.useEffect(() => {
     if (externalExpression) {
       setExpression(externalExpression);
@@ -23205,16 +23266,6 @@ function Avatar({
         setTimeout(() => setExpression("neutral"), 2e3 + Math.random() * 2e3);
       }
     }, 4e3);
-    return () => clearInterval(interval);
-  }, [animate, expression]);
-  reactExports.useEffect(() => {
-    if (!animate || expression === "speaking") return;
-    const interval = setInterval(() => {
-      if (Math.random() > 0.95) {
-        setGlitch(true);
-        setTimeout(() => setGlitch(false), 200);
-      }
-    }, 5e3);
     return () => clearInterval(interval);
   }, [animate, expression]);
   const containerStyle = {
@@ -23321,7 +23372,7 @@ function Avatar({
                 motion.div,
                 {
                   variants: glitchVariants,
-                  animate: glitch ? "glitch" : "idle",
+                  animate: "idle",
                   className: "relative w-full h-full",
                   children: [
                     /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -23554,6 +23605,7 @@ function WebSocketProvider({ children }) {
   const [voiceStatus, setVoiceStatus] = reactExports.useState("idle");
   const [voskText, setVoskText] = reactExports.useState("");
   const [thinking, setThinking] = reactExports.useState(false);
+  const [ttsEnabled, setTtsEnabled] = reactExports.useState(false);
   const [conversations, setConversations] = reactExports.useState([]);
   const [currentConvId, setCurrentConvId] = reactExports.useState(null);
   const [lastApiError, setLastApiError] = reactExports.useState(null);
@@ -23596,6 +23648,7 @@ function WebSocketProvider({ children }) {
           { role: "assistant", text: data.text || "" }
         ]);
         setStreamText("");
+        speakTts(data.text || "");
         break;
       case "stream_error":
         setStreaming(false);
@@ -23625,6 +23678,11 @@ function WebSocketProvider({ children }) {
       case "voice_status":
         setVoiceStatus(data.status);
         setIsRecording(data.status === "listening");
+        if (data.status === "listening" || data.status === "thinking") {
+          if ("speechSynthesis" in window) {
+            window.speechSynthesis.cancel();
+          }
+        }
         if (data.status === "idle") {
           setIsVoiceStreaming(false);
           setVoiceStreamText("");
@@ -23644,12 +23702,16 @@ function WebSocketProvider({ children }) {
       case "ai_start":
         setVoiceStreamText("");
         setIsVoiceStreaming(true);
+        if (ttsEnabled && "speechSynthesis" in window) {
+          window.speechSynthesis.cancel();
+        }
         break;
       case "ai_delta":
         setVoiceStreamText(data.text || "");
         break;
       case "ai_final":
         setVoiceStreamText(data.text || "");
+        speakTts(data.text || "", true);
         break;
       case "ai_aborted":
         setVoiceStreamText((prev) => prev + " [aborted]");
@@ -23841,6 +23903,22 @@ function WebSocketProvider({ children }) {
   const toggleThinking = reactExports.useCallback(() => {
     setThinking((prev) => !prev);
   }, []);
+  const speakTts = reactExports.useCallback((text2, force = false) => {
+    if (!ttsEnabled || !text2) return;
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text2);
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      const voices = window.speechSynthesis.getVoices();
+      const englishVoice = voices.find((v) => v.lang.startsWith("en") && v.name.includes("Female")) || voices.find((v) => v.lang.startsWith("en")) || voices[0];
+      if (englishVoice) utterance.voice = englishVoice;
+      if (force) {
+        window.speechSynthesis.cancel();
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+  }, [ttsEnabled]);
   const value = {
     connStatus,
     connect,
@@ -23870,6 +23948,8 @@ function WebSocketProvider({ children }) {
     isVoiceStreaming,
     thinking,
     toggleThinking,
+    ttsEnabled,
+    setTtsEnabled,
     lastApiError,
     clearApiError: () => setLastApiError(null)
   };
@@ -23943,21 +24023,26 @@ function Home() {
   const pressTimer = reactExports.useRef(null);
   const [isHoldMode, setIsHoldMode] = reactExports.useState(false);
   const handleMouseDown = () => {
+    console.log("[Voice] Mouse down, starting timer...");
     setIsHoldMode(false);
     pressTimer.current = setTimeout(() => {
+      console.log("[Voice] Long press detected, starting Vosk...");
       setIsHoldMode(true);
       startVosk();
     }, 400);
   };
   const handleMouseUp = () => {
+    console.log("[Voice] Mouse up, isHoldMode:", isHoldMode);
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
       pressTimer.current = null;
     }
     if (isHoldMode) {
+      console.log("[Voice] Stopping Vosk...");
       stopVosk();
       setIsHoldMode(false);
     } else {
+      console.log("[Voice] Toggle voice (short press)...");
       toggleVoice();
     }
   };
@@ -38387,6 +38472,7 @@ function Settings() {
   const navigate = useNavigate();
   const { keyboardEnabled, setKeyboardEnabled } = useKeyboardSettings();
   const { isDark, toggleDark } = useDarkMode();
+  const { ttsEnabled, setTtsEnabled } = useWebSocket();
   const handleCloseApp = async () => {
     try {
       await fetch(`${API_BASE_URL}/shutdown`, { method: "POST" });
@@ -38459,6 +38545,23 @@ function Settings() {
                   onClick: () => setKeyboardEnabled(!keyboardEnabled),
                   className: `settings-toggle ${keyboardEnabled ? "active" : ""}`,
                   children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `settings-toggle-knob ${keyboardEnabled ? "on" : ""}` })
+                }
+              )
+            ] }),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-row", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "settings-row-label", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "settings-icon", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Volume2, { size: 20 }) }),
+                "Voice output (TTS)"
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "button",
+                {
+                  type: "button",
+                  role: "switch",
+                  "aria-checked": ttsEnabled,
+                  onClick: () => setTtsEnabled(!ttsEnabled),
+                  className: `settings-toggle ${ttsEnabled ? "active" : ""}`,
+                  children: /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `settings-toggle-knob ${ttsEnabled ? "on" : ""}` })
                 }
               )
             ] }),
@@ -38928,8 +39031,12 @@ function DevAI() {
   const [input, setInput] = reactExports.useState("");
   const [messages, setMessages] = reactExports.useState([]);
   const [loading, setLoading] = reactExports.useState(false);
+  const [isOffline, setIsOffline] = reactExports.useState(null);
   const bottomRef = reactExports.useRef(null);
   const inputRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    fetch(`${API}/devai/status`).then((r) => r.json()).then((d) => setIsOffline(!d.status?.includes("ready"))).catch(() => setIsOffline(true));
+  }, []);
   reactExports.useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages]);
@@ -38997,7 +39104,13 @@ function DevAI() {
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem" }, children: "Dev AI" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".68rem", color: "var(--text-mid)" }, children: "Powered by OpenCode" })
+                /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".68rem", color: "var(--text-mid)" }, className: "flex items-center gap-1", children: isOffline === false ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(WifiOff, { size: 10 }),
+                  " Offline"
+                ] }) : isOffline === true ? /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Wifi, { size: 10 }),
+                  " Online"
+                ] }) : "Loading..." })
               ] })
             ]
           }
@@ -39016,7 +39129,7 @@ function DevAI() {
             ),
             /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1.1rem", marginBottom: 6 }, children: "Dev AI" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--text-mid)", fontSize: ".88rem", maxWidth: 280, lineHeight: 1.6 }, children: "Ask me anything about coding, debugging, or software engineering tasks." })
+              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--text-mid)", fontSize: ".88rem", maxWidth: 280, lineHeight: 1.6 }, children: "Your offline coding assistant. Ask me anything about coding, debugging, or software engineering." })
             ] }),
             /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "flex", flexWrap: "wrap", gap: 8, justifyContent: "center", maxWidth: 380 }, children: ["Write a Python function", "Explain this code", "Debug my script", "Refactor this code"].map((hint) => /* @__PURE__ */ jsxRuntimeExports.jsx(
               "button",
@@ -39239,7 +39352,7 @@ const StatusBar = () => {
     ] })
   ] });
 };
-const formatSchedule = (schedule) => {
+const formatSchedule = (schedule, isAlarm) => {
   if (!schedule || typeof schedule !== "object") return "No schedule";
   if (schedule.kind === "every") {
     const ms = schedule.everyMs;
@@ -39251,7 +39364,13 @@ const formatSchedule = (schedule) => {
     return `Every ${Math.round(mins)} minute${Math.round(mins) !== 1 ? "s" : ""}`;
   }
   if (schedule.kind === "at") {
-    return `At ${new Date(schedule.atMs).toLocaleString()}`;
+    const date = new Date(schedule.atMs);
+    const dateStr = date.toLocaleDateString(void 0, { month: "short", day: "numeric", year: "numeric" });
+    const timeStr = date.toLocaleTimeString(void 0, { hour: "numeric", minute: "2-digit", hour12: true });
+    if (isAlarm) {
+      return `Alarm: ${timeStr}`;
+    }
+    return `At ${dateStr} ${timeStr}`;
   }
   return "Scheduled";
 };
@@ -39363,7 +39482,10 @@ function TaskManager() {
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-between items-start gap-3 mb-4", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-w-0 flex-1", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-['Syne'] font-semibold text-[var(--text)] text-base mb-1", children: job.name }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "font-['Syne'] font-semibold text-[var(--text)] text-base mb-1 flex items-center gap-2", children: [
+                    job.name,
+                    job.payload?.taskType === "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsx(AlarmClock, { size: 16, className: "text-orange-500" })
+                  ] }),
                   job.description && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "text-sm text-[var(--text-mid)]", children: job.description })
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
@@ -39391,12 +39513,12 @@ function TaskManager() {
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col gap-3", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center text-sm text-[var(--text-mid)]", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 flex justify-center mr-2 opacity-70", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { size: 16 }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium bg-[var(--ai-bg)] px-3 py-1.5 rounded-xl text-[var(--ai-color)]", children: formatSchedule(job.schedule) })
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 flex justify-center mr-2 opacity-70", children: job.payload?.taskType === "alarm" ? /* @__PURE__ */ jsxRuntimeExports.jsx(AlarmClock, { size: 16, className: "text-orange-500" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Clock, { size: 16 }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: `font-medium px-3 py-1.5 rounded-xl ${job.payload?.taskType === "alarm" ? "bg-orange-500/10 text-orange-500" : "bg-[var(--ai-bg)] text-[var(--ai-color)]"}`, children: formatSchedule(job.schedule, job.payload?.taskType === "alarm") })
                 ] }),
-                job.payload && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start text-sm text-[var(--text-mid)]", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 flex justify-center mr-2 opacity-70 mt-0.5", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { size: 16 }) }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 bg-[var(--ai-bg)] p-3 rounded-xl text-[var(--ai-color)] text-sm", children: job.payload.text || job.payload.message || JSON.stringify(job.payload) })
+                job.payload && (job.payload.message || job.payload.text) && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-start text-sm text-[var(--text-mid)]", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-8 flex justify-center mr-2 opacity-70 mt-0.5", children: job.payload.taskType === "alarm" ? /* @__PURE__ */ jsxRuntimeExports.jsx(AlarmClock, { size: 16, className: "text-orange-500" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Zap, { size: 16 }) }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex-1 p-3 rounded-xl text-sm ${job.payload.taskType === "alarm" ? "bg-orange-500/10 text-orange-400" : "bg-[var(--ai-bg)] text-[var(--ai-color)]"}`, children: job.payload.text || job.payload.message })
                 ] })
               ] })
             ]
@@ -39408,9 +39530,10 @@ function TaskManager() {
   ] });
 }
 function jobToFormState(job) {
-  if (!job) return { name: "", description: "", scheduleType: "every", intervalValue: 30, intervalUnit: "minutes", targetDate: "", agentMessage: "" };
+  if (!job) return { taskType: "task", name: "", description: "", scheduleType: "every", intervalValue: 30, intervalUnit: "minutes", targetDate: "", agentMessage: "" };
   const s = job.schedule || {};
   const payload = job.payload || {};
+  const taskType = payload?.taskType || "task";
   let scheduleType = "every";
   let intervalValue = 30;
   let intervalUnit = "minutes";
@@ -39436,7 +39559,7 @@ function jobToFormState(job) {
     }
   }
   const agentMessage = payload && (payload.message || payload.text) || "";
-  return { name: job.name || "", description: job.description || "", scheduleType, intervalValue, intervalUnit, targetDate, agentMessage };
+  return { taskType, name: job.name || "", description: job.description || "", scheduleType, intervalValue, intervalUnit, targetDate, agentMessage };
 }
 function TaskAdd() {
   const navigate = useNavigate();
@@ -39485,13 +39608,29 @@ function TaskAdd() {
       syncInputValueRef.current = null;
     }
   });
+  const [taskType, setTaskType] = reactExports.useState(initial.taskType);
   const [name2, setName] = reactExports.useState(initial.name);
   const [description, setDescription] = reactExports.useState(initial.description);
-  const [scheduleType, setScheduleType] = reactExports.useState(initial.scheduleType);
+  const [scheduleType, setScheduleType] = reactExports.useState(initial.taskType === "alarm" ? "at" : initial.scheduleType);
   const [intervalValue, setIntervalValue] = reactExports.useState(initial.intervalValue);
   const [intervalUnit, setIntervalUnit] = reactExports.useState(initial.intervalUnit);
   const [targetDate, setTargetDate] = reactExports.useState(initial.targetDate);
   const [agentMessage, setAgentMessage] = reactExports.useState(initial.agentMessage);
+  const handleTaskTypeChange = (newType) => {
+    setTaskType(newType);
+    if (newType === "alarm") {
+      setScheduleType("at");
+    }
+  };
+  const setTodayNow = () => {
+    const now2 = /* @__PURE__ */ new Date();
+    const year = now2.getFullYear();
+    const month = String(now2.getMonth() + 1).padStart(2, "0");
+    const day = String(now2.getDate()).padStart(2, "0");
+    const hours = String(now2.getHours()).padStart(2, "0");
+    const minutes = String(now2.getMinutes()).padStart(2, "0");
+    setTargetDate(`${year}-${month}-${day}T${hours}:${minutes}`);
+  };
   reactExports.useEffect(() => {
     const removeAdded = addEventListener("task_added", (data) => {
       if (data.result) navigate("/tasks", { replace: true });
@@ -39515,7 +39654,7 @@ function TaskAdd() {
     } else if (scheduleType === "at") {
       schedule = { kind: "at", atMs: new Date(targetDate).getTime() };
     }
-    const payload = agentMessage ? { kind: "agentTurn", message: agentMessage } : {};
+    const payload = agentMessage ? { kind: "agentTurn", message: agentMessage, taskType } : { taskType };
     if (Object.keys(payload).length === 0 && !confirm("No agent message provided. Save anyway?")) return;
     if (isEdit) {
       sendMessage("task.update", { id: editJob.id, name: name2, description, schedule, payload });
@@ -39635,6 +39774,56 @@ function TaskAdd() {
                 )
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Task Type" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex bg-[var(--bg)] p-1.5 rounded-2xl gap-1", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: () => handleTaskTypeChange("task"),
+                      className: `flex-1 py-3.5 text-center text-sm font-medium min-h-[48px] rounded-xl transition-all ${taskType === "task" ? "bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[var(--ai-color)]/20" : "text-[var(--text-mid)] hover:bg-[var(--ai-bg)]"}`,
+                      children: "Task"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: () => handleTaskTypeChange("alarm"),
+                      className: `flex-1 py-3.5 text-center text-sm font-medium min-h-[48px] rounded-xl transition-all flex items-center justify-center gap-2 ${taskType === "alarm" ? "bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[var(--ai-color)]/20" : "text-[var(--text-mid)] hover:bg-[var(--ai-bg)]"}`,
+                      children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx(AlarmClock, { size: 16 }),
+                        " Alarm"
+                      ]
+                    }
+                  )
+                ] })
+              ] }),
+              taskType === "alarm" ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Alarm Time" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "input",
+                    {
+                      type: "datetime-local",
+                      value: targetDate,
+                      onChange: (e) => setTargetDate(e.target.value),
+                      ...bindKeyboardSync(setTargetDate),
+                      className: "ai-input flex-1 min-h-[48px] text-base p-4",
+                      required: true
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: setTodayNow,
+                      className: "ai-btn px-4 min-h-[48px] text-sm bg-[var(--ai-bg)] text-[var(--ai-color)] border border-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white",
+                      children: "Today"
+                    }
+                  )
+                ] })
+              ] }) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-3", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Schedule Type" }),
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex bg-[var(--bg)] p-1.5 rounded-2xl gap-1", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -39657,7 +39846,7 @@ function TaskAdd() {
                   )
                 ] })
               ] }),
-              scheduleType === "every" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-4", children: [
+              taskType !== "alarm" && scheduleType === "every" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col sm:flex-row gap-4", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 space-y-2", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Interval" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -39689,24 +39878,35 @@ function TaskAdd() {
                   )
                 ] })
               ] }),
-              scheduleType === "at" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
+              scheduleType === "at" && taskType !== "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsx("label", { className: "block text-sm font-medium text-[var(--text-mid)]", children: "Date & Time" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsx(
-                  "input",
-                  {
-                    type: "datetime-local",
-                    value: targetDate,
-                    onChange: (e) => setTargetDate(e.target.value),
-                    ...bindKeyboardSync(setTargetDate),
-                    className: "ai-input w-full min-h-[48px] text-base p-4",
-                    required: scheduleType === "at"
-                  }
-                )
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "input",
+                    {
+                      type: "datetime-local",
+                      value: targetDate,
+                      onChange: (e) => setTargetDate(e.target.value),
+                      ...bindKeyboardSync(setTargetDate),
+                      className: "ai-input flex-1 min-h-[48px] text-base p-4",
+                      required: scheduleType === "at"
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      type: "button",
+                      onClick: setTodayNow,
+                      className: "ai-btn px-4 min-h-[48px] text-sm bg-[var(--ai-bg)] text-[var(--ai-color)] border border-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white",
+                      children: "Today"
+                    }
+                  )
+                ] })
               ] }),
               /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-2", children: [
                 /* @__PURE__ */ jsxRuntimeExports.jsxs("label", { className: "block text-sm font-medium text-[var(--text-mid)] flex items-center gap-2", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 16 }),
-                  " Agent Instruction"
+                  taskType === "alarm" ? /* @__PURE__ */ jsxRuntimeExports.jsx(AlarmClock, { size: 16 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(MessageSquare, { size: 16 }),
+                  taskType === "alarm" ? "Alarm Message" : "Agent Instruction"
                 ] }),
                 /* @__PURE__ */ jsxRuntimeExports.jsx(
                   "textarea",
@@ -39715,7 +39915,8 @@ function TaskAdd() {
                     onChange: (e) => setAgentMessage(e.target.value),
                     ...bindKeyboardSync(setAgentMessage),
                     className: "ai-input w-full p-4 bg-[var(--bg)] border border-[var(--border)] text-[var(--text)] text-base focus:border-[var(--ai-color)] outline-none min-h-[100px] resize-none",
-                    placeholder: "Instructions for agent..."
+                    placeholder: taskType === "alarm" ? "What should the AI say when the alarm goes off..." : "Instructions for agent...",
+                    required: true
                   }
                 )
               ] }),

@@ -1,10 +1,11 @@
 import React, { useEffect, useState, useRef, useCallback } from 'react';
+// eslint-disable-next-line no-unused-vars
 import { motion } from 'framer-motion';
-import { ArrowLeft, Plus, Trash2, Clock, Zap, Pencil } from 'lucide-react';
+import { ArrowLeft, Plus, Trash2, Clock, Zap, Pencil, AlarmClock } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 
-const formatSchedule = (schedule) => {
+const formatSchedule = (schedule, isAlarm) => {
     if (!schedule || typeof schedule !== 'object') return 'No schedule';
     if (schedule.kind === 'every') {
         const ms = schedule.everyMs;
@@ -16,7 +17,13 @@ const formatSchedule = (schedule) => {
         return `Every ${Math.round(mins)} minute${Math.round(mins) !== 1 ? 's' : ''}`;
     }
     if (schedule.kind === 'at') {
-        return `At ${new Date(schedule.atMs).toLocaleString()}`;
+        const date = new Date(schedule.atMs);
+        const dateStr = date.toLocaleDateString(undefined, { month: 'short', day: 'numeric', year: 'numeric' });
+        const timeStr = date.toLocaleTimeString(undefined, { hour: 'numeric', minute: '2-digit', hour12: true });
+        if (isAlarm) {
+            return `Alarm: ${timeStr}`;
+        }
+        return `At ${dateStr} ${timeStr}`;
     }
     return 'Scheduled';
 };
@@ -139,7 +146,12 @@ export default function TaskManager() {
                         >
                             <div className="flex justify-between items-start gap-3 mb-4">
                                 <div className="min-w-0 flex-1">
-                                    <h3 className="font-['Syne'] font-semibold text-[var(--text)] text-base mb-1">{job.name}</h3>
+                                    <h3 className="font-['Syne'] font-semibold text-[var(--text)] text-base mb-1 flex items-center gap-2">
+                                        {job.name}
+                                        {job.payload?.taskType === 'alarm' && (
+                                            <AlarmClock size={16} className="text-orange-500" />
+                                        )}
+                                    </h3>
                                     {job.description && (
                                         <p className="text-sm text-[var(--text-mid)]">{job.description}</p>
                                     )}
@@ -167,20 +179,20 @@ export default function TaskManager() {
                             <div className="flex flex-col gap-3">
                                 <div className="flex items-center text-sm text-[var(--text-mid)]">
                                     <div className="w-8 flex justify-center mr-2 opacity-70">
-                                        <Clock size={16} />
+                                        {job.payload?.taskType === 'alarm' ? <AlarmClock size={16} className="text-orange-500" /> : <Clock size={16} />}
                                     </div>
-                                    <span className="font-medium bg-[var(--ai-bg)] px-3 py-1.5 rounded-xl text-[var(--ai-color)]">
-                                        {formatSchedule(job.schedule)}
+                                    <span className={`font-medium px-3 py-1.5 rounded-xl ${job.payload?.taskType === 'alarm' ? 'bg-orange-500/10 text-orange-500' : 'bg-[var(--ai-bg)] text-[var(--ai-color)]'}`}>
+                                        {formatSchedule(job.schedule, job.payload?.taskType === 'alarm')}
                                     </span>
                                 </div>
 
-                                {job.payload && (
+                                {job.payload && (job.payload.message || job.payload.text) && (
                                     <div className="flex items-start text-sm text-[var(--text-mid)]">
                                         <div className="w-8 flex justify-center mr-2 opacity-70 mt-0.5">
-                                            <Zap size={16} />
+                                            {job.payload.taskType === 'alarm' ? <AlarmClock size={16} className="text-orange-500" /> : <Zap size={16} />}
                                         </div>
-                                        <div className="flex-1 bg-[var(--ai-bg)] p-3 rounded-xl text-[var(--ai-color)] text-sm">
-                                            {job.payload.text || job.payload.message || JSON.stringify(job.payload)}
+                                        <div className={`flex-1 p-3 rounded-xl text-sm ${job.payload.taskType === 'alarm' ? 'bg-orange-500/10 text-orange-400' : 'bg-[var(--ai-bg)] text-[var(--ai-color)]'}`}>
+                                            {job.payload.text || job.payload.message}
                                         </div>
                                     </div>
                                 )}

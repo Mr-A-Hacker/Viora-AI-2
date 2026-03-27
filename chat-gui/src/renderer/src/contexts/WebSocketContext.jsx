@@ -17,6 +17,7 @@ export function WebSocketProvider({ children }) {
     const [voiceStatus, setVoiceStatus] = useState('idle'); // idle | listening | thinking | speaking
     const [voskText, setVoskText] = useState('');
     const [thinking, setThinking] = useState(false);
+    const [ttsEnabled, setTtsEnabled] = useState(false);
 
     // Multi-conversation state
     const [conversations, setConversations] = useState([]);
@@ -73,6 +74,7 @@ export function WebSocketProvider({ children }) {
                     { role: 'assistant', text: data.text || '' },
                 ]);
                 setStreamText('');
+                speakTts(data.text || '');
                 break;
             case 'stream_error':
                 setStreaming(false);
@@ -102,6 +104,11 @@ export function WebSocketProvider({ children }) {
             case 'voice_status':
                 setVoiceStatus(data.status);
                 setIsRecording(data.status === 'listening');
+                if (data.status === 'listening' || data.status === 'thinking') {
+                    if ('speechSynthesis' in window) {
+                        window.speechSynthesis.cancel();
+                    }
+                }
                 if (data.status === 'idle') {
                     setIsVoiceStreaming(false);
                     setVoiceStreamText('');
@@ -122,13 +129,16 @@ export function WebSocketProvider({ children }) {
             case 'ai_start':
                 setVoiceStreamText('');
                 setIsVoiceStreaming(true);
+                if (ttsEnabled && 'speechSynthesis' in window) {
+                    window.speechSynthesis.cancel();
+                }
                 break;
             case 'ai_delta':
                 setVoiceStreamText(data.text || '');
                 break;
             case 'ai_final':
                 setVoiceStreamText(data.text || '');
-                // We keep isVoiceStreaming true while speaking, speaking status comes from voice_status
+                speakTts(data.text || '', true);
                 break;
             case 'ai_aborted':
                 setVoiceStreamText((prev) => prev + ' [aborted]');
@@ -345,6 +355,28 @@ export function WebSocketProvider({ children }) {
         setThinking(prev => !prev);
     }, []);
 
+    const speakTts = useCallback((text, force = false) => {
+        if (!ttsEnabled || !text) return;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female')) 
+                || voices.find(v => v.lang.startsWith('en'))
+                || voices[0];
+            if (englishVoice) utterance.voice = englishVoice;
+            
+            if (force) {
+                window.speechSynthesis.cancel();
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+    }, [ttsEnabled]);
+
     const value = {
         connStatus,
         connect,
@@ -374,6 +406,8 @@ export function WebSocketProvider({ children }) {
         isVoiceStreaming,
         thinking,
         toggleThinking,
+        ttsEnabled,
+        setTtsEnabled,
         lastApiError,
         clearApiError: () => setLastApiError(null),
     };

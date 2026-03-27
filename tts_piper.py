@@ -6,6 +6,7 @@ import threading
 import queue
 import time
 import urllib.request
+import wave
 from piper.voice import PiperVoice
 
 os.environ['ORT_LOGGING_LEVEL'] = '3'
@@ -61,7 +62,9 @@ def find_available_speaker():
 
 # Auto-detect speaker
 DETECTED_SPEAKER = find_available_speaker()
-TTS_ALSA_DEVICE = os.environ.get("TTS_ALSA_DEVICE", DETECTED_SPEAKER)
+# Default to HDMI audio (plughw:1,0) if no speaker detected
+FALLBACK_SPEAKER = "plughw:1,0"
+TTS_ALSA_DEVICE = os.environ.get("TTS_ALSA_DEVICE", FALLBACK_SPEAKER)
 
 # Sentence-ending punctuation (split on these, keep delimiter with sentence)
 SENTENCE_END_RE = re.compile(r'(?<=[.!?\n])\s*')
@@ -151,20 +154,49 @@ class PocketAudio:
         self.enqueue_text(text)
 
     def _speak_internal(self, text):
-        command = f"aplay -D {TTS_ALSA_DEVICE} -r 22050 -f S16_LE -t raw -"
-        args = shlex.split(command)
+        import tempfile
+        import os
+        
         print(f"Synthesizing: {text[:50]}...")
+        t0 = time.perf_counter()
+        
         try:
-            with subprocess.Popen(args, stdin=subprocess.PIPE) as play_process:
-                t0 = time.perf_counter()
+            with tempfile.NamedTemporaryFile(suffix='.wav', delete=False) as tmp:
+                tmp_path = tmp.name
+            
+            with wave.open(tmp_path, 'wb') as w:
+                w.setnchannels(1)
+                w.setsampwidth(2)
+                w.setframerate(22050)
                 for chunk in self.voice.synthesize(text):
-                    play_process.stdin.write(chunk.audio_int16_bytes)
-                tts_ms = (time.perf_counter() - t0) * 1000
-                print(f"  text-to-speech: {tts_ms:.0f} ms")
-                play_process.stdin.close()
-                play_process.wait()
-            if play_process.returncode != 0:
-                print(f"aplay exited with code {play_process.returncode}")
+                    w.writeframes(chunk.audio_int16_bytes)
+            
+            tts_ms = (time.perf_counter() - t0) * 1000
+            print(f"  synthesis: {tts_ms:.0f} ms")
+            
+            # Try pw-play first (pipewire), then aplay
+            played = False
+            for cmd in [['pw-play', tmp_path], ['aplay', '-D', TTS_ALSA_DEVICE, tmp_path]]:
+                try:
+                    result = subprocess.run(cmd, capture_output=True, timeout=30)
+                    if result.returncode == 0:
+                        played = True
+                        break
+                    else:
+                        err = result.stderr.decode() if result.stderr else "unknown"
+                        print(f"{cmd[0]} error: {err}")
+                except FileNotFoundError:
+                    continue
+                except subprocess.TimeoutExpired:
+                    print(f"{cmd[0]} timed out")
+            
+            if not played:
+                print("Warning: no audio player available")
+            
+            os.unlink(tmp_path)
+            
+        except subprocess.TimeoutExpired:
+            print("Audio playback timed out")
         except Exception as e:
             print(f"Audio Error: {e}")
 

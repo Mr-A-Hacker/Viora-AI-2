@@ -15,6 +15,15 @@ from config import JOBS_FILE
 logger = logging.getLogger(__name__)
 _scheduler = None
 _conv_manager = None
+_tts_instance = None
+
+
+def _get_tts():
+    global _tts_instance
+    if _tts_instance is None:
+        from tts_piper import PocketAudio
+        _tts_instance = PocketAudio()
+    return _tts_instance
 
 
 def _load_jobs() -> List[dict]:
@@ -41,14 +50,39 @@ def _is_recurring(schedule: Any) -> bool:
     return False
 
 
+def _run_alarm(job_id: str) -> None:
+    """Called by scheduler when an alarm is due. Speaks the message directly via TTS."""
+    jobs = _load_jobs()
+    job = next((j for j in jobs if j.get("id") == job_id), None)
+    if not job:
+        return
+    payload = job.get("payload") or {}
+    message = (payload.get("message") or payload.get("text") or "").strip()
+    if not message:
+        logger.warning("[task_scheduler] Alarm %s has no message, skipping.", job_id)
+        return
+    try:
+        tts = _get_tts()
+        tts.speak(message)
+        logger.info("[task_scheduler] Alarm %s triggered, speaking: %s", job_id, message[:50])
+    except Exception as e:
+        logger.warning("[task_scheduler] TTS failed for alarm %s: %s", job_id, e)
+
+
 def _run_job(job_id: str) -> None:
     """Called by scheduler when a job is due. Runs tool_ai and create/append conversation."""
     global _conv_manager
     jobs = _load_jobs()
     job = next((j for j in jobs if j.get("id") == job_id), None)
-    if not job or not _conv_manager:
+    if not job:
         return
-    prompt = _get_prompt_from_payload(job.get("payload") or {})
+    payload = job.get("payload") or {}
+    if payload.get("taskType") == "alarm":
+        _run_alarm(job_id)
+        return
+    if not _conv_manager:
+        return
+    prompt = _get_prompt_from_payload(payload)
     if not prompt:
         logger.warning("[task_scheduler] Job %s has no prompt, skipping.", job_id)
         return

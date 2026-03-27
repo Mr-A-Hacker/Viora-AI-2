@@ -229,6 +229,8 @@ class AIState:
         """
         Takes text, routes via semantic router, then either runs tool_ai (function_gemma)
         or generates response with Qwen (qwen_basic / qwen_thinking).
+        
+        Generates full response first, then speaks it to avoid TTS glitches.
         """
         logger.info("Triggering AI response for: %s", text)
         self.voice_messages.append({"role": "user", "content": text})
@@ -275,12 +277,9 @@ class AIState:
                     else:
                         await websocket.send_json({"type": "voice_status", "status": "idle"})
                 return
-            # Qwen path: stream response and feed TTS sentence-by-sentence
+            # Qwen path: generate full response first, then speak
             thinking = route == "qwen_thinking"
             response = await self.generate_response(self.voice_messages, thinking=thinking)
-
-            tts_flushed_len = 0  # index in clean_reply up to which we've flushed to TTS
-            speaking_status_sent = False
 
             for chunk in response:
                 # Check for abort messages in queue
@@ -304,21 +303,6 @@ class AIState:
                         full_response += content
                         await websocket.send_json({"type": "ai_delta", "text": strip_think_for_ui(full_response)})
 
-                        # Flush complete sentences to TTS (only non-thinking content; strip unclosed <think> too)
-                        clean_reply = strip_think_for_ui(full_response)
-                        last_end = max(
-                            clean_reply.rfind("."), clean_reply.rfind("!"),
-                            clean_reply.rfind("?"), clean_reply.rfind("\n")
-                        )
-                        if last_end >= tts_flushed_len:
-                            to_flush = clean_reply[tts_flushed_len : last_end + 1].strip()
-                            tts_flushed_len = last_end + 1
-                            for s in split_sentences(to_flush):
-                                if not speaking_status_sent:
-                                    speaking_status_sent = True
-                                    await websocket.send_json({"type": "voice_status", "status": "speaking"})
-                                self.tts.enqueue_sentence(s)
-
                 await asyncio.sleep(0.01)
 
             if not abort_event.is_set():
@@ -328,18 +312,14 @@ class AIState:
                     self.voice_messages = [self.voice_messages[0]] + self.voice_messages[-10:]
 
                 clean_reply = strip_think_for_ui(full_response)
-                await websocket.send_json({"type": "ai_final", "text": strip_think_for_ui(full_response)})
+                await websocket.send_json({"type": "ai_final", "text": clean_reply})
 
-                # Flush any remaining text to TTS (last sentence or fragment)
-                if clean_reply and tts_flushed_len < len(clean_reply):
-                    remainder = clean_reply[tts_flushed_len:].strip()
-                    if remainder:
-                        if not speaking_status_sent:
-                            await websocket.send_json({"type": "voice_status", "status": "speaking"})
-                        self.tts.enqueue_sentence(remainder)
-                if not speaking_status_sent:
+                # Now speak the full response (generate first, then talk)
+                if clean_reply:
+                    await websocket.send_json({"type": "voice_status", "status": "speaking"})
+                    self.tts.enqueue_text(clean_reply)
+                else:
                     await websocket.send_json({"type": "voice_status", "status": "idle"})
-                # Otherwise "idle" is sent by on_tts_queue_drained when playback finishes
 
         except Exception as e:
             logger.exception("Error in AI response pipeline: %s", e)

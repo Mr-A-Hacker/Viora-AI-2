@@ -14,7 +14,7 @@ export default function Avatar({
 
     const [expression, setExpression] = useState('neutral');
     const [blink, setBlink] = useState(false);
-    const [glitch, setGlitch] = useState(false);
+    const glitch = false;
 
     useEffect(() => {
         if (externalExpression) {
@@ -44,17 +44,6 @@ export default function Avatar({
                 setTimeout(() => setExpression('neutral'), 2000 + Math.random() * 2000);
             }
         }, 4000);
-        return () => clearInterval(interval);
-    }, [animate, expression]);
-
-    useEffect(() => {
-        if (!animate || expression === 'speaking') return;
-        const interval = setInterval(() => {
-            if (Math.random() > 0.95) {
-                setGlitch(true);
-                setTimeout(() => setGlitch(false), 200);
-            }
-        }, 5000);
         return () => clearInterval(interval);
     }, [animate, expression]);
 

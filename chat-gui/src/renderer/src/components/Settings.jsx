@@ -1,15 +1,17 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Power, Keyboard, Moon, Sun } from 'lucide-react';
+import { ArrowLeft, Power, Keyboard, Moon, Sun, Volume2 } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config.js';
 import { useKeyboardSettings } from '../contexts/KeyboardContext.jsx';
 import { useDarkMode } from '../contexts/DarkModeContext.jsx';
+import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 
 export default function Settings() {
     const navigate = useNavigate();
     const { keyboardEnabled, setKeyboardEnabled } = useKeyboardSettings();
     const { isDark, toggleDark } = useDarkMode();
+    const { ttsEnabled, setTtsEnabled } = useWebSocket();
 
     const handleCloseApp = async () => {
         try {
@@ -87,6 +89,24 @@ export default function Settings() {
                             className={`settings-toggle ${keyboardEnabled ? 'active' : ''}`}
                         >
                             <span className={`settings-toggle-knob ${keyboardEnabled ? 'on' : ''}`} />
+                        </button>
+                    </div>
+
+                    <div className="settings-row">
+                        <div className="settings-row-label">
+                            <div className="settings-icon">
+                                <Volume2 size={20} />
+                            </div>
+                            Voice output (TTS)
+                        </div>
+                        <button
+                            type="button"
+                            role="switch"
+                            aria-checked={ttsEnabled}
+                            onClick={() => setTtsEnabled(!ttsEnabled)}
+                            className={`settings-toggle ${ttsEnabled ? 'active' : ''}`}
+                        >
+                            <span className={`settings-toggle-knob ${ttsEnabled ? 'on' : ''}`} />
                         </button>
                     </div>
 
