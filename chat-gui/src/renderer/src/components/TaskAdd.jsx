@@ -363,23 +363,14 @@ export default function TaskAdd() {
                         {scheduleType === 'at' && taskType !== 'alarm' && (
                             <div className="space-y-2">
                                 <label className="block text-sm font-medium text-[var(--text-mid)]">Date & Time</label>
-                                <div className="flex gap-2">
-                                    <input
-                                        type="datetime-local"
-                                        value={targetDate}
-                                        onChange={(e) => setTargetDate(e.target.value)}
-                                        {...bindKeyboardSync(setTargetDate)}
-                                        className="ai-input flex-1 min-h-[48px] text-base p-4"
-                                        required={scheduleType === 'at'}
-                                    />
-                                    <button
-                                        type="button"
-                                        onClick={setTodayNow}
-                                        className="ai-btn px-4 min-h-[48px] text-sm bg-[var(--ai-bg)] text-[var(--ai-color)] border border-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white"
-                                    >
-                                        Today
-                                    </button>
-                                </div>
+                                <input
+                                    type="datetime-local"
+                                    value={targetDate}
+                                    onChange={(e) => setTargetDate(e.target.value)}
+                                    {...bindKeyboardSync(setTargetDate)}
+                                    className="ai-input w-full min-h-[48px] text-base p-4"
+                                    required={scheduleType === 'at'}
+                                />
                             </div>
                         )}
                         <div className="space-y-2">
