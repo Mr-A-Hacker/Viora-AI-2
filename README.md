@@ -1,106 +1,88 @@
-<!-- ██████╗  ██████╗  ██████╗██╗  ██╗███████╗████████╗      █████╗ ██╗
-<!-- ██╔══██╗██╔═══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝     ██╔══██╗██║
-<!-- ██████╔╝██║   ██║██║     █████╔╝ █████╗     ██║        ███████║██║
-<!-- ██╔═══╝ ██║   ██║██║     ██╔═██╗ ██╔══╝     ██║        ██╔══██║██║
-<!-- ██║     ╚██████╔╝╚██████╗██║  ██╗███████╗   ██║        ██║  ██║██║
-<!-- ╚═╝      ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝        ╚═╝  ╚═╝╚═╝ -->
-
 <div align="center">
 
 ```
-███╗   ███╗██████╗       █████╗      ██╗  ██╗ █████╗  ██████╗██╗  ██╗███████╗██████╗ 
-████╗ ████║██╔══██╗     ██╔══██╗     ██║  ██║██╔══██╗██╔════╝██║ ██╔╝██╔════╝██╔══██╗
-██╔████╔██║██████╔╝     ███████║     ███████║███████║██║     █████╔╝ █████╗  ██████╔╝
-██║╚██╔╝██║██╔══██╗     ██╔══██║     ██╔══██║██╔══██║██║     ██╔═██╗ ██╔══╝  ██╔══██╗
-██║ ╚═╝ ██║██║  ██║     ██║  ██║     ██║  ██║██║  ██║╚██████╗██║  ██╗███████╗██║  ██║
-╚═╝     ╚═╝╚═╝  ╚═╝     ╚═╝  ╚═╝     ╚═╝  ╚═╝╚═╝  ╚═╝ ╚═════╝╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝
+ ██╗   ██╗██╗ ██████╗ ██████╗  █████╗      █████╗ ██╗    ██████╗ 
+ ██║   ██║██║██╔═══██╗██╔══██╗██╔══██╗    ██╔══██╗██║    ╚════██╗
+ ██║   ██║██║██║   ██║██████╔╝███████║    ███████║██║     █████╔╝
+ ╚██╗ ██╔╝██║██║   ██║██╔══██╗██╔══██║    ██╔══██║██║    ██╔═══╝ 
+  ╚████╔╝ ██║╚██████╔╝██║  ██║██║  ██║    ██║  ██║██║    ███████╗
+   ╚═══╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝  ╚═╝╚═╝    ╚══════╝
 ```
 
-# 🤖 Pocket AI — Version 2.0
-### *The AI that fits in your pocket, but thinks beyond the universe.*
-
----
-
-![Version](https://img.shields.io/badge/Version-2.0.0-00ff41?style=for-the-badge&logo=github&logoColor=black)
-![Status](https://img.shields.io/badge/Status-ACTIVE-00ff41?style=for-the-badge&logo=statuspage&logoColor=black)
-![Built By](https://img.shields.io/badge/Built%20By-Mr--A--Hacker-ff0066?style=for-the-badge&logo=hackaday&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
-![Stars](https://img.shields.io/github/stars/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2?style=for-the-badge&color=ffd700)
-![Forks](https://img.shields.io/github/forks/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2?style=for-the-badge&color=ff6600)
-![Issues](https://img.shields.io/github/issues/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2?style=for-the-badge&color=ff0000)
-![Last Commit](https://img.shields.io/github/last-commit/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2?style=for-the-badge&color=00ffff)
+### *Your fully offline, voice-powered AI assistant — built for Raspberry Pi and Linux.*
+### *No cloud. No subscriptions. No limits.*
 
 <br/>
 
-> **"I didn't build an AI. I built a weapon of intelligence."**
+![Version](https://img.shields.io/badge/Version-2.0-a855f7?style=for-the-badge&logo=github&logoColor=white)
+![Status](https://img.shields.io/badge/Status-LIVE-22c55e?style=for-the-badge&logoColor=white)
+![Platform](https://img.shields.io/badge/Platform-Raspberry%20Pi%20%7C%20Linux-e11d48?style=for-the-badge&logo=raspberrypi&logoColor=white)
+![Python](https://img.shields.io/badge/Python-3.11-3b82f6?style=for-the-badge&logo=python&logoColor=white)
+![Offline](https://img.shields.io/badge/100%25-Offline%20Ready-0ea5e9?style=for-the-badge&logo=tor-browser&logoColor=white)
+![License](https://img.shields.io/badge/License-MIT-f59e0b?style=for-the-badge)
+
+<br/>
+
+![Built By](https://img.shields.io/badge/Built%20by-Mr--A--Hacker-a855f7?style=for-the-badge&logo=hackaday&logoColor=white)
+![Stars](https://img.shields.io/github/stars/Mr-A-Hacker/Viora-AI-2?style=for-the-badge&color=ffd700)
+![Forks](https://img.shields.io/github/forks/Mr-A-Hacker/Viora-AI-2?style=for-the-badge&color=a855f7)
+![Issues](https://img.shields.io/github/issues/Mr-A-Hacker/Viora-AI-2?style=for-the-badge&color=ef4444)
+![Last Commit](https://img.shields.io/github/last-commit/Mr-A-Hacker/Viora-AI-2?style=for-the-badge&color=22c55e)
+![Languages](https://img.shields.io/github/languages/count/Mr-A-Hacker/Viora-AI-2?style=for-the-badge&color=06b6d4)
+
+<br/>
+
+> **"The smartest thing in the room doesn't need the internet to prove it."**
 > — *Mr-A-Hacker*
 
 <br/>
 
-[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=22&duration=3000&pause=1000&color=00FF41&center=true&vCenter=true&multiline=true&width=700&height=100&lines=Pocket+AI+v2+%7C+Smarter.+Faster.+Deadlier.;Built+by+a+Hacker.+Powered+by+Intelligence.;Your+personal+AI+%E2%80%94+upgraded+%F0%9F%9A%80)](https://github.com/Mr-A-Hacker)
+[![Typing SVG](https://readme-typing-svg.demolab.com?font=Fira+Code&size=20&duration=2500&pause=800&color=A855F7&center=true&vCenter=true&multiline=true&width=750&height=110&lines=Viora+AI+2+%E2%80%94+Voice.+Vision.+Intelligence.;Runs+on+Raspberry+Pi.+Works+completely+offline.;Talk+to+it.+Show+it+things.+Get+things+done.)](https://github.com/Mr-A-Hacker/Viora-AI-2)
 
 </div>
 
 ---
 
-## 📡 Live System Status
+## 🧭 Navigation
 
 <div align="center">
 
-| System | Status | Uptime |
-|--------|--------|--------|
-| 🧠 Core AI Engine | ![](https://img.shields.io/badge/ONLINE-00ff41?style=flat-square) | 99.98% |
-| 💬 Chat Interface | ![](https://img.shields.io/badge/ONLINE-00ff41?style=flat-square) | 99.95% |
-| 🔐 Security Layer | ![](https://img.shields.io/badge/ACTIVE-00ff41?style=flat-square) | 100% |
-| 📡 API Gateway | ![](https://img.shields.io/badge/ONLINE-00ff41?style=flat-square) | 99.90% |
-| 🗄️ Memory Store | ![](https://img.shields.io/badge/SYNCED-00ff41?style=flat-square) | 99.99% |
+[🌟 Overview](#-overview) • [✨ Features](#-features) • [📋 Requirements](#-requirements) • [⚡ Quick Start](#-quick-start) • [🔧 Installation](#-installation) • [🏗 Architecture](#-architecture) • [🖥 Interface](#-the-viora-interface) • [⚙️ Configuration](#-configuration) • [🌐 Offline Capabilities](#-offline-capabilities) • [🛠 Troubleshooting](#-troubleshooting) • [🎨 Customization](#-customization) • [🧪 Testing](#-testing) • [🗺 Roadmap](#-roadmap) • [🙏 Credits](#-credits)
 
 </div>
 
 ---
 
-<div align="center">
-
-## 🌐 Navigation
-
-[🏠 Overview](#-overview) • [✨ Features](#-features) • [⚡ Quick Start](#-quick-start) • [🔧 Installation](#-installation) • [🏗️ Architecture](#-architecture) • [🔌 API Reference](#-api-reference) • [🎮 Usage Examples](#-usage-examples) • [🛡️ Security](#-security) • [🤝 Contributing](#-contributing) • [📜 Changelog](#-changelog) • [📞 Contact](#-contact)
-
-</div>
-
----
-
-## 🔍 Overview
+## 🌟 Overview
 
 <table>
 <tr>
-<td width="60%">
+<td width="55%">
 
-**Pocket AI Version 2** is not just an upgrade — it's a *revolution*.
+**Viora AI 2** is a complete, self-contained AI assistant that runs **entirely on your device** — no cloud required, no API keys needed (beyond optional model downloads), no data ever leaving your machine.
 
-Built from the ground up by **Mr-A-Hacker**, this is a blazing-fast, pocket-sized artificial intelligence assistant that you can run anywhere — your terminal, your browser, your server, your Raspberry Pi. No cloud required (unless you want it).
+Built by **Mr-A-Hacker** and optimized for **Raspberry Pi 4/5** and Linux, Viora is the AI assistant that privacy-conscious hackers, tinkerers, and makers have been waiting for.
 
-Version 2 introduces a completely rewritten inference core, an elegant new chat interface, persistent memory, multi-modal input support, and a plugin architecture that lets you extend it infinitely.
+Talk to it with your voice. Show it things with your camera. Ask it to remember tasks. Check the weather, open maps, write code — all from a beautiful, touch-friendly interface that runs locally.
 
-This is the AI tool that **hackers, developers, and builders** deserve.
+This isn't a demo. This is a real AI assistant you actually own.
 
 </td>
-<td width="40%" align="center">
+<td width="45%" align="center">
 
 ```
-  ╔═══════════════════╗
-  ║  POCKET AI v2.0   ║
-  ║  ───────────────  ║
-  ║  > Initializing   ║
-  ║  > Loading model  ║
-  ║  > Ready.         ║
-  ║                   ║
-  ║  [████████] 100%  ║
-  ╚═══════════════════╝
-        │
-    ┌───┴───┐
-    │  Mr-A │
-    │Hacker │
-    └───────┘
+╔══════════════════════════════╗
+║    ◉  VIORA AI  v2.0         ║
+║  ──────────────────────────  ║
+║  💬 Chat      ✅  ONLINE     ║
+║  🎤 Voice     ✅  ONLINE     ║
+║  👁  Vision   ✅  ONLINE     ║
+║  📝 Agent     ✅  RUNNING    ║
+║  🌦 Weather   ✅  SYNCED     ║
+║  🤖 Dev AI    ✅  READY      ║
+║  ──────────────────────────  ║
+║  ▶  Listening...             ║
+╚══════════════════════════════╝
 ```
 
 </td>
@@ -109,468 +91,517 @@ This is the AI tool that **hackers, developers, and builders** deserve.
 
 ---
 
-## ✨ Features
+## 🌐 Language Breakdown
 
 <div align="center">
 
-### 🔥 What makes v2 legendary?
+| Language | Usage | Bar |
+|----------|-------|-----|
+| 🐍 Python | 56.2% | `████████████████████░░░░░░░░░░░░░` |
+| ⚙️ C | 38.6% | `██████████████░░░░░░░░░░░░░░░░░░░` |
+| 🌐 JavaScript | 2.8% | `█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░` |
+| ➕ C++ | 0.7% | `░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░` |
+| 🔤 Other | 1.7% | `░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░` |
 
 </div>
 
-### 🧠 Core Intelligence
-- **Next-Gen Inference Engine** — Completely rewritten engine with 3x faster response times
-- **Context Awareness** — Maintains conversation context across sessions with smart summarization
-- **Multi-turn Reasoning** — Handles complex, multi-step reasoning chains without losing track
-- **Self-Correction** — Detects its own errors and self-corrects before responding
+---
 
-### 💾 Memory & Persistence
-- **Long-Term Memory** — Remembers user preferences, past conversations, and learned facts
-- **Session Snapshots** — Save and resume any conversation state
-- **Vector Store Integration** — Semantic search over your personal knowledge base
-- **Memory Pruning** — Smart pruning keeps memory efficient without losing important info
+## ✨ Features
 
-### 🎨 Interface & UX
-- **Terminal UI (TUI)** — Beautiful, hacker-aesthetic terminal interface built with Rich/Textual
-- **Web Interface** — Clean, minimal web UI accessible from any browser
-- **Voice Mode** — Speech-to-text input and text-to-speech output
-- **Markdown Rendering** — Full markdown, code highlighting, and table rendering in terminal
+### 💬 Chat — *Talk to Viora*
 
-### 🔌 Extensibility
-- **Plugin System** — Drop `.py` files into `/plugins` and they're auto-loaded
-- **Tool Use** — Give the AI tools: web search, code execution, file read/write, and more
-- **API Endpoints** — Full REST API to integrate Pocket AI into any application
-- **Webhook Support** — Trigger AI responses from external events
+Converse naturally with Viora AI using **voice or text**. Powered by **Qwen 0.6B GGUF** — a fast, local language model that runs entirely on-device. Responses are streamed in real-time and read aloud by **Piper TTS**. Fully supports markdown, code blocks, and multi-turn conversations with persistent history.
 
-### ⚡ Performance
-- **Quantized Model Support** — Run 4-bit and 8-bit quantized models with minimal quality loss
-- **Streaming Responses** — Token-by-token streaming for instant feedback
-- **Async Architecture** — Non-blocking I/O handles multiple requests concurrently
-- **GPU/CPU Auto-detect** — Automatically uses the best available compute
+- Real-time streaming token output
+- Full markdown + syntax-highlighted code blocks
+- Multi-turn context with conversation history
+- Conversations saved to `conversations.json` automatically
+- Semantic routing sends your prompt to the right model automatically
 
-### 🛡️ Security
-- **Local-First** — All data stays on your machine by default
-- **Encrypted Memory** — Optional AES-256 encryption for stored conversations
-- **API Key Management** — Secure vault for your API keys
-- **Sandboxed Code Execution** — Code runs in isolated containers
+---
+
+### 🎤 Voice Input — *Speak Naturally*
+
+Two speech-to-text engines, switchable in settings:
+
+| Engine | Mode | Notes |
+|--------|------|-------|
+| **Whisper Tiny** | Fast, accurate | Requires internet for first model download only |
+| **Vosk** | Fully offline | Lightweight, great for privacy |
+
+- Tap the mic, speak, and Viora responds in her own voice
+- Real-time partial transcription — see words as you speak them
+- Configurable via `.env` — enable one or both simultaneously
+
+---
+
+### 🗣 Voice Output — *She Has a Voice*
+
+**Piper TTS** gives Viora a natural, low-latency voice. She sounds like a real assistant — not a robotic synthesizer.
+
+- Multiple voice models available (swap in `/models/piper/`)
+- Low latency: audio starts playing while text is still streaming
+- Customizable speed, pitch, and voice model
+- Runs 100% offline, no internet required
+
+---
+
+### 👁 Vision — *She Can See*
+
+Connect any USB webcam or Raspberry Pi Camera Module and Viora gains vision:
+
+- **Live video streaming** via MJPEG
+- **Photo capture** saved to `/captures/`
+- **Hailo AI Object Detection** — real-time object identification using the Hailo-8 NPU
+- Send captured images to the chat for AI analysis
+- Supports Raspberry Pi Camera Module 3 for best quality
+
+```python
+# Example: Viora describes what she sees
+You   > "What do you see?"
+Viora > "I can see a desk with a laptop, a coffee mug, and what
+          appears to be a Raspberry Pi 5 board connected to a camera."
+```
+
+---
+
+### 📷 Gallery — *Your Photos, Your Device*
+
+All captured photos are saved locally and organized in a sleek gallery view:
+
+- Tap any photo to view full-screen
+- Delete photos directly from the gallery
+- Send any photo to the chat for AI analysis
+- Zero cloud storage — everything stays on-device
+
+---
+
+### ✅ Agent — *Your Personal Task Scheduler*
+
+Tell Viora to remember things and she will — literally:
+
+```
+You   > "Remind me to water the plants every day at 9 AM"
+Viora > "Got it! I'll remind you every day at 9:00 AM to water the plants."
+```
+
+- Backed by **APScheduler** for reliable job management
+- Tasks persist across reboots via `task_jobs.json`
+- Set one-time reminders or recurring schedules
+- Runs silently in the background — no internet needed
+
+---
+
+### 🌦 Weather — *Stay Informed*
+
+Real-time weather powered by **Open-Meteo** — completely free, no API key required:
+
+- Current temperature, conditions, humidity, and wind speed
+- Clean, readable weather cards in the UI
+- Graceful offline message when no internet is available
+- Auto-detects your location (or set manually in `.env`)
+
+---
+
+### 🗺 Maps — *Navigate Offline*
+
+Launches **Organic Maps** — a beautiful, privacy-respecting offline map app:
+
+- No Google. No tracking. No ads.
+- Full offline navigation — maps stored on-device
+- Perfect for hiking, cycling, travel, or when data is unavailable
+- One-tap launch from the Viora home screen
+
+---
+
+### 🤖 Dev AI — *Built-in Coding Assistant*
+
+A fully integrated coding assistant powered by **OpenCode**:
+
+- Ask Viora to write, debug, explain, or refactor code
+- Supports Python, JavaScript, Bash, C, C++, and more
+- Runs 100% offline — your code never leaves your machine
+- Integrated directly into the Viora UI — no terminal needed
+
+```
+You   > "Write a Python script to monitor CPU temperature on a Raspberry Pi"
+Viora > "Here's a Python script using the vcgencmd tool..."
+         [streams complete, syntax-highlighted code directly in UI]
+```
+
+---
+
+### ⚙️ Settings — *Your AI, Your Rules*
+
+Full control over every aspect of Viora:
+
+- Toggle voice input/output on or off
+- Switch between Whisper and Vosk STT
+- Change the Piper voice model
+- Enable/disable camera features
+- Manage and clear conversation history
+- Configure all feature toggles from a clean UI
+
+---
+
+## 📋 Requirements
+
+### Hardware
+
+| Component | Minimum | Recommended |
+|-----------|---------|-------------|
+| 🖥 Device | Raspberry Pi 4 / any Linux PC | Raspberry Pi 5 |
+| 🧠 RAM | 4 GB | 8 GB |
+| 💾 Storage | 8 GB SD card or SSD | 32 GB+ SSD |
+| 📷 Camera | USB webcam (optional) | Raspberry Pi Camera Module 3 |
+| 🎤 Audio In | USB mic or 3.5mm jack | ReSpeaker USB Mic Array |
+| 🔊 Audio Out | 3.5mm speaker | HDMI audio or USB speaker |
+| ⚡ Optional | — | Hailo-8 NPU (real-time object detection) |
+
+### Software
+
+| Dependency | Version | How to Install |
+|------------|---------|----------------|
+| Python | 3.10+ | `sudo apt install python3 python3-venv` |
+| Node.js | 18+ | `curl -fsSL https://deb.nodesource.com/setup_18.x \| sudo -E bash -` |
+| Git | any | `sudo apt install git` |
+| PortAudio | system | `sudo apt install portaudio19-dev` |
+| CMake | any | `sudo apt install cmake` |
+| OpenBLAS | system | `sudo apt install libopenblas-dev liblapack-dev` |
+
+### Optional
+
+| Tool | Purpose |
+|------|---------|
+| Hugging Face account | Downloading LLM models (free) |
+| OpenCode | Dev AI coding assistant |
+| Hailo SDK | Hardware-accelerated object detection |
 
 ---
 
 ## ⚡ Quick Start
 
-Get running in under **60 seconds**:
+Get Viora running in under **5 minutes**:
 
 ```bash
-# Clone the repository
-git clone https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2.git
+# 1. Clone
+git clone https://github.com/Mr-A-Hacker/Viora-AI-2.git
+cd Viora-AI-2
 
-# Enter the lair
-cd Mr-A-Hacker-pocket-Ai-version-2
+# 2. Set up environment
+python3 -m venv .venv
+source .venv/bin/activate
 
-# Install dependencies
+# 3. Install Python dependencies
 pip install -r requirements.txt
 
-# Launch Pocket AI
-python pocket_ai.py
+# 4. Install system dependencies
+sudo apt-get update && sudo apt-get install -y \
+  portaudio19-dev cmake libopenblas-dev liblapack-dev
+
+# 5. Install frontend
+cd chat-gui && npm install && cd ..
+
+# 6. Configure
+cp .env.example .env
+nano .env   # Edit your settings
+
+# 7. LAUNCH 🚀
+./start_viora_ai.sh
 ```
 
-That's it. You're in.
+Then open **http://localhost:5173** in your browser.
 
 ---
 
 ## 🔧 Installation
 
-### Prerequisites
-
-| Requirement | Minimum | Recommended |
-|-------------|---------|-------------|
-| Python | 3.9+ | 3.11+ |
-| RAM | 4 GB | 16 GB |
-| Storage | 2 GB | 10 GB |
-| GPU | Optional | CUDA 11+ |
-| OS | Any | Linux/macOS |
-
-### Method 1: pip install (Recommended)
+### Step 1 — Clone
 
 ```bash
-pip install pocket-ai-v2
-pocket-ai --setup
-pocket-ai --chat
+git clone https://github.com/Mr-A-Hacker/Viora-AI-2.git
+cd Viora-AI-2
 ```
 
-### Method 2: Manual Installation
+### Step 2 — Python Virtual Environment
 
 ```bash
-# 1. Clone
-git clone https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2.git
-cd Mr-A-Hacker-pocket-Ai-version-2
+python3 -m venv .venv
+source .venv/bin/activate
+```
 
-# 2. Create virtual environment
-python -m venv .venv
-source .venv/bin/activate   # Linux/macOS
-.venv\Scripts\activate      # Windows
+### Step 3 — Install Dependencies
 
-# 3. Install dependencies
+```bash
 pip install -r requirements.txt
 
-# 4. Configure
-cp config.example.yaml config.yaml
-nano config.yaml   # Edit your settings
-
-# 5. Run!
-python pocket_ai.py
+sudo apt-get update
+sudo apt-get install -y \
+  portaudio19-dev cmake libopenblas-dev liblapack-dev ffmpeg espeak-ng
 ```
 
-### Method 3: Docker 🐳
+### Step 4 — Install Frontend
 
 ```bash
-# Pull the image
-docker pull mrahacker/pocket-ai:v2
-
-# Run it
-docker run -it \
-  -p 8080:8080 \
-  -v ~/.pocket-ai:/data \
-  mrahacker/pocket-ai:v2
+cd chat-gui
+npm install
+cd ..
 ```
 
-### Method 4: One-Line Installer
+### Step 5 — Download AI Models
+
+**LLM — Qwen 0.6B GGUF (Chat Brain)**
+```bash
+mkdir -p models/qwen
+huggingface-cli download Qwen/Qwen3-0.6B-GGUF \
+  Qwen3-0.6B-Q8_0.gguf \
+  --local-dir models/qwen/
+```
+
+**Tool LLM — Function Gemma (Tool Calling)**
+```bash
+huggingface-cli download nlouis/functiongemma-pocket-q4_k_m \
+  functiongemma-pocket-q4_k_m.gguf \
+  --local-dir models/
+```
+
+**Piper TTS Voice**
+```bash
+mkdir -p models/piper
+wget https://github.com/rhasspy/piper/releases/download/2024.11.14-2/en_US-lessac-medium.onnx \
+  -O models/piper/en_US-lessac-medium.onnx
+wget https://github.com/rhasspy/piper/releases/download/2024.11.14-2/en_US-lessac-medium.onnx.json \
+  -O models/piper/en_US-lessac-medium.onnx.json
+```
+
+**Vosk STT — Fully Offline Speech Recognition**
+```bash
+mkdir -p models/vosk && cd models/vosk
+wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
+unzip vosk-model-small-en-us-0.15.zip
+cd ../..
+```
+
+### Step 6 — Configure
 
 ```bash
-curl -sSL https://raw.githubusercontent.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2/main/install.sh | bash
+cp .env.example .env
+nano .env
 ```
+
+### Step 7 — Install OpenCode (Dev AI)
+
+```bash
+curl -fsSL https://opencode.ai/install.sh | sh
+```
+
+### Step 8 — Launch 🚀
+
+```bash
+# One-command launch (recommended)
+./start_viora_ai.sh
+
+# Manual launch
+# Terminal 1:
+source .venv/bin/activate && python app.py
+
+# Terminal 2:
+cd chat-gui && npm run dev
+```
+
+**Build as a desktop Electron app:**
+```bash
+cd chat-gui
+npm run build
+# App is in chat-gui/out/
+```
+
+**Install desktop shortcut:**
+```bash
+cp viora-ai.desktop ~/.local/share/applications/
+update-desktop-database ~/.local/share/applications/
+```
+
+---
+
+## 🏗 Architecture
+
+### System Overview
+
+```
+┌─────────────────────────────────────────────────────────────────────────┐
+│                    VIORA AI v2 — FULL SYSTEM                            │
+│                                                                         │
+│  ┌──────────────────────────────────────────────────────────────────┐   │
+│  │              ELECTRON / BROWSER FRONTEND (React + Vite)          │   │
+│  │                                                                  │   │
+│  │  ┌─────────┐ ┌─────────┐ ┌────────┐ ┌────────┐ ┌───────────┐  │   │
+│  │  │  CHAT   │ │  VISION │ │ AGENT  │ │GALLERY │ │  DEV AI   │  │   │
+│  │  │  + TTS  │ │ + Hailo │ │ Tasks  │ │ Photos │ │ OpenCode  │  │   │
+│  │  └────┬────┘ └────┬────┘ └───┬────┘ └───┬────┘ └─────┬─────┘  │   │
+│  │       └───────────┴──────────┴───────────┴─────────────┘        │   │
+│  │                   WebSocket + REST (HTTP)                        │   │
+│  └───────────────────────────┬──────────────────────────────────────┘   │
+│                              │                                           │
+│                              ▼                                           │
+│  ┌──────────────────────────────────────────────────────────────────┐   │
+│  │              FASTAPI BACKEND  (app.py)                           │   │
+│  │                                                                  │   │
+│  │   /ws/chat    /ws/voice    /camera/*    /weather    /tasks       │   │
+│  │        │           │                                             │   │
+│  │  ┌─────▼───────────▼──────────────────────────────────────┐     │   │
+│  │  │              chat_ai.py  (Core Pipeline)                │     │   │
+│  │  │                                                         │     │   │
+│  │  │  Input → [STT: Whisper/Vosk] → [Semantic Router]        │     │   │
+│  │  │       → [Qwen 0.6B / Function Gemma] → [Piper TTS]      │     │   │
+│  │  │       → Stream to UI + conversations.json               │     │   │
+│  │  └─────────────────────────────────────────────────────────┘     │   │
+│  │                                                                  │   │
+│  │  weather.py    maps.py    devai.py    task_scheduler.py          │   │
+│  │  Open-Meteo    Organic    OpenCode    APScheduler                │   │
+│  └──────────────────────────────────────────────────────────────────┘   │
+│                                                                         │
+│  ┌──────────────────────────────────────────────────────────────────┐   │
+│  │     AI MODELS  (100% local)                                      │   │
+│  │  🧠 Qwen 0.6B Q8   🎤 Whisper Tiny   🔇 Vosk   🗣 Piper TTS     │   │
+│  │  🔧 Function Gemma                   👁 Hailo OD (optional)      │   │
+│  └──────────────────────────────────────────────────────────────────┘   │
+└─────────────────────────────────────────────────────────────────────────┘
+```
+
+### Voice Pipeline (Step-by-Step)
+
+```
+User speaks
+    │
+    ▼
+┌──────────────────────┐
+│   Mic captures audio │
+└──────────┬───────────┘
+           │
+    ┌──────▼───────┐
+    │ Whisper Tiny │  ←── Fast, accurate (internet for first download)
+    │   OR  Vosk   │  ←── Fully offline, always private
+    └──────┬───────┘
+           │  transcript
+           ▼
+┌──────────────────────┐
+│  Semantic Router     │  ←── Decides: Chat / Think / Tool use
+│  semantic_router_ai  │
+└──────────┬───────────┘
+           │
+    ┌──────┴──────────┐
+    │                 │
+    ▼                 ▼
+┌────────────┐  ┌──────────────────┐
+│ Qwen 0.6B  │  │  Function Gemma  │
+│  (Chat)    │  │  (Tool calling)  │
+└─────┬──────┘  └────────┬─────────┘
+      │                  │ executes tool
+      │              ┌───▼─────────────┐
+      │              │ weather / maps  │
+      │              │ tasks / devai   │
+      │              └───┬─────────────┘
+      └──────────┬───────┘
+                 │  response (streaming)
+                 ▼
+    ┌────────────────────────┐
+    │   Piper TTS Engine     │
+    │   Text → Natural Voice │
+    └────────────┬───────────┘
+                 │
+         🔊 Speaker plays
+         💬 UI streams tokens in real-time
+```
+
+---
+
+## 🖥 The Viora Interface
+
+```
+┌─────────────────────────────────────────────┐
+│  🌡 CPU: 52°C  💾 RAM: 2.1/8GB  🕐 14:23   │
+├─────────────────────────────────────────────┤
+│                                             │
+│           ╭─────────────╮                  │
+│           │    ◉ VIORA  │  ← Animated      │
+│           │    Avatar   │    glowing orb   │
+│           ╰─────────────╯                  │
+│                                             │
+│  ╔══════════╗  ╔══════════╗  ╔══════════╗  │
+│  ║ 💬 CHAT  ║  ║ 📷 VISION║  ║ 📝 AGENT ║  │
+│  ║ purple   ║  ║  cyan    ║  ║  pink    ║  │
+│  ╚══════════╝  ╚══════════╝  ╚══════════╝  │
+│                                             │
+│  ╔══════════╗  ╔══════════╗  ╔══════════╗  │
+│  ║🖼 GALLERY║  ║ 🗺 MAPS  ║  ║🤖 DEV AI ║  │
+│  ║  gray    ║  ║  green   ║  ║  orange  ║  │
+│  ╚══════════╝  ╚══════════╝  ╚══════════╝  │
+│                                             │
+│     [🌦 Weather]          [⚙️ Settings]     │
+└─────────────────────────────────────────────┘
+```
+
+| Button | Color | What It Does |
+|--------|-------|--------------|
+| 💬 CHAT | Purple | Talk to Viora with voice or text |
+| 📷 VISION | Cyan | Live camera + Hailo object detection |
+| 📝 AGENT | Pink | Schedule and manage tasks |
+| 🖼 GALLERY | Gray | Browse and manage captured photos |
+| 🗺 MAPS | Green | Launch Organic Maps for offline navigation |
+| 🤖 DEV AI | Orange | OpenCode coding assistant |
 
 ---
 
 ## ⚙️ Configuration
 
-Pocket AI is configured through `config.yaml`. Here's a full annotated example:
-
-```yaml
-# ╔══════════════════════════════════════╗
-# ║   Pocket AI v2 Configuration File   ║
-# ╚══════════════════════════════════════╝
-
-# ── Core AI Settings ──────────────────────────────────────
-model:
-  provider: "local"            # local | openai | anthropic | ollama
-  name: "llama3-8b"            # Model identifier
-  quantization: "q4_k_m"      # none | q4_k_m | q8_0
-  context_length: 8192         # Max context window
-  temperature: 0.7             # Creativity (0.0 - 2.0)
-  top_p: 0.9                   # Nucleus sampling
-  max_tokens: 2048             # Max response length
-
-# ── Memory Settings ───────────────────────────────────────
-memory:
-  enabled: true
-  backend: "sqlite"            # sqlite | postgres | redis
-  encryption: true             # Encrypt stored memories
-  max_memories: 10000          # Max memories to retain
-  summarize_after: 20          # Summarize after N messages
-
-# ── Interface Settings ────────────────────────────────────
-interface:
-  default: "terminal"          # terminal | web | api
-  theme: "hacker"              # hacker | minimal | retro
-  streaming: true              # Stream tokens as generated
-  voice: false                 # Enable voice mode
-
-# ── Server Settings ───────────────────────────────────────
-server:
-  host: "0.0.0.0"
-  port: 8080
-  auth: true
-  api_key: "your-secret-key-here"
-
-# ── Tools ─────────────────────────────────────────────────
-tools:
-  web_search: true
-  code_execution: true
-  file_access: true
-  calculator: true
-  sandbox: true                # Sandbox code execution
-
-# ── Security ──────────────────────────────────────────────
-security:
-  local_only: false            # Block external connections
-  rate_limit: 60               # Requests per minute
-  log_conversations: false     # Privacy mode
-```
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────────┐
-│                       POCKET AI v2 SYSTEM                           │
-│                                                                     │
-│  ┌──────────────┐    ┌──────────────┐    ┌──────────────────────┐  │
-│  │   INTERFACES  │    │   CORE AI    │    │     TOOL LAYER       │  │
-│  │              │    │              │    │                      │  │
-│  │ ┌──────────┐ │    │ ┌──────────┐ │    │ ┌────────────────┐   │  │
-│  │ │ Terminal │ │───▶│ │Inference │ │───▶│ │  Web Search    │   │  │
-│  │ └──────────┘ │    │ │ Engine   │ │    │ └────────────────┘   │  │
-│  │              │    │ └──────────┘ │    │ ┌────────────────┐   │  │
-│  │ ┌──────────┐ │    │      │       │    │ │ Code Executor  │   │  │
-│  │ │   Web    │ │───▶│ ┌──────────┐ │    │ └────────────────┘   │  │
-│  │ │   Chat   │ │    │ │Context   │ │    │ ┌────────────────┐   │  │
-│  │ └──────────┘ │    │ │ Manager  │ │    │ │ File System    │   │  │
-│  │              │    │ └──────────┘ │    │ └────────────────┘   │  │
-│  │ ┌──────────┐ │    │      │       │    │ ┌────────────────┐   │  │
-│  │ │  REST    │ │───▶│ ┌──────────┐ │    │ │   Plugins      │   │  │
-│  │ │   API    │ │    │ │ Memory   │ │    │ └────────────────┘   │  │
-│  │ └──────────┘ │    │ │  Store   │ │    └──────────────────────┘  │
-│  │              │    │ └──────────┘ │                              │
-│  │ ┌──────────┐ │    └──────────────┘                              │
-│  │ │  Voice   │ │                                                  │
-│  │ └──────────┘ │    ┌──────────────────────────────────────────┐  │
-│  └──────────────┘    │           SECURITY LAYER                 │  │
-│                      │  🔐 Auth  │  🛡️ Sandbox  │  🔒 Encrypt   │  │
-│                      └──────────────────────────────────────────┘  │
-└─────────────────────────────────────────────────────────────────────┘
-```
-
-### Component Breakdown
-
-| Component | Description | File |
-|-----------|-------------|------|
-| `InferenceEngine` | Core LLM inference, handles model loading and token generation | `core/engine.py` |
-| `ContextManager` | Manages conversation history and context windows | `core/context.py` |
-| `MemoryStore` | Long-term memory with vector search | `core/memory.py` |
-| `ToolRegistry` | Manages and dispatches AI tool calls | `tools/registry.py` |
-| `PluginLoader` | Auto-discovers and loads plugins | `plugins/loader.py` |
-| `TerminalUI` | Hacker-aesthetic terminal interface | `ui/terminal.py` |
-| `WebServer` | FastAPI web server and REST API | `server/app.py` |
-| `SecurityLayer` | Auth, rate limiting, sandboxing | `security/layer.py` |
-
----
-
-## 🔌 API Reference
-
-### Authentication
-
-All API requests require the `X-API-Key` header:
-
-```http
-X-API-Key: your-secret-key-here
-```
-
----
-
-### Endpoints
-
-#### `POST /api/v2/chat`
-Send a message to Pocket AI.
-
-**Request:**
-```json
-{
-  "message": "Explain quantum computing in simple terms",
-  "session_id": "optional-session-id",
-  "stream": true,
-  "options": {
-    "temperature": 0.7,
-    "max_tokens": 1024
-  }
-}
-```
-
-**Response:**
-```json
-{
-  "id": "msg_01XjK9...",
-  "session_id": "sess_abc123",
-  "response": "Quantum computing is...",
-  "tokens_used": 312,
-  "model": "llama3-8b",
-  "time_ms": 842
-}
-```
-
----
-
-#### `GET /api/v2/sessions`
-List all conversation sessions.
-
-```bash
-curl -H "X-API-Key: your-key" http://localhost:8080/api/v2/sessions
-```
-
----
-
-#### `GET /api/v2/sessions/{session_id}`
-Retrieve a specific session with full history.
-
----
-
-#### `DELETE /api/v2/sessions/{session_id}`
-Delete a session and its history.
-
----
-
-#### `POST /api/v2/memory`
-Add a fact to long-term memory.
-
-```json
-{
-  "content": "The user prefers Python over JavaScript",
-  "category": "preferences",
-  "importance": 0.8
-}
-```
-
----
-
-#### `GET /api/v2/memory/search`
-Semantic search over memories.
-
-```bash
-curl "http://localhost:8080/api/v2/memory/search?q=programming+preferences" \
-  -H "X-API-Key: your-key"
-```
-
----
-
-#### `GET /api/v2/health`
-System health check.
-
-```json
-{
-  "status": "healthy",
-  "model_loaded": true,
-  "memory_used_mb": 3241,
-  "uptime_seconds": 86400,
-  "version": "2.0.0"
-}
-```
-
----
-
-### WebSocket API
-
-For real-time streaming responses:
-
-```javascript
-const ws = new WebSocket('ws://localhost:8080/ws/chat');
-
-ws.onopen = () => {
-  ws.send(JSON.stringify({
-    api_key: "your-key",
-    message: "Tell me about black holes",
-    stream: true
-  }));
-};
-
-ws.onmessage = (event) => {
-  const chunk = JSON.parse(event.data);
-  process.stdout.write(chunk.token); // Stream tokens as they arrive
-};
-```
-
----
-
-## 🎮 Usage Examples
-
-### Terminal Chat Mode
-
-```bash
-$ pocket-ai chat
-
-  ╔═══════════════════════════════════╗
-  ║       POCKET AI v2.0 — READY      ║
-  ╚═══════════════════════════════════╝
-
-  Commands: /help /clear /save /load /exit
-
-You > Tell me about the history of hacking.
-
-AI  > The history of hacking begins in the 1950s at MIT...
-     [streaming response with syntax highlighting]
-
-You > /save my-session
-✓ Session saved to: ~/.pocket-ai/sessions/my-session.json
-
-You > /exit
-Goodbye, Mr-A-Hacker. 👾
-```
-
----
-
-### Python SDK
-
-```python
-from pocket_ai import PocketAI
-
-# Initialize
-ai = PocketAI(api_key="your-key", base_url="http://localhost:8080")
-
-# Simple chat
-response = ai.chat("What is machine learning?")
-print(response.text)
-
-# Streaming
-for token in ai.stream("Write a Python web scraper"):
-    print(token, end="", flush=True)
-
-# With memory
-ai.remember("My name is Mr-A-Hacker and I love cybersecurity")
-response = ai.chat("What do you know about me?")
-# Output: "You're Mr-A-Hacker and you love cybersecurity!"
-
-# Tool use
-response = ai.chat("Search the web for the latest AI news", tools=["web_search"])
-print(response.text)
-```
-
----
-
-### Building a Custom Plugin
-
-Drop this into `/plugins/weather.py`:
-
-```python
-from pocket_ai.plugins import plugin, PluginContext
-
-@plugin(
-    name="weather",
-    description="Get current weather for any city",
-    parameters={
-        "city": {"type": "string", "description": "City name"}
-    }
-)
-def get_weather(ctx: PluginContext, city: str) -> str:
-    """Fetch weather data and return formatted string."""
-    import requests
-    r = requests.get(f"https://wttr.in/{city}?format=3")
-    return r.text
-
-# That's it. Restart Pocket AI and it's available to the AI automatically.
-```
-
----
-
-### REST API with curl
-
-```bash
-# Chat
-curl -X POST http://localhost:8080/api/v2/chat \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: your-key" \
-  -d '{"message": "Hello, AI!", "stream": false}'
-
-# Add a memory
-curl -X POST http://localhost:8080/api/v2/memory \
-  -H "Content-Type: application/json" \
-  -H "X-API-Key: your-key" \
-  -d '{"content": "User likes dark mode", "category": "preferences"}'
-
-# Search memories
-curl "http://localhost:8080/api/v2/memory/search?q=preferences" \
-  -H "X-API-Key: your-key"
-
-# Health check
-curl http://localhost:8080/api/v2/health
+Full `.env` reference:
+
+```env
+# ─── Ports ────────────────────────────────────────────────────────────────
+PORT=8000
+FRONTEND_PORT=5173
+
+# ─── Model Paths ──────────────────────────────────────────────────────────
+LOCAL_DIR=./models
+
+CHAT_REPO_ID=Qwen/Qwen3-0.6B-GGUF
+CHAT_FILENAME=Qwen3-0.6B-Q8_0.gguf
+
+TOOL_REPO_ID=nlouis/functiongemma-pocket-q4_k_m
+TOOL_FILENAME=functiongemma-pocket-q4_k_m.gguf
+
+# ─── Speech-to-Text ───────────────────────────────────────────────────────
+USE_WHISPER=true
+USE_VOSK=true
+VOSK_MODEL=models/vosk/vosk-model-small-en-us-0.15
+
+# ─── Text-to-Speech ───────────────────────────────────────────────────────
+PIPER_MODEL=en_US-lessac-medium.onnx
+PIPER_SPEED=1.0
+
+# ─── Camera ───────────────────────────────────────────────────────────────
+CAMERA_DEVICE=0
+CAMERA_WIDTH=1280
+CAMERA_HEIGHT=720
+
+# ─── LLM Generation ───────────────────────────────────────────────────────
+MAX_TOKENS=2048
+TEMPERATURE=0.7
+TOP_P=0.9
+CONTEXT_LENGTH=4096
+
+# ─── Features ─────────────────────────────────────────────────────────────
+ENABLE_CAMERA=true
+ENABLE_TTS=true
+ENABLE_STT=true
+ENABLE_LLM=true
+ENABLE_HAILO=false         # Set true if Hailo-8 NPU connected
+
+# ─── Weather ──────────────────────────────────────────────────────────────
+LATITUDE=51.5074
+LONGITUDE=-0.1278
 ```
 
 ---
@@ -578,384 +609,348 @@ curl http://localhost:8080/api/v2/health
 ## 📁 Project Structure
 
 ```
-Mr-A-Hacker-pocket-Ai-version-2/
+Viora-AI-2/
 │
-├── 📄 README.md                    ← You are here
-├── 📄 LICENSE
-├── 📄 requirements.txt
-├── 📄 setup.py
-├── 📄 config.example.yaml
-├── 📄 pocket_ai.py                 ← Main entry point
+├── 📄 README.md
+├── 📄 requirements.txt             ← Python dependencies
+├── 📄 .env.example                 ← Config template
 │
-├── 🧠 core/
-│   ├── engine.py                   ← Inference engine
-│   ├── context.py                  ← Context management
-│   ├── memory.py                   ← Long-term memory
-│   ├── tokenizer.py                ← Tokenization utils
-│   └── prompts.py                  ← Prompt templates
+├── 🚀 app.py                       ← FastAPI backend (all endpoints)
+├── 🧠 chat_ai.py                   ← Core pipeline: STT → LLM → TTS
+├── 🎤 stt_whisper.py               ← Whisper speech recognition
+├── 🎤 stt_vosk.py                  ← Vosk offline STT
+├── 🗣 tts_piper.py                 ← Piper text-to-speech
+├── 🔀 semantic_router_ai.py        ← Prompt routing (chat/think/tool)
+├── 🔧 tool_ai.py                   ← Function Gemma tool calling
+├── 📅 task_scheduler.py            ← APScheduler task management
+├── 🌦 weather.py                   ← Open-Meteo weather integration
+├── 🗺 maps.py                      ← Organic Maps launcher
+├── 🤖 devai.py                     ← OpenCode Dev AI endpoint
+├── 📷 camera_stream.py             ← MJPEG camera + Hailo OD
+├── 🎮 games.py                     ← Games module
+├── ⚡ speed_test.py                ← Performance benchmarks
+├── ⚙️ config.py                    ← Centralized config
 │
-├── 🖥️ ui/
-│   ├── terminal.py                 ← Terminal interface
-│   ├── web/
-│   │   ├── app.html                ← Web UI
-│   │   ├── style.css               ← Hacker aesthetic CSS
-│   │   └── app.js                  ← Frontend JS
-│   └── voice.py                    ← Voice I/O
+├── 🛠 tools.json                   ← Tool definitions for function calling
+├── 💬 conversations.json           ← Saved chat history
+├── 📋 task_jobs.json               ← Scheduled task persistence
+├── 🔊 asound.conf                  ← ALSA audio config for Pi
+├── 🖥 viora-ai.desktop             ← Linux desktop shortcut
+├── 🚀 start_viora_ai.sh            ← One-click launcher
 │
-├── 🌐 server/
-│   ├── app.py                      ← FastAPI application
-│   ├── routes/
-│   │   ├── chat.py
-│   │   ├── memory.py
-│   │   └── sessions.py
-│   └── middleware.py               ← Auth, rate limiting
+├── 🖥 chat-gui/                    ← Electron + React frontend
+│   └── src/
+│       ├── App.jsx                 ← Router + main app
+│       ├── index.css               ← Purple Viora theme
+│       └── components/
+│           ├── Home.jsx            ← Landing / main menu
+│           ├── ChatInterface/      ← Chat UI + mic button
+│           ├── CameraView/         ← Live camera + OD overlay
+│           ├── Gallery/            ← Photo gallery
+│           ├── TaskManager/        ← Agent/scheduler UI
+│           ├── Settings/           ← Configuration panel
+│           ├── Maps/               ← Maps launcher
+│           ├── DevAI/              ← OpenCode integration
+│           ├── Weather/            ← Weather display
+│           ├── Avatar.jsx          ← Animated Viora avatar
+│           └── StatusBar.jsx       ← CPU/RAM/Temp bar
 │
-├── 🔧 tools/
-│   ├── registry.py                 ← Tool registry
-│   ├── web_search.py               ← Web search tool
-│   ├── code_exec.py                ← Code execution
-│   ├── file_ops.py                 ← File operations
-│   └── calculator.py               ← Math tool
+├── 📦 models/                      ← AI models (download separately)
+│   ├── qwen/                       ← Qwen 0.6B GGUF
+│   ├── piper/                      ← Piper TTS voice
+│   └── vosk/                       ← Vosk offline STT
 │
-├── 🔌 plugins/
-│   ├── loader.py                   ← Plugin auto-loader
-│   └── examples/                   ← Example plugins
-│       ├── weather.py
-│       ├── crypto.py
-│       └── translator.py
-│
-├── 🛡️ security/
-│   ├── layer.py                    ← Security middleware
-│   ├── sandbox.py                  ← Code sandbox
-│   ├── encryption.py               ← Memory encryption
-│   └── vault.py                    ← API key vault
-│
-├── 📊 models/
-│   └── .gitkeep                    ← Place models here
-│
-├── 🗄️ data/
-│   ├── sessions/                   ← Saved sessions
-│   └── memories/                   ← Long-term memories
-│
-└── 🧪 tests/
-    ├── test_core.py
-    ├── test_api.py
-    ├── test_memory.py
-    └── test_tools.py
+├── 📸 captures/                    ← Camera photos
+├── 📊 hailo_od/                    ← Hailo object detection configs
+└── 🧪 tests/                       ← Test suite
 ```
 
 ---
 
-## 🛡️ Security
-
-Security is not an afterthought — it's built into Pocket AI at every layer.
-
-### 🔐 Authentication
-- API key-based authentication for all endpoints
-- Secure vault for storing API keys (never in plaintext)
-- Optional JWT-based auth for web interface
-
-### 🛡️ Sandboxed Code Execution
-- All AI-generated code runs inside isolated Docker containers
-- Resource limits: CPU, memory, network, and time
-- No access to host filesystem by default
-
-### 🔒 Encrypted Memory
-- AES-256-GCM encryption for all stored memories and sessions
-- Keys derived from your master password via Argon2
-- Zero-knowledge: even if data is stolen, it's unreadable
-
-### 🌐 Network Security
-- Optional `local_only` mode — no external connections
-- Rate limiting to prevent abuse
-- All external API calls go through a configurable proxy
-
-### 📋 Privacy Mode
-- `log_conversations: false` ensures nothing is persisted
-- Ephemeral mode: all data exists only in RAM
-
-### 🔍 Audit Log
-All security-relevant events are logged:
-```
-[2025-04-01 03:14:15] AUTH_SUCCESS  user=default ip=127.0.0.1
-[2025-04-01 03:14:20] CHAT_REQUEST  session=abc123 tokens=42
-[2025-04-01 03:14:21] TOOL_CALLED   tool=web_search query="latest AI news"
-[2025-04-01 03:14:25] CODE_EXEC     sandbox=container_7f3a status=success
-```
-
----
-
-## 📊 Benchmarks
-
-Performance on a MacBook Pro M2 (16GB RAM):
-
-| Metric | v1.0 | v2.0 | Improvement |
-|--------|------|------|-------------|
-| First token latency | 2.1s | 0.7s | **3x faster** |
-| Tokens/second | 12 | 41 | **3.4x faster** |
-| Memory footprint | 8.2 GB | 3.1 GB | **62% smaller** |
-| Context retention | 4K tokens | 32K tokens | **8x larger** |
-| Plugin load time | 3.2s | 0.4s | **8x faster** |
-
----
-
-## 🧩 Supported Models
-
-Pocket AI v2 supports a wide range of models:
-
-### Local Models (via Ollama / llama.cpp)
-| Model | Size | Use Case |
-|-------|------|----------|
-| `llama3-8b` | 4.7 GB | General purpose (recommended) |
-| `llama3-70b` | 40 GB | Max capability |
-| `mistral-7b` | 4.1 GB | Fast & efficient |
-| `codellama-13b` | 7.4 GB | Code generation |
-| `phi-3-mini` | 2.3 GB | Lightweight, fast |
-
-### Cloud APIs
-| Provider | Models |
-|----------|--------|
-| Anthropic | Claude 3.5 Sonnet, Claude 3 Opus |
-| OpenAI | GPT-4o, GPT-4 Turbo |
-| Groq | Llama 3, Mixtral (blazing fast) |
-| Together AI | 50+ open models |
-
----
-
-## 🤝 Contributing
-
-Contributions are what make the hacker community legendary. Here's how to join the mission:
-
-### Ways to Contribute
-
-```
-🐛 Bug Reports     → Open an issue with reproduction steps
-💡 Feature Ideas   → Open a discussion or issue
-🔧 Code            → Fork → Branch → PR
-📖 Documentation   → Fix typos, improve explanations
-🔌 Plugins         → Build and share your plugins
-🌍 Translations    → Help localize the UI
-```
-
-### Development Setup
-
-```bash
-# Fork and clone
-git clone https://github.com/YOUR-USERNAME/Mr-A-Hacker-pocket-Ai-version-2.git
-cd Mr-A-Hacker-pocket-Ai-version-2
-
-# Set up dev environment
-python -m venv .venv
-source .venv/bin/activate
-pip install -r requirements-dev.txt
-
-# Install pre-commit hooks
-pre-commit install
-
-# Run tests
-pytest tests/ -v
-
-# Start dev server with hot reload
-python pocket_ai.py --dev
-```
-
-### Contribution Guidelines
-
-1. **Branch naming**: `feat/your-feature`, `fix/bug-description`, `docs/what-you-changed`
-2. **Commit style**: Follow [Conventional Commits](https://www.conventionalcommits.org/)
-3. **Tests**: All new features must have tests (aim for 80%+ coverage)
-4. **Code style**: We use `black` for formatting and `ruff` for linting
-5. **PR description**: Explain WHAT and WHY, not just how
-
-### Code of Conduct
-
-Be excellent to each other. That's it.
-
----
-
-## 📜 Changelog
-
-### v2.0.0 — *The Resurrection* 🔥
-
-> Released: April 2025
-
-**🆕 New Features**
-- Complete rewrite of the inference engine (3x performance improvement)
-- Long-term vector memory with semantic search
-- Plugin architecture with auto-discovery
-- Voice input/output mode
-- Web interface with real-time streaming
-- Full REST API + WebSocket support
-- Docker image with one-command deployment
-- Encrypted memory store (AES-256-GCM)
-- Sandboxed code execution via Docker
-
-**⚡ Improvements**
-- 62% reduction in memory footprint
-- 8x larger context window (4K → 32K tokens)
-- Streaming responses with sub-100ms first token
-- Quantized model support (q4, q8)
-- Multi-provider model support (Ollama, OpenAI, Anthropic, Groq)
-
-**🐛 Bug Fixes**
-- Fixed context overflow causing hallucinations
-- Fixed memory leak in streaming mode
-- Fixed session corruption on unexpected exit
-- Fixed plugin loading order issues
-
-**🗑️ Removed**
-- Deprecated v1 config format (migration guide below)
-- Old CLI flags replaced with `config.yaml`
-
----
-
-### v1.5.2 — *Patch*
-- Minor bug fixes and stability improvements
-
-### v1.5.0 — *The Upgrade*
-- Added basic memory persistence
-- Added web search tool
-- Performance improvements
-
-### v1.0.0 — *The Beginning*
-- Initial release of Pocket AI
-
----
-
-## 🗺️ Roadmap
-
-```
-2025 Q1 ████████████ v2.0 RELEASED ✅
-2025 Q2 ████████░░░░ v2.1 — Mobile apps (iOS/Android) 🚧
-2025 Q3 ████░░░░░░░░ v2.2 — Multi-agent workflows 🔮
-2025 Q4 ██░░░░░░░░░░ v2.3 — Vision & image understanding 🔮
-2026 Q1 ░░░░░░░░░░░░ v3.0 — ??? (Top secret) 🤫
-```
-
-**Upcoming in v2.1:**
-- [ ] iOS app
-- [ ] Android app  
-- [ ] Offline PWA
-- [ ] Sync across devices
-- [ ] Shared memory between sessions
-- [ ] Group/team mode
-
----
-
-## ❓ FAQ
-
-<details>
-<summary><b>Does it require an internet connection?</b></summary>
-
-No! Pocket AI is built local-first. Run it completely offline with local models. Cloud APIs are optional and off by default.
-
-</details>
-
-<details>
-<summary><b>What's the difference between v1 and v2?</b></summary>
-
-v2 is essentially a complete rewrite. The core engine is 3x faster, memory footprint is 62% smaller, and there's a whole new architecture with plugins, web interface, REST API, long-term memory, and much more. v1 was a proof of concept. v2 is production-ready.
-
-</details>
-
-<details>
-<summary><b>Can I use it commercially?</b></summary>
-
-Yes! It's MIT licensed. Use it however you want, for whatever you want. Attribution appreciated but not required.
-
-</details>
-
-<details>
-<summary><b>How do I migrate from v1?</b></summary>
-
-Run: `python pocket_ai.py --migrate-from-v1`  
-This will convert your old config and sessions to the new format automatically.
-
-</details>
-
-<details>
-<summary><b>Is my data safe?</b></summary>
-
-Your data never leaves your machine unless you explicitly configure cloud APIs. With encryption enabled, even the stored files are unreadable without your key.
-
-</details>
-
-<details>
-<summary><b>Can I contribute my own model?</b></summary>
-
-Yes! If it's compatible with llama.cpp or Ollama, it should work. Open an issue or PR with a model config and we'll add it to the supported list.
-
-</details>
-
----
-
-## 📞 Contact
+## 🌐 Offline Capabilities
 
 <div align="center">
 
-### 👾 Mr-A-Hacker
-
-*Builder. Hacker. AI Enthusiast.*
-
-[![GitHub](https://img.shields.io/badge/GitHub-Mr--A--Hacker-181717?style=for-the-badge&logo=github)](https://github.com/Mr-A-Hacker)
-[![Issues](https://img.shields.io/badge/Report_Bug-Issues-ff0000?style=for-the-badge&logo=github)](https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2/issues)
-[![Discussions](https://img.shields.io/badge/Join_Discussion-Discussions-00ff41?style=for-the-badge&logo=github)](https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2/discussions)
-
----
-
-> **Found a bug?** [Open an issue](https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2/issues/new?template=bug_report.md)  
-> **Have an idea?** [Start a discussion](https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2/discussions/new)  
-> **Want to contribute?** [Read the guide](#-contributing)
+| Feature | Online | Offline | Notes |
+|---------|--------|---------|-------|
+| 💬 Chat with Viora | ✅ | ✅ | Fully local LLM |
+| 🎤 Whisper STT | ✅ | ⚠️ | Internet for *first* download only |
+| 🎤 Vosk STT | ✅ | ✅ | Always 100% offline |
+| 🗣 Piper TTS | ✅ | ✅ | Always 100% offline |
+| 📷 Camera + capture | ✅ | ✅ | No internet needed |
+| 👁 Object detection | ✅ | ✅ | Runs on NPU locally |
+| 📅 Scheduled tasks | ✅ | ✅ | Local APScheduler |
+| 🖼 Photo gallery | ✅ | ✅ | Local storage |
+| 🗺 Organic Maps | ✅ | ✅ | Offline maps |
+| 🌦 Weather | ✅ | ❌ | Requires Open-Meteo API |
+| 🤖 Dev AI (OpenCode) | ✅ | ✅ | Local LLM |
 
 </div>
 
 ---
 
-## 📄 License
+## 🛠 Troubleshooting
+
+### Display / X11 Issues
+
+```bash
+export DISPLAY=:0
+export XAUTHORITY=/home/pi/.Xauthority
+./start_viora_ai.sh
+```
+
+### Vosk Model Not Found
+
+```bash
+# Check the path is correct in .env
+ls models/vosk/
+# Should show: vosk-model-small-en-us-0.15/
+
+VOSK_MODEL=models/vosk/vosk-model-small-en-us-0.15
+```
+
+### Camera Not Working
+
+```bash
+ls /dev/video*
+ffmpeg -i /dev/video0 -frames:v 1 test.jpg
+sudo usermod -a -G video $USER   # Then log out and back in
+```
+
+### Backend Port Already in Use
+
+```bash
+lsof -i :8000
+pkill -f "python app.py"
+python app.py
+```
+
+### No Audio Output
+
+```bash
+speaker-test -c 2 -t wav
+
+# Raspberry Pi — HDMI
+sudo raspi-config  # Advanced → Audio → HDMI
+
+# Headphone jack
+amixer cset numid=3 1
+```
+
+### OpenCode Not Found
+
+```bash
+opencode --version
+curl -fsSL https://opencode.ai/install.sh | sh
+grep OPENCODE_PATH devai.py
+```
+
+### Out of Memory on Pi 4 (4GB)
+
+```bash
+# Use a lighter quantization in config.py
+CHAT_FILENAME=Qwen3-0.6B-Q4_K_M.gguf
+
+# Reduce max tokens
+MAX_TOKENS=512
+
+# Free RAM
+sudo systemctl stop bluetooth avahi-daemon
+```
+
+### Whisper Fails to Download
+
+```bash
+USE_WHISPER=false
+USE_VOSK=true
+# Or download manually:
+huggingface-cli download openai/whisper-tiny --local-dir models/whisper/
+```
+
+---
+
+## 🎨 Customization
+
+### Change Viora's Voice
+
+```bash
+# Download a new Piper voice from github.com/rhasspy/piper
+wget https://github.com/rhasspy/piper/releases/.../en_US-amy-medium.onnx \
+  -O models/piper/en_US-amy-medium.onnx
+
+# Update .env
+PIPER_MODEL=en_US-amy-medium.onnx
+```
+
+### Use a Different LLM
+
+```python
+# In config.py
+CHAT_REPO_ID = "TheBloke/Mistral-7B-Instruct-v0.2-GGUF"
+CHAT_FILENAME = "mistral-7b-instruct-v0.2.Q4_K_M.gguf"
+```
+
+### Change the UI Theme
+
+```css
+/* chat-gui/src/index.css */
+:root {
+  --ai-color: #7c3aed;    /* Primary purple — swap for any color */
+  --bg: #faf8ff;          /* Background */
+  --surface: #ffffff;     /* Cards */
+  --border: #ede9f8;      /* Borders */
+  --text: #1e1030;        /* Main text */
+  --text-mid: #6b5b8e;    /* Secondary text */
+  --glow: #a855f7;        /* Avatar glow */
+}
+```
+
+### Add Custom Tools
+
+```json
+// tools.json
+{
+  "name": "get_system_stats",
+  "description": "Get CPU, RAM, and temperature of the Raspberry Pi",
+  "parameters": {
+    "type": "object",
+    "properties": {},
+    "required": []
+  }
+}
+```
+
+Then implement the handler in `tool_ai.py`. The AI picks it up automatically on restart.
+
+---
+
+## 🧪 Testing
+
+```bash
+source .venv/bin/activate
+
+pytest tests/ -v                  # Full test suite
+python test_viora_ai.py           # Integration tests
+python test_audio.py              # Audio system
+python test_gemma.py              # LLM response quality
+python speed_test.py              # Performance benchmarks
+```
+
+---
+
+## 🗺 Roadmap
 
 ```
-MIT License
+2025 Q1  ████████████  v2.0 Released ✅
+2025 Q2  ████████░░░░  Multi-language STT + TTS 🚧
+2025 Q3  ████░░░░░░░░  Vision-Language model integration 🔮
+2025 Q3  ████░░░░░░░░  Home Assistant / MQTT integration 🔮
+2025 Q4  ██░░░░░░░░░░  Mobile companion app 🔮
+2026 Q1  ░░░░░░░░░░░░  Multi-agent orchestration 🤫
+```
 
-Copyright (c) 2025 Mr-A-Hacker
+**Coming in future versions:**
+- [ ] Multi-language support (Spanish, French, German, Arabic...)
+- [ ] Vision-Language model (describe images with full detail)
+- [ ] Home Assistant / MQTT smart home integration
+- [ ] Mobile companion app
+- [ ] Custom wake word ("Hey Viora")
+- [ ] Fine-tuned Viora personality model
+- [ ] Multi-agent task execution
+
+---
+
+## 🤝 Contributing
+
+All contributions are welcome!
+
+```
+🐛 Bug Reports    → Open an Issue with steps to reproduce
+💡 Feature Ideas  → Open a Discussion
+🔧 Code PRs       → Fork → Branch → PR with clear description
+📖 Docs           → Fix typos, expand unclear sections
+🌍 Translations   → Help localize the UI
+```
+
+```bash
+git clone https://github.com/YOUR-USERNAME/Viora-AI-2.git
+cd Viora-AI-2
+
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+pip install pytest black ruff
+
+pytest tests/ -v
+black . && ruff check .
+```
+
+---
+
+## 📜 License
+
+```
+MIT License — Copyright (c) 2025 Mr-A-Hacker
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
 in the Software without restriction, including without limitation the rights
 to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+copies of the Software, and to permit persons to whom the Software is furnished
+to do so, subject to the following conditions: The above copyright notice and
+this permission notice shall be included in all copies or substantial portions.
 ```
+
+---
+
+## 🙏 Credits
+
+Built with 💜 by **Mr-A-Hacker**. Engineered for offline AI, Raspberry Pi, and the hacker spirit.
+
+| Project | Role |
+|---------|------|
+| **Qwen by Alibaba** | Core LLM |
+| **Whisper by OpenAI** | Speech recognition |
+| **Vosk by AlphaCEP** | Fully offline STT |
+| **Piper by Rhasspy** | Text-to-speech |
+| **Function Gemma by nlouis** | Tool-calling LLM |
+| **Organic Maps** | Offline navigation |
+| **OpenCode** | Dev AI assistant |
+| **Open-Meteo** | Free weather API |
+| **Hailo** | NPU object detection |
+| **FastAPI** | Python web backend |
+| **React + Vite** | Frontend framework |
 
 ---
 
 <div align="center">
 
 ```
-  ██████╗  ██████╗  ██████╗██╗  ██╗███████╗████████╗     █████╗ ██╗
-  ██╔══██╗██╔═══██╗██╔════╝██║ ██╔╝██╔════╝╚══██╔══╝    ██╔══██╗██║
-  ██████╔╝██║   ██║██║     █████╔╝ █████╗     ██║       ███████║██║
-  ██╔═══╝ ██║   ██║██║     ██╔═██╗ ██╔══╝     ██║       ██╔══██║██║
-  ██║     ╚██████╔╝╚██████╗██║  ██╗███████╗   ██║       ██║  ██║██║
-  ╚═╝      ╚═════╝  ╚═════╝╚═╝  ╚═╝╚══════╝   ╚═╝       ╚═╝  ╚═╝╚═╝
+ ██╗   ██╗██╗ ██████╗ ██████╗  █████╗      █████╗ ██╗    ██████╗ 
+ ██║   ██║██║██╔═══██╗██╔══██╗██╔══██╗    ██╔══██╗██║    ╚════██╗
+ ██║   ██║██║██║   ██║██████╔╝███████║    ███████║██║     █████╔╝
+ ╚██╗ ██╔╝██║██║   ██║██╔══██╗██╔══██║    ██╔══██║██║    ██╔═══╝ 
+  ╚████╔╝ ██║╚██████╔╝██║  ██║██║  ██║    ██║  ██║██║    ███████╗
+   ╚═══╝  ╚═╝ ╚═════╝ ╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝  ╚═╝╚═╝    ╚══════╝
 ```
 
-**Built with 💚 and ☕ by Mr-A-Hacker**
+**Made with 💜 by [Mr-A-Hacker](https://github.com/Mr-A-Hacker)**
 
-*"The best way to predict the future is to hack it."*
+*"Your AI. Your device. Your rules."*
 
 ---
 
-![Made with Love](https://img.shields.io/badge/Made%20with-Love%20%26%20Code-ff0066?style=for-the-badge)
-![Powered by](https://img.shields.io/badge/Powered%20by-Open%20Source-00ff41?style=for-the-badge)
-![No NSA](https://img.shields.io/badge/NSA%20Free-100%25-ff6600?style=for-the-badge)
+[![GitHub](https://img.shields.io/badge/GitHub-Mr--A--Hacker-181717?style=for-the-badge&logo=github)](https://github.com/Mr-A-Hacker)
+[![Star This Repo](https://img.shields.io/badge/⭐_Star_This_Repo-ffd700?style=for-the-badge)](https://github.com/Mr-A-Hacker/Viora-AI-2/stargazers)
+[![Report Bug](https://img.shields.io/badge/🐛_Report_Bug-ef4444?style=for-the-badge)](https://github.com/Mr-A-Hacker/Viora-AI-2/issues)
+[![Request Feature](https://img.shields.io/badge/💡_Request_Feature-a855f7?style=for-the-badge)](https://github.com/Mr-A-Hacker/Viora-AI-2/discussions)
 
-⭐ **Star this repo if it helped you!** ⭐
+<br/>
+
+![Made with Love](https://img.shields.io/badge/Made%20with-💜%20%26%20Python-a855f7?style=for-the-badge)
+![Raspberry Pi](https://img.shields.io/badge/Runs%20on-Raspberry%20Pi-e11d48?style=for-the-badge&logo=raspberrypi&logoColor=white)
+![No Cloud](https://img.shields.io/badge/Zero-Cloud%20Required-22c55e?style=for-the-badge)
+![Privacy First](https://img.shields.io/badge/Privacy-First-0ea5e9?style=for-the-badge)
+
+⭐ **If Viora AI helped you, drop a star — it means the world!** ⭐
 
 </div>
