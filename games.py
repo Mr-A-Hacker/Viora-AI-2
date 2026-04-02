@@ -1,5 +1,6 @@
 import os
 import subprocess
+from typing import Any
 from fastapi import APIRouter
 from pathlib import Path
 
@@ -82,11 +83,15 @@ async def list_games():
     return {"games": all_games}
 
 @router.post("/launch")
-async def launch_game(game_id: str, executable: str = None):
+async def launch_game(payload: Any = None):
+    game_id = payload.get("game_id")
+    executable = payload.get("executable")
+    
     if not executable:
         for game in COMMON_GAMES.values():
-            if game["executable"] == game_id or game_id in game["executable"]:
-                executable = game["executable"]
+            game_exec = game.get("executable", "")
+            if game_exec and (game_exec == game_id or (isinstance(game_id, str) and game_id in game_exec)):
+                executable = game_exec
                 break
     
     if not executable:

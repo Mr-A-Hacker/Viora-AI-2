@@ -1,9 +1,10 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, Send, Bot, Sparkles, Loader, Wifi, WifiOff, HelpCircle, X, History, GitBranch, Cpu, HardDrive, Activity, FolderOpen, Terminal, Brain, Zap, Bug, Code, Eye, EyeOff, Copy, Check, ChevronDown, ChevronUp, Lightbulb, RefreshCw, Cloud, CloudOff, FileCode, Edit3, Plus, FilePlus, Download, Save, File, ExternalLink, Search, Play, Trash2, Edit } from 'lucide-react';
+import { ArrowLeft, Send, Bot, Sparkles, Loader, Wifi, WifiOff, HelpCircle, X, History, GitBranch, Cpu, HardDrive, Activity, FolderOpen, Terminal, Brain, Zap, Bug, Code, Eye, EyeOff, Copy, Check, ChevronDown, ChevronUp, Lightbulb, RefreshCw, Cloud, CloudOff, FileCode, Edit3, Plus, FilePlus, Download, Save, File, ExternalLink, Search, Play, Trash2, Edit, BookOpen, FileText, Shield, Beaker } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import { API_URL } from '../config';
 
-const API = 'http://localhost:8000';
+const API = API_URL;
 
 const DEBUG_PROMPTS = [
   { label: 'Debug Error', prompt: 'Find and fix this bug: ', icon: Bug },
@@ -30,19 +31,62 @@ const SCRIPT_ACTIONS = [
 ];
 
 const QUICK_ACTIONS = [
-  { label: 'Git Status', cmd: 'GIT_STATUS ', icon: GitBranch },
-  { label: 'System Info', cmd: 'SYSTEM_INFO ', icon: Cpu },
-  { label: 'Project Tree', cmd: 'PROJECT_STRUCTURE .', icon: FolderOpen },
-  { label: 'Count Lines', cmd: 'COUNT_LINES .', icon: Activity },
-  { label: 'New Python', prompt: 'Create a new Python script for: ', icon: FilePlus },
-  { label: 'New Bash', prompt: 'Create a new bash script for: ', icon: Terminal },
+  { label: '📊 System', cmd: 'SYSTEM_INFO', icon: Cpu },
+  { label: '💾 Memory', cmd: 'MEMORY_USAGE', icon: Cpu },
+  { label: '⚡ CPU', cmd: 'CPU_USAGE', icon: Cpu },
+  { label: '🌳 Tree', cmd: 'PROJECT_STRUCTURE .', icon: FolderOpen },
+  { label: '📝 Lines', cmd: 'COUNT_LINES .', icon: Activity },
+  { label: '🔀 Status', cmd: 'GIT_STATUS', icon: GitBranch },
+  { label: '🔀 Diff', cmd: 'GIT_DIFF', icon: GitBranch },
+  { label: '🌐 Net', cmd: 'NETWORK_INFO', icon: Cpu },
+];
+
+const AI_ACTIONS = [
+  { label: '🔍 Index', cmd: 'INDEX .', icon: Search },
+  { label: '📝 Search', prompt: 'SEARCH ', icon: Search },
+  { label: '🐛 Bugs', prompt: 'ANALYZE_BUGS ', icon: Bug },
+  { label: '📊 Complex', prompt: 'ANALYZE_COMPLEXITY ', icon: Activity },
+  { label: '💡 Suggest', prompt: 'SUGGEST ', icon: Lightbulb },
+];
+
+const CODE_ACTIONS = [
+  { label: '🧠 Generate', prompt: 'GENERATE_CODE ', icon: Code },
+  { label: '🔧 Fix', prompt: 'FIX_CODE ', icon: Bug },
+  { label: '⚡ Complete', prompt: 'COMPLETE_CODE ', icon: Code },
+  { label: '🧪 Tests', prompt: 'GENERATE_TESTS ', icon: Beaker },
+  { label: '📚 Docs', prompt: 'GENERATE_DOCS ', icon: FileText },
+  { label: '🔐 Security', prompt: 'SECURITY_SCAN ', icon: Shield },
+  { label: '📖 Explain', prompt: 'EXPLAIN_CODE ', icon: BookOpen },
+  { label: '📝 README', prompt: 'GENERATE_README ', icon: FileText },
+  { label: '🔄 Refactor', prompt: 'REFACTOR_CODE ', icon: RefreshCw },
+  { label: '⚡ Optimize', prompt: 'OPTIMIZE_CODE ', icon: Zap },
+];
+
+const DEV_ACTIONS = [
+  { label: '🐳 Docker', prompt: 'GENERATE_DOCKER ', icon: Code },
+  { label: '🔧 CI/CD', prompt: 'WRITE_CI ', icon: Code },
+  { label: '🗄️ SQL', prompt: 'GENERATE_SQL ', icon: Code },
+  { label: '🌐 API', prompt: 'GENERATE_API ', icon: Code },
+  { label: '🚀 Deploy', prompt: 'DEPLOY_APP ', icon: Code },
+  { label: '🤖 Bot', prompt: 'CREATE_BOT ', icon: Code },
+  { label: '🔄 Workflow', prompt: 'GENERATE_WORKFLOW ', icon: Code },
+  { label: '🔧 Migrate', prompt: 'MIGRATE_DB ', icon: Code },
+];
+
+const WEB_SEARCH_PRESETS = [
+  { label: '🔍 Python', cmd: 'WEB_SEARCH python asyncio tutorial 2024', icon: Search },
+  { label: '🔍 React', cmd: 'WEB_SEARCH react 19 new features 2024', icon: Search },
+  { label: '🔍 FastAPI', cmd: 'WEB_SEARCH fastapi best practices 2024', icon: Search },
+  { label: '🔍 Linux', cmd: 'WEB_SEARCH linux server setup guide', icon: Search },
+  { label: '🔍 Git', cmd: 'WEB_SEARCH git advanced tips tricks', icon: Search },
 ];
 
 const ONLINE_ACTIONS = [
-  { label: 'Install Tool', prompt: 'INSTALL ', icon: Download },
-  { label: 'Check Installed', prompt: 'CHECK_INSTALLED ', icon: Search },
-  { label: 'Download File', prompt: 'DOWNLOAD_URL ', icon: ExternalLink },
-  { label: 'Read URL', prompt: 'READ_URL ', icon: Activity },
+  { label: '📖 Read URL', prompt: 'READ_URL ', icon: ExternalLink },
+  { label: '📥 Download', prompt: 'DOWNLOAD ', icon: Download },
+  { label: '🐍 Pip List', cmd: 'CHECK_INSTALLED pip', icon: Download },
+  { label: '📦 NPM List', cmd: 'RUN npm list -g --depth=0', icon: Download },
+  { label: '🔧 Install', prompt: 'PIP_INSTALL ', icon: Download },
 ];
 
 export default function DevAI() {
@@ -124,15 +168,27 @@ export default function DevAI() {
             if (data === '[DONE]') continue;
             
             // Handle thinking tags
-            if (data.includes('<think>')) {
+            const hasBrainStart = data.includes('<think>');
+            const hasBrainStart2 = data.includes('<think>');
+            const hasBrainEnd2 = data.includes('</think>');
+            
+            if (hasBrainStart || hasBrainStart2) {
               inThinking = true;
-              thinkingBuffer = data.replace(/[\s\S]*<think>/, '');
+              const idx1 = data.indexOf('<think>');
+              const idx2 = data.indexOf('<think>');
+              const idx = idx1 >= 0 ? idx1 : idx2;
+              let content = data.substring(idx + 6);
+              thinkingBuffer = content;
               if (thinkingBuffer) {
                 setCurrentThinking(thinkingBuffer);
               }
-            } else if (data.includes('</think>')) {
+            } else if (hasBrainEnd || hasBrainEnd2) {
               inThinking = false;
-              thinkingBuffer += data.replace(/<\/think>[\s\S]*/, '');
+              const idx1 = data.indexOf('</think>');
+              const idx2 = data.indexOf('</think>');
+              const idx = idx1 >= 0 ? idx1 : idx2;
+              let content = data.substring(0, idx);
+              thinkingBuffer += content;
               setCurrentThinking('');
               setMessages(prev => {
                 const updated = [...prev];
@@ -444,6 +500,66 @@ export default function DevAI() {
             </button>
           ))}
         </div>
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+          <span style={{ fontSize: '.65rem', color: '#a855f7', whiteSpace: 'nowrap' }}>🤖 AI:</span>
+          {AI_ACTIONS.map(({ label, cmd, prompt, icon: Icon }) => (
+            <button
+              key={label}
+              onClick={() => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true)}
+              disabled={loading}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105"
+              style={{ background: 'rgba(168,85,247,.15)', color: '#a855f7', border: '1px solid rgba(168,85,247,.3)' }}
+            >
+              <Icon size={11} />
+              {label}
+            </button>
+          )          )}
+        </div>
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+          <span style={{ fontSize: '.65rem', color: '#10b981', whiteSpace: 'nowrap' }}>💻 CODE:</span>
+          {CODE_ACTIONS.map(({ label, cmd, prompt, icon: Icon }) => (
+            <button
+              key={label}
+              onClick={() => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true)}
+              disabled={loading}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105"
+              style={{ background: 'rgba(16,185,129,.15)', color: '#10b981', border: '1px solid rgba(16,185,129,.3)' }}
+            >
+              <Icon size={11} />
+              {label}
+            </button>
+          )          )}
+        </div>
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+          <span style={{ fontSize: '.65rem', color: '#f59e0b', whiteSpace: 'nowrap' }}>🛠️ DEV:</span>
+          {DEV_ACTIONS.map(({ label, cmd, prompt, icon: Icon }) => (
+            <button
+              key={label}
+              onClick={() => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true)}
+              disabled={loading}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105"
+              style={{ background: 'rgba(245,158,11,.15)', color: '#f59e0b', border: '1px solid rgba(245,158,11,.3)' }}
+            >
+              <Icon size={11} />
+              {label}
+            </button>
+          ))}
+        </div>
+        <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
+          <span style={{ fontSize: '.65rem', color: '#3b82f6', whiteSpace: 'nowrap' }}>🌐 SEARCH:</span>
+          {WEB_SEARCH_PRESETS.map(({ label, cmd, icon: Icon }) => (
+            <button
+              key={label}
+              onClick={() => send(cmd, true)}
+              disabled={loading}
+              className="flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105"
+              style={{ background: 'rgba(59,130,246,.15)', color: '#3b82f6', border: '1px solid rgba(59,130,246,.3)' }}
+            >
+              <Icon size={11} />
+              {label}
+            </button>
+          ))}
+        </div>
         {offlineMode === false && (
           <div className="flex items-center gap-2 overflow-x-auto scrollbar-hide">
             <span style={{ fontSize: '.65rem', color: '#3b82f6', whiteSpace: 'nowrap' }}>🌐 ONLINE:</span>
@@ -526,10 +642,9 @@ export default function DevAI() {
                     <div className="mb-2">
                       <div
                         className="flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs"
-                        style={{ background: 'rgba(168,85,247,.15)', color: '#a855f7', border: '1px solid rgba(168,85,247,.3)' }}
+                        style={{ background: 'rgba(168,85,247,.25)', color: '#a855f7', border: '1px solid rgba(168,85,247,.5)' }}
                       >
-                        <Brain size={12} />
-                        <span className="font-medium">My Thinking</span>
+                        <span className="font-bold">🧠 Thinking</span>
                         {msg.showThinking && (
                           <button
                             onClick={() => toggleThinking(i)}

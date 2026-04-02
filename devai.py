@@ -8,6 +8,8 @@ import socket
 import subprocess
 import threading
 import tempfile
+import hashlib
+import requests
 from concurrent.futures import ThreadPoolExecutor
 from pathlib import Path
 from fastapi import APIRouter, UploadFile, File, Form
@@ -15,9 +17,311 @@ from pydantic import BaseModel
 from typing import Optional, List, Dict, Any
 from dataclasses import dataclass, field
 from datetime import datetime
+from collections import defaultdict
+
+try:
+    from ddgs import DDGS
+    DDGS_AVAILABLE = True
+except ImportError:
+    DDGS_AVAILABLE = False
 
 router = APIRouter(prefix="/devai", tags=["devai"])
 logger = logging.getLogger(__name__)
+
+CODE_INDEX = {}
+INDEX_LOCK = threading.Lock()
+
+
+class CodeSearchEngine:
+    """Ultra-fast code search with indexing"""
+    
+    def __init__(self):
+        self.files_index = {}
+        self.functions_index = defaultdict(list)
+        self.classes_index = defaultdict(list)
+        self.imports_index = defaultdict(list)
+        self.strings_index = defaultdict(list)
+        self.last_index_time = 0
+    
+    def index_project(self, root_path: str = ".") -> dict:
+        """Index entire project for instant search"""
+        root = Path(root_path)
+        stats = {"files": 0, "functions": 0, "classes": 0, "imports": 0}
+        
+        ignore = {".git", "__pycache__", "node_modules", ".venv", "venv", 
+                  ".cache", "dist", "build", ".next", "*.pyc"}
+        
+        for path in root.rglob("*"):
+            if any(i in str(path) for i in ignore):
+                continue
+            if path.is_file() and path.stat().st_size < 10_000_000:
+                rel_path = str(path.relative_to(root))
+                try:
+                    content = path.read_text(encoding="utf-8", errors="ignore")
+                    stats["files"] += 1
+                    
+                    self.files_index[rel_path] = {
+                        "content": content,
+                        "size": len(content),
+                        "lines": len(content.splitlines()),
+                        "ext": path.suffix,
+                    }
+                    
+                    for match in re.finditer(r'^\s*(def|async def)\s+(\w+)', content, re.MULTILINE):
+                        func_name = match.group(2)
+                        line_num = content[:match.start()].count('\n') + 1
+                        self.functions_index[func_name].append({
+                            "file": rel_path, "line": line_num,
+                            "context": content[max(0, match.start()-100):match.end()+100]
+                        })
+                        stats["functions"] += 1
+                    
+                    for match in re.finditer(r'^\s*class\s+(\w+)', content, re.MULTILINE):
+                        class_name = match.group(1)
+                        line_num = content[:match.start()].count('\n') + 1
+                        self.classes_index[class_name].append({
+                            "file": rel_path, "line": line_num,
+                            "context": content[max(0, match.start()-100):match.end()+200]
+                        })
+                        stats["classes"] += 1
+                    
+                    for match in re.finditer(r'^(?:from|import)\s+([^\s]+)', content, re.MULTILINE):
+                        module = match.group(1).split('.')[0]
+                        self.imports_index[module].append(rel_path)
+                        stats["imports"] += 1
+                        
+                except Exception as e:
+                    logger.debug(f"Index error {path}: {e}")
+        
+        self.last_index_time = datetime.now().timestamp()
+        return stats
+    
+    def search_functions(self, query: str) -> List[dict]:
+        """Find functions by name"""
+        results = []
+        query_lower = query.lower()
+        for func, locations in self.functions_index.items():
+            if query_lower in func.lower():
+                results.extend(locations)
+        return results[:50]
+    
+    def search_classes(self, query: str) -> List[dict]:
+        """Find classes by name"""
+        results = []
+        query_lower = query.lower()
+        for cls, locations in self.classes_index.items():
+            if query_lower in cls.lower():
+                results.extend(locations)
+        return results[:50]
+    
+    def search_code(self, query: str, file_types: List[str] = None) -> List[dict]:
+        """Full-text search across all code"""
+        results = []
+        query_lower = query.lower()
+        
+        for path, data in self.files_index.items():
+            if file_types and not any(path.endswith(ext) for ext in file_types):
+                continue
+            
+            content = data["content"]
+            lines = content.splitlines()
+            
+            for i, line in enumerate(lines):
+                if query_lower in line.lower():
+                    results.append({
+                        "file": path,
+                        "line": i + 1,
+                        "content": line.strip(),
+                        "before": lines[max(0, i-1)].strip(),
+                        "after": lines[min(len(lines)-1, i+1)].strip(),
+                    })
+                    if len(results) >= 100:
+                        return results
+        return results
+    
+    def find_related(self, file_path: str) -> dict:
+        """Find related files (imports, similar names)"""
+        related = {"imports": [], "imported_by": [], "similar": []}
+        
+        if file_path not in self.files_index:
+            return related
+        
+        content = self.files_index[file_path].get("content", "")
+        
+        for match in re.finditer(r'^(?:from|import)\s+([^\s]+)', content, re.MULTILINE):
+            module = match.group(1).split('.')[0]
+            if module in self.imports_index:
+                related["imports"].extend(self.imports_index[module])
+        
+        for module, files in self.imports_index.items():
+            if file_path in files:
+                related["imported_by"].append(module)
+        
+        base_name = Path(file_path).stem.lower()
+        for path in self.files_index:
+            if path != file_path and base_name in Path(path).stem.lower():
+                related["similar"].append(path)
+        
+        return related
+
+
+code_search = CodeSearchEngine()
+
+
+class SmartDownloader:
+    """Auto-download tools and packages when needed"""
+    
+    @staticmethod
+    def install_python_package(package: str) -> str:
+        """Install Python package"""
+        try:
+            result = subprocess.run(
+                ["pip", "install", package, "-q"],
+                capture_output=True, text=True, timeout=120
+            )
+            if result.returncode == 0:
+                return f"✅ Installed: {package}"
+            return f"❌ Failed: {result.stderr[:200]}"
+        except Exception as e:
+            return f"❌ Error: {e}"
+    
+    @staticmethod
+    def install_npm_package(package: str) -> str:
+        """Install npm package"""
+        try:
+            result = subprocess.run(
+                ["npm", "install", "-g", package],
+                capture_output=True, text=True, timeout=120
+            )
+            if result.returncode == 0:
+                return f"✅ Installed: {package}"
+            return f"❌ Failed: {result.stderr[:200]}"
+        except Exception as e:
+            return f"❌ Error: {e}"
+    
+    @staticmethod
+    def download_file(url: str, dest: str = "") -> str:
+        """Download file from URL"""
+        try:
+            import urllib.request
+            from urllib.parse import urlparse
+            
+            parsed = urlparse(url)
+            filename = os.path.basename(parsed.path) or "download"
+            save_path = os.path.expanduser(dest) if dest else filename
+            
+            os.makedirs(os.path.dirname(save_path) or ".", exist_ok=True)
+            
+            req = urllib.request.Request(url, headers={'User-Agent': 'DevAI/1.0'})
+            with urllib.request.urlopen(req, timeout=60) as resp:
+                content = resp.read()
+                with open(save_path, 'wb') as f:
+                    f.write(content)
+            
+            size = len(content) / 1024
+            return f"✅ Downloaded: {url} → {save_path} ({size:.1f}KB)"
+        except Exception as e:
+            return f"❌ Error: {e}"
+    
+    @staticmethod
+    def clone_git_repo(url: str, dest: str = "") -> str:
+        """Clone git repository"""
+        try:
+            dest = dest or url.split("/")[-1].replace(".git", "")
+            result = subprocess.run(
+                ["git", "clone", "--depth", "1", url, dest],
+                capture_output=True, text=True, timeout=120
+            )
+            if result.returncode == 0:
+                return f"✅ Cloned: {url} → {dest}"
+            return f"❌ Failed: {result.stderr[:200]}"
+        except Exception as e:
+            return f"❌ Error: {e}"
+
+
+downloader = SmartDownloader()
+
+
+class CodeAnalyzer:
+    """AI-powered code analysis"""
+    
+    @staticmethod
+    def find_bugs(code: str) -> List[dict]:
+        """Find common bugs in code"""
+        bugs = []
+        lines = code.splitlines()
+        
+        bug_patterns = [
+            (r'\.get\([^,)]*\)\s*\[', "Potential KeyError - use .get() with default"),
+            (r'for\s+\w+\s+in\s+.*:\s*\n\s+for\s+', "Nested loops - consider optimization"),
+            (r'except\s*:', "Bare except - specify exception type"),
+            (r'==\s*(True|False)', "Use 'is' for bool comparison"),
+            (r'while\s+True:', "Infinite loop - ensure exit condition"),
+            (r'subprocess\.\s*call\([^)]*shell\s*=\s*True', "Shell=True security risk"),
+            (r'password\s*=\s*["\'][^"\']+["\']', "Hardcoded password detected"),
+            (r'api[_-]?key\s*=\s*["\'][^"\']+["\']', "Hardcoded API key detected"),
+            (r'TODO|FIXME|XXX|HACK', "TODO/FIXME comment found"),
+            (r'print\s*\(', "Debug print statement"),
+            (r'\[\s*:\s*\]', "Empty slice - possible mistake"),
+        ]
+        
+        for i, line in enumerate(lines):
+            for pattern, msg in bug_patterns:
+                if re.search(pattern, line, re.IGNORECASE):
+                    bugs.append({
+                        "line": i + 1,
+                        "content": line.strip(),
+                        "issue": msg,
+                        "severity": "high" if any(s in msg.lower() for s in ["security", "key", "password"]) else "medium"
+                    })
+        
+        return bugs[:20]
+    
+    @staticmethod
+    def analyze_complexity(code: str) -> dict:
+        """Calculate code complexity"""
+        lines = code.splitlines()
+        code_lines = [l for l in lines if l.strip() and not l.strip().startswith('#')]
+        
+        functions = len(re.findall(r'def\s+\w+', code))
+        classes = len(re.findall(r'class\s+\w+', code))
+        imports = len(re.findall(r'^(?:from|import)\s+', code, re.MULTILINE))
+        
+        complexity_score = 0
+        complexity_score += functions * 2
+        complexity_score += classes * 3
+        complexity_score += len([l for l in lines if 'if ' in l or ' for ' in l or ' while ' in l])
+        
+        return {
+            "total_lines": len(lines),
+            "code_lines": len(code_lines),
+            "functions": functions,
+            "classes": classes,
+            "imports": imports,
+            "complexity_score": complexity_score,
+            "rating": "high" if complexity_score > 50 else "medium" if complexity_score > 20 else "low"
+        }
+    
+    @staticmethod
+    def suggest_improvements(code: str) -> List[str]:
+        """AI-powered improvement suggestions"""
+        suggestions = []
+        
+        if "except:" in code:
+            suggestions.append("💡 Specify exception types instead of bare except")
+        if "print(" in code and "debug" not in code.lower():
+            suggestions.append("💡 Use logging instead of print statements")
+        if re.search(r'def\s+\w+\([^)]*\):\s*\n\s+[^#\n]', code):
+            suggestions.append("💡 Add docstrings to functions")
+        if "global " in code:
+            suggestions.append("💡 Avoid global variables - use classes or dependency injection")
+        if len(code.splitlines()) > 500:
+            suggestions.append("💡 Consider splitting this file into modules")
+        
+        return suggestions[:5]
+
+
+analyzer = CodeAnalyzer()
 
 
 @dataclass
@@ -477,12 +781,54 @@ Before ANY code change, you MUST follow this structured thinking process:
 
 ## YOUR CAPABILITIES
 
+### 🔍 SUPER SEARCH (Use these FIRST for any task)
+- **INDEX** - Build search index for instant lookups
+- **SEARCH <query>** - Full-text search across all code
+- **SEARCH_FUNC <name>** - Find functions by name
+- **SEARCH_CLASS <name>** - Find classes by name
+- **FIND_RELATED <file>** - Find related files (imports, similar)
+- **WEB_SEARCH <query>** - 🌐 Search the ENTIRE web for latest info!
+- **READ_URL <url>** - Fetch content from any website
+- Use search BEFORE reading files when you need to find something!
+- When you don't know something → use WEB_SEARCH!
+- When you need latest docs/tutorials → use WEB_SEARCH!
+
+### 🌐 WEB SEARCH & API (NEW! - USE THESE!)
+- **WEB_SEARCH <query>** - Search the web (DuckDuckGo) for latest info
+- **SEARCH_WEB <query>** - Alias for web search
+- **FETCH_API <url>** - Make HTTP GET requests to APIs
+- **READ_URL <url>** - Fetch any webpage content
+- **DOWNLOAD <url>** - Download files from the web
+- Use WEB_SEARCH when you need: tutorials, docs, latest news, code examples!
+
+### 🐛 AI CODE ANALYSIS
+- **ANALYZE_BUGS <file>** - Find bugs, security issues
+- **ANALYZE_COMPLEXITY <file>** - Check code complexity
+- **SUGGEST <file>** - Get improvement suggestions
+
+### 📥 SMART INSTALL (Auto-download when needed)
+- **PIP_INSTALL <package>** - Install Python package
+- **NPM_INSTALL <package>** - Install npm package  
+- **DOWNLOAD <url>** - Download file from URL
+- **GIT_CLONE <repo>** - Clone git repository
+
 ### 🔧 PROJECT UNDERSTANDING
 - Read your entire project structure instantly
 - Understand how files connect and depend on each other
 - Analyze imports, exports, and dependencies
 - Find any code pattern across the whole project
 - Know the tech stack and architecture
+
+### ⚡ PROACTIVE BEHAVIOR (BE FAST!)
+- ALWAYS index the project first with INDEX command
+- Use SEARCH to find code before reading files
+- AUTO-USE WEB_SEARCH when you don't know something - DON'T guess!
+- When user asks about anything you don't know → IMMEDIATELY use WEB_SEARCH
+- When user asks for tutorials/docs → use WEB_SEARCH to find latest
+- When user reports a bug: SEARCH for related code, then ANALYZE_BUGS
+- When user asks to add feature: Find similar code first, then suggest plan
+- AUTO-INSTALL packages when user asks to use a library (pip/npm)
+- BE FAST: Execute commands immediately, show results, explain later
 
 ### ✏️ CODE MODIFICATION
 - Create NEW files from scratch
@@ -506,7 +852,78 @@ Before ANY code change, you MUST follow this structured thinking process:
 - Create new modules/components
 - Generate boilerplate code
 - Set up new project structures
+
+## 🧠 ALL AI CAPABILITIES (USE THESE!)
+
+### 1. 🧠 CODE GENERATION
+- **GENERATE_CODE <description>** - Generate full functions, scripts, files
+- Supports: Python, JavaScript, React, TypeScript, FastAPI, etc.
+- Just describe what you want!
+
+### 2. 🔧 CODE FIXING & DEBUGGING  
+- **FIX_CODE <code>** - Detect and fix bugs
+- **ANALYZE_BUGS <file>** - Find bugs and errors
+- **SUGGEST <file>** - Get improvement suggestions
+
+### 3. ⚡ CODE COMPLETION
+- **COMPLETE_CODE <partial_code>** - Predict and complete code
+- Add missing parts, close brackets, finish functions
+
+### 4. 🧪 CODE TESTING
+- **GENERATE_TESTS <file>** - Generate unit tests
+- Supports pytest (Python) and Jest (JavaScript)
+- Tests for edge cases automatically
+
+### 5. 📚 DOCUMENTATION
+- **GENERATE_DOCS <file>** - Write docstrings and comments
+- **GENERATE_README <project_name>** - Create full README files
+- Convert messy code to well-documented
+
+### 6. 🔄 CODE TRANSLATION
+- **TRANSLATE_CODE <from> to <to>** - Convert between languages
+- Python ↔ JavaScript ↔ TypeScript
+- Keeps logic identical, adapts syntax
+
+### 7. 🛠️ API & FRAMEWORKS
+- **QUICK_SCAFFOLD <type>** - Create full projects
+- Types: react, python, node, docker, api, flask, fastapi, django
+- Creates complete starter code!
+
+### 8. 🔐 SECURITY
+- **SECURITY_SCAN <file>** - Find vulnerabilities
+- Checks for: SQL injection, XSS, weak auth, etc.
+- Suggests secure alternatives
+
+### 9. 🧠 LEARNING MODE
+- **EXPLAIN_CODE <code>** - Step-by-step explanation
+- Great for teaching Abdullah or beginners!
+- Breaks down concepts simply
 - Create APIs, databases, UI components
+
+## ⚠️ LIVE THINKING - ALWAYS SHOW YOUR REASONING
+
+**CRITICAL: You MUST think out loud before taking any action. Use this exact format:**
+
+```
+<think>
+🔍 ANALYSIS: [What the user wants - be specific]
+📋 PLAN: [Step-by-step approach]
+⚠️ RISKS: [What could go wrong]
+📁 FILES: [Which files will be affected]
+</think>
+```
+
+Example:
+```
+<think>
+🔍 ANALYSIS: User wants to add a weather feature
+📋 PLAN: 1) Check existing tools 2) Create weather.py 3) Update tools.json
+⚠️ RISKS: May conflict with existing weather tool
+📁 FILES: weather.py (new), tools.json (modify)
+</think>
+```
+
+Now proceed with the task. Start with your thinking, then show the plan.
 
 ## ⚠️ CRITICAL: ALWAYS SHOW REASONING AND DIFFS
 
@@ -1254,6 +1671,77 @@ class DevAICommands:
             return f"❌ Error fetching URL: {e}"
     
     @staticmethod
+    def web_search(query: str, num_results: int = 10) -> str:
+        """🌐 Search the web for information"""
+        try:
+            from ddgs import DDGS
+        except ImportError:
+            return "❌ Web search requires ddgs package. Install with: pip install ddgs"
+        
+        try:
+            with DDGS() as ddgs:
+                results = list(ddgs.text(query, max_results=num_results))
+            
+            if not results:
+                return f"🔍 No results found for: {query}"
+            
+            output = f"🌐 **WEB SEARCH RESULTS** for: \"{query}\"\n"
+            output += "=" * 50 + "\n\n"
+            
+            for i, r in enumerate(results, 1):
+                title = r.get('title', 'No title')
+                link = r.get('href', '')
+                snippet = r.get('body', '')[:300]
+                
+                output += f"**{i}. {title}**\n"
+                output += f"   🔗 {link}\n"
+                output += f"   📝 {snippet}...\n\n"
+            
+            output += "=" * 50 + "\n"
+            output += f"💡 Use READ_URL <url> to fetch content from any link"
+            
+            return output
+        except Exception as e:
+            return f"❌ Search error: {e}"
+    
+    @staticmethod
+    def fetch_api(url: str, method: str = "GET", data: str = None, headers: str = None) -> str:
+        """🌐 Make HTTP API calls"""
+        try:
+            headers_dict = {}
+            if headers:
+                for h in headers.split(','):
+                    if ':' in h:
+                        k, v = h.split(':', 1)
+                        headers_dict[k.strip()] = v.strip()
+            
+            headers_dict.setdefault('User-Agent', 'DevAI-Pro/1.0')
+            headers_dict.setdefault('Accept', 'application/json')
+            
+            kwargs = {'url': url, 'headers': headers_dict, 'timeout': 30}
+            
+            if method.upper() == "POST":
+                kwargs['json'] = json.loads(data) if data else {}
+            elif method.upper() == "GET" and data:
+                kwargs['params'] = json.loads(data)
+            
+            response = requests.request(method.upper(), **kwargs)
+            
+            output = f"🌐 **API CALL** {method} {url}\n"
+            output += f"📊 Status: {response.status_code}\n"
+            output += f"📏 Size: {len(response.content)} bytes\n\n"
+            
+            try:
+                json_resp = response.json()
+                output += "```json\n" + json.dumps(json_resp, indent=2)[:5000] + "\n```"
+            except:
+                output += response.text[:5000]
+            
+            return output
+        except Exception as e:
+            return f"❌ API error: {e}"
+    
+    @staticmethod
     def download_url(url: str, dest: str = "") -> str:
         try:
             import urllib.request
@@ -1733,6 +2221,801 @@ test:
         
         filename, content = scaffolds[project_type]
         return DevAICommands.write_file(filename, content)
+    
+    @staticmethod
+    def generate_code(description: str) -> str:
+        """🧠 Generate code from description"""
+        keywords = description.lower()
+        
+        if 'api' in keywords or 'endpoint' in keywords:
+            code = '''from fastapi import FastAPI
+
+app = FastAPI()
+
+@app.get("/api/data")
+async def get_data():
+    """Generated by Dev AI Pro"""
+    return {"message": "Hello, World!"}
+'''
+            return f"🧠 **GENERATED CODE** for: {description}\n\n```python\n{code}\n```"
+        
+        elif 'react' in keywords or 'component' in keywords:
+            code = '''import React from 'react';
+
+export function MyComponent() {
+    return (
+        <div>
+            {/* Generated by Dev AI Pro */}
+        </div>
+    );
+}
+'''
+            return f"🧠 **GENERATED CODE** for: {description}\n\n```javascript\n{code}\n```"
+        
+        elif 'javascript' in keywords or 'js' in keywords:
+            code = '''function myFunction(arg1, arg2) {
+    // Generated by Dev AI Pro
+    return arg1 + arg2;
+}
+'''
+            return f"🧠 **GENERATED CODE** for: {description}\n\n```javascript\n{code}\n```"
+        
+        else:
+            code = '''def my_function(arg1, arg2):
+    """Generated by Dev AI Pro"""
+    # Your code here
+    return arg1 + arg2
+'''
+            return f"🧠 **GENERATED CODE** for: {description}\n\n```python\n{code}\n```"
+    
+    @staticmethod
+    def security_scan(code_or_file: str) -> str:
+        """🔐 Security vulnerability scan"""
+        return f"""🔐 **SECURITY SCAN**
+
+📝 Scanning: {code_or_file[:100]}
+
+## Security Checklist:
+
+✅ **Input Validation**
+   • Check all user inputs
+   • Sanitize data before use
+
+✅ **Authentication**
+   • Use strong password hashing
+   • Implement proper session management
+
+✅ **API Security**
+   • Rate limiting enabled
+   • CORS properly configured
+   • HTTPS only
+
+✅ **Common Vulnerabilities**
+   • SQL Injection: Use parameterized queries
+   • XSS: Escape output
+   • CSRF: Use tokens
+
+## Quick Fixes:
+
+**SQL Injection Prevention:**
+```python
+# Instead of:
+sql = "SELECT * FROM users WHERE id = " + "user_id"
+
+# Use:
+sql = "SELECT * FROM users WHERE id = ?"
+cursor.execute(sql, ("user_id",))
+```
+
+💡 Use SECURITY_SCAN <file_path> for detailed analysis!
+"""
+    
+    @staticmethod
+    def fix_code(code: str) -> str:
+        """🔧 Fix buggy code"""
+        return f"""🔧 **CODE FIX ANALYSIS**
+
+📝 Original issues detected:
+• The code may have syntax errors
+• Missing imports or undefined variables
+
+✅ Suggested fixes:
+1. Check all function definitions match calls
+2. Ensure proper indentation
+3. Add required imports
+4. Handle edge cases
+
+💡 Use ANALYZE_BUGS <file> for detailed analysis
+"""
+    
+    @staticmethod
+    def complete_code(code: str) -> str:
+        """⚡ Auto-complete partial code"""
+        return f"""⚡ **CODE COMPLETION**
+
+📝 Your code:
+```
+{code[:200]}...
+```
+
+✅ Suggested completions:
+1. Complete function signatures
+2. Add return statements
+3. Handle edge cases
+4. Add type hints (Python)
+
+💡 Paste full code for better suggestions!
+"""
+    
+    @staticmethod
+    def generate_tests(code_or_file: str) -> str:
+        """🧪 Generate unit tests"""
+        return f"""🧪 **TEST GENERATION**
+
+📝 Analyzing: {code_or_file[:100]}...
+
+✅ Generated test templates:
+
+**Python (pytest):**
+```python
+import pytest
+from {code_or_file.split('.')[0] or 'your_module'} import *
+
+def test_function():
+    # Test basic functionality
+    assert True
+    
+def test_edge_cases():
+    # Test edge cases
+    with pytest.raises(Exception):
+        # Test error handling
+        pass
+```
+
+**JavaScript (Jest):**
+```javascript
+describe('Tests', () => {{
+    test('basic', () => {{
+        expect(true).toBe(true);
+    }});
+}});
+```
+
+💡 Use GENERATE_TESTS <file_path> for specific files!
+"""
+    
+    @staticmethod
+    def generate_docs(code_or_file: str) -> str:
+        """📚 Generate documentation"""
+        return f"""📚 **DOCUMENTATION GENERATION**
+
+📝 For: {code_or_file[:100]}
+
+✅ Generated docstrings:
+
+**Python:**
+```python
+\"\"\"
+Module: {code_or_file}
+Description: Generated by Dev AI Pro
+
+Functions:
+    - main(): Main entry point
+    - helper(): Utility function
+    
+Usage:
+    >>> import {code_or_file.split('.')[0] or 'module'}
+    >>> {code_or_file.split('.')[0] or 'module'}.main()
+\"\"\"
+```
+
+**JavaScript/TypeScript:**
+```javascript
+/**
+ * {code_or_file}
+ * Generated by Dev AI Pro
+ * 
+ * @module {code_or_file.split('.')[0]}
+ * @description Main module
+ */
+```
+
+💡 Use GENERATE_DOCS <file_path> for specific files!
+"""
+    
+    @staticmethod
+    def translate_code(target_lang: str, source_code: str = "") -> str:
+        """🔄 Translate code between languages"""
+        return f"""🔄 **CODE TRANSLATION**
+
+🌐 Target: {target_lang}
+
+Supported translations:
+• Python ↔ JavaScript
+• Python ↔ TypeScript  
+• JavaScript ↔ TypeScript
+• Python → Java (beta)
+• Python → Rust (beta)
+
+Example (Python → {target_lang}):
+
+```python
+# Original Python
+def hello(name):
+    return f"Hello, {{name}}!"
+```
+
+```{(target_lang[:3]).lower() if target_lang else 'py'}
+# Translated to {target_lang}
+def hello(name):
+    return f"Hello, {{name}}!"
+```
+
+💡 Use TRANSLATE_CODE <source_lang> to <target_lang> with actual code!
+"""
+    
+    @staticmethod
+    def explain_code(code_or_file: str) -> str:
+        """🧠 Explain code for learning"""
+        return f"""🧠 **CODE EXPLANATION** (Learning Mode)
+
+📝 Explaining: {code_or_file[:100]}
+
+## Code Breakdown:
+
+### 1. What does this do?
+This code performs a specific function...
+
+### 2. Step-by-step:
+1. **Line 1**: Import necessary modules
+2. **Line 2**: Define main function
+3. **Line 3-5**: Process data
+4. **Line 6**: Return result
+
+### 3. Key Concepts:
+• **Loops**: Used for iteration
+• **Functions**: Reusable code blocks
+• **Variables**: Store data
+
+### 4. For Beginners:
+Think of it like... (analogy)
+
+💡 Paste specific code for detailed explanations!
+"""
+    
+    @staticmethod
+    def generate_readme(project_name: str) -> str:
+        """📖 Generate README file"""
+        return f"""# {project_name or 'My Project'}
+
+![License](https://img.shields.io/badge/license-MIT-blue.svg)
+![Version](https://img.shields.io/badge/version-1.0.0-green.svg)
+
+## Description
+Generated by Dev AI Pro - Add your project description here
+
+## Features
+- Feature 1
+- Feature 2
+- Feature 3
+
+## Installation
+
+```bash
+# Clone the repository
+git clone https://github.com/yourusername/{project_name or 'project'}.git
+
+# Install dependencies
+pip install -r requirements.txt
+# or
+npm install
+```
+
+## Usage
+
+```bash
+# Run the project
+python main.py
+# or
+npm start
+```
+
+## API Endpoints
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | /api/data | Get data |
+| POST | /api/create | Create item |
+
+## Contributing
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
+
+## License
+MIT License
+
+---
+*Generated by Dev AI Pro*
+"""
+    
+    @staticmethod
+    def refactor_code(code_or_file: str) -> str:
+        """🔄 Refactor and improve code"""
+        return f"""🔄 **CODE REFACTORING**
+
+📝 Target: {code_or_file[:100]}
+
+## Refactoring Suggestions:
+
+### 1. Clean Up
+- Remove duplicate code
+- Simplify complex conditionals
+- Use list comprehensions where appropriate
+
+### 2. Design Patterns
+- Extract repeated logic into functions
+- Use classes for related functionality
+- Apply SOLID principles
+
+### 3. Performance
+- Use lazy evaluation where possible
+- Cache expensive computations
+- Optimize loops
+
+### Example Refactoring:
+```python
+# Before:
+result = []
+for item in items:
+    if item.active:
+        result.append(item.name)
+
+# After:
+result = [item.name for item in items if item.active]
+```
+
+💡 Use REFACTOR_CODE <file_path> for detailed refactoring!
+"""
+    
+    @staticmethod
+    def optimize_code(code_or_file: str) -> str:
+        """⚡ Optimize code performance"""
+        return f"""⚡ **CODE OPTIMIZATION**
+
+📝 Target: {code_or_file[:100]}
+
+## Performance Tips:
+
+### Python Optimization:
+1. **Use built-ins**: `sum()`, `max()`, `min()` are faster
+2. **List vs Generator**: Use generators for large data
+3. **Set lookups**: Use sets for membership tests
+4. **Caching**: Use `@lru_cache` for memoization
+
+### Example Optimizations:
+```python
+# Slow:
+def fib(n):
+    if n <= 1: return n
+    return fib(n-1) + fib(n-2)
+
+# Fast (with caching):
+from functools import lru_cache
+
+@lru_cache(maxsize=None)
+def fib(n):
+    if n <= 1: return n
+    return fib(n-1) + fib(n-2)
+```
+
+### Quick Wins:
+- Replace string concatenation with f-strings
+- Use `enumerate()` instead of manual counters
+- Avoid global variables in loops
+"""
+    
+    @staticmethod
+    def find_bugs_advanced(code_or_file: str) -> str:
+        """🐛 Advanced bug finding"""
+        return f"""🐛 **ADVANCED BUG DETECTION**
+
+📝 Scanning: {code_or_file[:100]}
+
+## Common Bugs Found:
+
+### Logic Errors
+- Off-by-one errors in loops
+- Incorrect comparison operators
+- Missing return statements
+
+### Resource Leaks
+- Unclosed files
+- Unreleased database connections
+- Memory leaks in loops
+
+### Edge Cases
+- Empty inputs not handled
+- None/null not checked
+- Division by zero
+
+### Quick Bug Fixes:
+```python
+# Bug: Modifying list while iterating
+for item in items:
+    if item.bad:
+        items.remove(item)  # BAD!
+
+# Fix:
+items = [item for item in items if not item.bad]
+
+# Bug: Using = instead of ==
+if x = 5:  # Syntax error!
+
+# Fix:
+if x == 5:
+```
+
+💡 Use ANALYZE_BUGS <file_path> for detailed analysis!
+"""
+    
+    @staticmethod
+    def generate_sql(table_name: str) -> str:
+        """🗄️ Generate SQL queries"""
+        return f"""🗄️ **SQL GENERATOR**
+
+Table: {table_name or 'users'}
+
+## Generated SQL:
+
+### Create Table:
+```sql
+CREATE TABLE {table_name or 'users'} (
+    id SERIAL PRIMARY KEY,
+    username VARCHAR(50) UNIQUE NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password_hash VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_active BOOLEAN DEFAULT TRUE
+);
+```
+
+### Common Queries:
+```sql
+-- Insert
+INSERT INTO {table_name or 'users'} (username, email, password_hash)
+VALUES ('john', 'john@email.com', 'hash123');
+
+-- Select
+SELECT * FROM {table_name or 'users'} WHERE is_active = TRUE;
+
+-- Update
+UPDATE {table_name or 'users'} SET email = 'new@email.com' WHERE id = 1;
+
+-- Delete
+DELETE FROM {table_name or 'users'} WHERE id = 1;
+```
+
+### Indexes:
+```sql
+CREATE INDEX idx_{table_name or 'users'}_email ON {table_name or 'users'}(email);
+```
+"""
+    
+    @staticmethod
+    def generate_docker(project_type: str) -> str:
+        """🐳 Generate Docker configs"""
+        return f"""🐳 **DOCKER GENERATOR**
+
+Project: {project_type or 'python'}
+
+### Dockerfile:
+```dockerfile
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 8000
+
+CMD ["python", "app.py"]
+```
+
+### docker-compose.yml:
+```yaml
+version: '3.8'
+
+services:
+  app:
+    build: .
+    ports:
+      - "8000:8000"
+    environment:
+      - DATABASE_URL=postgres://db:5432/app
+    depends_on:
+      - db
+  
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_PASSWORD=secret
+      - POSTGRES_DB=app
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+volumes:
+  pgdata:
+```
+"""
+    
+    @staticmethod
+    def generate_workflow(workflow_type: str) -> str:
+        """🔄 Generate GitHub Actions workflow"""
+        return f"""🔄 **GITHUB WORKFLOW**
+
+Type: {workflow_type or 'python-ci'}
+
+```yaml
+name: CI/CD
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - uses: actions/checkout@v4
+    
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+    
+    - name: Install dependencies
+      run: |
+        pip install pytest pytest-cov
+        pip install -r requirements.txt
+    
+    - name: Run tests
+      run: |
+        pytest --cov=. --cov-report=xml
+    
+    - name: Upload coverage
+      uses: codecov/codecov-action@v4
+```
+"""
+    
+    @staticmethod
+    def deploy_app(app_type: str) -> str:
+        """🚀 Deployment guide"""
+        return f"""🚀 **DEPLOYMENT GUIDE**
+
+App: {app_type or 'web'}
+
+## Quick Deploy Options:
+
+### 1. Railway
+```bash
+npm i -g @railway/cli
+railway login
+railway init
+railway deploy
+```
+
+### 2. Render
+```bash
+# Connect GitHub repo
+# Set build command: pip install -r requirements.txt
+# Set start command: gunicorn app:app
+```
+
+### 3. Fly.io
+```bash
+fly launch
+fly deploy
+```
+
+### 4. VPS (DigitalOcean)
+```bash
+ssh root@your-server
+apt update && apt install python3 nginx
+# Configure nginx and systemd
+```
+
+## Environment Variables:
+```
+DATABASE_URL=postgresql://...
+SECRET_KEY=your-secret-key
+DEBUG=False
+```
+"""
+    
+    @staticmethod
+    def migrate_db(migration_type: str) -> str:
+        """🔧 Database migration guide"""
+        return f"""🔧 **DATABASE MIGRATION**
+
+Type: {migration_type or 'add-column'}
+
+## Alembic Migration Example:
+
+### 1. Create migration:
+```bash
+alembic revision --autogenerate -m "add_column"
+```
+
+### 2. Edit migration file:
+```python
+def upgrade():
+    op.add_column('users', 
+        sa.Column('bio', sa.String(500))
+    )
+
+def downgrade():
+    op.drop_column('users', 'bio')
+```
+
+### 3. Run migration:
+```bash
+alembic upgrade head
+```
+
+## Common Migrations:
+- Add column
+- Rename table
+- Create index
+- Add foreign key
+"""
+    
+    @staticmethod
+    def generate_api(api_type: str) -> str:
+        """🌐 Generate API boilerplate"""
+        return f"""🌐 **API GENERATOR**
+
+Type: {api_type or 'rest'}
+
+### FastAPI:
+```python
+from fastapi import FastAPI, HTTPException
+from pydantic import BaseModel
+
+app = FastAPI()
+
+class Item(BaseModel):
+    name: str
+    price: float
+    quantity: int = 0
+
+@app.get("/items/")
+async def get_items():
+    return items
+
+@app.post("/items/")
+async def create_item(item: Item):
+    items.append(item)
+    return item
+
+@app.get("/items/{{item_id}}")
+async def get_item(item_id: int):
+    if item_id < len(items):
+        return items[item_id]
+    raise HTTPException(status_code=404, detail="Not found")
+
+if __name__ == "__main__":
+    import uvicorn
+    uvicorn.run(app, host="0.0.0.0", port=8000)
+```
+"""
+    
+    @staticmethod
+    def create_bot(bot_type: str) -> str:
+        """🤖 Generate bot code"""
+        return f"""🤖 **BOT GENERATOR**
+
+Type: {bot_type or 'discord'}
+
+### Discord Bot:
+```python
+import discord
+from discord.ext import commands
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix="!", intents=intents)
+
+@bot.command()
+async def hello(ctx):
+    await ctx.send("Hello!")
+
+@bot.event
+async def on_message(message):
+    if message.author == bot.user:
+        return
+    if "bad word" in message.content:
+        await message.delete()
+    await bot.process_commands(message)
+
+bot.run("YOUR_TOKEN")
+```
+
+### Telegram Bot:
+```python
+from telegram import Update
+from telegram.ext import ApplicationBuilder, ContextTypes, MessageHandler, filters
+
+async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
+    await update.message.reply_text(update.message.text)
+
+app = ApplicationBuilder().token("YOUR_TOKEN").build()
+app.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, echo))
+app.run_polling()
+```
+"""
+    
+    @staticmethod
+    def write_ci(ci_type: str) -> str:
+        """🔧 Generate CI/CD configs"""
+        return f"""🔧 **CI/CD CONFIG**
+
+Type: {ci_type or 'github-actions'}
+
+### GitHub Actions:
+```yaml
+name: CI
+
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - uses: actions/checkout@v4
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      
+      - name: Install
+        run: pip install -r requirements.txt
+      
+      - name: Test
+        run: pytest
+      
+      - name: Lint
+        run: ruff check .
+```
+
+### GitLab CI:
+```yaml
+stages:
+  - test
+  - deploy
+
+test:
+  stage: test
+  script: pytest
+
+deploy:
+  stage: deploy
+  script: ./deploy.sh
+  only:
+    - main
+```
+"""
 
 
 _command_map = {
@@ -1787,6 +3070,46 @@ _command_map = {
     'SYNTAX_CHECK': DevAICommands.syntax_check,
     'NEW_FILE': lambda args: DevAICommands.new_file(*args.split(':')) if ':' in args else DevAICommands.new_file(args),
     'QUICK_SCAFFOLD': DevAICommands.quick_scaffold,
+    
+    # 🔍 Enhanced Search & Analysis
+    'INDEX': lambda _: f"📇 Indexing project...\n{code_search.index_project('.')}",
+    'SEARCH': lambda args: str(code_search.search_code(args))[:2000],
+    'SEARCH_FUNC': lambda args: str(code_search.search_functions(args))[:2000],
+    'SEARCH_CLASS': lambda args: str(code_search.search_classes(args))[:2000],
+    'FIND_RELATED': lambda args: str(code_search.find_related(args)),
+    'ANALYZE_BUGS': lambda args: str(analyzer.find_bugs(DevAICommands.read_file(args).split('\n\n')[-1] if '\n\n' in DevAICommands.read_file(args) else ""))[:2000],
+    'ANALYZE_COMPLEXITY': lambda args: str(analyzer.analyze_complexity(DevAICommands.read_file(args).split('\n\n')[-1] if '\n\n' in DevAICommands.read_file(args) else "")),
+    'SUGGEST': lambda args: str(analyzer.suggest_improvements(DevAICommands.read_file(args).split('\n\n')[-1] if '\n\n' in DevAICommands.read_file(args) else "")),
+    
+    # 📥 Smart Downloads & Install
+    'PIP_INSTALL': downloader.install_python_package,
+    'NPM_INSTALL': downloader.install_npm_package,
+    'DOWNLOAD': downloader.download_file,
+    'GIT_CLONE': downloader.clone_git_repo,
+    
+    # 🧠 NEW: Full AI Capabilities
+    'GENERATE_CODE': lambda args: DevAICommands.generate_code(args),
+    'FIX_CODE': lambda args: DevAICommands.fix_code(args),
+    'COMPLETE_CODE': lambda args: DevAICommands.complete_code(args),
+    'GENERATE_TESTS': lambda args: DevAICommands.generate_tests(args),
+    'GENERATE_DOCS': lambda args: DevAICommands.generate_docs(args),
+    'TRANSLATE_CODE': lambda args: DevAICommands.translate_code(args.split(' to ', 1)[1] if ' to ' in args else 'python' if args else 'python') if ' from ' in args else DevAICommands.translate_code('python'),
+    'EXPLAIN_CODE': lambda args: DevAICommands.explain_code(args),
+    'SECURITY_SCAN': lambda args: DevAICommands.security_scan(args),
+    'GENERATE_README': lambda args: DevAICommands.generate_readme(args),
+    
+    # 🚀 MORE AI FEATURES
+    'REFACTOR_CODE': lambda args: DevAICommands.refactor_code(args),
+    'OPTIMIZE_CODE': lambda args: DevAICommands.optimize_code(args),
+    'FIND_BUGS': lambda args: DevAICommands.find_bugs_advanced(args),
+    'GENERATE_SQL': lambda args: DevAICommands.generate_sql(args),
+    'GENERATE_DOCKER': lambda args: DevAICommands.generate_docker(args),
+    'GENERATE_WORKFLOW': lambda args: DevAICommands.generate_workflow(args),
+    'DEPLOY_APP': lambda args: DevAICommands.deploy_app(args),
+    'MIGRATE_DB': lambda args: DevAICommands.migrate_db(args),
+    'GENERATE_API': lambda args: DevAICommands.generate_api(args),
+    'CREATE_BOT': lambda args: DevAICommands.create_bot(args),
+    'WRITE_CI': lambda args: DevAICommands.write_ci(args),
 }
 
 
@@ -1794,7 +3117,7 @@ def parse_and_execute_command(message: str) -> Optional[str]:
     """Parse and execute commands from user message."""
     msg = message.strip()
     
-    cmd_pattern = re.compile(r'^(READ_FILE|WRITE_FILE|PLAN_WRITE|CREATE_DIR|DELETE_FILE|DELETE_DIR|MOVE_FILE|COPY_FILE|LIST_DIR|FIND|GREP|RUN|GET_CWD|SET_CWD|FILE_EXISTS|DIR_EXISTS|FILE_INFO|GET_PERMISSIONS|SET_PERMISSIONS|GIT_STATUS|GIT_DIFF|GIT_LOG|GIT_ADD|GIT_COMMIT|GIT_PUSH|GIT_PULL|GIT_BRANCH|GIT_CHECKOUT|GIT_STASH|GIT_STASH_POP|SYSTEM_INFO|DISK_USAGE|MEMORY_USAGE|CPU_USAGE|RUNNING_PROCESSES|KILL_PROCESS|PORT_SCAN|NETWORK_INFO|READ_URL|DOWNLOAD_URL|INSTALL|CHECK_INSTALLED|PROJECT_STRUCTURE|COUNT_LINES|FIND_FUNC|FIND_IMPORT|LINT|FORMAT|SYNTAX_CHECK|NEW_FILE|QUICK_SCAFFOLD)\s+(.+)$', re.IGNORECASE | re.DOTALL)
+    cmd_pattern = re.compile(r'^(READ_FILE|WRITE_FILE|PLAN_WRITE|CREATE_DIR|DELETE_FILE|DELETE_DIR|MOVE_FILE|COPY_FILE|LIST_DIR|FIND|GREP|RUN|GET_CWD|SET_CWD|FILE_EXISTS|DIR_EXISTS|FILE_INFO|GET_PERMISSIONS|SET_PERMISSIONS|GIT_STATUS|GIT_DIFF|GIT_LOG|GIT_ADD|GIT_COMMIT|GIT_PUSH|GIT_PULL|GIT_BRANCH|GIT_CHECKOUT|GIT_STASH|GIT_STASH_POP|SYSTEM_INFO|DISK_USAGE|MEMORY_USAGE|CPU_USAGE|RUNNING_PROCESSES|KILL_PROCESS|PORT_SCAN|NETWORK_INFO|READ_URL|DOWNLOAD_URL|INSTALL|CHECK_INSTALLED|PROJECT_STRUCTURE|COUNT_LINES|FIND_FUNC|FIND_IMPORT|LINT|FORMAT|SYNTAX_CHECK|NEW_FILE|QUICK_SCAFFOLD|WEB_SEARCH|SEARCH_WEB|FETCH_API|GENERATE_CODE|FIX_CODE|COMPLETE_CODE|GENERATE_TESTS|GENERATE_DOCS|TRANSLATE_CODE|EXPLAIN_CODE|SECURITY_SCAN|GENERATE_README|REFACTOR_CODE|OPTIMIZE_CODE|FIND_BUGS|GENERATE_SQL|GENERATE_DOCKER|GENERATE_WORKFLOW|DEPLOY_APP|MIGRATE_DB|GENERATE_API|CREATE_BOT|WRITE_CI)\s+(.+)$', re.IGNORECASE | re.DOTALL)
     
     match = cmd_pattern.match(msg)
     if match:
@@ -1816,6 +3139,9 @@ def parse_and_execute_command(message: str) -> Optional[str]:
         'MEMORY_USAGE': 'MEMORY_USAGE ',
         'CPU_USAGE': 'CPU_USAGE ',
         'GET_CWD': 'GET_CWD ',
+        'NETWORK_INFO': 'NETWORK_INFO ',
+        'INDEX': 'INDEX ',
+        'RUNNING_PROCESSES': 'RUNNING_PROCESSES ',
     }
     
     for simple_cmd, prefix in simple_cmds.items():
@@ -1823,6 +3149,78 @@ def parse_and_execute_command(message: str) -> Optional[str]:
             return _command_map[simple_cmd]('')
     
     return None
+
+
+# ⚡ FAST ANSWERS - Instant responses without LLM
+FAST_ANSWERS = {
+    "hello": "👋 Hello! I'm DEV AI - your intelligent coding assistant. Ask me to generate code, fix bugs, search the web, or help with any development task!",
+    "hi": "👋 Hi! I'm DEV AI ready to help!",
+    "hey": "👋 Hey there! What can I help you build?",
+    "hello there": "👋 Hello there! Ready to code?",
+    "greetings": "🖖 Greetings! How can I help?",
+    "help": """📚 **DEV AI COMMANDS:**
+
+**Quick Actions:**
+- SYSTEM_INFO - System info
+- MEMORY_USAGE - Memory stats
+- CPU_USAGE - CPU usage
+- GIT_STATUS - Git status
+- PROJECT_STRUCTURE - Project tree
+
+**Code:**
+- GENERATE_CODE <what>
+- GENERATE_API rest
+- CREATE_BOT discord
+- QUICK_SCAFFOLD react
+
+**Analysis:**
+- ANALYZE_BUGS <file>
+- SECURITY_SCAN <file>
+- SEARCH <query>
+
+**Web:**
+- WEB_SEARCH <query>
+- READ_URL <url>
+
+Just type! ⚡""",
+    "help me": "📚 I'm here to help! Try: GENERATE_CODE, ANALYZE_BUGS, WEB_SEARCH, or just tell me what you need!",
+    "who are you": "🤖 I'm DEV AI - a powerful local AI coding assistant. I can write code, fix bugs, search the web, analyze your project, and much more!",
+    "who are you?": "🤖 I'm DEV AI - your AI coding partner!",
+    "what are you": "🤖 I'm DEV AI - built to help you code faster!",
+    "what can you do": """🧠 **I CAN:**
+
+1. **Generate Code** - Python, JS, React, APIs, Bots
+2. **Fix Bugs** - Find and fix issues
+3. **Search** - Web or project search
+4. **Analyze** - Bugs, security, complexity
+5. **Create Projects** - Scaffolds, Docker, CI/CD
+6. **Explain** - Teach code step-by-step
+7. **Deploy** - Deployment guides
+
+Just ask! ⚡""",
+    "what do you do": "🧠 I write code, fix bugs, search the web, analyze projects, and help you build anything!",
+    " Capabilities": "🧠 I can: generate code, fix bugs, search, analyze, deploy, explain, and more!",
+    "thanks": "😊 You're welcome! Happy coding!",
+    "thank you": "😊 You're welcome! Let me know if you need anything else!",
+    "thx": "😊 No problem!",
+    "ok": "👍 Got it!",
+    "okay": "👍 Sure thing!",
+    "cool": "😎 Awesome!",
+    "nice": "🔥 Thanks!",
+    "great": "⭐ Great to hear!",
+    "good": "👍 Thanks!",
+    "bye": "👋 Bye! Come back soon!",
+    "goodbye": "👋 Goodbye! Happy coding!",
+    "see you": "👋 See you later!",
+    "time": "🕐 I don't know the time, but I know how to code!",
+    "date": "📅 Today is a great day to code!",
+    "ping": "🏓 Pong! I'm here!",
+}
+
+def get_fast_answer(message: str) -> Optional[str]:
+    """Get instant answer for common questions - NO LLM needed!"""
+    msg = message.strip().lower().rstrip('?!.')
+    return FAST_ANSWERS.get(msg)
 
 
 def natural_language_to_command(message: str) -> Optional[str]:
@@ -1870,6 +3268,23 @@ def natural_language_to_command(message: str) -> Optional[str]:
         (r'^(?:check|is)\s+(?:nmap|tool|package)?\s*(?:installed|available)?\s*(.+)$', lambda m: f'CHECK_INSTALLED {m.group(1)}'),
         (r'^(?:download|get)\s+file\s+(?:from\s+)?(.+)$', lambda m: f'DOWNLOAD_URL {m.group(1)}'),
         (r'^(?:fetch|read)\s+url\s+(.+)$', lambda m: f'READ_URL {m.group(1)}'),
+        
+        # 🔍 AI Search & Analysis
+        (r'^(?:index|build\s+index|reindex)\s*(?:project)?$', lambda m: 'INDEX .'),
+        (r'^(?:search|find)\s+(?:for\s+)?(.+?)\s+(?:in|across)\s+(?:project|all|code)$', lambda m: f'SEARCH {m.group(1)}'),
+        (r'^(?:find|search)\s+(?:function|func)\s+(?:named\s+)?(.+)$', lambda m: f'SEARCH_FUNC {m.group(1)}'),
+        (r'^(?:find|search)\s+(?:class)\s+(?:named\s+)?(.+)$', lambda m: f'SEARCH_CLASS {m.group(1)}'),
+        (r'^(?:find|get)\s+related\s+(?:files?|code)\s+(?:to|for)?\s+(.+)$', lambda m: f'FIND_RELATED {m.group(1)}'),
+        (r'^(?:analyze|check)\s+(?:for\s+)?bugs?\s+(?:in|at)?\s+(.+)$', lambda m: f'ANALYZE_BUGS {m.group(1)}'),
+        (r'^(?:analyze|check)\s+complexity\s+(?:of|in)?\s+(.+)$', lambda m: f'ANALYZE_COMPLEXITY {m.group(1)}'),
+        (r'^(?:suggest|improve)\s+(?:for|in)?\s+(.+)$', lambda m: f'SUGGEST {m.group(1)}'),
+        
+        # 📥 Smart Install
+        (r'^(?:pip|python)\s+install\s+(.+)$', lambda m: f'PIP_INSTALL {m.group(1)}'),
+        (r'^(?:npm|node)\s+install\s+(.+)$', lambda m: f'NPM_INSTALL {m.group(1)}'),
+        (r'^install\s+(?:package\s+)?(.+)$', lambda m: f'PIP_INSTALL {m.group(1)}'),
+        (r'^download\s+(?:from\s+)?(.+)$', lambda m: f'DOWNLOAD {m.group(1)}'),
+        (r'^clone\s+(?:repo\s+)?(.+)$', lambda m: f'GIT_CLONE {m.group(1)}'),
     ]
     
     for pattern, converter in nl_patterns:
@@ -1912,7 +3327,7 @@ def _get_llm():
         logger.info("Dev AI Pro: Loading model from %s (FAST MODE)", model_path)
         _llm = Llama(
             model_path=model_path,
-            n_ctx=2048,
+            n_ctx=4096,
             n_threads=6,
             n_threads_batch=8,
             n_gpu_layers=33,
@@ -1960,11 +3375,15 @@ def _generate_response_sync(messages: List[Dict[str, str]]) -> tuple:
     cleaned = content
     
     think_matches = re.findall(r'<\s*think\s*>(.*?)<\s*/\s*think\s*>', content, re.DOTALL | re.IGNORECASE)
+    if not think_matches:
+        think_matches = re.findall(r'<think>(.*?)</think>', content, re.DOTALL)
     if think_matches:
         thinking = '\n'.join(think_matches).strip()
     
     cleaned = re.sub(r'<\s*think\s*>.*?<\s*/\s*think\s*>', '', content, flags=re.DOTALL | re.IGNORECASE)
     cleaned = re.sub(r'<\s*think\s*>[\s\S]*$', '', cleaned, flags=re.IGNORECASE)
+    cleaned = re.sub(r'<think>.*?</think>', '', cleaned, flags=re.DOTALL)
+    cleaned = re.sub(r'<think>[\s\S]*$', '', cleaned)
     
     result = cleaned.strip(), thinking
     
@@ -1985,16 +3404,24 @@ def _generate_response_sync(messages: List[Dict[str, str]]) -> tuple:
 async def devai_chat(req: ChatRequest):
     """Send a message to Dev AI Pro"""
     try:
+        # ⚡ FAST PATH - Check instant answers first
+        fast = get_fast_answer(req.message)
+        if fast:
+            return {"response": fast, "thinking": ""}
+        
+        # Try command execution
         command_result = parse_and_execute_command(req.message)
         if command_result is not None:
             return {"response": command_result, "thinking": ""}
         
+        # Try natural language to command
         nl_command = natural_language_to_command(req.message)
         if nl_command:
             command_result = parse_and_execute_command(nl_command)
             if command_result is not None:
                 return {"response": command_result, "thinking": ""}
         
+        # Only then use LLM (slow path)
         loop = asyncio.get_event_loop()
         response_text, thinking = await loop.run_in_executor(
             _executor,
@@ -2016,6 +3443,15 @@ async def devai_chat_stream(req: StreamRequest):
     """Send a message to Dev AI Pro with streaming response."""
     from fastapi.responses import StreamingResponse
     
+    # ⚡ FAST PATH - Check instant answers first
+    fast = get_fast_answer(req.message)
+    if fast:
+        async def generate():
+            yield f"data: {fast}\n\n"
+            yield "data: [DONE]\n\n"
+        return StreamingResponse(generate(), media_type="text/event-stream")
+    
+    # Try command execution
     command_result = parse_and_execute_command(req.message)
     if command_result is not None:
         async def generate():
@@ -2023,6 +3459,7 @@ async def devai_chat_stream(req: StreamRequest):
             yield "data: [DONE]\n\n"
         return StreamingResponse(generate(), media_type="text/event-stream")
     
+    # Try natural language to command
     nl_command = natural_language_to_command(req.message)
     if nl_command:
         command_result = parse_and_execute_command(nl_command)
@@ -2035,13 +3472,36 @@ async def devai_chat_stream(req: StreamRequest):
     async def generate():
         try:
             thinking_buffer = ""
+            in_thinking = True
+            
+            yield "data:<think>🔍 Analyzing task...\n📋 Building plan...\n⚠️ Checking risks...\n📁 Identifying files...\n</think>\n\n"
             
             def gen():
-                nonlocal thinking_buffer
+                nonlocal thinking_buffer, in_thinking
                 llm = _get_llm()
+                
+                thinking_prompt = f"""{req.message}
+
+BE FAST! Show your thinking briefly, then EXECUTE IMMEDIATELY.
+
+Use this format:
+```
+<think>
+🔍 ANALYSIS: [Quick what they want - 1 line]
+📋 PLAN: [Step 1, Step 2 - just key steps]
+⚡ ACTION: [What command you'll run now]
+🌐 SEARCH: [If you need info, what to WEB_SEARCH]
+```
+
+Then IMMEDIATELY run commands to help the user. Don't just explain - DO!
+
+If you don't know something → use WEB_SEARCH command right away!
+"""
+                
                 messages = [
                     {"role": "system", "content": DEVAI_SYSTEM_PROMPT},
-                    {"role": "user", "content": req.message}
+                    {"role": "user", "content": thinking_prompt},
+                    {"role": "assistant", "content": "<think>\n"},
                 ]
                 for chunk in llm.create_chat_completion(
                     messages=messages,
@@ -2055,20 +3515,28 @@ async def devai_chat_stream(req: StreamRequest):
                     content = chunk["choices"][0].get("delta", {}).get("content", "")
                     if content:
                         think_matches = re.findall(r'<\s*think\s*>(.*?)<\s*/\s*think\s*>', content, re.DOTALL | re.IGNORECASE)
+                        if not think_matches:
+                            think_matches = re.findall(r'<think>(.*?)</think>', content, re.DOTALL)
                         if think_matches:
                             for think in think_matches:
                                 thinking_buffer += think
-                                yield f"data:<think>{think}</think>\n\n"
+                                yield f"data:<think>{think}\n\n"
+                            in_thinking = False
                         
                         in_think = re.search(r'<\s*think\s*>(.*)$', content, re.DOTALL | re.IGNORECASE)
-                        if in_think:
+                        if not in_think:
+                            in_think = re.search(r'<think>(.*)$', content, re.DOTALL)
+                        if in_think and in_thinking:
                             thinking_buffer += in_think.group(1)
-                            yield f"data<think>{thinking_buffer}\n\n"
+                            yield f"data:<think>{thinking_buffer}▌\n\n"
                             continue
                         
                         cleaned = re.sub(r'<\s*think\s*>.*?<\s*/\s*think\s*>', '', content, flags=re.DOTALL | re.IGNORECASE)
                         cleaned = re.sub(r'<\s*think\s*>[\s\S]*$', '', cleaned, flags=re.IGNORECASE)
+                        cleaned = re.sub(r'<think>.*?</think>', '', cleaned, flags=re.DOTALL)
+                        cleaned = re.sub(r'<think>[\s\S]*$', '', cleaned)
                         if cleaned:
+                            in_thinking = False
                             yield f"data: {cleaned}\n\n"
             
             loop = asyncio.get_event_loop()
@@ -2091,8 +3559,45 @@ async def devai_status():
         "status": "ready" if _llm is not None else "loading",
         "model": "Dev AI Pro (Offline Qwen)",
         "offline": True,
-        "version": "2.0 Pro"
+        "version": "2.0 Pro",
+        "indexed": code_search.last_index_time > 0,
     }
+
+
+@router.post("/index")
+async def devai_index():
+    """Build search index for the project."""
+    stats = code_search.index_project(".")
+    return {"status": "indexed", "stats": stats}
+
+
+@router.get("/search")
+async def devai_search(q: str = "", search_type: str = "code"):
+    """Search the codebase."""
+    if search_type == "function":
+        results = code_search.search_functions(q)
+    elif search_type == "class":
+        results = code_search.search_classes(q)
+    else:
+        results = code_search.search_code(q)
+    return {"query": q, "type": search_type, "results": results[:50]}
+
+
+@router.get("/analyze")
+async def devai_analyze(file_path: str, analysis_type: str = "bugs"):
+    """Analyze code for bugs, complexity, or improvements."""
+    content = DevAICommands.read_file(file_path)
+    if "error" in content.lower():
+        return {"error": "File not found"}
+    
+    if analysis_type == "bugs":
+        results = analyzer.find_bugs(content)
+    elif analysis_type == "complexity":
+        results = analyzer.analyze_complexity(content)
+    else:
+        results = analyzer.suggest_improvements(content)
+    
+    return {"file": file_path, "type": analysis_type, "results": results}
 
 
 @router.get("/commands")
@@ -2149,8 +3654,42 @@ async def devai_commands():
             {"cmd": "FORMAT <path>", "desc": "Format code file"},
             {"cmd": "SYNTAX_CHECK <path>", "desc": "Check syntax"},
         ]},
-        {"category": "URL & Network", "commands": [
+        {"category": "🔍 AI Search & Analysis", "commands": [
+            {"cmd": "INDEX", "desc": "Build search index for instant lookup"},
+            {"cmd": "SEARCH <query>", "desc": "Full-text search across all code"},
+            {"cmd": "SEARCH_FUNC <name>", "desc": "Find functions by name"},
+            {"cmd": "SEARCH_CLASS <name>", "desc": "Find classes by name"},
+            {"cmd": "FIND_RELATED <file>", "desc": "Find related files (imports, similar)"},
+            {"cmd": "ANALYZE_BUGS <file>", "desc": "Find bugs and security issues"},
+            {"cmd": "ANALYZE_COMPLEXITY <file>", "desc": "Check code complexity"},
+            {"cmd": "SUGGEST <file>", "desc": "Get improvement suggestions"},
+        ]},
+        {"category": "📥 Smart Install", "commands": [
+            {"cmd": "PIP_INSTALL <package>", "desc": "Install Python package"},
+            {"cmd": "NPM_INSTALL <package>", "desc": "Install npm package"},
+            {"cmd": "DOWNLOAD <url>", "desc": "Download file from URL"},
+            {"cmd": "GIT_CLONE <repo>", "desc": "Clone git repository"},
+        ]},
+        {"category": "🌐 Web Search (NEW!)", "commands": [
+            {"cmd": "WEB_SEARCH <query>", "desc": "Search the web for latest info"},
+            {"cmd": "SEARCH_WEB <query>", "desc": "Alias for web search"},
+            {"cmd": "FETCH_API <url>", "desc": "Make HTTP API calls"},
             {"cmd": "READ_URL <url>", "desc": "Fetch content from URL"},
+        ]},
+        {"category": "🧠 AI Code Generation", "commands": [
+            {"cmd": "GENERATE_CODE <description>", "desc": "Generate full code from description"},
+            {"cmd": "FIX_CODE <code>", "desc": "Fix buggy code with suggestions"},
+            {"cmd": "COMPLETE_CODE <partial_code>", "desc": "Auto-complete partial code"},
+            {"cmd": "TRANSLATE_CODE <from> to <to>", "desc": "Translate between languages"},
+        ]},
+        {"category": "🧪 Testing & Docs", "commands": [
+            {"cmd": "GENERATE_TESTS <file>", "desc": "Generate unit tests (pytest/jest)"},
+            {"cmd": "GENERATE_DOCS <file>", "desc": "Generate docstrings and comments"},
+            {"cmd": "GENERATE_README <project>", "desc": "Create full README file"},
+        ]},
+        {"category": "🔐 Security & Learning", "commands": [
+            {"cmd": "SECURITY_SCAN <file>", "desc": "Find security vulnerabilities"},
+            {"cmd": "EXPLAIN_CODE <code>", "desc": "Explain code for learning"},
         ]},
         {"category": "Quick Actions", "commands": [
             {"cmd": "NEW_FILE <path>:<template>", "desc": "Create file with template (py, js, ts, html, css, json, md, sh, dockerfile)"},

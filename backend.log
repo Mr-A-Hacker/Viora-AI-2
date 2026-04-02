@@ -1,4 +1,4 @@
-[0;93m2026-03-26 11:39:55.416603765 [W:onnxruntime:Default, device_discovery.cc:325 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:92 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
+[0;93m2026-03-28 12:54:37.217375782 [W:onnxruntime:Default, device_discovery.cc:325 DiscoverDevicesForPlatform] GPU device discovery failed: device_discovery.cc:92 ReadFileContents Failed to open file: "/sys/class/drm/card1/device/vendor"[m
 ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
 ALSA lib confmisc.c:1377:(snd_func_refer) Unable to find definition 'cards.0.pcm.front.0:CARD=0'
 ALSA lib conf.c:5205:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
@@ -51,245 +51,291 @@ ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
 ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.modem
 ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
 ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) Unknown PCM cards.pcm.phoneline
-Cannot connect to server socket err = No such file or directory
-Cannot connect to server request channel
-jack server is not running or cannot be started
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
-Cannot connect to server socket err = No such file or directory
-Cannot connect to server request channel
-jack server is not running or cannot be started
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
-JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
-ALSA lib pcm_oss.c:404:(_snd_pcm_oss_open) Cannot open device /dev/dsp
-ALSA lib pcm_oss.c:404:(_snd_pcm_oss_open) Cannot open device /dev/dsp
-ALSA lib pcm_a52.c:1036:(_snd_pcm_a52_open) a52 is only for playback
-ALSA lib confmisc.c:1377:(snd_func_refer) Unable to find definition 'cards.0.pcm.iec958.0:CARD=0,AES0=6,AES1=130,AES2=0,AES3=2'
-ALSA lib conf.c:5205:(_snd_config_evaluate) function snd_func_refer returned error: No such file or directory
-ALSA lib conf.c:5728:(snd_config_expand) Evaluate error: No such file or directory
-ALSA lib pcm.c:2722:(snd_pcm_open_noupdate) Unknown PCM iec958:{AES0 0x6 AES1 0x82 AES2 0x0 AES3 0x2 CARD 0}
-ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
-ALSA lib pcm_usb_stream.c:481:(_snd_pcm_usb_stream_open) Invalid card 'card'
-ALSA lib confmisc.c:160:(snd_config_get_card) Invalid field card
-ALSA lib pcm_usb_stream.c:481:(_snd_pcm_usb_stream_open) Invalid card 'card'
+ALSA lib pcm_asym.c:105:(_snd_pcm_asym_open) capture slave is not defined
 ALSA lib pcm_dmix.c:1000:(snd_pcm_dmix_open) unable to open slave
 Cannot connect to server socket err = No such file or directory
 Cannot connect to server request channel
 jack server is not running or cannot be started
 JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
 JackShmReadWritePtr::~JackShmReadWritePtr - Init not done for -1, skipping unlock
-/home/admin/Mr-A-Hacker-pocket-Ai-version-2/app.py:42: DeprecationWarning: 
+/home/admin/Mr-A-Hacker-pocket-Ai-version-2/app.py:46: DeprecationWarning: 
         on_event is deprecated, use lifespan event handlers instead.
 
         Read more about it in the
         [FastAPI docs for Lifespan Events](https://fastapi.tiangolo.com/advanced/events/).
         
   @app.on_event("startup")
-INFO:     Started server process [744855]
+INFO:     Started server process [389809]
 INFO:     Waiting for application startup.
-2026-03-26 11:39:59 [INFO] __main__: Unified Backend starting up...
-2026-03-26 11:39:59 [INFO] chat_ai: Downloading model...
-2026-03-26 11:40:00 [INFO] httpx: HTTP Request: HEAD https://huggingface.co/Qwen/Qwen3-0.6B-GGUF/resolve/main/Qwen3-0.6B-Q8_0.gguf "HTTP/1.1 302 Found"
-Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-03-26 11:40:00 [WARNING] huggingface_hub.utils._http: Warning: You are sending unauthenticated requests to the HF Hub. Please set a HF_TOKEN to enable higher rate limits and faster downloads.
-2026-03-26 11:40:00 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/Qwen/Qwen3-0.6B-GGUF/xet-read-token/23749fefcc72300e3a2ad315e1317431b06b590a "HTTP/1.1 200 OK"
-2026-03-26 11:45:23 [INFO] chat_ai: Loading LLM...
-llama_context: n_ctx_seq (4096) < n_ctx_train (40960) -- the full capacity of the model will not be utilized
-2026-03-26 11:45:25 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-tiny/revision/main "HTTP/1.1 200 OK"
-LOG (VoskAPI:ReadDataFiles():model.cc:213) Decoding params beam=10 max-active=3000 lattice-beam=2
-LOG (VoskAPI:ReadDataFiles():model.cc:216) Silence phones 1:2:3:4:5:6:7:8:9:10
-LOG (VoskAPI:RemoveOrphanNodes():nnet-nnet.cc:948) Removed 0 orphan nodes.
-LOG (VoskAPI:RemoveOrphanComponents():nnet-nnet.cc:847) Removing 0 orphan components.
-LOG (VoskAPI:ReadDataFiles():model.cc:248) Loading i-vector extractor from /home/admin/Documents/pocket-ai/models/vosk/vosk-model-small-en-us-0.15/ivector/final.ie
-LOG (VoskAPI:ComputeDerivedVars():ivector-extractor.cc:183) Computing derived variables for iVector extractor
-LOG (VoskAPI:ComputeDerivedVars():ivector-extractor.cc:204) Done.
-LOG (VoskAPI:ReadDataFiles():model.cc:282) Loading HCL and G from /home/admin/Documents/pocket-ai/models/vosk/vosk-model-small-en-us-0.15/graph/HCLr.fst /home/admin/Documents/pocket-ai/models/vosk/vosk-model-small-en-us-0.15/graph/Gr.fst
-LOG (VoskAPI:ReadDataFiles():model.cc:308) Loading winfo /home/admin/Documents/pocket-ai/models/vosk/vosk-model-small-en-us-0.15/graph/phones/word_boundary.int
-2026-03-26 11:45:28 [INFO] chat_ai: Chat AI Ready.
-2026-03-26 11:45:28 [WARNING] __main__: Task scheduler not started: Install APScheduler: pip install apscheduler
-2026-03-26 11:45:28 [INFO] __main__: Unified Backend ready.
+2026-03-28 12:54:40 [INFO] __main__: Unified Backend starting up...
+2026-03-28 12:54:40 [INFO] apscheduler.scheduler: Scheduler started
+2026-03-28 12:54:40 [INFO] task_scheduler: [task_scheduler] Started.
+2026-03-28 12:54:40 [INFO] __main__: Unified Backend ready.
 INFO:     Application startup complete.
 INFO:     Uvicorn running on http://0.0.0.0:8000 (Press CTRL+C to quit)
+Found ALSA device: card 0: vc4hdmi0 [vc4-hdmi-0], device 0: MAI PCM i2s-hifi-0 [MAI PCM i2s-hifi-0]
+Found ALSA device: card 1: vc4hdmi1 [vc4-hdmi-1], device 0: MAI PCM i2s-hifi-0 [MAI PCM i2s-hifi-0]
 Loading Piper into memory... (Standby)
-System Ready. Outputting to ALSA device: default
+System Ready. Outputting to ALSA device: plughw:1,0
+INFO:     127.0.0.1:54258 - "GET /health HTTP/1.1" 200 OK
+INFO:     127.0.0.1:54260 - "GET /devai/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57388 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /conversations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57390 - "WebSocket /ws/voice" [accepted]
+2026-03-28 12:57:46 [INFO] chat_ai: Voice client connected
+INFO:     connection open
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57388 - "GET /conversations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57418 - "WebSocket /ws/voice" [accepted]
+2026-03-28 12:57:46 [INFO] chat_ai: Voice client connected
+INFO:     connection open
+INFO:     connection closed
+INFO:     127.0.0.1:57388 - "GET /devai/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57388 - "GET /devai/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57388 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57388 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57388 - "OPTIONS /devai/chat/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:04 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:04 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:05 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:05 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:05 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:05 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:05 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:05 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:06 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:06 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:07 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:07 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:07 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:07 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:07 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:07 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /conversations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /conversations HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /devai/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /devai/status HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "POST /devai/chat/stream HTTP/1.1" 200 OK
+2026-03-28 12:58:24 [INFO] devai: Dev AI Pro: Loading model from ./models/Qwen3-0.6B-Q8_0.gguf (FAST MODE)
+2026-03-28 12:58:24 [ERROR] devai: Dev AI Pro stream error: llama_cpp native library not available. On Raspberry Pi, you need to either:
+1. Use a pre-built Docker image with llama-cpp, or
+2. Build on a more powerful machine and copy the .so file, or
+3. Use an API-based LLM instead
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+2026-03-28 13:01:06 [INFO] httpx: HTTP Request: GET https://huggingface.co/api/models/Systran/faster-whisper-tiny/revision/main "HTTP/1.1 200 OK"
+Using device 1: Rocketfish HD Webcam: USB Audio (hw:2,0) (Supports 16000Hz)
+Opening stream for Whisper: 16000Hz, 1 channels
 Loading Whisper model 'tiny'...
 Whisper model loaded.
-Loading Vosk model from '/home/admin/Documents/pocket-ai/models/vosk/vosk-model-small-en-us-0.15'...
-Vosk model loaded successfully.
-INFO:     127.0.0.1:60284 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /conversations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60300 - "WebSocket /ws/voice" [accepted]
-2026-03-26 11:50:53 [INFO] chat_ai: Voice client connected
-INFO:     connection closed
-INFO:     127.0.0.1:60284 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /conversations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60318 - "WebSocket /ws/voice" [accepted]
-2026-03-26 11:50:53 [INFO] chat_ai: Voice client connected
-INFO:     connection open
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:60304 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     connection closed
-INFO:     127.0.0.1:50502 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50522 - "GET /conversations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50506 - "WebSocket /ws/voice" [accepted]
-2026-03-26 11:51:33 [INFO] chat_ai: Voice client connected
-INFO:     127.0.0.1:50502 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     connection open
-INFO:     127.0.0.1:50534 - "GET /conversations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50536 - "WebSocket /ws/voice" [accepted]
-2026-03-26 11:51:33 [INFO] chat_ai: Voice client connected
-INFO:     connection closed
-INFO:     connection open
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50534 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     connection closed
-INFO:     127.0.0.1:49264 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49278 - "WebSocket /ws/voice" [accepted]
-2026-03-26 11:53:20 [INFO] chat_ai: Voice client connected
-INFO:     connection open
-INFO:     127.0.0.1:49264 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /conversations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /conversations HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49300 - "WebSocket /ws/voice" [accepted]
-2026-03-26 11:53:20 [INFO] chat_ai: Voice client connected
-INFO:     connection open
-INFO:     connection closed
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Using device 0: Rocketfish HD Webcam: USB Audio (hw:2,0) (Supports 16000Hz)
+Capture Started
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+2026-03-28 13:01:10 [INFO] faster_whisper: Processing audio with duration 00:02.240
+2026-03-28 13:01:10 [INFO] faster_whisper: VAD filter removed 00:00.784 of audio
+2026-03-28 13:01:12 [INFO] chat_ai: Triggering AI response for: How are you?
+2026-03-28 13:01:12 [ERROR] chat_ai: Error in AI response pipeline: 'NoneType' object has no attribute 'create_chat_completion'
+Traceback (most recent call last):
+  File "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/chat_ai.py", line 282, in ai_response_and_speak
+    response = await self.generate_response(self.voice_messages, thinking=thinking)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/chat_ai.py", line 216, in generate_response
+    response = await loop.run_in_executor(None, lambda: self.llm.create_chat_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<8 lines>...
+    ))
+    ^^
+  File "/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/chat_ai.py", line 216, in <lambda>
+    response = await loop.run_in_executor(None, lambda: self.llm.create_chat_completion(
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'create_chat_completion'
+Capture Stopped. Frames: 35
+Transcription (2.10s): How are you?
+[semantic_router_ai] route failed: semantic_router not available. Install: pip install 'semantic-router[fastembed]'
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+Using device 1: Rocketfish HD Webcam: USB Audio (hw:2,0) (Supports 16000Hz)
 Opening stream for Whisper: 16000Hz, 1 channels
 Capture Started
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-2026-03-26 11:54:16 [INFO] faster_whisper: Processing audio with duration 00:03.776
-2026-03-26 11:54:16 [INFO] faster_whisper: VAD filter removed 00:00.240 of audio
-2026-03-26 11:54:19 [INFO] chat_ai: Triggering AI response for: How does Thunder happen?
-Capture Stopped. Frames: 59
-Transcription (2.88s): How does Thunder happen?
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+2026-03-28 13:01:39 [INFO] faster_whisper: Processing audio with duration 00:01.600
+2026-03-28 13:01:39 [INFO] faster_whisper: VAD filter removed 00:00.112 of audio
+2026-03-28 13:01:42 [INFO] chat_ai: Triggering AI response for: Hello
+Capture Stopped. Frames: 25
+Transcription (2.81s): Hello
 [semantic_router_ai] route failed: semantic_router not available. Install: pip install 'semantic-router[fastembed]'
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Synthesizing: Thunder happens when there's a sudden drop in pres...
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Playing raw data 'stdin' : Signed 16 bit Little Endian, Rate 22050 Hz, Mono
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-  text-to-speech: 2840 ms
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Using device 0: Rocketfish HD Webcam: USB Audio (hw:2,0) (Supports 16000Hz)
-Opening stream for Whisper: 16000Hz, 1 channels
-Capture Started
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-2026-03-26 11:55:32 [INFO] faster_whisper: Processing audio with duration 00:04.800
-2026-03-26 11:55:32 [INFO] faster_whisper: VAD filter removed 00:00.112 of audio
-2026-03-26 11:55:35 [INFO] chat_ai: Triggering AI response for: Should I please saw her while it's raining and thunder ring?
-Capture Stopped. Frames: 75
-Transcription (3.60s): Should I please saw her while it's raining and thunder ring?
-[semantic_router_ai] route failed: semantic_router not available. Install: pip install 'semantic-router[fastembed]'
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Synthesizing: It depends on your feelings and the situation....
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Playing raw data 'stdin' : Signed 16 bit Little Endian, Rate 22050 Hz, Mono
-  text-to-speech: 1076 ms
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Playing raw data 'stdin' : Signed 16 bit Little Endian, Rate 22050 Hz, Mono
-Synthesizing: If you're not in danger or in a place where thunde...
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-Using device 0: Rocketfish HD Webcam: USB Audio (hw:2,0) (Supports 16000Hz)
-Opening stream for Whisper: 16000Hz, 1 channels
-  text-to-speech: 2302 ms
-Capture Started
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-2026-03-26 11:56:07 [INFO] faster_whisper: Processing audio with duration 00:05.056
-2026-03-26 11:56:07 [INFO] faster_whisper: VAD filter removed 00:00.000 of audio
-2026-03-26 11:56:11 [INFO] chat_ai: Triggering AI response for: and danger or in a place where thunder is causing harm. It's okay to be cautious.
-Capture Stopped. Frames: 79
-Transcription (4.20s): and danger or in a place where thunder is causing harm. It's okay to be cautious.
-[semantic_router_ai] route failed: semantic_router not available. Install: pip install 'semantic-router[fastembed]'
-INFO:     127.0.0.1:49286 - "GET /system/stats HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50512 - "POST /shutdown HTTP/1.1" 200 OK
-INFO:     127.0.0.1:50524 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+2026-03-28 13:01:42 [ERROR] chat_ai: Error in AI response pipeline: 'NoneType' object has no attribute 'create_chat_completion'
+Traceback (most recent call last):
+  File "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/chat_ai.py", line 282, in ai_response_and_speak
+    response = await self.generate_response(self.voice_messages, thinking=thinking)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/chat_ai.py", line 216, in generate_response
+    response = await loop.run_in_executor(None, lambda: self.llm.create_chat_completion(
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    ...<8 lines>...
+    ))
+    ^^
+  File "/usr/lib/python3.13/concurrent/futures/thread.py", line 59, in run
+    result = self.fn(*self.args, **self.kwargs)
+  File "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/chat_ai.py", line 216, in <lambda>
+    response = await loop.run_in_executor(None, lambda: self.llm.create_chat_completion(
+                                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'NoneType' object has no attribute 'create_chat_completion'
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "GET /system/stats HTTP/1.1" 200 OK
+INFO:     127.0.0.1:57406 - "POST /shutdown HTTP/1.1" 200 OK
+INFO:     connection closed

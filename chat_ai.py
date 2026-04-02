@@ -27,10 +27,22 @@ logger = logging.getLogger(__name__)
 def _get_route(prompt: str) -> str:
     try:
         from semantic_router_ai import get_route
-        return get_route(prompt)
+        route = get_route(prompt)
+        if route != "qwen_basic":
+            return route
     except Exception as e:
         logger.warning("semantic router failed: %s", e)
-        return "qwen_basic"
+    
+    prompt_lower = prompt.lower()
+    tool_keywords = [
+        "weather", "search", "web search", "google", "scan network", 
+        "stock price", "alarm", "security", "camera", "pir sensor",
+        "read this", "read url", "read link", "fetch", "open link",
+        "what's on", "check this", "visit", "github.com", "http",
+    ]
+    if any(kw in prompt_lower for kw in tool_keywords):
+        return "function_gemma"
+    return "qwen_basic"
 
 
 def _run_tool_ai_subprocess(prompt: str) -> tuple:

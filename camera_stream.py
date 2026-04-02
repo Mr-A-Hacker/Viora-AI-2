@@ -39,9 +39,12 @@ def run_stream_process(
     width: int = STREAM_WIDTH,
     height: int = STREAM_HEIGHT,
 ):
-    from picamera2 import Picamera2
+    camera = None
+    camera_type = None
+    camera_index = int(os.environ.get("CAMERA_INDEX", "-1"))
 
-    def init_camera():
+    def init_picamera():
+        from picamera2 import Picamera2
         picam2 = Picamera2()
         main = {"size": (1280, 720), "format": "RGB888"}
         lores = {"size": (width, height), "format": "RGB888"}
@@ -49,21 +52,67 @@ def run_stream_process(
         config = picam2.create_preview_configuration(main=main, lores=lores, controls=controls)
         picam2.configure(config)
         picam2.start()
+        time.sleep(0.5)
         return picam2
 
-    def stop_camera_safe(picam2):
+    def init_usb_camera():
+        if camera_index >= 0:
+            cap = cv2.VideoCapture(camera_index)
+            if cap is not None and cap.isOpened():
+                cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+                cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+                cap.set(cv2.CAP_PROP_FPS, STREAM_FPS)
+                ret, frame = cap.read()
+                if ret and frame is not None:
+                    logger.info("USB camera opened on device index %d", camera_index)
+                    return cap
+                cap.release()
+        for device_idx in range(10):
+            cap = cv2.VideoCapture(device_idx)
+            if cap is not None and cap.isOpened():
+                cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
+                cap.set(cv2.CAP_PROP_FRAME_HEIGHT, 720)
+                cap.set(cv2.CAP_PROP_FPS, STREAM_FPS)
+                ret, frame = cap.read()
+                if ret and frame is not None:
+                    logger.info("USB camera opened on device index %d", device_idx)
+                    return cap
+                cap.release()
+        return None
+
+    def stop_camera_safe(cam, cam_type):
         try:
-            picam2.stop()
-        except Exception:
-            pass
-        try:
-            picam2.close()
+            if cam_type == "picamera2":
+                try:
+                    cam.stop()
+                except Exception:
+                    pass
+                try:
+                    cam.close()
+                except Exception:
+                    pass
+            elif cam_type == "usb":
+                try:
+                    cam.release()
+                except Exception:
+                    pass
         except Exception:
             pass
 
-    picam2 = None
     try:
-        picam2 = init_camera()
+        camera = init_usb_camera()
+        if camera is not None:
+            camera_type = "usb"
+            logger.info("Using USB camera")
+        else:
+            try:
+                camera = init_picamera()
+                camera_type = "picamera2"
+                logger.info("Using Picamera2")
+            except Exception as e:
+                logger.warning("Picamera2 init failed: %s", e)
+                logger.error("No camera found")
+                return
     except Exception as e:
         logger.error("Camera init failed: %s", e)
         return
@@ -74,18 +123,31 @@ def run_stream_process(
             frame_data = None
             for attempt in range(CAMERA_MAX_CAPTURE_RETRIES):
                 try:
-                    frame_data = picam2.capture_array("lores")
+                    if camera_type == "picamera2":
+                        frame_data = camera.capture_array("lores")
+                    elif camera_type == "usb":
+                        ret, frame_data = camera.read()
+                        if not ret:
+                            frame_data = None
                     break
                 except Exception as e:
                     if attempt + 1 >= CAMERA_MAX_CAPTURE_RETRIES:
                         logger.error("Device timeout detected, attempting a restart: %s", e)
-                        stop_camera_safe(picam2)
-                        picam2 = None
+                        stop_camera_safe(camera, camera_type)
+                        camera = None
                         time.sleep(CAMERA_RESTART_DELAY)
                         if stop_event.is_set():
                             return
                         try:
-                            picam2 = init_camera()
+                            try:
+                                camera = init_picamera()
+                                camera_type = "picamera2"
+                            except Exception:
+                                camera = init_usb_camera()
+                                camera_type = "usb"
+                            if camera is None:
+                                logger.error("Camera restart failed")
+                                return
                         except Exception as e2:
                             logger.error("Camera restart failed: %s", e2)
                             return
@@ -95,7 +157,6 @@ def run_stream_process(
             if frame_data is None:
                 continue
 
-            import cv2
             if len(frame_data.shape) == 2:
                 frame = cv2.cvtColor(frame_data, cv2.COLOR_GRAY2RGB)
             elif frame_data.shape[2] == 3:
@@ -116,8 +177,8 @@ def run_stream_process(
                         pass
             frame_count += 1
     finally:
-        if picam2 is not None:
-            stop_camera_safe(picam2)
+        if camera is not None:
+            stop_camera_safe(camera, camera_type)
 
 # --- Router Logic ---
 router = APIRouter()
@@ -314,6 +375,27 @@ def get_cpu_temp():
     except Exception:
         pass
     return 0
+
+@router.get("/camera/list")
+async def list_cameras():
+    """List all available camera devices."""
+    available = []
+    for i in range(10):
+        try:
+            cap = cv2.VideoCapture(i)
+            if cap is not None and cap.isOpened():
+                width = cap.get(cv2.CAP_PROP_FRAME_WIDTH)
+                height = cap.get(cv2.CAP_PROP_FRAME_HEIGHT)
+                available.append({
+                    "index": i,
+                    "width": int(width),
+                    "height": int(height),
+                    "name": f"USB Camera {i}"
+                })
+                cap.release()
+        except Exception:
+            pass
+    return {"cameras": available}
 
 @router.get("/system/stats")
 async def get_stats():

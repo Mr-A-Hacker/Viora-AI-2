@@ -3,12 +3,18 @@
  * Uses window.location.hostname so the GUI works when served from the Pi's IP.
  * Override with VITE_API_HOST and VITE_API_PORT for dev (e.g. remote backend).
  */
-const host = typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_HOST != null
-    ? import.meta.env.VITE_API_HOST
-    : (typeof window !== 'undefined' ? (window.location?.hostname || '127.0.0.1') : '127.0.0.1');
-const port = typeof import.meta !== 'undefined' && import.meta.env?.VITE_API_PORT != null
-    ? String(import.meta.env.VITE_API_PORT)
-    : '8000';
+const getHost = () => {
+    if (typeof window !== 'undefined') {
+        const h = window.location.hostname;
+        if (h && h !== 'localhost' && h !== '127.0.0.1' && h !== '0.0.0.0') {
+            return h;
+        }
+    }
+    return '127.0.0.1';
+};
+
+const host = getHost();
+const port = '8000';
 
 const base = `${host}:${port}`;
 export const API_BASE_URL = `http://${base}`;

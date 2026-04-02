@@ -78,10 +78,13 @@ def _get_router():
         utterances=[
             "what is the weather like in New York?", "weather in London",
             "turn on the security cameras", "activate security mode",
-            "search the web for latest news", "search for AI news",
+            "search the web for latest news", "search for AI news", "web search",
+            "search github", "search for", "look up", "find information about",
             "scan my local network", "scan the network",
             "what is the stock price of TSLA?", "current price of AAPL",
-            "get weather for Boston", "enable PIR sensors",             "web search for something",
+            "get weather for Boston", "enable PIR sensors",
+            "read this link", "read url", "fetch this page", "what's on this website",
+            "open this link", "check this url", "visit",
         ],
     )
     _router = SemanticRouter(encoder=encoder, routes=[qwen_basic, qwen_thinking, function_gemma], auto_sync="local")

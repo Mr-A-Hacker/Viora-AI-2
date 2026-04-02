@@ -13,6 +13,8 @@ import TaskManager from './components/TaskManager';
 import TaskAdd from './components/TaskAdd';
 import HeartbeatManager from './components/HeartbeatManager';
 import GPIOControl from './components/GPIOControl';
+import Terminal from './components/Terminal';
+import FileManager from './components/FileManager';
 import ErrorBoundary from './components/ErrorBoundary';
 import VirtualKeyboard from './components/VirtualKeyboard';
 import { WebSocketProvider } from './contexts/WebSocketContext';
@@ -43,6 +45,8 @@ const AnimatedRoutes = () => {
         <Route path="/tasks/edit" element={<TaskAdd />} />
         <Route path="/heartbeat" element={<HeartbeatManager />} />
         <Route path="/gpio" element={<GPIOControl />} />
+        <Route path="/terminal" element={<Terminal />} />
+        <Route path="/files" element={<FileManager />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/maps" element={<Maps />} />
         <Route path="/devai" element={<DevAI />} />

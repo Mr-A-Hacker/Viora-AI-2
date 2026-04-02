@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>🛡️ Viora AI - LAN Surveillance System</title>
+    <script src="https://cdn.socket.io/4.5.4/socket.io.min.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background-color: #000;
+            color: #00FF00;
+            font-family: 'Courier New', Courier, monospace;
+            text-align: center;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        h1 {
+            font-size: 2em;
+            color: #FF0000;
+            text-shadow: 0 0 10px #FF0000;
+            margin-bottom: 10px;
+        }
+        .status-bar {
+            background: #111;
+            border: 2px solid #0f0;
+            padding: 15px;
+            margin: 15px auto;
+            max-width: 800px;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0,255,0,0.3);
+        }
+        #countdown {
+            font-size: 1.8em;
+            margin: 15px 0;
+            color: #00FF00;
+            font-weight: bold;
+            text-shadow: 0 0 10px #00FF00;
+        }
+        #countdown.alarm {
+            color: #FF0000;
+            text-shadow: 0 0 15px #FF0000;
+            animation: blink 0.5s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0.5; }
+        }
+        .video-container {
+            margin: 20px auto;
+            max-width: 900px;
+            border: 3px solid #0f0;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 0 20px rgba(0,255,0,0.4);
+        }
+        .video-container img {
+            width: 100%;
+            display: block;
+        }
+        button {
+            padding: 12px 24px;
+            font-size: 1em;
+            margin: 8px;
+            cursor: pointer;
+            border: none;
+            border-radius: 8px;
+            font-weight: bold;
+            transition: all 0.2s;
+        }
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 15px currentColor;
+        }
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        .btn-start {
+            background-color: #22c55e;
+            color: black;
+            box-shadow: 0 0 10px #22c55e;
+        }
+        .btn-stop {
+            background-color: #22c55e;
+            color: black;
+            box-shadow: 0 0 10px #22c55e;
+        }
+        .btn-alarm {
+            background-color: #f97316;
+            color: white;
+            box-shadow: 0 0 10px #f97316;
+        }
+        .btn-manual {
+            background-color: #ef4444;
+            color: white;
+            box-shadow: 0 0 10px #ef4444;
+        }
+        .btn-defuse {
+            background-color: #3b82f6;
+            color: white;
+            box-shadow: 0 0 10px #3b82f6;
+        }
+        input[type="text"], input[type="password"] {
+            padding: 12px;
+            font-size: 1em;
+            width: 250px;
+            background-color: #111;
+            color: #0f0;
+            border: 2px solid #0f0;
+            border-radius: 8px;
+            margin: 5px;
+        }
+        .controls {
+            margin: 20px 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 10px;
+        }
+        .control-group {
+            background: #111;
+            border: 1px solid #333;
+            padding: 15px;
+            border-radius: 10px;
+            margin: 10px;
+        }
+        .logs-container {
+            background: #0a0a0a;
+            border: 1px solid #0f0;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 20px auto;
+            max-width: 800px;
+            max-height: 200px;
+            overflow-y: auto;
+            text-align: left;
+            font-size: 0.85em;
+        }
+        .log-entry {
+            padding: 4px 0;
+            border-bottom: 1px solid #222;
+        }
+        .log-entry.motion {
+            color: #f97316;
+        }
+        .log-entry.alarm {
+            color: #ef4444;
+        }
+        .log-entry.defused {
+            color: #22c55e;
+        }
+        .link {
+            color: cyan;
+            text-decoration: none;
+            font-size: 1.1em;
+            margin: 10px;
+            display: inline-block;
+        }
+        .link:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <h1>🛡️ VIORA AI - LAN SURVEILLANCE SYSTEM</h1>
+    
+    <div class="status-bar">
+        <div id="countdown">🟢 SYSTEM ARMED - Awaiting Trigger</div>
+        <div style="font-size: 0.9em; color: #888;">
+            <span id="frame-count">Frame: 0</span> | 
+            <span id="motion-status">Motion: Inactive</span> |
+            <span id="detection-status">Detection: Disabled</span>
+        </div>
+    </div>
+
+    <div class="video-container">
+        <img src="/video_feed" alt="Live Surveillance Feed">
+    </div>
+
+    <div>
+        <a href="/raw_feed" target="_blank" class="link">⚡ Open Raw Feed (No Overlays)</a>
+    </div>
+
+    <div class="controls">
+        <div class="control-group">
+            <h3>🎯 Detection</h3>
+            <form method="POST" action="/start_detection">
+                <button type="submit" class="btn-start">START DETECTION</button>
+            </form>
+            <form method="POST" action="/stop_detection">
+                <button type="submit" class="btn-stop">STOP DETECTION</button>
+            </form>
+        </div>
+
+        <div class="control-group">
+            <h3>⚠️ Alarm Control</h3>
+            <form method="POST" action="/manual_alarm">
+                <button type="submit" class="btn-manual">MANUAL ALARM</button>
+            </form>
+            <form method="POST" action="/stop_alarm">
+                <button type="submit" class="btn-defuse">STOP ALARM</button>
+            </form>
+        </div>
+
+        <div class="control-group">
+            <h3>🔓 Defuse</h3>
+            <form method="POST" action="/security">
+                <input type="password" name="password" placeholder="Enter password">
+                <br>
+                <button type="submit" class="btn-defuse">SUBMIT PASSWORD</button>
+            </form>
+        </div>
+
+        <div class="control-group">
+            <h3>🧪 Testing</h3>
+            <form method="POST" action="/test_mode">
+                <button type="submit" class="btn-alarm">TEST MODE</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="logs-container" id="logs">
+        <div class="log-entry">System initialized...</div>
+    </div>
+
+    <script>
+        const socket = io();
+
+        socket.on('countdown', data => {
+            const el = document.getElementById('countdown');
+            el.innerText = `⏳ ALARM IN: ${data.seconds} seconds`;
+            el.classList.add('alarm');
+        });
+
+        socket.on('alarm_defused', data => {
+            const el = document.getElementById('countdown');
+            el.innerText = '✅ ALARM DEFUSED - SYSTEM STABLE';
+            el.classList.remove('alarm');
+            addLog('defused', '✅ ' + data.message);
+        });
+
+        socket.on('alarm_triggered', data => {
+            const el = document.getElementById('countdown');
+            el.innerText = '🚨 ALARM TRIGGERED - BREACH DETECTED';
+            addLog('alarm', '🚨 ' + data.message);
+        });
+
+        socket.on('motion_detected', data => {
+            document.getElementById('motion-status').innerText = 'Motion: DETECTED!';
+            document.getElementById('motion-status').style.color = '#f97316';
+            addLog('motion', '🎯 Motion detected at ' + data.timestamp);
+            setTimeout(() => {
+                document.getElementById('motion-status').innerText = 'Motion: Inactive';
+                document.getElementById('motion-status').style.color = '';
+            }, 3000);
+        });
+
+        socket.on('detection_started', data => {
+            document.getElementById('detection-status').innerText = 'Detection: Active';
+            document.getElementById('detection-status').style.color = '#22c55e';
+            addLog('', '🎯 ' + data.message);
+        });
+
+        socket.on('detection_stopped', data => {
+            document.getElementById('detection-status').innerText = 'Detection: Disabled';
+            document.getElementById('detection-status').style.color = '';
+            addLog('', '⏹️ ' + data.message);
+        });
+
+        socket.on('log_event', data => {
+            addLog('', `[${data.time}] ${data.event}: ${data.details}`);
+        });
+
+        function addLog(type, message) {
+            const container = document.getElementById('logs');
+            const entry = document.createElement('div');
+            entry.className = 'log-entry ' + type;
+            entry.innerText = message;
+            container.insertBefore(entry, container.firstChild);
+            
+            if (container.children.length > 50) {
+                container.removeChild(container.lastChild);
+            }
+        }
+
+        setInterval(() => {
+            fetch('/api/status')
+                .then(r => r.json())
+                .then(data => {
+                    document.getElementById('frame-count').innerText = 'Frame: ' + data.frame_count;
+                });
+        }, 2000);
+    </script>
+</body>
+</html>

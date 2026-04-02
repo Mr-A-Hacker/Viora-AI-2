@@ -1,375 +1,113 @@
 [
   {
-    "id": "37bc0f35-a1c6-4bee-99a0-b52112815940",
-    "title": "get weather atl",
+    "id": "42966fd2-4769-4539-b73e-961862b1e8a0",
+    "title": "Websearch: Github.com",
     "messages": [
       {
         "role": "user",
-        "content": "Get weather in atl"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>atl<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Atlanta: Cloudy, 21.9\u00b0C, humidity 83%, wind 12.8 km/h."
+        "content": "Websearch: Github.com",
+        "timestamp": 1774718255.1024158
       },
       {
         "role": "user",
-        "content": "Get weather in atl"
+        "content": "Websearch: Github.com",
+        "timestamp": 1774718963.4008355
       },
       {
         "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>atl<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Atlanta: Partly cloudy, 22.4\u00b0C, humidity 82%, wind 11.8 km/h."
+        "content": "<think>\n\n</think>\n\nI'm sorry, but I can't perform web searches on external websites. If you have any questions or need assistance with something else, feel free to ask!",
+        "timestamp": 1774718981.4560218
       },
       {
         "role": "user",
-        "content": "Get weather in atl"
+        "content": "github.com",
+        "timestamp": 1774718986.1825407
       },
       {
         "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>atl<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Atlanta: Partly cloudy, 22.4\u00b0C, humidity 82%, wind 11.8 km/h."
-      },
-      {
-        "role": "user",
-        "content": "Get weather in atl"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>atl<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Atlanta: Partly cloudy, 22.4\u00b0C, humidity 82%, wind 11.8 km/h."
-      },
-      {
-        "role": "user",
-        "content": "Get weather in atl"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>atl<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Atlanta: Partly cloudy, 22.4\u00b0C, humidity 82%, wind 11.8 km/h."
+        "content": "<think>\n\n</think>\n\nI'm sorry, but I can't perform web searches on external websites. If you have any questions or need assistance with something else, feel free to ask!",
+        "timestamp": 1774719006.740982
       }
     ],
-    "updated_at": 1772906611.8085742
+    "updated_at": 1774719006.740988
   },
   {
-    "id": "58e208ee-2897-4e23-a361-f267a13b47b2",
-    "title": "Do a web search for the latest...",
+    "id": "96e04565-d0af-4869-a676-12ef7e081b57",
+    "title": "SEARCH GITHUB",
     "messages": [
       {
         "role": "user",
-        "content": "Do a web search for the latest news.",
-        "timestamp": 1772908333.488685
-      }
-    ],
-    "updated_at": 1772908333.488693
-  },
-  {
-    "id": "cf2018b2-9ea6-4d4f-b358-cf1cebc298a4",
-    "title": "Do a web search for the latest...",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Do a web search for the latest news.",
-        "timestamp": 1772908383.1638646
-      }
-    ],
-    "updated_at": 1772908383.1638775
-  },
-  {
-    "id": "8d772852-ff40-43d0-afb3-a84c48176e65",
-    "title": "Can you stand my network pleas...",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Can you stand my network please?",
-        "timestamp": 1772910553.1349354
-      },
-      {
-        "role": "user",
-        "content": "scan network",
-        "timestamp": 1772911102.24426
+        "content": "SEARCH GITHUB",
+        "timestamp": 1774719252.0183947
       },
       {
         "role": "assistant",
-        "content": "<start_function_call>call:network_scan{}<end_function_call>",
-        "timestamp": 1772911113.5927093,
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Network scan:\n10.0.0.1  70:13:01:8c:10:0f\nfe80::7213:1ff:fe8c:100f  70:13:01:8c:10:0f",
-        "timestamp": 1772911113.5927129
-      },
-      {
-        "role": "user",
-        "content": "search for any breaking news",
-        "timestamp": 1772911121.687354
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:web_search{query:<escape>breaking news<escape>}<end_function_call>",
-        "timestamp": 1772911126.9545774,
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Web search:\n\u2022 Breaking news \u2014 Breaking news, also called late-breaking news, a special report, special coverage, or a news flash, is a current issue that warrants the interruption of a scheduled broadcast in order to report its de\u2026 (https://en.wikipedia.org/wiki/Breaking_news)\n\u2022 Breaking news \u2014 Breaking news constitutes the urgent dissemination of information about significant, unfolding events or recent incidents through mass media, prioritizing real-time updates to alert... (https://grokipedia.com/page/Breaking_news)\n\u2022 Fox News - Breaking News Updates | Latest News Headlines ... \u2014 Fox News will use your zip code below to bring you the latest weather data in your area. (https://www.foxnews.com/)\n\u2022 Associated Press News: Breaking News, Latest Headlines and ... \u2014 Read the latest headlines, breaking news , and videos at APNews.com, the definitive source for independent journalism from every corner of the globe. (https://apnews.com/)\n\u2022 Breaking News, Latest News and Videos | CNN \u2014 View the latest news and breaking news today for U.S., world, weather, entertainment, politics and health at CNN. com . (https://www.cnn.com/)\n\u2022 NBC News - Breaking Headlines and Video Reports on World, U.S ... \u2014 Go to NBCNews.com for breaking news , videos, and the latest top stories in world news, business, politics, health and pop culture. (https://www.nbcnews.com/)",
-        "timestamp": 1772911126.954581
-      },
-      {
-        "role": "user",
-        "content": "search for any breaking news",
-        "timestamp": 1772911177.9302704
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:web_search{query:<escape>breaking news<escape>}<end_function_call>",
-        "timestamp": 1772911189.3298056,
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Web search:\n\u2022 Breaking news \u2014 Breaking news, also called late-breaking news, a special report, special coverage, or a news flash, is a current issue that warrants the interruption of a scheduled broadcast in order to report its de\u2026 (https://en.wikipedia.org/wiki/Breaking_news)\n\u2022 Breaking news \u2014 Breaking news constitutes the urgent dissemination of information about significant, unfolding events or recent incidents through mass media, prioritizing real-time updates to alert... (https://grokipedia.com/page/Breaking_news)\n\u2022 Fox News - Breaking News Updates | Latest News Headlines | Photos ... \u2014 3 hours ago \u00b7 Fox News Flash \u00b7 US student rescued from Mideast describes missile activity in Abu Dhabi when class trip turned 'scary' \u00b7 Comer claims whistleblowers warned ... (https://www.foxnews.com/)\n\u2022 ABC News - Breaking News, Latest News and Videos \u2014 3 hours ago \u00b7 Your trusted source for breaking news, analysis, exclusive interviews, headlines, and videos at ABCNews.com. (https://abcnews.com/)\n\u2022 Breaking News: Ian Huntley, whose murder of two schoolgirls in 2002 ... \u2014 57 minutes ago \u00b7 Breaking News: Ian Huntley, whose murder of two schoolgirls in 2002 shook Britain, is dead after being attacked in prison. (https://www.facebook.com/nytimes/posts/breaking-news-ian-huntley-whose-murder-of-two-schoolgirls-in-2002-shook-britain-/1315341390448321/)\n\u2022 The New York Times - Breaking News, US News, World News and ... \u2014 24 minutes ago \u00b7 More News \u00b7 Communities Survey Devastation After Tornadoes in Michigan and Oklahoma. At least six people were dead and well over a dozen injured between the two ... (https://www.nytimes.com/)",
-        "timestamp": 1772911189.3298087
-      },
-      {
-        "role": "user",
-        "content": "Scan my network.",
-        "timestamp": 1772911384.4539278
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:network_scan{}<end_function_call>",
-        "timestamp": 1772911390.6360855,
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Network scan:\n10.0.0.1  70:13:01:8c:10:0f\nfe80::7213:1ff:fe8c:100f  70:13:01:8c:10:0f",
-        "timestamp": 1772911390.6360898
-      },
-      {
-        "role": "user",
-        "content": "I want you.",
-        "timestamp": 1772911416.1973226
-      }
-    ],
-    "updated_at": 1772911416.1973336
-  },
-  {
-    "id": "56b311a7-4a74-405c-9bc3-84cfd0cf9502",
-    "title": "New Chat",
-    "messages": [],
-    "updated_at": 1774549206.4583867
-  },
-  {
-    "id": "222b4b02-f95b-4bf1-ac7d-b6a8f9def242",
-    "title": "Hello, my name is Abdullah.",
-    "messages": [
-      {
-        "role": "user",
-        "content": "Hello, my name is Abdullah.",
-        "timestamp": 1774549486.1443245
-      },
-      {
-        "role": "assistant",
-        "content": "<think>\n\n</think>\n\nHello, Abdullah! How can I assist you today?",
-        "timestamp": 1774549497.0024586
-      },
-      {
-        "role": "user",
-        "content": "This is a test.",
-        "timestamp": 1774549746.6891463
-      },
-      {
-        "role": "assistant",
-        "content": "<think>\n\n</think>\n\nHello, Abdullah! I'm here to help. If this is a test, feel free to ask any questions you have! \ud83d\ude0a",
-        "timestamp": 1774549761.7204664
+        "content": "<think>\n\n</think>\n\nI'm unable to perform searches on GitHub. Let me know if you need help with anything else!",
+        "timestamp": 1774719289.658588
       },
       {
         "role": "user",
         "content": "hi",
-        "timestamp": 1774571690.2852938
+        "timestamp": 1774737684.128463
       },
       {
         "role": "assistant",
-        "content": "<think>\n\n</think>\n\nHello! How can I help you today? \ud83d\ude0a",
-        "timestamp": 1774571696.1568222
-      },
-      {
-        "role": "user",
-        "content": "Hi.",
-        "timestamp": 1774573292.8260782
-      },
-      {
-        "role": "user",
-        "content": "What is your name",
-        "timestamp": 1774610850.9873211
-      },
-      {
-        "role": "assistant",
-        "content": "<think>\n\n</think>\n\nMy name is an AI assistant, and I don't have a personal name. However, I can help with a wide range of questions and tasks! How can I assist you today? \ud83d\ude0a",
-        "timestamp": 1774610860.6694121
-      },
-      {
-        "role": "user",
-        "content": "remember: your name is Viora AI",
-        "timestamp": 1774610872.676062
-      },
-      {
-        "role": "assistant",
-        "content": "<think>\n\n</think>\n\nHello! My name is Viora AI. I'm here to help with questions, tasks, or assistance whenever you need it. Let me know how I can assist you! \ud83d\ude0a",
-        "timestamp": 1774610880.483043
+        "content": "<think>\n\n</think>\n\nHello! How can I assist you today?",
+        "timestamp": 1774737702.107449
       },
       {
         "role": "user",
         "content": "hi",
-        "timestamp": 1774625411.838584
+        "timestamp": 1774748352.733023
       },
       {
         "role": "assistant",
-        "content": "<think>\n\n</think>\n\nHello! I'm Viora AI. How can I assist you today? \ud83d\ude0a",
-        "timestamp": 1774625437.0419307
+        "content": "<think>\n\n</think>\n\nHello! How can I assist you today?",
+        "timestamp": 1774748360.990229
+      },
+      {
+        "role": "user",
+        "content": "assalamu alaykum",
+        "timestamp": 1774748364.6029048
+      },
+      {
+        "role": "assistant",
+        "content": "<think>\n\n</think>\n\nAssalamu alaykum! How can I assist you today?",
+        "timestamp": 1774748372.9593441
       }
     ],
-    "updated_at": 1774625437.041943
+    "updated_at": 1774748372.9593544
   },
   {
-    "id": "4f25d5e9-cd24-44c6-a63c-726af5f18f02",
-    "title": "Test Agent Task",
+    "id": "8beb9045-d6df-42a4-9942-d8277fbe7676",
+    "title": "hi",
     "messages": [
       {
         "role": "user",
-        "content": "What is the weather?"
+        "content": "hi",
+        "timestamp": 1774909458.737609
       },
       {
         "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
+        "content": "<think>\n\n</think>\n\nHello! How can I assist you today? \ud83d\ude0a",
+        "timestamp": 1774909486.5952294
       },
       {
         "role": "user",
-        "content": "What is the weather?"
+        "content": "What's your name?",
+        "timestamp": 1774909524.7144492
       },
       {
         "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
+        "content": "<think>\n\n</think>\n\nHello! I'm a helpful assistant. What can I do for you? \ud83d\ude0a",
+        "timestamp": 1774909555.6586058
       },
       {
         "role": "user",
-        "content": "What is the weather?"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
-      },
-      {
-        "role": "user",
-        "content": "What is the weather?"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 47%, wind 12.9 km/h."
-      },
-      {
-        "role": "user",
-        "content": "What is the weather?"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>local<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Huxford: Clear, 27.8\u00b0C, humidity 46%, wind 11.9 km/h."
+        "content": "hi",
+        "timestamp": 1774917092.703257
       }
     ],
-    "updated_at": 1774646565.18821
-  },
-  {
-    "id": "038cb9b2-d169-4131-8136-0ce1f2363a93",
-    "title": "Every 2 min Agent Test",
-    "messages": [
-      {
-        "role": "user",
-        "content": "What time is it?"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>time<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Time: Clear, 9.8\u00b0C, humidity 47%, wind 25.0 km/h."
-      },
-      {
-        "role": "user",
-        "content": "What time is it?"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>time<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Time: Clear, 9.8\u00b0C, humidity 47%, wind 25.0 km/h."
-      },
-      {
-        "role": "user",
-        "content": "What time is it?"
-      },
-      {
-        "role": "assistant",
-        "content": "<start_function_call>call:get_weather{location:<escape>time<escape>}<end_function_call>",
-        "hidden": true
-      },
-      {
-        "role": "assistant",
-        "content": "Weather for Time: Clear, 10.0\u00b0C, humidity 46%, wind 25.0 km/h."
-      }
-    ],
-    "updated_at": 1774646565.392898
+    "updated_at": 1774917092.7032735
   }
 ]

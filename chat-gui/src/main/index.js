@@ -9,6 +9,9 @@ import { exec } from 'child_process' // Added for running Organic Maps
 // Enable touch events so finger scroll works on touchscreens (e.g. 4.3" display)
 app.commandLine.appendSwitch('enable-touch-events')
 
+// Enable webview tag for surveillance embedding
+app.commandLine.appendSwitch('enable-webview-tag')
+
 function createWindow() {
     const mainWindow = new BrowserWindow({
         width: 480,
@@ -49,6 +52,20 @@ app.whenReady().then(() => {
     // electronApp.setAppUserModelId('com.electron')
 
     ipcMain.on('app-quit', () => app.quit())
+
+    // Handle starting surveillance server
+    ipcMain.handle('start-surveillance', async () => {
+        return new Promise((resolve, reject) => {
+            exec('cd /home/admin/Mr-A-Hacker-pocket-Ai-version-2 && /home/admin/Mr-A-Hacker-pocket-Ai-version-2/venv/bin/python lan_surveillance.py &', (error) => {
+                if (error) {
+                    console.error('Failed to start surveillance:', error);
+                    reject(error);
+                } else {
+                    resolve('Surveillance started');
+                }
+            });
+        });
+    });
 
     // Handle launching Organic Maps via Flatpak
     ipcMain.handle('run-organic-maps', async () => {

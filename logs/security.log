@@ -1,0 +1,5 @@
+[2026-03-28 13:27:12] PAGE_VIEW | IP: 127.0.0.1 | UA: curl/8.14.1 | Details: Accessed security dashboard
+[2026-03-28 13:28:03] PAGE_VIEW | IP: 127.0.0.1 | UA: curl/8.14.1 | Details: Accessed security dashboard
+[2026-03-28 13:28:13] DETECTION_STARTED | IP: 127.0.0.1 | UA: curl/8.14.1 | Details: Motion detection enabled
+[2026-03-28 13:28:25] MANUAL_ALARM | IP: 127.0.0.1 | UA: curl/8.14.1 | Details: Manual alarm triggered from IP: 127.0.0.1
+[2026-03-28 13:28:31] DEFUSED | IP: 127.0.0.1 | UA: curl/8.14.1 | Details: Alarm defused from IP: 127.0.0.1

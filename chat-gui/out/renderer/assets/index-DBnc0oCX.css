@@ -79,6 +79,7 @@
   :root, :host {
     --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
     --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+    --color-red-50: oklch(97.1% .013 17.38);
     --color-red-400: oklch(70.4% .191 22.216);
     --color-red-500: oklch(63.7% .237 25.331);
     --color-red-600: oklch(57.7% .245 27.325);
@@ -1411,6 +1412,10 @@
     border-bottom-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
   }
 
+  :where(.divide-\[var\(--border\)\] > :not(:last-child)) {
+    border-color: var(--border);
+  }
+
   .self-center {
     align-self: center;
   }
@@ -1419,6 +1424,10 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden;
+  }
+
+  .overflow-auto {
+    overflow: auto;
   }
 
   .overflow-hidden {
@@ -1518,6 +1527,10 @@
     border-style: none;
   }
 
+  .border-\[\#0f3460\] {
+    border-color: #0f3460;
+  }
+
   .border-\[var\(--ai-color\)\], .border-\[var\(--ai-color\)\]\/20 {
     border-color: var(--ai-color);
   }
@@ -1612,8 +1625,24 @@
     border-top-color: var(--ai-color);
   }
 
+  .bg-\[\#0f3460\] {
+    background-color: #0f3460;
+  }
+
+  .bg-\[\#00ff88\] {
+    background-color: #0f8;
+  }
+
   .bg-\[\#00ffff\] {
     background-color: #0ff;
+  }
+
+  .bg-\[\#1a1a2e\] {
+    background-color: #1a1a2e;
+  }
+
+  .bg-\[\#16213e\] {
+    background-color: #16213e;
   }
 
   .bg-\[\#ff0000\] {
@@ -1715,6 +1744,16 @@
   @supports (color: color-mix(in lab, red, red)) {
     .bg-black\/40 {
       background-color: color-mix(in oklab, var(--color-black) 40%, transparent);
+    }
+  }
+
+  .bg-black\/50 {
+    background-color: #00000080;
+  }
+
+  @supports (color: color-mix(in lab, red, red)) {
+    .bg-black\/50 {
+      background-color: color-mix(in oklab, var(--color-black) 50%, transparent);
     }
   }
 
@@ -2273,6 +2312,30 @@
     white-space: pre-wrap;
   }
 
+  .text-\[\#00ff88\] {
+    color: #0f8;
+  }
+
+  .text-\[\#1a1a2e\] {
+    color: #1a1a2e;
+  }
+
+  .text-\[\#888\] {
+    color: #888;
+  }
+
+  .text-\[\#e0e0e0\] {
+    color: #e0e0e0;
+  }
+
+  .text-\[\#fbbf24\] {
+    color: #fbbf24;
+  }
+
+  .text-\[\#ff6b6b\] {
+    color: #ff6b6b;
+  }
+
   .text-\[var\(--ai-color\)\] {
     color: var(--ai-color);
   }
@@ -2385,12 +2448,20 @@
     color: var(--color-yellow-500);
   }
 
+  .capitalize {
+    text-transform: capitalize;
+  }
+
   .uppercase {
     text-transform: uppercase;
   }
 
   .italic {
     font-style: italic;
+  }
+
+  .line-through {
+    text-decoration-line: line-through;
   }
 
   .underline {
@@ -2744,6 +2815,10 @@
     color: var(--ai-color);
   }
 
+  .placeholder\:text-\[\#555\]::placeholder {
+    color: #555;
+  }
+
   .placeholder\:text-\[var\(--text-light\)\]::placeholder {
     color: var(--text-light);
   }
@@ -2789,6 +2864,14 @@
       border-color: var(--color-red-500);
     }
 
+    .hover\:bg-\[\#00cc6a\]:hover {
+      background-color: #00cc6a;
+    }
+
+    .hover\:bg-\[\#1a1a2e\]:hover {
+      background-color: #1a1a2e;
+    }
+
     .hover\:bg-\[var\(--ai-bg\)\]:hover {
       background-color: var(--ai-bg);
     }
@@ -2823,6 +2906,10 @@
       .hover\:bg-green-500\/20:hover {
         background-color: color-mix(in oklab, var(--color-green-500) 20%, transparent);
       }
+    }
+
+    .hover\:bg-red-50:hover {
+      background-color: var(--color-red-50);
     }
 
     .hover\:bg-red-500\/10:hover {

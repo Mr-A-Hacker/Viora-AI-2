@@ -22680,7 +22680,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$U = [
+const __iconNode$17 = [
   [
     "path",
     {
@@ -22689,14 +22689,14 @@ const __iconNode$U = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$U);
+const Activity = createLucideIcon("activity", __iconNode$17);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$T = [
+const __iconNode$16 = [
   ["circle", { cx: "12", cy: "13", r: "8", key: "3y4lt7" }],
   ["path", { d: "M12 9v4l2 2", key: "1c63tq" }],
   ["path", { d: "M5 3 2 6", key: "18tl5t" }],
@@ -22704,25 +22704,65 @@ const __iconNode$T = [
   ["path", { d: "M6.38 18.7 4 21", key: "17xu3x" }],
   ["path", { d: "M17.64 18.67 20 21", key: "kv2oe2" }]
 ];
-const AlarmClock = createLucideIcon("alarm-clock", __iconNode$T);
+const AlarmClock = createLucideIcon("alarm-clock", __iconNode$16);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$S = [
+const __iconNode$15 = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$S);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$15);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$R = [
+const __iconNode$14 = [
+  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
+  ["path", { d: "M12 19V5", key: "x0mq9r" }]
+];
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$14);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$13 = [
+  ["path", { d: "M4.5 3h15", key: "c7n0jr" }],
+  ["path", { d: "M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3", key: "m1uhx7" }],
+  ["path", { d: "M6 14h12", key: "4cwo0f" }]
+];
+const Beaker = createLucideIcon("beaker", __iconNode$13);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$12 = [
+  ["path", { d: "M12 7v14", key: "1akyts" }],
+  [
+    "path",
+    {
+      d: "M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",
+      key: "ruj8y"
+    }
+  ]
+];
+const BookOpen = createLucideIcon("book-open", __iconNode$12);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$11 = [
   ["path", { d: "M12 8V4H8", key: "hb8ula" }],
   ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
   ["path", { d: "M2 14h2", key: "vft8re" }],
@@ -22730,14 +22770,14 @@ const __iconNode$R = [
   ["path", { d: "M15 13v2", key: "1xurst" }],
   ["path", { d: "M9 13v2", key: "rq6x2g" }]
 ];
-const Bot = createLucideIcon("bot", __iconNode$R);
+const Bot = createLucideIcon("bot", __iconNode$11);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Q = [
+const __iconNode$10 = [
   ["path", { d: "M12 18V5", key: "adv99a" }],
   ["path", { d: "M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4", key: "1e3is1" }],
   ["path", { d: "M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5", key: "1gqd8o" }],
@@ -22747,14 +22787,14 @@ const __iconNode$Q = [
   ["path", { d: "M6 18a4 4 0 0 1-2-7.464", key: "k1g0md" }],
   ["path", { d: "M6.003 5.125a4 4 0 0 0-2.526 5.77", key: "q97ue3" }]
 ];
-const Brain = createLucideIcon("brain", __iconNode$Q);
+const Brain = createLucideIcon("brain", __iconNode$10);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$P = [
+const __iconNode$$ = [
   ["path", { d: "M12 20v-9", key: "1qisl0" }],
   ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z", key: "uouzyp" }],
   ["path", { d: "M14.12 3.88 16 2", key: "qol33r" }],
@@ -22767,14 +22807,14 @@ const __iconNode$P = [
   ["path", { d: "m8 2 1.88 1.88", key: "fmnt4t" }],
   ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13", key: "1vgav8" }]
 ];
-const Bug = createLucideIcon("bug", __iconNode$P);
+const Bug = createLucideIcon("bug", __iconNode$$);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$O = [
+const __iconNode$_ = [
   [
     "path",
     {
@@ -22784,125 +22824,125 @@ const __iconNode$O = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("camera", __iconNode$O);
+const Camera = createLucideIcon("camera", __iconNode$_);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$N = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$N);
+const __iconNode$Z = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$Z);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$M = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$M);
+const __iconNode$Y = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$Y);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$L = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$L);
+const __iconNode$X = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$X);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$K = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$K);
+const __iconNode$W = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$W);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$J = [
+const __iconNode$V = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
   ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$J);
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$V);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$I = [
+const __iconNode$U = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
   ["path", { d: "M12 17h.01", key: "p32p05" }]
 ];
-const CircleQuestionMark = createLucideIcon("circle-question-mark", __iconNode$I);
+const CircleQuestionMark = createLucideIcon("circle-question-mark", __iconNode$U);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$H = [
+const __iconNode$T = [
   ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$H);
+const Clock = createLucideIcon("clock", __iconNode$T);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$G = [
+const __iconNode$S = [
   ["path", { d: "M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057", key: "1uxyv8" }],
   ["path", { d: "M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78", key: "99tcn7" }],
   ["path", { d: "m2 2 20 20", key: "1ooewy" }]
 ];
-const CloudOff = createLucideIcon("cloud-off", __iconNode$G);
+const CloudOff = createLucideIcon("cloud-off", __iconNode$S);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$F = [
+const __iconNode$R = [
   ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
 ];
-const Cloud = createLucideIcon("cloud", __iconNode$F);
+const Cloud = createLucideIcon("cloud", __iconNode$R);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$E = [
+const __iconNode$Q = [
   ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
   ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
 ];
-const Code = createLucideIcon("code", __iconNode$E);
+const Code = createLucideIcon("code", __iconNode$Q);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$D = [
+const __iconNode$P = [
   ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
   ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
 ];
-const Copy = createLucideIcon("copy", __iconNode$D);
+const Copy = createLucideIcon("copy", __iconNode$P);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$O = [
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M17 20v2", key: "1rnc9c" }],
@@ -22918,38 +22958,49 @@ const __iconNode$C = [
   ["rect", { x: "4", y: "4", width: "16", height: "16", rx: "2", key: "1vbyd7" }],
   ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "1", key: "z9xiuo" }]
 ];
-const Cpu = createLucideIcon("cpu", __iconNode$C);
+const Cpu = createLucideIcon("cpu", __iconNode$O);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$B = [
+const __iconNode$N = [
+  ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
+  ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
+];
+const CreditCard = createLucideIcon("credit-card", __iconNode$N);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$M = [
   ["path", { d: "M12 15V3", key: "m9g1x1" }],
   ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
   ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
 ];
-const Download = createLucideIcon("download", __iconNode$B);
+const Download = createLucideIcon("download", __iconNode$M);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$A = [
+const __iconNode$L = [
   ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
   ["path", { d: "M10 14 21 3", key: "gplh6r" }],
   ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
 ];
-const ExternalLink = createLucideIcon("external-link", __iconNode$A);
+const ExternalLink = createLucideIcon("external-link", __iconNode$L);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$z = [
+const __iconNode$K = [
   [
     "path",
     {
@@ -22959,14 +23010,14 @@ const __iconNode$z = [
   ],
   ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Eye = createLucideIcon("eye", __iconNode$z);
+const Eye = createLucideIcon("eye", __iconNode$K);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$J = [
   [
     "path",
     {
@@ -22978,14 +23029,14 @@ const __iconNode$y = [
   ["path", { d: "M10 12.5 8 15l2 2.5", key: "1tg20x" }],
   ["path", { d: "m14 12.5 2 2.5-2 2.5", key: "yinavb" }]
 ];
-const FileCode = createLucideIcon("file-code", __iconNode$y);
+const FileCode = createLucideIcon("file-code", __iconNode$J);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [
+const __iconNode$I = [
   [
     "path",
     {
@@ -22997,14 +23048,51 @@ const __iconNode$x = [
   ["path", { d: "M9 15h6", key: "cctwl0" }],
   ["path", { d: "M12 18v-6", key: "17g6i2" }]
 ];
-const FilePlus = createLucideIcon("file-plus", __iconNode$x);
+const FilePlus = createLucideIcon("file-plus", __iconNode$I);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$w = [
+const __iconNode$H = [
+  [
+    "path",
+    {
+      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+      key: "1oefj6"
+    }
+  ],
+  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
+  ["path", { d: "M10 9H8", key: "b1mrlr" }],
+  ["path", { d: "M16 13H8", key: "t4e002" }],
+  ["path", { d: "M16 17H8", key: "z1uh3a" }]
+];
+const FileText = createLucideIcon("file-text", __iconNode$H);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$G = [
+  [
+    "path",
+    {
+      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
+      key: "1oefj6"
+    }
+  ],
+  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }]
+];
+const File = createLucideIcon("file", __iconNode$G);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$F = [
   [
     "path",
     {
@@ -23013,14 +23101,48 @@ const __iconNode$w = [
     }
   ]
 ];
-const FolderOpen = createLucideIcon("folder-open", __iconNode$w);
+const FolderOpen = createLucideIcon("folder-open", __iconNode$F);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$v = [
+const __iconNode$E = [
+  ["path", { d: "M12 10v6", key: "1bos4e" }],
+  ["path", { d: "M9 13h6", key: "1uhe8q" }],
+  [
+    "path",
+    {
+      d: "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
+      key: "1kt360"
+    }
+  ]
+];
+const FolderPlus = createLucideIcon("folder-plus", __iconNode$E);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$D = [
+  [
+    "path",
+    {
+      d: "M20 20a2 2 0 0 0 2-2V8a2 2 0 0 0-2-2h-7.9a2 2 0 0 1-1.69-.9L9.6 3.9A2 2 0 0 0 7.93 3H4a2 2 0 0 0-2 2v13a2 2 0 0 0 2 2Z",
+      key: "1kt360"
+    }
+  ]
+];
+const Folder = createLucideIcon("folder", __iconNode$D);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$C = [
   ["line", { x1: "6", x2: "10", y1: "11", y2: "11", key: "1gktln" }],
   ["line", { x1: "8", x2: "8", y1: "9", y2: "13", key: "qnk9ow" }],
   ["line", { x1: "15", x2: "15.01", y1: "12", y2: "12", key: "krot7o" }],
@@ -23033,51 +23155,68 @@ const __iconNode$v = [
     }
   ]
 ];
-const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$v);
+const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$C);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$u = [
+const __iconNode$B = [
   ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
   ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
   ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
   ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
 ];
-const GitBranch = createLucideIcon("git-branch", __iconNode$u);
+const GitBranch = createLucideIcon("git-branch", __iconNode$B);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$t = [
+const __iconNode$A = [
   ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
   ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
   ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
 ];
-const History = createLucideIcon("history", __iconNode$t);
+const History = createLucideIcon("history", __iconNode$A);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$s = [
+const __iconNode$z = [
+  ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
+  [
+    "path",
+    {
+      d: "M3 10a2 2 0 0 1 .709-1.528l7-6a2 2 0 0 1 2.582 0l7 6A2 2 0 0 1 21 10v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z",
+      key: "r6nss1"
+    }
+  ]
+];
+const House = createLucideIcon("house", __iconNode$z);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$y = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
   ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
   ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
 ];
-const Image = createLucideIcon("image", __iconNode$s);
+const Image = createLucideIcon("image", __iconNode$y);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$r = [
+const __iconNode$x = [
   ["path", { d: "M10 8h.01", key: "1r9ogq" }],
   ["path", { d: "M12 12h.01", key: "1mp3jc" }],
   ["path", { d: "M14 8h.01", key: "1primd" }],
@@ -23088,14 +23227,54 @@ const __iconNode$r = [
   ["path", { d: "M8 12h.01", key: "czm47f" }],
   ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }]
 ];
-const Keyboard = createLucideIcon("keyboard", __iconNode$r);
+const Keyboard = createLucideIcon("keyboard", __iconNode$x);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$q = [
+const __iconNode$w = [
+  [
+    "path",
+    {
+      d: "M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5",
+      key: "1gvzjb"
+    }
+  ],
+  ["path", { d: "M9 18h6", key: "x1upvd" }],
+  ["path", { d: "M10 22h4", key: "ceow96" }]
+];
+const Lightbulb = createLucideIcon("lightbulb", __iconNode$w);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$v = [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 9.9-1", key: "1mm8w8" }]
+];
+const LockOpen = createLucideIcon("lock-open", __iconNode$v);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$u = [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
+];
+const Lock = createLucideIcon("lock", __iconNode$u);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$t = [
   [
     "path",
     {
@@ -23105,14 +23284,14 @@ const __iconNode$q = [
   ],
   ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
 ];
-const MapPin = createLucideIcon("map-pin", __iconNode$q);
+const MapPin = createLucideIcon("map-pin", __iconNode$t);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$p = [
+const __iconNode$s = [
   [
     "path",
     {
@@ -23123,7 +23302,51 @@ const __iconNode$p = [
   ["path", { d: "M15 5.764v15", key: "1pn4in" }],
   ["path", { d: "M9 3.236v15", key: "1uimfh" }]
 ];
-const Map$1 = createLucideIcon("map", __iconNode$p);
+const Map$1 = createLucideIcon("map", __iconNode$s);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$r = [
+  ["path", { d: "M4 5h16", key: "1tepv9" }],
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 19h16", key: "1djgab" }]
+];
+const Menu = createLucideIcon("menu", __iconNode$r);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$q = [
+  [
+    "path",
+    {
+      d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
+      key: "1sd12s"
+    }
+  ]
+];
+const MessageCircle = createLucideIcon("message-circle", __iconNode$q);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$p = [
+  [
+    "path",
+    {
+      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
+      key: "18887p"
+    }
+  ]
+];
+const MessageSquare = createLucideIcon("message-square", __iconNode$p);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23131,11 +23354,11 @@ const Map$1 = createLucideIcon("map", __iconNode$p);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$o = [
-  ["path", { d: "M4 5h16", key: "1tepv9" }],
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 19h16", key: "1djgab" }]
+  ["path", { d: "M12 19v3", key: "npa21l" }],
+  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
+  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
 ];
-const Menu = createLucideIcon("menu", __iconNode$o);
+const Mic = createLucideIcon("mic", __iconNode$o);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23146,12 +23369,12 @@ const __iconNode$n = [
   [
     "path",
     {
-      d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
-      key: "1sd12s"
+      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+      key: "kfwtm"
     }
   ]
 ];
-const MessageCircle = createLucideIcon("message-circle", __iconNode$n);
+const Moon = createLucideIcon("moon", __iconNode$n);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23159,15 +23382,16 @@ const MessageCircle = createLucideIcon("message-circle", __iconNode$n);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$m = [
+  ["path", { d: "M13 21h8", key: "1jsn5i" }],
   [
     "path",
     {
-      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
-      key: "18887p"
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
     }
   ]
 ];
-const MessageSquare = createLucideIcon("message-square", __iconNode$m);
+const PenLine = createLucideIcon("pen-line", __iconNode$m);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23175,11 +23399,16 @@ const MessageSquare = createLucideIcon("message-square", __iconNode$m);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$l = [
-  ["path", { d: "M12 19v3", key: "npa21l" }],
-  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
-  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ],
+  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
 ];
-const Mic = createLucideIcon("mic", __iconNode$l);
+const Pencil = createLucideIcon("pencil", __iconNode$l);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23190,12 +23419,12 @@ const __iconNode$k = [
   [
     "path",
     {
-      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
-      key: "kfwtm"
+      d: "M5 5a2 2 0 0 1 3.008-1.728l11.997 6.998a2 2 0 0 1 .003 3.458l-12 7A2 2 0 0 1 5 19z",
+      key: "10ikf1"
     }
   ]
 ];
-const Moon = createLucideIcon("moon", __iconNode$k);
+const Play = createLucideIcon("play", __iconNode$k);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23203,16 +23432,10 @@ const Moon = createLucideIcon("moon", __iconNode$k);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$j = [
-  ["path", { d: "M13 21h8", key: "1jsn5i" }],
-  [
-    "path",
-    {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
-    }
-  ]
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-const PenLine = createLucideIcon("pen-line", __iconNode$j);
+const Plus = createLucideIcon("plus", __iconNode$j);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23220,16 +23443,10 @@ const PenLine = createLucideIcon("pen-line", __iconNode$j);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$i = [
-  [
-    "path",
-    {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
-    }
-  ],
-  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+  ["path", { d: "M12 2v10", key: "mnfbl" }],
+  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$i);
+const Power = createLucideIcon("power", __iconNode$i);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23237,10 +23454,12 @@ const Pencil = createLucideIcon("pencil", __iconNode$i);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$h = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
 ];
-const Plus = createLucideIcon("plus", __iconNode$h);
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$h);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23248,30 +23467,6 @@ const Plus = createLucideIcon("plus", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
-  ["path", { d: "M12 2v10", key: "mnfbl" }],
-  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
-];
-const Power = createLucideIcon("power", __iconNode$g);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$f = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
-];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$f);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$e = [
   [
     "path",
     {
@@ -23282,7 +23477,31 @@ const __iconNode$e = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$e);
+const Save = createLucideIcon("save", __iconNode$g);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$f = [
+  ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
+  ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
+  ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
+  ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
+];
+const Scan = createLucideIcon("scan", __iconNode$f);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$e = [
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+];
+const Search = createLucideIcon("search", __iconNode$e);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23290,12 +23509,16 @@ const Save = createLucideIcon("save", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
-  ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
-  ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
-  ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
+  [
+    "path",
+    {
+      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+      key: "1ffxy3"
+    }
+  ],
+  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ];
-const Scan = createLucideIcon("scan", __iconNode$d);
+const Send = createLucideIcon("send", __iconNode$d);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23303,10 +23526,16 @@ const Scan = createLucideIcon("scan", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
+  [
+    "path",
+    {
+      d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
+      key: "1i5ecw"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
 ];
-const Search = createLucideIcon("search", __iconNode$c);
+const Settings$1 = createLucideIcon("settings", __iconNode$c);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23317,13 +23546,12 @@ const __iconNode$b = [
   [
     "path",
     {
-      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
-      key: "1ffxy3"
+      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+      key: "oel41y"
     }
-  ],
-  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
+  ]
 ];
-const Send = createLucideIcon("send", __iconNode$b);
+const Shield = createLucideIcon("shield", __iconNode$b);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23331,16 +23559,19 @@ const Send = createLucideIcon("send", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
+  ["path", { d: "M7 18v-6a5 5 0 1 1 10 0v6", key: "pcx96s" }],
   [
     "path",
-    {
-      d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
-      key: "1i5ecw"
-    }
+    { d: "M5 21a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-1a2 2 0 0 0-2-2H7a2 2 0 0 0-2 2z", key: "1b4s83" }
   ],
-  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+  ["path", { d: "M21 12h1", key: "jtio3y" }],
+  ["path", { d: "M18.5 4.5 18 5", key: "g5sp9y" }],
+  ["path", { d: "M2 12h1", key: "1uaihz" }],
+  ["path", { d: "M12 2v1", key: "11qlp1" }],
+  ["path", { d: "m4.929 4.929.707.707", key: "1i51kw" }],
+  ["path", { d: "M12 12v6", key: "3ahymv" }]
 ];
-const Settings$1 = createLucideIcon("settings", __iconNode$a);
+const Siren = createLucideIcon("siren", __iconNode$a);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23811,12 +24042,21 @@ function Avatar({
     }
   );
 }
-const __vite_import_meta_env__ = {};
-const host = typeof import.meta !== "undefined" && __vite_import_meta_env__?.VITE_API_HOST != null ? void 0 : typeof window !== "undefined" ? window.location?.hostname || "127.0.0.1" : "127.0.0.1";
-const port = typeof import.meta !== "undefined" && __vite_import_meta_env__?.VITE_API_PORT != null ? String(void 0) : "8000";
+const getHost = () => {
+  if (typeof window !== "undefined") {
+    const h = window.location.hostname;
+    if (h && h !== "localhost" && h !== "127.0.0.1" && h !== "0.0.0.0") {
+      return h;
+    }
+  }
+  return "127.0.0.1";
+};
+const host = getHost();
+const port = "8000";
 const base = `${host}:${port}`;
 const API_BASE_URL = `http://${base}`;
 const WS_BASE_URL = `ws://${base}`;
+const API_URL = API_BASE_URL;
 const WS_URL = `${WS_BASE_URL}/ws/voice`;
 const CHAT_WS_URL = `${WS_BASE_URL}/ws/chat`;
 async function apiFetch(path2, options = {}) {
@@ -24286,6 +24526,63 @@ function Home() {
   const [showGamesModal, setShowGamesModal] = reactExports.useState(false);
   const [gamesList, setGamesList] = reactExports.useState([]);
   const [gamesLoading, setGamesLoading] = reactExports.useState(false);
+  const [showSecurityModal, setShowSecurityModal] = reactExports.useState(false);
+  const [securityStatus, setSecurityStatus] = reactExports.useState("disarmed");
+  const [securityLoading, setSecurityLoading] = reactExports.useState(false);
+  const [defusePassword, setDefusePassword] = reactExports.useState("");
+  const [defuseError, setDefuseError] = reactExports.useState("");
+  const [showBankingModal, setShowBankingModal] = reactExports.useState(false);
+  const [bankAccounts, setBankAccounts] = reactExports.useState(null);
+  const [bankLoading, setBankLoading] = reactExports.useState(false);
+  const [newTransaction, setNewTransaction] = reactExports.useState({ amount: "", description: "", type: "debit", category: "Other" });
+  const [newOwing, setNewOwing] = reactExports.useState({ person: "", amount: "", reason: "" });
+  const [newOwedToMe, setNewOwedToMe] = reactExports.useState({ person: "", amount: "", reason: "" });
+  const [newBill, setNewBill] = reactExports.useState({ name: "", amount: "", due_date: "", category: "Other" });
+  const [newSavingsGoal, setNewSavingsGoal] = reactExports.useState({ name: "", target: "", icon: "💰" });
+  const [activeTab, setActiveTab] = reactExports.useState("accounts");
+  const [showAddMoneyModal, setShowAddMoneyModal] = reactExports.useState(false);
+  const [quickAmount, setQuickAmount] = reactExports.useState("");
+  const [quickDesc, setQuickDesc] = reactExports.useState("");
+  const fetchSecurityStatus = async () => {
+    try {
+      const resp = await fetch("http://localhost:8000/security/status");
+      const data = await resp.json();
+      setSecurityStatus(data.status || "disarmed");
+    } catch (err) {
+      console.error("Failed to fetch security status:", err);
+    }
+  };
+  const triggerAlarm = async () => {
+    setSecurityLoading(true);
+    try {
+      await fetch("http://localhost:8000/security/manual_alarm", { method: "POST" });
+      setSecurityStatus("alarm");
+    } catch (err) {
+      console.error("Failed to trigger alarm:", err);
+    } finally {
+      setSecurityLoading(false);
+    }
+  };
+  const defuseAlarm = async (e) => {
+    e.preventDefault();
+    setDefuseError("");
+    try {
+      const resp = await fetch("http://localhost:8000/security/defuse", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ password: defusePassword })
+      });
+      const data = await resp.json();
+      if (data.status === "defused") {
+        setSecurityStatus("disarmed");
+        setDefusePassword("");
+      } else {
+        setDefuseError(data.message || "Incorrect password");
+      }
+    } catch (err) {
+      setDefuseError("Connection error");
+    }
+  };
   const fetchGames = async () => {
     setGamesLoading(true);
     try {
@@ -24307,6 +24604,194 @@ function Home() {
       });
     } catch (err) {
       console.error("Failed to launch game:", err);
+    }
+  };
+  const fetchBankAccounts = async () => {
+    setBankLoading(true);
+    try {
+      const resp = await fetch("http://localhost:8000/banking/accounts");
+      const data = await resp.json();
+      setBankAccounts(data);
+    } catch (err) {
+      console.error("Failed to fetch bank accounts:", err);
+    } finally {
+      setBankLoading(false);
+    }
+  };
+  const addTransaction = async (e) => {
+    e.preventDefault();
+    if (!newTransaction.amount || !newTransaction.description) return;
+    try {
+      await fetch("http://localhost:8000/banking/transaction", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: parseFloat(newTransaction.amount),
+          description: newTransaction.description,
+          type: newTransaction.type,
+          account: "My Checking",
+          category: newTransaction.category || "Other"
+        })
+      });
+      setNewTransaction({ amount: "", description: "", type: "debit", category: "Other" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add transaction:", err);
+    }
+  };
+  const handleBankingClick = () => {
+    setShowBankingModal(true);
+    fetchBankAccounts();
+  };
+  const handleQuickAddMoney = async () => {
+    if (!quickAmount || !quickDesc) return;
+    try {
+      await fetch("http://localhost:8000/banking/transaction", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: parseFloat(quickAmount),
+          description: quickDesc,
+          type: "credit",
+          account: "My Checking",
+          category: "Income"
+        })
+      });
+      setQuickAmount("");
+      setQuickDesc("");
+      setShowAddMoneyModal(false);
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add money:", err);
+    }
+  };
+  const addOwing = async (e) => {
+    e.preventDefault();
+    if (!newOwing.person || !newOwing.amount || !newOwing.reason) return;
+    try {
+      await fetch("http://localhost:8000/banking/owing", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          person: newOwing.person,
+          amount: parseFloat(newOwing.amount),
+          reason: newOwing.reason
+        })
+      });
+      setNewOwing({ person: "", amount: "", reason: "" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add owing:", err);
+    }
+  };
+  const deleteOwing = async (id2) => {
+    try {
+      await fetch(`http://localhost:8000/banking/owing/${id2}`, { method: "DELETE" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to delete owing:", err);
+    }
+  };
+  const addOwedToMe = async (e) => {
+    e.preventDefault();
+    if (!newOwedToMe.person || !newOwedToMe.amount || !newOwedToMe.reason) return;
+    try {
+      await fetch("http://localhost:8000/banking/owed_to_me", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          person: newOwedToMe.person,
+          amount: parseFloat(newOwedToMe.amount),
+          reason: newOwedToMe.reason
+        })
+      });
+      setNewOwedToMe({ person: "", amount: "", reason: "" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add owed to me:", err);
+    }
+  };
+  const deleteOwedToMe = async (id2) => {
+    try {
+      await fetch(`http://localhost:8000/banking/owed_to_me/${id2}`, { method: "DELETE" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to delete owed to me:", err);
+    }
+  };
+  const addBill = async (e) => {
+    e.preventDefault();
+    if (!newBill.name || !newBill.amount || !newBill.due_date) return;
+    try {
+      await fetch("http://localhost:8000/banking/bills", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: newBill.name,
+          amount: parseFloat(newBill.amount),
+          due_date: newBill.due_date,
+          category: newBill.category
+        })
+      });
+      setNewBill({ name: "", amount: "", due_date: "", category: "Other" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add bill:", err);
+    }
+  };
+  const toggleBillPaid = async (id2) => {
+    try {
+      await fetch(`http://localhost:8000/banking/bills/${id2}`, { method: "PUT" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to toggle bill:", err);
+    }
+  };
+  const deleteBill = async (id2) => {
+    try {
+      await fetch(`http://localhost:8000/banking/bills/${id2}`, { method: "DELETE" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to delete bill:", err);
+    }
+  };
+  const addSavingsGoal = async (e) => {
+    e.preventDefault();
+    if (!newSavingsGoal.name || !newSavingsGoal.target) return;
+    try {
+      await fetch("http://localhost:8000/banking/savings", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: newSavingsGoal.name,
+          target: parseFloat(newSavingsGoal.target),
+          icon: newSavingsGoal.icon
+        })
+      });
+      setNewSavingsGoal({ name: "", target: "", icon: "💰" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add savings goal:", err);
+    }
+  };
+  const addToSavingsGoal = async (goalId, amount) => {
+    try {
+      await fetch(`http://localhost:8000/banking/savings/${goalId}/add`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ amount: parseFloat(amount) })
+      });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to add to savings goal:", err);
+    }
+  };
+  const deleteSavingsGoal = async (id2) => {
+    try {
+      await fetch(`http://localhost:8000/banking/savings/${id2}`, { method: "DELETE" });
+      fetchBankAccounts();
+    } catch (err) {
+      console.error("Failed to delete savings goal:", err);
     }
   };
   const handleGamesClick = () => {
@@ -24450,7 +24935,7 @@ function Home() {
                     fontSize: "clamp(1.1rem, 4vw, 1.5rem)",
                     letterSpacing: "-.02em"
                   },
-                  children: "VIORA AI"
+                  children: "Add Money"
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -24463,7 +24948,7 @@ function Home() {
                     letterSpacing: ".08em",
                     textTransform: "uppercase"
                   },
-                  children: "SYSTEMS ONLINE"
+                  children: "Tap avatar to chat"
                 }
               )
             ]
@@ -24589,6 +25074,54 @@ function Home() {
                   label: "DEV AI",
                   onClick: () => navigate("/devai"),
                   color: "#f97316"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MenuButton,
+                {
+                  icon: Shield,
+                  label: "SECURITY",
+                  onClick: () => {
+                    fetchSecurityStatus();
+                    setShowSecurityModal(true);
+                  },
+                  color: "#ef4444"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MenuButton,
+                {
+                  icon: Terminal,
+                  label: "TERMINAL",
+                  onClick: () => navigate("/terminal"),
+                  color: "#10b981"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MenuButton,
+                {
+                  icon: Folder,
+                  label: "FILES",
+                  onClick: () => navigate("/files"),
+                  color: "#8b5cf6"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MenuButton,
+                {
+                  icon: Plus,
+                  label: "ADD MONEY",
+                  onClick: () => setShowAddMoneyModal(true),
+                  color: "#22c55e"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MenuButton,
+                {
+                  icon: CreditCard,
+                  label: "BANKING",
+                  onClick: handleBankingClick,
+                  color: "#0ea5e9"
                 }
               )
             ]
@@ -24811,6 +25344,625 @@ function Home() {
                     },
                     game.id
                   )) })
+                ]
+              }
+            )
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showSecurityModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            style: {
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 100,
+              padding: 20
+            },
+            onClick: () => setShowSecurityModal(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, y: 20 },
+                animate: { scale: 1, y: 0 },
+                exit: { scale: 0.9, y: 20 },
+                style: {
+                  background: "var(--surface)",
+                  borderRadius: 24,
+                  padding: 24,
+                  maxWidth: 360,
+                  width: "100%",
+                  border: "1.5px solid var(--border)",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.3)"
+                },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "var(--text)" }, children: "Security" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        onClick: () => setShowSecurityModal(false),
+                        style: { background: "none", border: "none", cursor: "pointer", color: "var(--text-mid)", fontSize: "1.5rem" },
+                        children: "×"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: {
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                    gap: 12,
+                    padding: 20,
+                    borderRadius: 16,
+                    marginBottom: 20,
+                    background: securityStatus === "armed" ? "rgba(239,68,68,0.1)" : securityStatus === "alarm" ? "rgba(239,68,68,0.2)" : "rgba(34,197,94,0.1)",
+                    border: `1.5px solid ${securityStatus === "armed" ? "rgba(239,68,68,0.3)" : securityStatus === "alarm" ? "rgba(239,68,68,0.5)" : "rgba(34,197,94,0.3)"}`
+                  }, children: [
+                    securityStatus === "disarmed" && /* @__PURE__ */ jsxRuntimeExports.jsx(LockOpen, { size: 32, style: { color: "#22c55e" } }),
+                    securityStatus === "armed" && /* @__PURE__ */ jsxRuntimeExports.jsx(Lock, { size: 32, style: { color: "#ef4444" } }),
+                    securityStatus === "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsx(Siren, { size: 32, style: { color: "#ef4444" }, className: "animate-pulse" }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: {
+                      fontSize: "1.1rem",
+                      fontWeight: 600,
+                      color: securityStatus === "disarmed" ? "#22c55e" : "#ef4444",
+                      textTransform: "capitalize"
+                    }, children: securityStatus })
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", flexDirection: "column", gap: 12 }, children: [
+                    securityStatus === "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: defuseAlarm, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "input",
+                        {
+                          type: "password",
+                          value: defusePassword,
+                          onChange: (e) => setDefusePassword(e.target.value),
+                          placeholder: "Enter password to defuse...",
+                          style: {
+                            width: "100%",
+                            padding: "12px 16px",
+                            borderRadius: 12,
+                            border: defuseError ? "1.5px solid #ef4444" : "1.5px solid var(--border)",
+                            background: "var(--bg)",
+                            color: "var(--text)",
+                            fontSize: "1rem",
+                            outline: "none",
+                            marginBottom: 12
+                          }
+                        }
+                      ),
+                      defuseError && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "#ef4444", fontSize: "0.85rem", marginBottom: 12 }, children: defuseError }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(
+                        "button",
+                        {
+                          type: "submit",
+                          style: {
+                            width: "100%",
+                            padding: 14,
+                            borderRadius: 12,
+                            border: "none",
+                            background: "#22c55e",
+                            color: "white",
+                            fontSize: "1rem",
+                            fontWeight: 600,
+                            cursor: "pointer"
+                          },
+                          children: "Defuse Alarm"
+                        }
+                      )
+                    ] }),
+                    securityStatus !== "alarm" && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+                      "button",
+                      {
+                        onClick: triggerAlarm,
+                        disabled: securityLoading,
+                        style: {
+                          display: "flex",
+                          alignItems: "center",
+                          justifyContent: "center",
+                          gap: 8,
+                          padding: 14,
+                          borderRadius: 12,
+                          border: "none",
+                          background: "#ef4444",
+                          color: "white",
+                          fontSize: "1rem",
+                          fontWeight: 600,
+                          cursor: securityLoading ? "not-allowed" : "pointer",
+                          opacity: securityLoading ? 0.6 : 1
+                        },
+                        children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx(Siren, { size: 20 }),
+                          "Trigger Alarm"
+                        ]
+                      }
+                    ),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        onClick: () => setShowSecurityModal(false),
+                        style: {
+                          padding: 14,
+                          borderRadius: 12,
+                          border: "1.5px solid var(--border)",
+                          background: "transparent",
+                          color: "var(--text)",
+                          fontSize: "1rem",
+                          fontWeight: 500,
+                          cursor: "pointer"
+                        },
+                        children: "Close"
+                      }
+                    )
+                  ] })
+                ]
+              }
+            )
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showBankingModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            style: {
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 100,
+              padding: 20
+            },
+            onClick: () => setShowBankingModal(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, y: 20 },
+                animate: { scale: 1, y: 0 },
+                exit: { scale: 0.9, y: 20 },
+                style: {
+                  background: "linear-gradient(180deg, #1a365d 0%, #0f172a 100%)",
+                  borderRadius: 24,
+                  padding: 24,
+                  maxWidth: 440,
+                  width: "100%",
+                  maxHeight: "90vh",
+                  border: "1.5px solid #2d4a6f",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.5)",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column"
+                },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 16 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(CreditCard, { size: 24, color: "#60a5fa" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "#e2e8f0" }, children: "My Bank" })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        onClick: () => setShowBankingModal(false),
+                        style: { background: "none", border: "none", cursor: "pointer", color: "#94a3b8", fontSize: "1.5rem" },
+                        children: "×"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { display: "flex", gap: 8, marginBottom: 16, overflowX: "auto", paddingBottom: 8 }, children: ["accounts", "transactions", "owing", "owed", "bills", "savings"].map((tab2) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      onClick: () => setActiveTab(tab2),
+                      style: {
+                        padding: "8px 16px",
+                        borderRadius: 20,
+                        border: "none",
+                        background: activeTab === tab2 ? "#2563eb" : "rgba(255,255,255,0.1)",
+                        color: activeTab === tab2 ? "#fff" : "#94a3b8",
+                        fontSize: "0.8rem",
+                        fontWeight: 600,
+                        cursor: "pointer",
+                        whiteSpace: "nowrap"
+                      },
+                      children: tab2 === "accounts" ? "Accounts" : tab2 === "transactions" ? "Transactions" : tab2 === "owing" ? "Owing" : tab2 === "owed" ? "Owed to Me" : tab2 === "bills" ? "Bills" : "Savings"
+                    },
+                    tab2
+                  )) }),
+                  bankLoading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { textAlign: "center", padding: 40, color: "#94a3b8" }, children: "Loading..." }),
+                  !bankLoading && bankAccounts && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { flex: 1, overflowY: "auto" }, children: [
+                    activeTab === "accounts" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: {
+                        background: "linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%)",
+                        borderRadius: 20,
+                        padding: 20,
+                        marginBottom: 16,
+                        boxShadow: "0 8px 24px rgba(37, 99, 235, 0.4)"
+                      }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.85rem", color: "#bfdbfe", marginBottom: 8 }, children: "Total Balance" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "2rem", fontWeight: 700, color: "#fff" }, children: [
+                          "$",
+                          bankAccounts.accounts.reduce((sum, a) => sum + a.balance, 0).toFixed(2)
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", marginTop: 12, paddingTop: 12, borderTop: "1px solid rgba(255,255,255,0.2)" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.7rem", color: "#93c5fd" }, children: "Income" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.9rem", fontWeight: 600, color: "#86efac" }, children: [
+                              "+$",
+                              bankAccounts.transactions.filter((t) => t.amount > 0).reduce((s, t) => s + t.amount, 0).toFixed(2)
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.7rem", color: "#93c5fd" }, children: "Expenses" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.9rem", fontWeight: 600, color: "#fca5a5" }, children: [
+                              "-$",
+                              Math.abs(bankAccounts.transactions.filter((t) => t.amount < 0).reduce((s, t) => s + t.amount, 0)).toFixed(2)
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.7rem", color: "#93c5fd" }, children: "Net" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.9rem", fontWeight: 600, color: bankAccounts.transactions.reduce((s, t) => s + t.amount, 0) >= 0 ? "#86efac" : "#fca5a5" }, children: [
+                              "$",
+                              bankAccounts.transactions.reduce((s, t) => s + t.amount, 0).toFixed(2)
+                            ] })
+                          ] })
+                        ] })
+                      ] }),
+                      bankAccounts.accounts.map((account) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: 14, marginBottom: 8, borderRadius: 12, background: "rgba(255,255,255,0.05)", border: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontWeight: 600, color: "#e2e8f0" }, children: account.name }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.75rem", color: "#64748b" }, children: account.account_number })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "1.1rem", fontWeight: 700, color: account.balance >= 0 ? "#22c55e" : "#ef4444" }, children: [
+                          "$",
+                          account.balance.toFixed(2)
+                        ] })
+                      ] }, account.id))
+                    ] }),
+                    activeTab === "transactions" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      bankAccounts.transactions.slice(0, 15).map((tx) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "10px 0", borderBottom: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 10 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { width: 32, height: 32, borderRadius: 8, background: tx.amount > 0 ? "rgba(34,197,94,0.2)" : "rgba(239,68,68,0.2)", display: "flex", alignItems: "center", justifyContent: "center", color: tx.amount > 0 ? "#22c55e" : "#ef4444" }, children: tx.amount > 0 ? "↑" : "↓" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontWeight: 500, color: "#e2e8f0", fontSize: "0.85rem" }, children: tx.description }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.7rem", color: "#64748b" }, children: [
+                              tx.date,
+                              " • ",
+                              tx.category
+                            ] })
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontWeight: 600, color: tx.amount > 0 ? "#22c55e" : "#ef4444" }, children: [
+                          tx.amount > 0 ? "+" : "",
+                          tx.amount.toFixed(2)
+                        ] })
+                      ] }, tx.id)),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: addTransaction, style: { marginTop: 16, paddingTop: 16, borderTop: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: 10, color: "#94a3b8" }, children: "Add Transaction" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { value: newTransaction.type, onChange: (e) => setNewTransaction({ ...newTransaction, type: e.target.value }), style: { padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "credit", children: "Credit (+)" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { value: "debit", children: "Debit (-)" })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "number", step: "0.01", value: newTransaction.amount, onChange: (e) => setNewTransaction({ ...newTransaction, amount: e.target.value }), placeholder: "Amount", style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newTransaction.description, onChange: (e) => setNewTransaction({ ...newTransaction, description: e.target.value }), placeholder: "Description", style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { value: newTransaction.category, onChange: (e) => setNewTransaction({ ...newTransaction, category: e.target.value }), style: { padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Food" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Transport" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Bills" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Entertainment" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Shopping" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Health" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Income" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Transfer" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Other" })
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", style: { width: "100%", padding: 12, borderRadius: 10, border: "none", background: "#2563eb", color: "white", fontSize: "0.9rem", fontWeight: 600, cursor: "pointer" }, children: "Add Transaction" })
+                      ] })
+                    ] }),
+                    activeTab === "owing" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      bankAccounts.owing && bankAccounts.owing.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: 16, borderRadius: 14, background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", marginBottom: 16 }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.8rem", color: "#fca5a5" }, children: "Total Owed" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "1.5rem", fontWeight: 700, color: "#ef4444" }, children: [
+                          "$",
+                          bankAccounts.owing.reduce((s, o) => s + o.amount, 0).toFixed(2)
+                        ] })
+                      ] }),
+                      bankAccounts.owing.map((o) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontWeight: 500, color: "#e2e8f0" }, children: o.person }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.7rem", color: "#64748b" }, children: [
+                            o.reason,
+                            " • ",
+                            o.date
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontWeight: 600, color: "#ef4444" }, children: [
+                            "$",
+                            o.amount.toFixed(2)
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => deleteOwing(o.id), style: { background: "none", border: "none", color: "#fca5a5", cursor: "pointer" }, children: "×" })
+                        ] })
+                      ] }, o.id)),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: addOwing, style: { marginTop: 16, paddingTop: 16, borderTop: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: 10, color: "#94a3b8" }, children: "Add Money Owed" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newOwing.person, onChange: (e) => setNewOwing({ ...newOwing, person: e.target.value }), placeholder: "Person", style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "number", step: "0.01", value: newOwing.amount, onChange: (e) => setNewOwing({ ...newOwing, amount: e.target.value }), placeholder: "Amount", style: { width: 100, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newOwing.reason, onChange: (e) => setNewOwing({ ...newOwing, reason: e.target.value }), placeholder: "Reason", style: { width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem", marginBottom: 10 } }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", style: { width: "100%", padding: 12, borderRadius: 10, border: "none", background: "#dc2626", color: "white", fontSize: "0.9rem", fontWeight: 600, cursor: "pointer" }, children: "Add Owed Money" })
+                      ] })
+                    ] }),
+                    activeTab === "owed" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      bankAccounts.owed_to_me && bankAccounts.owed_to_me.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: 16, borderRadius: 14, background: "rgba(34,197,94,0.1)", border: "1px solid rgba(34,197,94,0.3)", marginBottom: 16 }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.8rem", color: "#86efac" }, children: "Total Owed to You" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "1.5rem", fontWeight: 700, color: "#22c55e" }, children: [
+                          "$",
+                          bankAccounts.owed_to_me.reduce((s, o) => s + o.amount, 0).toFixed(2)
+                        ] })
+                      ] }),
+                      bankAccounts.owed_to_me && bankAccounts.owed_to_me.length > 0 ? bankAccounts.owed_to_me.map((o) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontWeight: 500, color: "#e2e8f0" }, children: o.person }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.7rem", color: "#64748b" }, children: [
+                            o.reason,
+                            " • ",
+                            o.date
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontWeight: 600, color: "#22c55e" }, children: [
+                            "$",
+                            o.amount.toFixed(2)
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => deleteOwedToMe(o.id), style: { background: "none", border: "none", color: "#86efac", cursor: "pointer" }, children: "×" })
+                        ] })
+                      ] }, o.id)) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { textAlign: "center", color: "#64748b", padding: 20 }, children: "No one owes you money" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: addOwedToMe, style: { marginTop: 16, paddingTop: 16, borderTop: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: 10, color: "#94a3b8" }, children: "Add Money Owed to You" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newOwedToMe.person, onChange: (e) => setNewOwedToMe({ ...newOwedToMe, person: e.target.value }), placeholder: "Person", style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "number", step: "0.01", value: newOwedToMe.amount, onChange: (e) => setNewOwedToMe({ ...newOwedToMe, amount: e.target.value }), placeholder: "Amount", style: { width: 100, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newOwedToMe.reason, onChange: (e) => setNewOwedToMe({ ...newOwedToMe, reason: e.target.value }), placeholder: "Reason", style: { width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem", marginBottom: 10 } }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", style: { width: "100%", padding: 12, borderRadius: 10, border: "none", background: "#22c55e", color: "white", fontSize: "0.9rem", fontWeight: 600, cursor: "pointer" }, children: "Add Owed to Me" })
+                      ] })
+                    ] }),
+                    activeTab === "bills" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      bankAccounts.bills && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: 16, borderRadius: 14, background: "rgba(251,191,36,0.1)", border: "1px solid rgba(251,191,36,0.3)", marginBottom: 16 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.8rem", color: "#fde047" }, children: "Upcoming Bills" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "1.5rem", fontWeight: 700, color: "#fbbf24" }, children: [
+                            "$",
+                            bankAccounts.bills.filter((b) => !b.paid).reduce((s, b) => s + b.amount, 0).toFixed(2)
+                          ] })
+                        ] }),
+                        bankAccounts.bills.map((bill) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", padding: "12px 0", borderBottom: "1px solid #334155" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 10 }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => toggleBillPaid(bill.id), style: { width: 24, height: 24, borderRadius: 6, border: bill.paid ? "none" : "2px solid #64748b", background: bill.paid ? "#22c55e" : "transparent", color: bill.paid ? "#fff" : "transparent", fontSize: "0.8rem", cursor: "pointer" }, children: bill.paid ? "✓" : "" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontWeight: 500, color: bill.paid ? "#64748b" : "#e2e8f0", textDecoration: bill.paid ? "line-through" : "none" }, children: bill.name }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "0.7rem", color: "#64748b" }, children: [
+                                "Due: ",
+                                bill.due_date,
+                                " • ",
+                                bill.category
+                              ] })
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontWeight: 600, color: bill.paid ? "#64748b" : "#fbbf24" }, children: [
+                              "$",
+                              bill.amount.toFixed(2)
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => deleteBill(bill.id), style: { background: "none", border: "none", color: "#64748b", cursor: "pointer" }, children: "×" })
+                          ] })
+                        ] }, bill.id))
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: addBill, style: { marginTop: 16, paddingTop: 16, borderTop: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: 10, color: "#94a3b8" }, children: "Add Bill" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newBill.name, onChange: (e) => setNewBill({ ...newBill, name: e.target.value }), placeholder: "Bill name", style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "number", step: "0.01", value: newBill.amount, onChange: (e) => setNewBill({ ...newBill, amount: e.target.value }), placeholder: "Amount", style: { width: 90, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "date", value: newBill.due_date, onChange: (e) => setNewBill({ ...newBill, due_date: e.target.value }), style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { value: newBill.category, onChange: (e) => setNewBill({ ...newBill, category: e.target.value }), style: { padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Utilities" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Services" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Housing" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Insurance" }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "Other" })
+                          ] })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", style: { width: "100%", padding: 12, borderRadius: 10, border: "none", background: "#fbbf24", color: "#000", fontSize: "0.9rem", fontWeight: 600, cursor: "pointer" }, children: "Add Bill" })
+                      ] })
+                    ] }),
+                    activeTab === "savings" && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                      bankAccounts.savings_goals && /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: 16, borderRadius: 14, background: "rgba(139,92,246,0.1)", border: "1px solid rgba(139,92,246,0.3)", marginBottom: 16 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.8rem", color: "#c4b5fd" }, children: "Total Saved" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { fontSize: "1.5rem", fontWeight: 700, color: "#a78bfa" }, children: [
+                            "$",
+                            bankAccounts.savings_goals.reduce((s, g) => s + g.current, 0).toFixed(2)
+                          ] })
+                        ] }),
+                        bankAccounts.savings_goals.map((goal) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { padding: "12px 0", borderBottom: "1px solid #334155" }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 8 }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: "1.2rem" }, children: goal.icon }),
+                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontWeight: 500, color: "#e2e8f0" }, children: goal.name })
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => deleteSavingsGoal(goal.id), style: { background: "none", border: "none", color: "#64748b", cursor: "pointer" }, children: "×" })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { background: "#1e293b", borderRadius: 8, height: 8, overflow: "hidden", marginBottom: 6 }, children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { width: `${goal.current / goal.target * 100}%`, background: "linear-gradient(90deg, #8b5cf6, #a78bfa)", height: "100%", borderRadius: 8 } }) }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", justifyContent: "space-between", fontSize: "0.75rem", color: "#64748b" }, children: [
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                              "$",
+                              goal.current.toFixed(2)
+                            ] }),
+                            /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
+                              "$",
+                              goal.target.toFixed(2)
+                            ] })
+                          ] }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => {
+                            const amt = prompt("Amount to add:");
+                            if (amt) addToSavingsGoal(goal.id, amt);
+                          }, style: { marginTop: 8, width: "100%", padding: 8, borderRadius: 8, border: "1px solid #8b5cf6", background: "transparent", color: "#a78bfa", fontSize: "0.8rem", cursor: "pointer" }, children: "Add Money" })
+                        ] }, goal.id))
+                      ] }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsxs("form", { onSubmit: addSavingsGoal, style: { marginTop: 16, paddingTop: 16, borderTop: "1px solid #334155" }, children: [
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { style: { fontSize: "0.85rem", fontWeight: 600, marginBottom: 10, color: "#94a3b8" }, children: "Add Savings Goal" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", gap: 6, marginBottom: 8 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "text", value: newSavingsGoal.name, onChange: (e) => setNewSavingsGoal({ ...newSavingsGoal, name: e.target.value }), placeholder: "Goal name", style: { flex: 1, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("input", { type: "number", step: "0.01", value: newSavingsGoal.target, onChange: (e) => setNewSavingsGoal({ ...newSavingsGoal, target: e.target.value }), placeholder: "Target", style: { width: 100, padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem" } })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsxs("select", { value: newSavingsGoal.icon, onChange: (e) => setNewSavingsGoal({ ...newSavingsGoal, icon: e.target.value }), style: { width: "100%", padding: "10px 12px", borderRadius: 10, border: "1px solid #334155", background: "rgba(255,255,255,0.05)", color: "#e2e8f0", fontSize: "0.85rem", marginBottom: 10 }, children: [
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "💰" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "🏠" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "✈️" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "🚗" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "📱" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "💻" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "🎮" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "🎓" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "🛡️" }),
+                          /* @__PURE__ */ jsxRuntimeExports.jsx("option", { children: "💍" })
+                        ] }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { type: "submit", style: { width: "100%", padding: 12, borderRadius: 10, border: "none", background: "#8b5cf6", color: "white", fontSize: "0.9rem", fontWeight: 600, cursor: "pointer" }, children: "Add Goal" })
+                      ] })
+                    ] })
+                  ] })
+                ]
+              }
+            )
+          }
+        ) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showAddMoneyModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
+          motion.div,
+          {
+            initial: { opacity: 0 },
+            animate: { opacity: 1 },
+            exit: { opacity: 0 },
+            style: {
+              position: "fixed",
+              inset: 0,
+              background: "rgba(0,0,0,0.6)",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              zIndex: 100,
+              padding: 20
+            },
+            onClick: () => setShowAddMoneyModal(false),
+            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              motion.div,
+              {
+                initial: { scale: 0.9, y: 20 },
+                animate: { scale: 1, y: 0 },
+                exit: { scale: 0.9, y: 20 },
+                style: {
+                  background: "linear-gradient(180deg, #166534 0%, #14532d 100%)",
+                  borderRadius: 24,
+                  padding: 24,
+                  maxWidth: 360,
+                  width: "100%",
+                  border: "1.5px solid #22c55e",
+                  boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
+                },
+                onClick: (e) => e.stopPropagation(),
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }, children: [
+                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
+                      /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 24, color: "#22c55e" }),
+                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "#fff" }, children: "Add Money" })
+                    ] }),
+                    /* @__PURE__ */ jsxRuntimeExports.jsx(
+                      "button",
+                      {
+                        onClick: () => setShowAddMoneyModal(false),
+                        style: { background: "none", border: "none", cursor: "pointer", color: "#86efac", fontSize: "1.5rem" },
+                        children: "×"
+                      }
+                    )
+                  ] }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "input",
+                    {
+                      type: "number",
+                      step: "0.01",
+                      value: quickAmount,
+                      onChange: (e) => setQuickAmount(e.target.value),
+                      placeholder: "Amount",
+                      autoFocus: true,
+                      style: {
+                        width: "100%",
+                        padding: "16px 20px",
+                        borderRadius: 14,
+                        border: "2px solid #22c55e",
+                        background: "rgba(255,255,255,0.1)",
+                        color: "#fff",
+                        fontSize: "1.5rem",
+                        fontWeight: 700,
+                        outline: "none",
+                        marginBottom: 16,
+                        textAlign: "center"
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "input",
+                    {
+                      type: "text",
+                      value: quickDesc,
+                      onChange: (e) => setQuickDesc(e.target.value),
+                      placeholder: "Description (e.g. Paycheck, Gift)",
+                      style: {
+                        width: "100%",
+                        padding: "14px 16px",
+                        borderRadius: 14,
+                        border: "1px solid #4ade80",
+                        background: "rgba(255,255,255,0.1)",
+                        color: "#fff",
+                        fontSize: "1rem",
+                        outline: "none",
+                        marginBottom: 20
+                      }
+                    }
+                  ),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(
+                    "button",
+                    {
+                      onClick: handleQuickAddMoney,
+                      style: {
+                        width: "100%",
+                        padding: 16,
+                        borderRadius: 14,
+                        border: "none",
+                        background: "#22c55e",
+                        color: "#fff",
+                        fontSize: "1.1rem",
+                        fontWeight: 700,
+                        cursor: "pointer",
+                        boxShadow: "0 4px 12px rgba(34, 197, 94, 0.4)"
+                      },
+                      children: "Add to Account"
+                    }
+                  )
                 ]
               }
             )
@@ -38273,9 +39425,9 @@ function ChatInterface() {
   }, [fetchConversations]);
   reactExports.useEffect(() => {
     if (chatConnStatus === "connected" && location.state?.prompt && location.state?.image && currentConvId) {
-      const { prompt, image: image2 } = location.state;
+      const { prompt: prompt2, image: image2 } = location.state;
       window.history.replaceState({}, document.title);
-      send(prompt, [image2]);
+      send(prompt2, [image2]);
     }
   }, [chatConnStatus, location.state, send, currentConvId]);
   reactExports.useEffect(() => {
@@ -39143,7 +40295,7 @@ function Settings() {
     }
   );
 }
-const API$1 = "http://localhost:8000";
+const API$1 = "http://127.0.0.1:8000";
 function Maps() {
   const [loading, setLoading] = reactExports.useState(false);
   const [status, setStatus] = reactExports.useState(null);
@@ -39585,7 +40737,7 @@ function Maps() {
     }
   );
 }
-const API = "http://localhost:8000";
+const API = API_URL;
 const DEBUG_PROMPTS = [
   { label: "Debug Error", prompt: "Find and fix this bug: ", icon: Bug },
   { label: "Explain Code", prompt: "Explain this code: ", icon: Code },
@@ -39608,18 +40760,57 @@ const SCRIPT_ACTIONS = [
   { label: "API Script", prompt: "Write a REST API client script in Python with requests library for: ", icon: Code }
 ];
 const QUICK_ACTIONS = [
-  { label: "Git Status", cmd: "GIT_STATUS ", icon: GitBranch },
-  { label: "System Info", cmd: "SYSTEM_INFO ", icon: Cpu },
-  { label: "Project Tree", cmd: "PROJECT_STRUCTURE .", icon: FolderOpen },
-  { label: "Count Lines", cmd: "COUNT_LINES .", icon: Activity },
-  { label: "New Python", prompt: "Create a new Python script for: ", icon: FilePlus },
-  { label: "New Bash", prompt: "Create a new bash script for: ", icon: Terminal }
+  { label: "📊 System", cmd: "SYSTEM_INFO", icon: Cpu },
+  { label: "💾 Memory", cmd: "MEMORY_USAGE", icon: Cpu },
+  { label: "⚡ CPU", cmd: "CPU_USAGE", icon: Cpu },
+  { label: "🌳 Tree", cmd: "PROJECT_STRUCTURE .", icon: FolderOpen },
+  { label: "📝 Lines", cmd: "COUNT_LINES .", icon: Activity },
+  { label: "🔀 Status", cmd: "GIT_STATUS", icon: GitBranch },
+  { label: "🔀 Diff", cmd: "GIT_DIFF", icon: GitBranch },
+  { label: "🌐 Net", cmd: "NETWORK_INFO", icon: Cpu }
+];
+const AI_ACTIONS = [
+  { label: "🔍 Index", cmd: "INDEX .", icon: Search },
+  { label: "📝 Search", prompt: "SEARCH ", icon: Search },
+  { label: "🐛 Bugs", prompt: "ANALYZE_BUGS ", icon: Bug },
+  { label: "📊 Complex", prompt: "ANALYZE_COMPLEXITY ", icon: Activity },
+  { label: "💡 Suggest", prompt: "SUGGEST ", icon: Lightbulb }
+];
+const CODE_ACTIONS = [
+  { label: "🧠 Generate", prompt: "GENERATE_CODE ", icon: Code },
+  { label: "🔧 Fix", prompt: "FIX_CODE ", icon: Bug },
+  { label: "⚡ Complete", prompt: "COMPLETE_CODE ", icon: Code },
+  { label: "🧪 Tests", prompt: "GENERATE_TESTS ", icon: Beaker },
+  { label: "📚 Docs", prompt: "GENERATE_DOCS ", icon: FileText },
+  { label: "🔐 Security", prompt: "SECURITY_SCAN ", icon: Shield },
+  { label: "📖 Explain", prompt: "EXPLAIN_CODE ", icon: BookOpen },
+  { label: "📝 README", prompt: "GENERATE_README ", icon: FileText },
+  { label: "🔄 Refactor", prompt: "REFACTOR_CODE ", icon: RefreshCw },
+  { label: "⚡ Optimize", prompt: "OPTIMIZE_CODE ", icon: Zap }
+];
+const DEV_ACTIONS = [
+  { label: "🐳 Docker", prompt: "GENERATE_DOCKER ", icon: Code },
+  { label: "🔧 CI/CD", prompt: "WRITE_CI ", icon: Code },
+  { label: "🗄️ SQL", prompt: "GENERATE_SQL ", icon: Code },
+  { label: "🌐 API", prompt: "GENERATE_API ", icon: Code },
+  { label: "🚀 Deploy", prompt: "DEPLOY_APP ", icon: Code },
+  { label: "🤖 Bot", prompt: "CREATE_BOT ", icon: Code },
+  { label: "🔄 Workflow", prompt: "GENERATE_WORKFLOW ", icon: Code },
+  { label: "🔧 Migrate", prompt: "MIGRATE_DB ", icon: Code }
+];
+const WEB_SEARCH_PRESETS = [
+  { label: "🔍 Python", cmd: "WEB_SEARCH python asyncio tutorial 2024", icon: Search },
+  { label: "🔍 React", cmd: "WEB_SEARCH react 19 new features 2024", icon: Search },
+  { label: "🔍 FastAPI", cmd: "WEB_SEARCH fastapi best practices 2024", icon: Search },
+  { label: "🔍 Linux", cmd: "WEB_SEARCH linux server setup guide", icon: Search },
+  { label: "🔍 Git", cmd: "WEB_SEARCH git advanced tips tricks", icon: Search }
 ];
 const ONLINE_ACTIONS = [
-  { label: "Install Tool", prompt: "INSTALL ", icon: Download },
-  { label: "Check Installed", prompt: "CHECK_INSTALLED ", icon: Search },
-  { label: "Download File", prompt: "DOWNLOAD_URL ", icon: ExternalLink },
-  { label: "Read URL", prompt: "READ_URL ", icon: Activity }
+  { label: "📖 Read URL", prompt: "READ_URL ", icon: ExternalLink },
+  { label: "📥 Download", prompt: "DOWNLOAD ", icon: Download },
+  { label: "🐍 Pip List", cmd: "CHECK_INSTALLED pip", icon: Download },
+  { label: "📦 NPM List", cmd: "RUN npm list -g --depth=0", icon: Download },
+  { label: "🔧 Install", prompt: "PIP_INSTALL ", icon: Download }
 ];
 function DevAI() {
   const navigate = useNavigate();
@@ -39683,15 +40874,26 @@ function DevAI() {
           if (line.startsWith("data: ")) {
             const data = line.slice(6);
             if (data === "[DONE]") continue;
-            if (data.includes("<think>")) {
+            const hasBrainStart = data.includes("<think>");
+            const hasBrainStart2 = data.includes("<think>");
+            const hasBrainEnd2 = data.includes("</think>");
+            if (hasBrainStart || hasBrainStart2) {
               inThinking = true;
-              thinkingBuffer = data.replace(/[\s\S]*<think>/, "");
+              const idx1 = data.indexOf("<think>");
+              const idx2 = data.indexOf("<think>");
+              const idx = idx1 >= 0 ? idx1 : idx2;
+              let content2 = data.substring(idx + 6);
+              thinkingBuffer = content2;
               if (thinkingBuffer) {
                 setCurrentThinking(thinkingBuffer);
               }
-            } else if (data.includes("</think>")) {
+            } else if (hasBrainEnd || hasBrainEnd2) {
               inThinking = false;
-              thinkingBuffer += data.replace(/<\/think>[\s\S]*/, "");
+              const idx1 = data.indexOf("</think>");
+              const idx2 = data.indexOf("</think>");
+              const idx = idx1 >= 0 ? idx1 : idx2;
+              let content2 = data.substring(0, idx);
+              thinkingBuffer += content2;
               setCurrentThinking("");
               setMessages((prev) => {
                 const updated = [...prev];
@@ -39829,9 +41031,9 @@ function DevAI() {
     });
   };
   const handleDebug = (type) => {
-    const prompt = DEBUG_PROMPTS.find((p) => p.label === type)?.prompt || "";
+    const prompt2 = DEBUG_PROMPTS.find((p) => p.label === type)?.prompt || "";
     setDebugMode(true);
-    setInput(prompt);
+    setInput(prompt2);
     inputRef.current?.focus();
   };
   const formatOutput = (text2) => {
@@ -39930,11 +41132,11 @@ function DevAI() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 px-2 py-2 flex flex-col gap-2", style: { background: "var(--surface)" }, children: [
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "PROJECT:" }),
-            PROJECT_ACTIONS.map(({ label, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            PROJECT_ACTIONS.map(({ label, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "button",
               {
                 onClick: () => {
-                  setInput(prompt);
+                  setInput(prompt2);
                   inputRef.current?.focus();
                 },
                 disabled: loading,
@@ -39950,11 +41152,11 @@ function DevAI() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "SCRIPT:" }),
-            SCRIPT_ACTIONS.map(({ label, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            SCRIPT_ACTIONS.map(({ label, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "button",
               {
                 onClick: () => {
-                  setInput(prompt);
+                  setInput(prompt2);
                   inputRef.current?.focus();
                 },
                 disabled: loading,
@@ -39970,7 +41172,7 @@ function DevAI() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "DEBUG:" }),
-            DEBUG_PROMPTS.map(({ label, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            DEBUG_PROMPTS.map(({ label, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "button",
               {
                 onClick: () => handleDebug(label),
@@ -39987,10 +41189,10 @@ function DevAI() {
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
             /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "QUICK:" }),
-            QUICK_ACTIONS.map(({ label, cmd, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            QUICK_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "button",
               {
-                onClick: () => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true),
+                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
                 disabled: loading,
                 className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
                 style: { background: "var(--ai-bg)", color: "var(--ai-color)", border: "1px solid var(--ai-color)" },
@@ -40002,12 +41204,80 @@ function DevAI() {
               label
             ))
           ] }),
-          offlineMode === false && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#3b82f6", whiteSpace: "nowrap" }, children: "🌐 ONLINE:" }),
-            ONLINE_ACTIONS.map(({ label, cmd, prompt, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#a855f7", whiteSpace: "nowrap" }, children: "🤖 AI:" }),
+            AI_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
               "button",
               {
-                onClick: () => prompt ? (setInput(prompt), inputRef.current?.focus()) : send(cmd, true),
+                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(168,85,247,.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#10b981", whiteSpace: "nowrap" }, children: "💻 CODE:" }),
+            CODE_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(16,185,129,.15)", color: "#10b981", border: "1px solid rgba(16,185,129,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#f59e0b", whiteSpace: "nowrap" }, children: "🛠️ DEV:" }),
+            DEV_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(245,158,11,.15)", color: "#f59e0b", border: "1px solid rgba(245,158,11,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#3b82f6", whiteSpace: "nowrap" }, children: "🌐 SEARCH:" }),
+            WEB_SEARCH_PRESETS.map(({ label, cmd, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => send(cmd, true),
+                disabled: loading,
+                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
+                style: { background: "rgba(59,130,246,.15)", color: "#3b82f6", border: "1px solid rgba(59,130,246,.3)" },
+                children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
+                  label
+                ]
+              },
+              label
+            ))
+          ] }),
+          offlineMode === false && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#3b82f6", whiteSpace: "nowrap" }, children: "🌐 ONLINE:" }),
+            ONLINE_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
                 disabled: loading,
                 className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
                 style: { background: "rgba(59,130,246,.15)", color: "#3b82f6", border: "1px solid rgba(59,130,246,.3)" },
@@ -40070,10 +41340,9 @@ function DevAI() {
                     "div",
                     {
                       className: "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs",
-                      style: { background: "rgba(168,85,247,.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,.3)" },
+                      style: { background: "rgba(168,85,247,.25)", color: "#a855f7", border: "1px solid rgba(168,85,247,.5)" },
                       children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 12 }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-medium", children: "My Thinking" }),
+                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold", children: "🧠 Thinking" }),
                         msg.showThinking && /* @__PURE__ */ jsxRuntimeExports.jsx(
                           "button",
                           {
@@ -41343,6 +42612,388 @@ const GPIOControl = () => {
     ] })
   ] });
 };
+function TerminalView() {
+  const navigate = useNavigate();
+  const [history2, setHistory] = reactExports.useState([]);
+  const [input, setInput] = reactExports.useState("");
+  const [isExecuting, setIsExecuting] = reactExports.useState(false);
+  const [systemInfo, setSystemInfo] = reactExports.useState(null);
+  const bottomRef = reactExports.useRef(null);
+  const inputRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    fetchSystemInfo();
+  }, []);
+  reactExports.useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [history2]);
+  const fetchSystemInfo = async () => {
+    try {
+      const res = await fetch(`${API_BASE_URL}/terminal/info`);
+      const data = await res.json();
+      setSystemInfo(data);
+    } catch (e) {
+      console.error("Failed to get system info:", e);
+    }
+  };
+  const executeCommand = async (e) => {
+    e.preventDefault();
+    if (!input.trim() || isExecuting) return;
+    const cmd = input.trim();
+    setInput("");
+    setIsExecuting(true);
+    setHistory((prev) => [...prev, { type: "command", content: `$ ${cmd}` }]);
+    try {
+      const res = await fetch(`${API_BASE_URL}/terminal/execute`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          command: cmd,
+          cwd: systemInfo?.cwd || "/home/admin"
+        })
+      });
+      const data = await res.json();
+      if (data.stdout) {
+        setHistory((prev) => [...prev, { type: "output", content: data.stdout }]);
+      }
+      if (data.stderr) {
+        setHistory((prev) => [...prev, { type: "error", content: data.stderr }]);
+      }
+      if (data.returncode !== 0 && !data.stdout && !data.stderr) {
+        setHistory((prev) => [...prev, { type: "error", content: `Command exited with code ${data.returncode}` }]);
+      }
+    } catch (e2) {
+      setHistory((prev) => [...prev, { type: "error", content: `Error: ${e2.message}` }]);
+    }
+    setIsExecuting(false);
+    fetchSystemInfo();
+    inputRef.current?.focus();
+  };
+  const clearHistory = () => setHistory([]);
+  const copyOutput = () => {
+    const text2 = history2.map((h) => h.content).join("\n");
+    navigator.clipboard.writeText(text2);
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "w-full h-full flex flex-col bg-[#1a1a2e]",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between p-4 bg-[#16213e] border-b border-[#0f3460]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: () => navigate("/"),
+                className: "p-2 rounded-lg bg-[#0f3460] text-white hover:bg-[#1a1a2e] transition-colors",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { size: 20 })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Terminal, { size: 24, className: "text-[#00ff88]" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white font-semibold", children: "Terminal" })
+            ] })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: copyOutput,
+                className: "p-2 rounded-lg bg-[#0f3460] text-white hover:bg-[#1a1a2e] transition-colors",
+                title: "Copy output",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { size: 18 })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: clearHistory,
+                className: "p-2 rounded-lg bg-[#0f3460] text-white hover:bg-[#1a1a2e] transition-colors",
+                title: "Clear",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 18 })
+              }
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(
+              "button",
+              {
+                onClick: fetchSystemInfo,
+                className: "p-2 rounded-lg bg-[#0f3460] text-white hover:bg-[#1a1a2e] transition-colors",
+                title: "Refresh",
+                children: /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { size: 18 })
+              }
+            )
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 overflow-auto p-4 font-mono text-sm", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#00ff88] mb-2", children: "Viora Terminal v1.0" }),
+          systemInfo && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-[#888] mb-4 text-xs", children: [
+            systemInfo.user,
+            "@",
+            systemInfo.cwd
+          ] }),
+          history2.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-1", children: item.type === "command" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#00ff88]", children: item.content }) : item.type === "error" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#ff6b6b] whitespace-pre-wrap", children: item.content }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#e0e0e0] whitespace-pre-wrap", children: item.content }) }, i)),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: bottomRef })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("form", { onSubmit: executeCommand, className: "p-4 bg-[#16213e] border-t border-[#0f3460]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-[#00ff88] font-mono", children: "$" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              ref: inputRef,
+              type: "text",
+              value: input,
+              onChange: (e) => setInput(e.target.value),
+              placeholder: "Enter command...",
+              disabled: isExecuting,
+              className: "flex-1 bg-transparent text-white font-mono outline-none placeholder:text-[#555]",
+              autoFocus: true
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              type: "submit",
+              disabled: !input.trim() || isExecuting,
+              className: "p-2 rounded-lg bg-[#00ff88] text-[#1a1a2e] hover:bg-[#00cc6a] transition-colors disabled:opacity-50 disabled:cursor-not-allowed",
+              children: isExecuting ? /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { size: 18, className: "animate-spin" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Play, { size: 18 })
+            }
+          )
+        ] }) })
+      ]
+    }
+  );
+}
+const formatSize = (bytes) => {
+  if (bytes === 0) return "0 B";
+  const k = 1024;
+  const sizes = ["B", "KB", "MB", "GB"];
+  const i = Math.floor(Math.log(bytes) / Math.log(k));
+  return parseFloat((bytes / Math.pow(k, i)).toFixed(1)) + " " + sizes[i];
+};
+const formatDate = (timestamp) => {
+  return new Date(timestamp * 1e3).toLocaleDateString("en-US", {
+    month: "short",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit"
+  });
+};
+function FileManager() {
+  const navigate = useNavigate();
+  const [currentPath, setCurrentPath] = reactExports.useState("");
+  const [items, setItems] = reactExports.useState([]);
+  const [loading, setLoading] = reactExports.useState(true);
+  const [basePath, setBasePath] = reactExports.useState("");
+  const [showNewDialog, setShowNewDialog] = reactExports.useState(false);
+  const [newName, setNewName] = reactExports.useState("");
+  const [newIsDir, setNewIsDir] = reactExports.useState(false);
+  const [renameItem, setRenameItem] = reactExports.useState(null);
+  const [renameName, setRenameName] = reactExports.useState("");
+  reactExports.useEffect(() => {
+    loadDirectory("");
+  }, []);
+  const loadDirectory = async (path2) => {
+    setLoading(true);
+    try {
+      const res = await fetch(`${API_BASE_URL}/files/list?path=${encodeURIComponent(path2)}`);
+      const data = await res.json();
+      setItems(data.items || []);
+      setBasePath(data.base || "");
+      setCurrentPath(data.path || "");
+    } catch (e) {
+      console.error("Failed to load directory:", e);
+    }
+    setLoading(false);
+  };
+  const navigateTo = (item) => {
+    if (item.is_dir) {
+      loadDirectory(item.path);
+    }
+  };
+  const goUp = () => {
+    const parts = currentPath.split("/").filter(Boolean);
+    parts.pop();
+    loadDirectory(parts.join("/"));
+  };
+  const goHome = () => {
+    loadDirectory("");
+  };
+  const handleCreate = async () => {
+    if (!newName.trim()) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/files/create?path=${encodeURIComponent(currentPath ? currentPath + "/" + newName : newName)}&is_dir=${newIsDir}`, {
+        method: "POST"
+      });
+      if (res.ok) {
+        setShowNewDialog(false);
+        setNewName("");
+        loadDirectory(currentPath);
+      }
+    } catch (e) {
+      console.error("Create failed:", e);
+    }
+  };
+  const handleDelete2 = async (item) => {
+    if (!confirm(`Delete ${item.name}?`)) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/files/delete?path=${encodeURIComponent(item.path)}`, {
+        method: "DELETE"
+      });
+      if (res.ok) {
+        loadDirectory(currentPath);
+      }
+    } catch (e) {
+      console.error("Delete failed:", e);
+    }
+  };
+  const handleRename = async () => {
+    if (!renameItem || !renameName.trim()) return;
+    try {
+      const res = await fetch(`${API_BASE_URL}/files/rename?old_path=${encodeURIComponent(renameItem.path)}&new_name=${encodeURIComponent(renameName)}`, {
+        method: "POST"
+      });
+      if (res.ok) {
+        setRenameItem(null);
+        setRenameName("");
+        loadDirectory(currentPath);
+      }
+    } catch (e) {
+      console.error("Rename failed:", e);
+    }
+  };
+  const getBreadcrumbs = () => {
+    const parts = currentPath.split("/").filter(Boolean);
+    return [{ name: "Home", path: "" }, ...parts.map((p, i) => ({
+      name: p,
+      path: parts.slice(0, i + 1).join("/")
+    }))];
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      className: "w-full h-full flex flex-col bg-[var(--bg)]",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between p-4 bg-[var(--surface)] border-b border-[var(--border)]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => navigate("/"), className: "p-2 rounded-lg bg-[var(--ai-bg)] text-[var(--ai-color)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { size: 20 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-semibold", children: "File Manager" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: goUp, className: "p-2 rounded-lg hover:bg-[var(--bg)]", title: "Go up", children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowUp, { size: 20 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: goHome, className: "p-2 rounded-lg hover:bg-[var(--bg)]", title: "Home", children: /* @__PURE__ */ jsxRuntimeExports.jsx(House, { size: 20 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => {
+              setNewIsDir(false);
+              setShowNewDialog(true);
+            }, className: "p-2 rounded-lg hover:bg-[var(--bg)]", title: "New file", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FilePlus, { size: 20 }) }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => {
+              setNewIsDir(true);
+              setShowNewDialog(true);
+            }, className: "p-2 rounded-lg hover:bg-[var(--bg)]", title: "New folder", children: /* @__PURE__ */ jsxRuntimeExports.jsx(FolderPlus, { size: 20 }) })
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center gap-1 px-4 py-2 bg-[var(--surface)] border-b border-[var(--border)] text-sm overflow-x-auto", children: getBreadcrumbs().map((crumb, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(React$2.Fragment, { children: [
+          i > 0 && /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronRight, { size: 14, className: "text-[var(--text-light)]" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              onClick: () => loadDirectory(crumb.path),
+              className: `hover:text-[var(--ai-color)] ${i === getBreadcrumbs().length - 1 ? "text-[var(--text)] font-medium" : "text-[var(--text-light)]"}`,
+              children: crumb.name
+            }
+          )
+        ] }, i)) }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 overflow-auto", children: loading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center h-full", children: "Loading..." }) : items.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center h-full text-[var(--text-light)]", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(Folder, { size: 48, className: "mb-2 opacity-50" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Empty folder" })
+        ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divide-y divide-[var(--border)]", children: items.map((item) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          "div",
+          {
+            className: "flex items-center justify-between px-4 py-3 hover:bg-[var(--bg)] cursor-pointer",
+            onClick: () => navigateTo(item),
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-3", children: [
+                item.is_dir ? /* @__PURE__ */ jsxRuntimeExports.jsx(Folder, { size: 24, className: "text-[#fbbf24]" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(File, { size: 24, className: "text-[var(--text-light)]" }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "font-medium", children: item.name }),
+                  item.is_dir ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-[var(--text-light)]", children: "Folder" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-[var(--text-light)]", children: formatSize(item.size) })
+                ] })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-[var(--text-light)] mr-2", children: formatDate(item.modified) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: (e) => {
+                      e.stopPropagation();
+                      setRenameItem(item);
+                      setRenameName(item.name);
+                    },
+                    className: "p-1.5 rounded hover:bg-[var(--bg)]",
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(PenLine, { size: 16 })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: (e) => {
+                      e.stopPropagation();
+                      handleDelete2(item);
+                    },
+                    className: "p-1.5 rounded hover:bg-red-50 text-red-500",
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(Trash2, { size: 16 })
+                  }
+                )
+              ] })
+            ]
+          },
+          item.path
+        )) }) }),
+        showNewDialog && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50", onClick: () => setShowNewDialog(false), children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-[var(--surface)] rounded-2xl p-6 w-80 shadow-xl", onClick: (e) => e.stopPropagation(), children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("h3", { className: "text-lg font-semibold mb-4", children: [
+            "Create ",
+            newIsDir ? "Folder" : "File"
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              type: "text",
+              value: newName,
+              onChange: (e) => setNewName(e.target.value),
+              placeholder: `Enter ${newIsDir ? "folder" : "file"} name...`,
+              className: "w-full px-4 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] outline-none focus:border-[var(--ai-color)] mb-4",
+              autoFocus: true
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setShowNewDialog(false), className: "flex-1 px-4 py-2 rounded-xl border border-[var(--border)]", children: "Cancel" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: handleCreate, className: "flex-1 px-4 py-2 rounded-xl bg-[var(--ai-color)] text-white", children: "Create" })
+          ] })
+        ] }) }),
+        renameItem && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "fixed inset-0 bg-black/50 flex items-center justify-center z-50", onClick: () => setRenameItem(null), children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "bg-[var(--surface)] rounded-2xl p-6 w-80 shadow-xl", onClick: (e) => e.stopPropagation(), children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-lg font-semibold mb-4", children: "Rename" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "input",
+            {
+              type: "text",
+              value: renameName,
+              onChange: (e) => setRenameName(e.target.value),
+              className: "w-full px-4 py-2 rounded-xl border border-[var(--border)] bg-[var(--bg)] outline-none focus:border-[var(--ai-color)] mb-4",
+              autoFocus: true
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setRenameItem(null), className: "flex-1 px-4 py-2 rounded-xl border border-[var(--border)]", children: "Cancel" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: handleRename, className: "flex-1 px-4 py-2 rounded-xl bg-[var(--ai-color)] text-white", children: "Rename" })
+          ] })
+        ] }) })
+      ]
+    }
+  );
+}
 class ErrorBoundary extends React$2.Component {
   state = { hasError: false, error: null };
   static getDerivedStateFromError(error) {
@@ -41394,6 +43045,8 @@ const AnimatedRoutes = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/tasks/edit", element: /* @__PURE__ */ jsxRuntimeExports.jsx(TaskAdd, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/heartbeat", element: /* @__PURE__ */ jsxRuntimeExports.jsx(HeartbeatManager, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/gpio", element: /* @__PURE__ */ jsxRuntimeExports.jsx(GPIOControl, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/terminal", element: /* @__PURE__ */ jsxRuntimeExports.jsx(TerminalView, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/files", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FileManager, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/settings", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/maps", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Maps, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/devai", element: /* @__PURE__ */ jsxRuntimeExports.jsx(DevAI, {}) })

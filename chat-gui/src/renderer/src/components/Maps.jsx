@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 
-const API = 'http://localhost:8000'
+const API = 'http://127.0.0.1:8000'
 
 export default function Maps() {
   const [loading, setLoading] = useState(false)

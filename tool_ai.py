@@ -399,10 +399,42 @@ def run_set_alarm(arguments: dict) -> str:
         return f"Alarm: error — {e}"
 
 
+def run_read_url(arguments: dict) -> str:
+    url = (arguments.get("url") or "").strip()
+    logger.info("[tool] read_url(url=%s)", url)
+    if not url:
+        return "URL: no URL provided."
+    try:
+        from bs4 import BeautifulSoup
+        html = _http_get(url, timeout=15.0)
+        soup = BeautifulSoup(html, "html.parser")
+        for script in soup(["script", "style"]):
+            script.decompose()
+        text = soup.get_text(separator=" ", strip=True)
+        text = re.sub(r'\s+', ' ', text)
+        text = text.strip()
+        if not text:
+            return f"URL content: no readable text found at {url}"
+        return f"URL content from {url}:\n{text[:4000]}"
+    except ImportError:
+        try:
+            html = _http_get(url, timeout=15.0)
+            text = re.sub(r'<[^>]+>', ' ', html)
+            text = re.sub(r'\s+', ' ', text).strip()
+            if not text:
+                return f"URL content: no readable text found at {url}"
+            return f"URL content from {url}:\n{text[:4000]}"
+        except Exception as e:
+            return f"URL error: {e}"
+    except Exception as e:
+        return f"URL error: {e}"
+
+
 TOOL_RUNNERS = {
     "get_weather": run_get_weather,
     "activate_security_mode": run_activate_security_mode,
     "web_search": run_web_search,
+    "read_url": run_read_url,
     "network_scan": run_network_scan,
     "get_stock_price": run_get_stock_price,
     "set_alarm": run_set_alarm,

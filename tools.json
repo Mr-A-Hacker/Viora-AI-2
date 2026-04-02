@@ -40,6 +40,22 @@
     }
   },
   {
+    "name": "read_url",
+    "description": "Fetches and extracts readable text content from a URL. Useful for reading full articles, documentation, or any web page content.",
+    "parameters": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "The URL to fetch and read content from"
+        }
+      },
+      "required": [
+        "url"
+      ]
+    }
+  },
+  {
     "name": "network_scan",
     "description": "Scans the local network (LAN) to identify connected devices and open ports.",
     "parameters": {
