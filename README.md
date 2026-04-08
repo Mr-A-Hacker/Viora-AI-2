@@ -1,468 +1,354 @@
-# 🧠 Viora AI
+# Viora AI 2
 
-> **A fully offline, voice-powered personal AI assistant for Raspberry Pi and Linux.**
-> Talk to it, show it things, ask it to remember tasks, check the weather, open maps — all without internet.
+> A local-first AI assistant stack for Raspberry Pi/Linux with chat, voice, camera, tools, task scheduling, and an Electron UI.
 
-Viora AI is a complete AI assistant that runs **entirely on your device**. No cloud, no subscriptions, no data leaving your machine. It combines speech recognition, a local LLM, text-to-speech, camera vision, scheduled tasks, weather, offline maps, and a powerful Dev AI coding assistant — all in one modern touch-friendly interface.
-
----
-
-## ✨ Features
-
-### 💬 Chat
-Converse naturally with **Viora AI** using voice or text. Powered by **Qwen 0.6B GGUF**, a fast local language model that runs entirely offline. Responses are streamed in real-time and read aloud by **Piper TTS**. Supports markdown, code blocks, and multi-turn conversations with full history.
-
-### 🎤 Voice Input
-Two speech-to-text engines available:
-- **Whisper Tiny** — fast, accurate, internet-required for first download
-- **Vosk** — fully offline, lightweight, perfect for privacy
-
-Just tap the mic, speak, and Viora responds in her own voice. Supports real-time partial transcription so you can see what you're saying as you speak.
-
-### 🗣 Voice Output
-**Piper TTS** reads responses aloud with natural, low-latency synthesis. Viora sounds like a real voice assistant — not a robot.
-
-### 👁 Vision (Camera)
-Connect a USB webcam or Raspberry Pi camera and Viora can see. Captures photos, streams live video, and supports **Hailo object detection** — identify objects in real-time. Great for home automation, security, or learning projects.
-
-### 📷 Gallery
-All captured photos are saved locally and organized in a gallery view. Tap any photo to view it full-screen, delete it, or send it to the chat for analysis.
-
-### ✅ Agent (Task Scheduler)
-Schedule tasks to run automatically at specific times or intervals. Tell Viora *"Remind me to water the plants every day at 9 AM"* and it stays in the background running those jobs — no internet needed.
-
-### 🌦 Weather
-Check current weather conditions. Powered by **Open-Meteo** (free, no API key needed). Shows temperature, conditions, humidity, and wind. Works with internet. Displays a friendly "Please connect to the internet" message when offline.
-
-### 🗺️ Maps
-Opens **Organic Maps** — a beautiful, fully offline map app. No Google, no internet required. Perfect for hiking, cycling, or any situation where you need navigation without a data connection.
-
-### 🤖 Dev AI (OpenCode)
-A built-in coding assistant powered by **OpenCode**. Ask Viora to write code, debug scripts, explain concepts, or refactor existing code. Works completely offline — your code never leaves your machine. Supports Python, JavaScript, Bash, and more.
-
-### ⚙️ Settings
-Configure voice input/output, enable/disable features, manage conversation history, and customize your experience.
+Viora AI combines a FastAPI backend with a React/Electron desktop frontend. It is designed to run mostly on-device and can integrate with local models (Qwen + Function Gemma), offline speech tools (Vosk/Piper), camera streaming/detection, and utility modules (files, terminal, maps, weather, games, security, and banking simulator).
 
 ---
 
-## 📋 What You Need
+## Table of Contents
 
-### Hardware
-| Component | Minimum | Recommended |
-|-----------|---------|-------------|
-| Device | Raspberry Pi 4 / any Linux PC | Raspberry Pi 5 |
-| RAM | 4 GB | 8 GB |
-| Storage | 8 GB SD card/SSD | 32 GB+ SSD |
-| Camera | USB webcam (optional) | Raspberry Pi Camera Module 3 |
-| Audio | USB mic or 3.5mm jack | ReSpeaker USB Mic |
-
-### Software
-| Dependency | Version | Install |
-|------------|---------|---------|
-| Python | 3.10+ | `sudo apt install python3 python3-venv` |
-| Node.js | 18+ | `curl -fsSL https://deb.nodesource.com/setup_18.x | sudo bash -` |
-| Git | any | `sudo apt install git` |
-| PortAudio | system | `sudo apt install portaudio19-dev` |
-| CMake | build tool | `sudo apt install cmake` |
-
-### API Keys (Optional)
-- **Hugging Face** — for downloading LLM models (free account needed, huggingface.co)
-- **OpenCode** — install separately at opencode.ai for Dev AI
+- [What this project includes](#what-this-project-includes)
+- [Architecture](#architecture)
+- [Repository layout](#repository-layout)
+- [Requirements](#requirements)
+- [Quick start](#quick-start)
+- [Configuration (`.env`)](#configuration-env)
+- [Models](#models)
+- [Run modes](#run-modes)
+- [API overview](#api-overview)
+- [Testing](#testing)
+- [Troubleshooting](#troubleshooting)
+- [Security notes](#security-notes)
+- [Roadmap ideas](#roadmap-ideas)
 
 ---
 
-## 🚀 Quick Start
+## What this project includes
 
-### 1. Clone the Repository
+### Core assistant
+- Multi-conversation chat memory persisted in `conversations.json`.
+- WebSocket chat streaming endpoint.
+- Voice endpoint for STT → LLM → TTS flow.
+- Optional semantic routing between "basic" and tool-oriented model behavior.
 
-git clone https://github.com/Mr-A-Hacker/Mr-A-Hacker-pocket-Ai-version-2
-cd Mr-A-Hacker-pocket-Ai-version-2
+### Voice
+- **Whisper** (faster-whisper) support.
+- **Vosk** support for fully offline STT.
+- **Piper TTS** output (`piper-tts`, `onnxruntime`).
 
+### Camera & vision
+- Live camera stream + capture gallery.
+- Camera start/stop controls.
+- Optional detection pipeline and detection websocket.
 
-### 2. Set Up Python Environment
+### Utility modules
+- Weather (Open-Meteo).
+- Maps geocoding/reverse geocoding + Organic Maps launcher.
+- DevAI code assistant endpoints.
+- File manager endpoints.
+- Terminal execution endpoint (with basic blocklist).
+- Security controls + alarm trigger routes.
+- Game discovery/launch module.
+- Banking demo module (local JSON-backed simulation).
 
+---
+
+## Architecture
+
+- **Backend:** FastAPI (`app.py`) with modular routers.
+- **Frontend:** Electron + React app under `chat-gui/`.
+- **Transport:** REST + WebSocket.
+- **Storage:** Flat JSON files in repo root by default (`conversations.json`, `task_jobs.json`, `banking_data.json`).
+- **Model delivery:** Hugging Face Hub downloads for GGUF models.
+
+---
+
+## Repository layout
+
+High-signal files/folders:
+
+```text
+app.py                    # Backend entrypoint, includes all routers
+config.py                 # Environment-driven backend configuration
+chat_ai.py                # Conversation manager + chat/voice websocket logic
+camera_stream.py          # Camera pipeline, gallery, detection ws
+devai.py                  # Dev assistant routes + indexing/search utilities
+task_scheduler.py         # Scheduler initialization / job persistence
+terminal.py               # Terminal command execution route
+file_manager.py           # File browsing/manipulation routes
+banking.py                # Local banking simulation CRUD API
+weather.py                # Open-Meteo integration
+maps.py                   # Nominatim + Organic Maps launcher
+security.py               # Arm/disarm/manual alarm endpoints
+chat-gui/                 # Electron + React desktop interface
+requirements.txt          # Backend Python dependencies
+.env.example              # Baseline environment variables
+run.sh                    # Portable launcher (backend + GUI)
+start_viora_ai.sh         # Alternate launcher script
+```
+
+---
+
+## Requirements
+
+### Hardware (recommended)
+- Raspberry Pi 5 (Pi 4 minimum) or Linux PC.
+- 8 GB RAM recommended.
+- USB mic / speaker setup.
+- USB or CSI camera (optional).
+
+### System packages (Debian/Ubuntu baseline)
+
+```bash
+sudo apt-get update
+sudo apt-get install -y \
+  python3 python3-venv python3-pip \
+  build-essential cmake git curl \
+  portaudio19-dev libopenblas-dev liblapack-dev
+```
+
+### Language/tooling
+- Python 3.10+
+- Node.js 18+
+- npm
+
+---
+
+## Quick start
+
+### 1) Clone
+
+```bash
+git clone <your-fork-or-this-repo-url>
+cd Viora-AI-2
+```
+
+### 2) Backend setup
+
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
-
-
-### 3. Install Backend Dependencies
-
+pip install -U pip
 pip install -r requirements.txt
+```
 
-**System dependencies** (Debian/Ubuntu):
+### 3) Frontend setup
 
-sudo apt-get update
-sudo apt-get install -y portaudio19-dev cmake libopenblas-dev liblapack-dev
-
-
-### 4. Install Frontend Dependencies
-
+```bash
 cd chat-gui
 npm install
 cd ..
+```
 
+### 4) Configure env
 
-### 5. Download AI Models
-
-Viora needs several AI models. They download automatically on first run, or you can get them manually:
-
-**LLM — Qwen 0.6B GGUF**
-mkdir -p models
-# Download from Hugging Face (auto-downloaded on first run)
-# Repo: Qwen/Qwen3-0.6B-GGUF
-# File: Qwen3-0.6B-Q8_0.gguf
-
-**Tool LLM — Function Gemma**
-# Repo: nlouis/functiongemma-pocket-q4_k_m
-# File: functiongemma-pocket-q4_k_m.gguf
-
-**Whisper (auto-downloaded)**
-# faster-whisper downloads this automatically on first use
-
-**Vosk Model (fully offline STT)**
-mkdir -p models/vosk
-cd models/vosk
-wget https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip
-unzip vosk-model-small-en-us-0.15.zip
-
-**Piper TTS**
-mkdir -p models/piper
-# Download from:
-# https://github.com/rhasspy/piper/releases/download/2024.11.14-2/en_US-lessac-medium.onnx
-# Place at: models/piper/en_US-lessac-medium.onnx
-
-
-### 6. Configure Environment
-
-Create a `.env` file:
-
+```bash
 cp .env.example .env
-nano .env
+```
 
-Recommended settings:
+Edit `.env` as needed.
 
-# Ports
-PORT=8000
+### 5) Run
 
-# Model paths
-LOCAL_DIR=./models
+Portable launcher (recommended):
 
-# Speech-to-Text
-USE_WHISPER=true
-USE_VOSK=true
-VOSK_MODEL=models/vosk/vosk-model-small-en-us-0.15
+```bash
+./run.sh
+```
 
-# Text-to-Speech
-PIPER_MODEL=en_US-lessac-medium.onnx
+Manual split terminals:
 
-# Camera
-CAMERA_DEVICE=0
-
-# LLM
-MAX_TOKENS=2048
-TEMPERATURE=0.7
-
-# Feature toggles
-ENABLE_CAMERA=true
-ENABLE_TTS=true
-ENABLE_STT=true
-ENABLE_LLM=true
-
-
-### 7. Install OpenCode (for Dev AI)
-
-curl -fsSL https://opencode.ai/install.sh | sh
-
-
-### 8. Run the App
-
-**Option A — One command (backend + frontend):**
-
-./start-viora-ai.sh
-
-**Option B — Manual:**
-
-# Terminal 1: Start backend
+```bash
+# terminal A
 source .venv/bin/activate
 python app.py
 
-# Terminal 2: Start frontend
+# terminal B
 cd chat-gui
 npm run dev
-
-Then open **http://localhost:5173** in your browser, or run as an Electron app:
-
-cd chat-gui
-npm run build
-# The built app will be in chat-gui/out/
-
+```
 
 ---
 
-## 🗂️ Project Structure
+## Configuration (`.env`)
 
-Viora-AI/
-├── app.py                  # FastAPI backend — all HTTP & WebSocket endpoints
-├── chat_ai.py              # Core AI pipeline: STT → LLM → TTS
-├── stt_whisper.py          # Whisper speech recognition engine
-├── stt_vosk.py             # Vosk offline speech recognition
-├── tts_piper.py            # Piper text-to-speech engine
-├── semantic_router_ai.py    # Routes prompts to the right model
-├── tool_ai.py              # Function-calling LLM for tools
-├── task_scheduler.py        # Background job scheduler (APScheduler)
-├── weather.py              # Open-Meteo weather API endpoint
-├── maps.py                 # Maps & Organic Maps launcher
-├── devai.py                # OpenCode Dev AI endpoint
-├── camera_stream.py         # MJPEG camera stream & capture
-├── config.py               # All configuration in one place
-├── tools.json              # Tool definitions for function calling
-├── requirements.txt        # Python dependencies
-│
-├── chat-gui/               # Electron + React frontend
-│   ├── src/
-│   │   ├── App.jsx        # Main app with router
-│   │   ├── index.css      # Global styles (Viora theme)
-│   │   ├── config.js      # API URLs
-│   │   └── components/
-│   │       ├── Home.jsx       # Main menu with all feature buttons
-│   │       ├── ChatInterface   # Chat with Viora AI
-│   │       ├── CameraView      # Live camera + object detection
-│   │       ├── Gallery        # Photo gallery
-│   │       ├── TaskManager    # Scheduled tasks
-│   │       ├── Settings       # App configuration
-│   │       ├── Maps           # Organic Maps launcher
-│   │       ├── DevAI          # OpenCode coding assistant
-│   │       ├── Weather        # Weather display
-│   │       ├── Avatar.jsx     # Animated Viora avatar
-│   │       └── StatusBar.jsx  # CPU/RAM/Temperature bar
-│   └── package.json
-│
-├── models/                 # AI models (download separately)
-│   ├── qwen/              # Qwen LLM GGUF file
-│   ├── piper/             # Piper TTS voice file
-│   └── vosk/             # Vosk STT model folder
-│
-├── captures/               # Camera photos saved here
-│
-├── conversations.json      # Chat history
-├── task_jobs.json         # Scheduled task data
-│
-├── start-viora-ai.sh      # One-click launcher script
-├── VioraAI.desktop        # Desktop shortcut file
-└── README.md
+The backend reads from environment variables in `config.py`.
 
+Common variables:
+
+```env
+PORT=8000
+CONVERSATIONS_FILE=conversations.json
+TOOLS_PATH=tools.json
+JOBS_FILE=task_jobs.json
+LOCAL_DIR=./models
+CAPTURES_DIR=captures
+
+CHAT_REPO_ID=Qwen/Qwen3-0.6B-GGUF
+CHAT_FILENAME=Qwen3-0.6B-Q8_0.gguf
+
+TOOL_REPO_ID=nlouis/functiongemma-pocket-q4_k_m
+TOOL_FILENAME=functiongemma-pocket-q4_k_m.gguf
+
+USE_WHISPER=true
+USE_VOSK=false
+VOSK_MODEL=./models/vosk/vosk-model-small-en-us-0.15
+
+PIPER_MODEL=en_US-lessac-medium.onnx
+```
+
+Useful runtime flags:
+- `SKIP_MODEL_LOAD=1` to skip model loading on startup (great for tests/dev bring-up).
+- `LOG_LEVEL=DEBUG` for deeper logs.
 
 ---
 
-## 🎛 How the App Works
+## Models
 
-### Architecture Overview
+### Chat model (GGUF)
+Configured by:
+- `CHAT_REPO_ID`
+- `CHAT_FILENAME`
 
-┌─────────────────────────────────────────────────────┐
-│                   ELECTRON / BROWSER                 │
-│              React Frontend (Viora UI)               │
-│  ┌─────────┐ ┌─────────┐ ┌─────────┐ ┌──────────┐  │
-│  │  CHAT   │ │ CAMERA  │ │ GALLERY │ │  AGENT   │  │
-│  │ VISION  │ │  MAPS   │ │ WEATHER │ │  DEV AI  │  │
-│  └────┬────┘ └────┬────┘ └────┬────┘ └────┬─────┘  │
-└───────┼──────────┼──────────┼──────────┼──────────┘
-        │          │          │          │
-        │   HTTP / WebSocket  │          │
-        ▼          ▼          ▼          ▼
-┌─────────────────────────────────────────────────────┐
-│               FASTAPI BACKEND (Python)               │
-│                                                     │
-│  ┌──────────┐  ┌──────────┐  ┌─────────────┐       │
-│  │ /ws/chat │  │ /ws/voice│  │ /camera/*   │       │
-│  └────┬─────┘  └────┬─────┘  └──────┬──────┘       │
-│       │             │               │               │
-│  ┌────▼─────────────────────────────▼─────┐        │
-│  │            chat_ai.py (Core)            │        │
-│  │  STT → Semantic Router → LLM → TTS     │        │
-│  └────┬─────────────────────────────┬──────┘        │
-│       │                             │               │
-│  ┌────▼────┐  ┌──────▼──────┐  ┌───▼──────┐       │
-│  │ Whisper │  │ Qwen 0.6B   │  │  Piper   │       │
-│  │  / Vosk │  │   GGUF      │  │   TTS    │       │
-│  └─────────┘  └─────────────┘  └──────────┘       │
-│                                                     │
-│  ┌──────────────┐  ┌──────────────┐                │
-│  │ OpenCode     │  │ Open-Meteo   │                │
-│  │ (Dev AI)     │  │ (Weather)    │                │
-│  └──────────────┘  └──────────────┘                │
-└─────────────────────────────────────────────────────┘
+### Tool model (GGUF)
+Configured by:
+- `TOOL_REPO_ID`
+- `TOOL_FILENAME`
 
-### Chat Flow
-1. User types or speaks a message
-2. If voice → **Whisper** or **Vosk** converts speech to text
-3. Text is sent via **WebSocket** to the backend
-4. **Semantic Router** decides: basic chat, thinking mode, or tool use
-5. **Qwen LLM** generates a response
-6. Response is streamed to the frontend in real-time
-7. **Piper TTS** reads the response aloud
-8. Conversation is saved to `conversations.json`
-
-### Voice Flow
-1. User holds the mic button (or taps)
-2. **Whisper/Vosk** captures and transcribes in real-time
-3. Transcription appears as you speak
-4. On release, text is sent to the LLM
-5. Response streams back + TTS plays simultaneously
-
+### STT/TTS assets
+- Whisper models download on demand via `faster-whisper`.
+- Vosk model path is set by `VOSK_MODEL`.
+- Piper ONNX model should be available to the runtime (commonly in `models/piper/`).
 
 ---
 
-## 📱 The Viora Interface
+## Run modes
 
-The home screen features a **modern, clean UI** with a glowing animated avatar. Six main buttons lead to all features:
+### Development mode
+- Use `SKIP_MODEL_LOAD=1` if you’re only working UI/API plumbing.
+- Start backend + frontend separately for easier debugging.
 
-| Button     | Color   | Feature                    |
-|------------|---------|----------------------------|
-| 💬 CHAT    | Purple  | Talk to Viora AI           |
-| 📷 VISION  | Cyan    | Camera + object detection   |
-| 📝 AGENT   | Pink    | Scheduled tasks             |
-| 🖼 GALLERY | Gray    | Photo gallery              |
-| 🗺️ MAPS    | Green   | Organic Maps launcher       |
-| 🤖 DEV AI  | Orange  | OpenCode coding assistant   |
+### Desktop mode
+- `chat-gui` uses Electron/Vite (`npm run dev`, `npm run build`).
 
-Plus quick-access to **Weather** and **Settings** from the header.
-
+### Headless/backend mode
+- Just run `python app.py` and call APIs from your own client.
 
 ---
 
-## 🛠 Troubleshooting
+## API overview
 
-### "Missing X server or $DISPLAY"
-export DISPLAY=:0
-export XAUTHORITY=/home/pi/.Xauthority
+Base backend port defaults to `8000`.
 
+### Health
+- `GET /health`
 
-### Vosk model not found
-Make sure `VOSK_MODEL` in `.env` points to the extracted folder:
-VOSK_MODEL=models/vosk/vosk-model-small-en-us-0.15
+### Chat + tasks
+- `GET /conversations`
+- `POST /conversations`
+- `GET /conversations/{conv_id}`
+- `DELETE /conversations/{conv_id}`
+- `GET /tasks`
+- `POST /tasks`
+- `DELETE /tasks/{job_id}`
+- `WS /ws/chat/{conv_id}`
+- `WS /ws/voice`
 
+### Camera
+- `GET /camera/list`
+- `POST /camera/start`
+- `POST /camera/stop`
+- `GET /video_feed`
+- `POST /camera/capture`
+- `GET /gallery/images`
+- `DELETE /gallery/images/{filename}`
+- `WS /ws/detections`
 
-### Whisper download failing
-Manually download:
-huggingface-cli download NVIDIA/StableDiffusion-quality
-# Or use the auto-downloader on first run
+### Dev AI
+- `POST /devai/chat`
+- `POST /devai/chat/stream`
+- `GET /devai/status`
+- `POST /devai/index`
+- `GET /devai/search`
+- `GET /devai/analyze`
+- `POST /devai/reasoning`
 
+### Utilities
+- Weather: `GET /weather`
+- Maps: `GET /maps/search`, `GET /maps/reverse`, `POST /maps/open`
+- Security: `/security/*`
+- Files: `/files/*`
+- Terminal: `/terminal/*`
+- Banking: `/banking/*`
+- Games: `/games`, `/games/launch`
 
-### Camera not working
-# List available cameras
-ls /dev/video*
-
-# Test with ffmpeg
-ffmpeg -i /dev/video0 -frames 1 test.jpg
-
-
-### Backend won't start
-# Check port is free
-lsof -i :8000
-
-# Kill existing processes
-pkill -f "python app.py"
-
-
-### OpenCode not launching
-# Verify installation
-opencode --version
-
-# Check path in devai.py matches your install location
-cat devai.py | grep OPENCODE_PATH
-
-
-### TTS not playing audio
-# Check your audio output
-speaker-test -c 2
-
-# Set correct output
-# For HDMI: sudo raspi-config → Advanced → Audio
-# For headphone jack: amixer cset numid=3 1
-
+OpenAPI docs (while running):
+- `http://127.0.0.1:8000/docs`
 
 ---
 
-## 🔧 Customization
+## Testing
 
-### Change the Voice
-Replace the Piper model in `models/piper/` with any voice from piper-voice-models. Update `.env`:
-PIPER_MODEL=your_voice.onnx
+Run test suite:
 
-
-### Use a Different LLM
-Change in `config.py`:
-CHAT_REPO_ID = "your/model-name"
-CHAT_FILENAME = "your-model-q8_0.gguf"
-GGUF models from TheBloke on Hugging Face work out of the box.
-
-
-### Add New Tools
-Edit `tools.json` to define new functions that Viora can call. The Function Gemma model will automatically learn to use them.
-
-
-### Customize the UI
-All styles are in `chat-gui/src/index.css`. The theme uses CSS variables — change them once and the whole app updates:
-:root {
-  --ai-color: #7c3aed;      /* Primary purple */
-  --bg: #faf8ff;             /* Background */
-  --surface: #fff;           /* Card background */
-  --border: #ede9f8;        /* Borders */
-  --text: #1e1030;           /* Text color */
-  --text-mid: #6b5b8e;      /* Secondary text */
-}
-
-
----
-
-## 🌐 Offline Capabilities
-
-| Feature                  | Online | Offline         |
-|--------------------------|--------|-----------------|
-| Chat with Viora          | ✅     | ✅              |
-| Voice input (Whisper)    | ✅     | ⚠️ First run   |
-| Voice input (Vosk)       | ✅     | ✅              |
-| Voice output (TTS)       | ✅     | ✅              |
-| Camera + capture         | ✅     | ✅              |
-| Object detection         | ✅     | ✅              |
-| Scheduled tasks          | ✅     | ✅              |
-| Gallery                  | ✅     | ✅              |
-| Organic Maps             | ✅     | ✅              |
-| Weather                  | ✅     | ❌              |
-| Dev AI (OpenCode)        | ✅     | ✅              |
-
-
----
-
-## 🧪 Testing
-
-# Run backend tests
+```bash
 source .venv/bin/activate
 pytest tests/
+```
 
-# Test a specific component
-python test_pocket_ai.py
+Targeted sanity checks:
 
-
----
-
-## 📜 License
-
-MIT License — free to use, modify, and distribute.
-
+```bash
+python -m py_compile app.py banking.py
+python -m pytest tests/test_api.py
+```
 
 ---
 
-## 🙏 Credits
+## Troubleshooting
 
-Built by **Mr-A-Hacker**. Engineered for Raspberry Pi and offline AI experimentation.
+### Backend fails at startup
+- Confirm venv activation.
+- Confirm dependencies from `requirements.txt` are installed.
+- Try `SKIP_MODEL_LOAD=1 python app.py` to isolate model-loading issues.
 
-Powered by:
-- Qwen by Alibaba
-- Whisper by OpenAI
-- Vosk by AlphaCEP
-- Piper by Rhasspy
-- Function Gemma by nlouis
-- Organic Maps by Organic Maps
-- OpenCode by OpenCode
-- Open-Meteo by Open-Meteo
+### GUI cannot connect to backend
+- Ensure backend is reachable at `127.0.0.1:8000`.
+- Check CORS/network/firewall in your environment.
+
+### No audio input/output
+- Verify mic/speaker devices with system tools (`arecord -l`, `aplay -l`).
+- Install `portaudio19-dev` before installing PyAudio.
+
+### Camera not detected
+- Verify camera permissions/device index.
+- Try forcing `CAMERA_INDEX` env var.
+
+### Maps/weather failing
+- Those endpoints require internet access to public APIs.
+
+---
+
+## Security notes
+
+This project includes powerful endpoints (`/terminal`, `/files`, process launchers). For production or network-exposed usage:
+
+- Restrict network exposure (bind localhost or reverse proxy with auth).
+- Add authentication/authorization middleware.
+- Add rate limits + audit logging.
+- Harden the terminal/file manager routes before multi-user deployment.
+
+---
+
+## Roadmap ideas
+
+- Add auth + role-based access control.
+- Replace JSON flat files with SQLite/PostgreSQL.
+- Add proper secrets management.
+- Add CI (lint/tests) and release workflows.
+- Add typed API client for frontend.
+
+---
+
+If you build something cool with Viora AI, consider documenting your hardware + model setup in a PR so others can reproduce it quickly.
