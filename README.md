@@ -169,6 +169,14 @@ cd chat-gui
 npm run dev
 ```
 
+Alternative launcher:
+
+```bash
+./start_viora_ai.sh
+```
+
+`start_viora_ai.sh` now verifies `.venv` exists and prints recovery steps if it is missing.
+
 ---
 
 ## Configuration (`.env`)
@@ -243,6 +251,12 @@ Base backend port defaults to `8000`.
 
 ### Health
 - `GET /health`
+
+Quick check:
+
+```bash
+curl -s http://127.0.0.1:8000/health
+```
 
 ### Chat + tasks
 - `GET /conversations`

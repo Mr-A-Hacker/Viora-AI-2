@@ -11,9 +11,9 @@ BANK_DATA_FILE = os.environ.get("BANK_DATA_FILE", str(Path(__file__).resolve().p
 def load_data():
     if os.path.exists(BANK_DATA_FILE):
         try:
-            with open(BANK_DATA_FILE, "r") as f:
+            with open(BANK_DATA_FILE, "r", encoding="utf-8") as f:
                 return json.load(f)
-        except:
+        except (json.JSONDecodeError, OSError):
             pass
     return {
         "accounts": [
@@ -52,8 +52,9 @@ def load_data():
     }
 
 def save_data(data):
-    with open(BANK_DATA_FILE, "w") as f:
-        json.dump(data, f)
+    Path(BANK_DATA_FILE).parent.mkdir(parents=True, exist_ok=True)
+    with open(BANK_DATA_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, indent=2)
 
 @router.get("/accounts")
 async def get_accounts():
