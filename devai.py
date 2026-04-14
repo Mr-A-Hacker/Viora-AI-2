@@ -1471,7 +1471,7 @@ class DevAICommands:
     
     @staticmethod
     def git_stash(msg: str = "") -> str:
-        cmd = f"git stash push{' -m "' + msg + '"' if msg else ''}"
+        cmd = f"git stash push{' -m ' + repr(msg) if msg else ''}"
         return DevAICommands.run_command(cmd)
     
     @staticmethod
