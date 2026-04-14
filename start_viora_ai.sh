@@ -1,9 +1,17 @@
 #!/bin/bash
+set -euo pipefail
 
-PROJECT_DIR="/home/admin/Mr-A-Hacker-pocket-Ai-version-2"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+PROJECT_DIR="$SCRIPT_DIR"
 
 # Activate venv
-source "$PROJECT_DIR/.venv/bin/activate"
+if [ -f "$PROJECT_DIR/.venv/bin/activate" ]; then
+  source "$PROJECT_DIR/.venv/bin/activate"
+else
+  echo "❌ Missing virtualenv at $PROJECT_DIR/.venv"
+  echo "Create it first: python3 -m venv .venv && source .venv/bin/activate && pip install -r requirements.txt"
+  exit 1
+fi
 
 # Start frontend
 cd "$PROJECT_DIR/chat-gui"
