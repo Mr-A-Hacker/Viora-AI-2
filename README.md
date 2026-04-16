@@ -8,6 +8,17 @@ Viora AI combines a FastAPI backend with a React/Electron desktop frontend. It i
 
 ---
 
+## Raspberry Pi Target (Important)
+
+This repository is intended for **Raspberry Pi deployments**, specifically:
+
+- ✅ **Raspberry Pi 5** (recommended)
+- ✅ **Raspberry Pi 4** (minimum supported baseline)
+
+If you are running on non-Pi hardware, treat it as best-effort compatibility.
+
+---
+
 ## Table of Contents
 
 - [What this project includes](#what-this-project-includes)
