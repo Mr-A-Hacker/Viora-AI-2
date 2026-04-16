@@ -2,6 +2,8 @@
 
 > A local-first AI assistant stack for Raspberry Pi/Linux with chat, voice, camera, tools, task scheduling, and an Electron UI.
 
+> **This project is specifically built for Raspberry Pi 4 and Raspberry Pi 5 (Pi 5 recommended).**
+
 Viora AI combines a FastAPI backend with a React/Electron desktop frontend. It is designed to run mostly on-device and can integrate with local models (Qwen + Function Gemma), offline speech tools (Vosk/Piper), camera streaming/detection, and utility modules (files, terminal, maps, weather, games, security, and banking simulator).
 
 ---
