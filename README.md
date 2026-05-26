@@ -39,7 +39,7 @@
 
 </div>
 
----
+Viora AI combines a FastAPI backend with a React/Electron desktop frontend. It is designed to run mostly on-device and can integrate with local models (Qwen + Function Gemma), offline speech tools (Vosk/Piper), camera streaming/detection, and utility modules (files, terminal, maps, weather, games, security, and banking simulator).
 
 ## Navigation
 
@@ -353,7 +353,13 @@ Viora-AI-2/
 └── templates/                   # Flask HTML templates
 ```
 
----
+```env
+PORT=8000
+CONVERSATIONS_FILE=conversations.json
+TOOLS_PATH=tools.json
+JOBS_FILE=task_jobs.json
+LOCAL_DIR=./models
+CAPTURES_DIR=captures
 
 ## Offline Capabilities
 
@@ -509,7 +515,9 @@ python speed_test.py              # Performance benchmarks
 - [ ] Fine-tuned Viora personality model
 - [ ] Multi-agent task execution
 
----
+### GUI cannot connect to backend
+- Ensure backend is reachable at `127.0.0.1:8000`.
+- Check CORS/network/firewall in your environment.
 
 ## Contributing
 

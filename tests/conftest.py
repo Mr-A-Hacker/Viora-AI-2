@@ -5,6 +5,7 @@ Set SKIP_MODEL_LOAD so startup does not load LLM/camera (faster tests).
 import os
 import sys
 import tempfile
+import importlib.util
 from pathlib import Path
 
 # Add project root so "from chat_ai import ..." and "from config import ..." work
@@ -22,6 +23,16 @@ _temp_conv_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=F
 _temp_conv_file.write("[]")
 _temp_conv_file.close()
 os.environ["CONVERSATIONS_FILE"] = _temp_conv_file.name
+
+# In minimal environments (like offline CI sandboxes), optional web deps may
+# be unavailable. Skip API-heavy suites when FastAPI isn't installed.
+collect_ignore = []
+if importlib.util.find_spec("fastapi") is None:
+    collect_ignore.extend([
+        "test_api.py",
+        "test_camera_security.py",
+        "test_conversation.py",
+    ])
 
 
 @pytest.fixture
