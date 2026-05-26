@@ -6,12 +6,13 @@ from pathlib import Path
 
 router = APIRouter(prefix="/games", tags=["games"])
 
+HOME_DIR = os.path.expanduser("~")
 GAME_DIRECTORIES = [
     "/opt",
     "/usr/games",
     "/usr/local/games",
-    "/home/admin/Games",
-    "/home/admin/.local/share/applications",
+    os.path.join(HOME_DIR, "Games"),
+    os.path.join(HOME_DIR, ".local", "share", "applications"),
 ]
 
 COMMON_GAMES = {

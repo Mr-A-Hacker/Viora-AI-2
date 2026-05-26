@@ -9,10 +9,10 @@ from flask import Flask, render_template, Response, request, redirect, url_for, 
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'viora_security_secret'
+app.config['SECRET_KEY'] = os.environ.get('SECURITY_SECRET', os.urandom(24).hex())
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin123")
+SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SOUNDS_DIR = os.path.join(BASE_DIR, "static", "sounds")
 LOG_DIR = os.path.join(BASE_DIR, "logs")

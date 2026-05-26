@@ -34,7 +34,7 @@ async def get_weather(lat: float = None, lon: float = None, city: str = None, un
     # Determine units
     use_fahrenheit = unit.lower() in ("fahrenheit", "f", "imperial")
     temp_unit = "fahrenheit" if use_fahrenheit else "celsius"
-    wind_unit = "mph" if use_fahrenheit else "mph"  # Open-Meteo uses mph for both when using imperial
+    wind_unit = "mph" if use_fahrenheit else "kmh"
 
     url = (
         "https://api.open-meteo.com/v1/forecast"

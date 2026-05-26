@@ -6,7 +6,7 @@ from fastapi import APIRouter
 
 router = APIRouter(prefix="/banking", tags=["banking"])
 
-BANK_DATA_FILE = os.environ.get("BANK_DATA_FILE", str(Path(__file__).resolve().parent / "banking_data.json"))
+BANK_DATA_FILE = os.path.join(os.path.dirname(os.path.abspath(__file__)), "banking_data.json")
 
 def load_data():
     if os.path.exists(BANK_DATA_FILE):

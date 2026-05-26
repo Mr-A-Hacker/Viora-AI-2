@@ -42648,7 +42648,7 @@ function TerminalView() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           command: cmd,
-          cwd: systemInfo?.cwd || "/home/admin"
+          cwd: systemInfo?.cwd || "/opt/Viora-AI-2"
         })
       });
       const data = await res.json();

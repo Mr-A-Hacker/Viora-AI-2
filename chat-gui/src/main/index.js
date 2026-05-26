@@ -1,6 +1,6 @@
 import { app, shell, BrowserWindow, ipcMain } from 'electron'
-import { join } from 'path'
-import { exec } from 'child_process' // Added for running Organic Maps
+import { join, resolve } from 'path'
+import { exec } from 'child_process'
 
 // On Linux (e.g. Raspberry Pi), Chromium may log "GLib-GObject: instance has no handler with id"
 // when the UI updates (e.g. after deleting a task). These come from content/browser and are harmless.
@@ -55,13 +55,14 @@ app.whenReady().then(() => {
 
     // Handle starting surveillance server
     ipcMain.handle('start-surveillance', async () => {
-        return new Promise((resolve, reject) => {
-            exec('cd /home/admin/Mr-A-Hacker-pocket-Ai-version-2 && /home/admin/Mr-A-Hacker-pocket-Ai-version-2/venv/bin/python lan_surveillance.py &', (error) => {
+        return new Promise((promiseResolve, reject) => {
+            const projectRoot = resolve(__dirname, '../../..');
+            exec(`cd "${projectRoot}" && python3 lan_surveillance.py &`, (error) => {
                 if (error) {
                     console.error('Failed to start surveillance:', error);
                     reject(error);
                 } else {
-                    resolve('Surveillance started');
+                    promiseResolve('Surveillance started');
                 }
             });
         });

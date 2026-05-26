@@ -1,0 +1,56 @@
+#!/usr/bin/env python3
+"""
+Viora AI — CLI launcher.
+Typing 'viora' starts the backend + web UI (no Electron GUI needed).
+Open http://localhost:8000 in your browser.
+"""
+import os
+import sys
+import subprocess
+import signal
+import time
+
+PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+BACKEND = os.path.join(PROJECT_DIR, "app.py")
+
+def main():
+    # Use project venv if it exists, otherwise system python
+    venv_python = os.path.join(PROJECT_DIR, ".venv", "bin", "python3")
+    python = venv_python if os.path.isfile(venv_python) else sys.executable
+
+    os.chdir(PROJECT_DIR)
+
+    print("╔══════════════════════════════════════════════╗")
+    print("║           VIORA AI  v2.0                     ║")
+    print("║                                              ║")
+    print("║  Starting backend...                         ║")
+    print("║  Open http://localhost:8000 in browser       ║")
+    print("║                                              ║")
+    print("║  Press Ctrl+C to stop                        ║")
+    print("╚══════════════════════════════════════════════╝")
+
+    proc = subprocess.Popen(
+        [python, BACKEND],
+        stdout=sys.stdout,
+        stderr=sys.stderr,
+    )
+
+    def shutdown(signum, frame):
+        print("\nShutting down Viora AI...")
+        proc.terminate()
+        try:
+            proc.wait(timeout=5)
+        except subprocess.TimeoutExpired:
+            proc.kill()
+        sys.exit(0)
+
+    signal.signal(signal.SIGINT, shutdown)
+    signal.signal(signal.SIGTERM, shutdown)
+
+    try:
+        proc.wait()
+    except KeyboardInterrupt:
+        shutdown(None, None)
+
+if __name__ == "__main__":
+    main()
