@@ -1,5 +1,5 @@
 import { app, ipcMain, BrowserWindow, shell } from "electron";
-import { join } from "path";
+import { join, resolve } from "path";
 import { exec } from "child_process";
 import __cjs_mod__ from "node:module";
 const __filename = import.meta.filename;
@@ -36,13 +36,14 @@ function createWindow() {
 app.whenReady().then(() => {
   ipcMain.on("app-quit", () => app.quit());
   ipcMain.handle("start-surveillance", async () => {
-    return new Promise((resolve, reject) => {
-      exec("cd /home/admin/Mr-A-Hacker-pocket-Ai-version-2 && /home/admin/Mr-A-Hacker-pocket-Ai-version-2/venv/bin/python lan_surveillance.py &", (error) => {
+    return new Promise((promiseResolve, reject) => {
+      const projectRoot = resolve(__dirname, "../../..");
+      exec(`cd "${projectRoot}" && python3 lan_surveillance.py &`, (error) => {
         if (error) {
           console.error("Failed to start surveillance:", error);
           reject(error);
         } else {
-          resolve("Surveillance started");
+          promiseResolve("Surveillance started");
         }
       });
     });

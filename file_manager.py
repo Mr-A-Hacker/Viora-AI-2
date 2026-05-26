@@ -6,7 +6,7 @@ from pydantic import BaseModel
 
 router = APIRouter(prefix="/files", tags=["files"])
 
-BASE_DIR = os.environ.get("FILE_MANAGER_ROOT", "/home/admin")
+BASE_DIR = os.environ.get("FILE_MANAGER_ROOT", os.path.dirname(os.path.abspath(__file__)))
 
 class FileItem(BaseModel):
     name: str

@@ -1,5 +1,6 @@
 import logging
 import os
+import sys
 import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
@@ -102,11 +103,13 @@ async def start_surveillance():
     
     def run_surveillance():
         try:
+            base = os.path.dirname(os.path.abspath(__file__))
+            python = sys.executable
             subprocess.Popen(
-                ["/home/admin/Mr-A-Hacker-pocket-Ai-version-2/venv/bin/python", "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/lan_surveillance.py"],
+                [python, os.path.join(base, "lan_surveillance.py")],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
-                cwd="/home/admin/Mr-A-Hacker-pocket-Ai-version-2"
+                cwd=base
             )
         except Exception as e:
             print(f"Failed to start surveillance: {e}")

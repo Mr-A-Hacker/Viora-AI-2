@@ -8,3 +8,8 @@ captures
 conversations.json
 training
 *.gguf
+*.log
+package-lock.json
+Python-3.11.8/
+Python-3.11.8.tgz
+test_output.wav

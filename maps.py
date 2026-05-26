@@ -1,3 +1,4 @@
+import os
 import httpx
 import subprocess
 from fastapi import APIRouter, Query
@@ -52,10 +53,9 @@ async def open_organic_maps():
     return {"msg": "Organic Maps opened!"}
 
 
-OPENCODE_PATH = "/home/admin/.opencode/bin/opencode"
-
 @router.post("/open-dev")
 async def open_dev_ai():
     """Launch OpenCode (Dev AI) via subprocess."""
-    subprocess.Popen([OPENCODE_PATH])
+    opencode_path = os.environ.get("OPENCODE_PATH", "opencode")
+    subprocess.Popen([opencode_path])
     return {"msg": "Dev AI opened!"}

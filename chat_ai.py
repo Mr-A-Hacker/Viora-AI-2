@@ -13,12 +13,21 @@ import uuid
 from typing import Any, Dict, List, Optional
 
 from fastapi import APIRouter, WebSocket, WebSocketDisconnect, HTTPException
-from huggingface_hub import hf_hub_download
-from llama_cpp import Llama
 from pydantic import BaseModel
-from stt_whisper import STTEngine as WhisperEngine
-from stt_vosk import STTEngine as VoskEngine
-from tts_piper import PocketAudio, split_sentences
+
+try:
+    from huggingface_hub import hf_hub_download
+    from llama_cpp import Llama
+    from stt_whisper import STTEngine as WhisperEngine
+    from stt_vosk import STTEngine as VoskEngine
+    from tts_piper import PocketAudio, split_sentences
+except ImportError:
+    hf_hub_download = None
+    Llama = None
+    WhisperEngine = None
+    VoskEngine = None
+    PocketAudio = None
+    split_sentences = None
 
 logger = logging.getLogger(__name__)
 
@@ -172,9 +181,9 @@ class ConversationManager:
 class AIState:
     def __init__(self):
         self.llm = None
-        self.stt = WhisperEngine()
-        self.vosk = VoskEngine()
-        self.tts = PocketAudio()
+        self.stt = WhisperEngine() if WhisperEngine else None
+        self.vosk = VoskEngine() if VoskEngine else None
+        self.tts = PocketAudio() if PocketAudio else None
         self.conv_manager = ConversationManager(CONVERSATIONS_FILE)
         self.is_recording = False
         self.is_vosk_recording = False
