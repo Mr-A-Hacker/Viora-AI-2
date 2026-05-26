@@ -16,7 +16,11 @@ from security import router as security_router
 from terminal import router as terminal_router
 from file_manager import router as file_manager_router
 from banking import router as banking_router
-from unified_security import trigger_voice_alert, send_alarm_to_surveillance
+try:
+    from unified_security import trigger_voice_alert, send_alarm_to_surveillance
+except ImportError:
+    trigger_voice_alert = None
+    send_alarm_to_surveillance = None
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -56,22 +60,28 @@ async def health():
 @app.post("/security/motion_detected")
 async def security_motion_detected(request: dict):
     """Endpoint to receive motion detection from security camera."""
-    import threading
-    threading.Thread(target=trigger_voice_alert, daemon=True).start()
+    if trigger_voice_alert:
+        import threading
+        threading.Thread(target=trigger_voice_alert, daemon=True).start()
     return {"status": "notified"}
 
 @app.post("/security/trigger_alarm")
 async def security_trigger_alarm():
     """Endpoint to trigger the alarm."""
-    success = send_alarm_to_surveillance()
-    return {"status": "success" if success else "error"}
+    if send_alarm_to_surveillance:
+        success = send_alarm_to_surveillance()
+        return {"status": "success" if success else "error"}
+    return {"status": "error", "message": "unified_security not available"}
 
 @app.post("/security/stop_alarm")
 async def security_stop_alarm():
     """Endpoint to stop the alarm."""
-    from unified_security import stop_alarm_on_surveillance
-    success = stop_alarm_on_surveillance()
-    return {"status": "success" if success else "error"}
+    try:
+        from unified_security import stop_alarm_on_surveillance
+        success = stop_alarm_on_surveillance()
+        return {"status": "success" if success else "error"}
+    except Exception as e:
+        return {"status": "error", "message": str(e)}
 
 @app.on_event("startup")
 async def startup_event():
@@ -117,5 +127,18 @@ async def start_surveillance():
     threading.Thread(target=run_surveillance, daemon=True).start()
     return {"status": "starting", "message": "Surveillance server starting on port 5001"}
 
+# Serve built React frontend (if available) so no Electron GUI is needed
+frontend_build = os.path.join(os.path.dirname(__file__), "chat-gui", "out", "renderer")
+if os.path.isdir(frontend_build):
+    app.mount("/", StaticFiles(directory=frontend_build, html=True), name="frontend")
+
 if __name__ == "__main__":
+    print("╔══════════════════════════════════════════════╗")
+    print("║           VIORA AI  v2.0                     ║")
+    print("║                                              ║")
+    print(f"║  Chat UI : http://localhost:{PORT}           ║")
+    print(f"║  API     : http://localhost:{PORT}/docs      ║")
+    print("║                                              ║")
+    print("║  Press Ctrl+C to stop                        ║")
+    print("╚══════════════════════════════════════════════╝")
     uvicorn.run(app, host="0.0.0.0", port=PORT)
