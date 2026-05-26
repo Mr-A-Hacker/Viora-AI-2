@@ -6,16 +6,28 @@ from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
 from config import PORT, CAPTURES_DIR, setup_logging
-from camera_stream import router as camera_router
-from chat_ai import router as chat_router, ai as ai_state
-from weather import router as weather_router
-from maps import router as maps_router
-from devai import router as devai_router
-from games import router as games_router
-from security import router as security_router
-from terminal import router as terminal_router
-from file_manager import router as file_manager_router
-from banking import router as banking_router
+
+def _safe_import(mod_name, attr):
+    try:
+        mod = __import__(mod_name, fromlist=[attr])
+        return getattr(mod, attr)
+    except Exception as e:
+        logger = logging.getLogger(__name__)
+        logger.warning("Failed to import %s from %s: %s", attr, mod_name, e)
+        return None
+
+camera_router = _safe_import("camera_stream", "router")
+chat_router = _safe_import("chat_ai", "router")
+ai_state = _safe_import("chat_ai", "ai")
+weather_router = _safe_import("weather", "router")
+maps_router = _safe_import("maps", "router")
+devai_router = _safe_import("devai", "router")
+games_router = _safe_import("games", "router")
+security_router = _safe_import("security", "router")
+terminal_router = _safe_import("terminal", "router")
+file_manager_router = _safe_import("file_manager", "router")
+banking_router = _safe_import("banking", "router")
+
 try:
     from unified_security import trigger_voice_alert, send_alarm_to_surveillance
 except ImportError:
@@ -40,17 +52,24 @@ app.add_middleware(
 os.makedirs(CAPTURES_DIR, exist_ok=True)
 app.mount("/captures", StaticFiles(directory=CAPTURES_DIR), name="captures")
 
-# Include the routers
-app.include_router(camera_router)
-app.include_router(chat_router)
-app.include_router(weather_router)
-app.include_router(maps_router)
-app.include_router(devai_router)
-app.include_router(games_router)
-app.include_router(security_router)
-app.include_router(terminal_router)
-app.include_router(file_manager_router)
-app.include_router(banking_router)
+# Include the routers (skip any that failed to import)
+_routers = [
+    ("camera_stream", camera_router),
+    ("chat", chat_router),
+    ("weather", weather_router),
+    ("maps", maps_router),
+    ("devai", devai_router),
+    ("games", games_router),
+    ("security", security_router),
+    ("terminal", terminal_router),
+    ("file_manager", file_manager_router),
+    ("banking", banking_router),
+]
+for name, router in _routers:
+    if router is not None:
+        app.include_router(router)
+    else:
+        logger.warning("Skipping /%s — dependencies not available", name)
 
 @app.get("/health")
 async def health():
@@ -86,12 +105,15 @@ async def security_stop_alarm():
 @app.on_event("startup")
 async def startup_event():
     logger.info("Unified Backend starting up...")
-    if not os.environ.get("SKIP_MODEL_LOAD"):
-        ai_state.load_model()
-        # Dev AI model loads on first request (lazy)
+    if not os.environ.get("SKIP_MODEL_LOAD") and ai_state is not None:
+        try:
+            ai_state.load_model()
+        except Exception as e:
+            logger.warning("Model not loaded: %s", e)
     try:
-        from task_scheduler import init_scheduler
-        init_scheduler(ai_state.conv_manager)
+        if ai_state is not None:
+            from task_scheduler import init_scheduler
+            init_scheduler(ai_state.conv_manager)
     except Exception as e:
         logger.warning("Task scheduler not started: %s", e)
     logger.info("Unified Backend ready.")
