@@ -133,12 +133,4 @@ if os.path.isdir(frontend_build):
     app.mount("/", StaticFiles(directory=frontend_build, html=True), name="frontend")
 
 if __name__ == "__main__":
-    print("╔══════════════════════════════════════════════╗")
-    print("║           VIORA AI  v2.0                     ║")
-    print("║                                              ║")
-    print(f"║  Chat UI : http://localhost:{PORT}           ║")
-    print(f"║  API     : http://localhost:{PORT}/docs      ║")
-    print("║                                              ║")
-    print("║  Press Ctrl+C to stop                        ║")
-    print("╚══════════════════════════════════════════════╝")
     uvicorn.run(app, host="0.0.0.0", port=PORT)
