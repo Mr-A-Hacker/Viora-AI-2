@@ -10,13 +10,18 @@ import subprocess
 import signal
 import time
 
-PROJECT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(os.path.realpath(__file__))
 BACKEND = os.path.join(PROJECT_DIR, "app.py")
 
 def main():
     # Use project venv if it exists, otherwise system python
-    venv_python = os.path.join(PROJECT_DIR, ".venv", "bin", "python3")
-    python = venv_python if os.path.isfile(venv_python) else sys.executable
+    for name in ("python3", "python"):
+        venv_python = os.path.join(PROJECT_DIR, ".venv", "bin", name)
+        if os.path.isfile(venv_python):
+            break
+    else:
+        venv_python = sys.executable
+    python = venv_python
 
     os.chdir(PROJECT_DIR)
 
