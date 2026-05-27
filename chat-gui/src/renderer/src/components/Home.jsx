@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Bot, Cloud, MapPin, Search, Gamepad2, Shield, Siren, Lock, Unlock, Terminal, Folder, CreditCard, Plus } from 'lucide-react';
+import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Bot, Cloud, MapPin, Search, Gamepad2, Shield, Siren, Lock, Unlock, Terminal, Folder, CreditCard } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
@@ -103,9 +103,6 @@ export default function Home() {
   const [newBill, setNewBill] = useState({ name: '', amount: '', due_date: '', category: 'Other' });
   const [newSavingsGoal, setNewSavingsGoal] = useState({ name: '', target: '', icon: '💰' });
   const [activeTab, setActiveTab] = useState('accounts');
-  const [showAddMoneyModal, setShowAddMoneyModal] = useState(false);
-  const [quickAmount, setQuickAmount] = useState('');
-  const [quickDesc, setQuickDesc] = useState('');
 
   const fetchSecurityStatus = async () => {
     try {
@@ -213,29 +210,6 @@ export default function Home() {
   const handleBankingClick = () => {
     setShowBankingModal(true);
     fetchBankAccounts();
-  };
-
-  const handleQuickAddMoney = async () => {
-    if (!quickAmount || !quickDesc) return;
-    try {
-      await fetch('http://localhost:8000/banking/transaction', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          amount: parseFloat(quickAmount),
-          description: quickDesc,
-          type: 'credit',
-          account: 'My Checking',
-          category: 'Income'
-        })
-      });
-      setQuickAmount('');
-      setQuickDesc('');
-      setShowAddMoneyModal(false);
-      fetchBankAccounts();
-    } catch (err) {
-      console.error('Failed to add money:', err);
-    }
   };
 
   const addOwing = async (e) => {
@@ -390,11 +364,14 @@ export default function Home() {
       if (city) {
         url += `?city=${encodeURIComponent(city)}`;
       } else if (navigator.geolocation) {
-        // Use geolocation for "My location"
-        const pos = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
-        });
-        url += `?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+        try {
+          const pos = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5000 });
+          });
+          url += `?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+        } catch {
+          // geolocation failed — fall back to backend IP geolocation
+        }
       }
       const resp = await fetch(url);
       const data = await resp.json();
@@ -432,38 +409,41 @@ export default function Home() {
   };
 
   const pressTimer = useRef(null);
-  const [isHoldMode, setIsHoldMode] = useState(false);
+  const isHoldMode = useRef(false);
+
+  useEffect(() => {
+    return () => {
+      if (pressTimer.current) {
+        clearTimeout(pressTimer.current);
+      }
+    };
+  }, []);
 
   const handleMouseDown = () => {
-    console.log('[Voice] Mouse down, starting timer...');
-    setIsHoldMode(false);
+    isHoldMode.current = false;
     pressTimer.current = setTimeout(() => {
-      console.log('[Voice] Long press detected, starting Vosk...');
-      setIsHoldMode(true);
+      isHoldMode.current = true;
       startVosk();
     }, 400);
   };
 
   const handleMouseUp = () => {
-    console.log('[Voice] Mouse up, isHoldMode:', isHoldMode);
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
       pressTimer.current = null;
     }
-    if (isHoldMode) {
-      console.log('[Voice] Stopping Vosk...');
+    if (isHoldMode.current) {
       stopVosk();
-      setIsHoldMode(false);
+      isHoldMode.current = false;
     } else {
-      console.log('[Voice] Toggle voice (short press)...');
       toggleVoice();
     }
   };
 
   const handleMouseLeave = () => {
-    if (isHoldMode) {
+    if (isHoldMode.current) {
       stopVosk();
-      setIsHoldMode(false);
+      isHoldMode.current = false;
     }
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
@@ -528,7 +508,7 @@ export default function Home() {
             letterSpacing: '-.02em',
           }}
         >
-          Add Money
+          Viora AI
         </h1>
         <span
           style={{
@@ -623,13 +603,14 @@ export default function Home() {
         </AnimatePresence>
       </div>
 
-      {/* Main Menu Grid - 5 buttons */}
+      {/* Main Menu Grid */}
       <div
-        className="grid gap-3 z-10 w-full max-w-[460px] px-4"
+        className="menu-grid grid gap-3 z-10 w-full max-w-[460px] px-4"
         style={{
           gridTemplateColumns: 'repeat(3, 1fr)',
-          gridTemplateRows: 'repeat(2, 1fr)',
           animation: 'fadeUp .4s ease both .2s',
+          maxHeight: 360,
+          paddingBottom: 8,
         }}
       >
         <MenuButton icon={MessageCircle} label="CHAT" onClick={() => navigate('/chat')} color={AI_COLOR} />
@@ -667,12 +648,6 @@ export default function Home() {
           label="FILES"
           onClick={() => navigate('/files')}
           color="#8b5cf6"
-        />
-        <MenuButton
-          icon={Plus}
-          label="ADD MONEY"
-          onClick={() => setShowAddMoneyModal(true)}
-          color="#22c55e"
         />
         <MenuButton
           icon={CreditCard}
@@ -806,7 +781,7 @@ export default function Home() {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'center', gap: 16, marginTop: 16, fontSize: '0.85rem', color: 'var(--text-mid)' }}>
                     <span>💧 {weatherData.humidity}%</span>
-                    <span>💨 {weatherData.wind_speed} mph</span>
+                    <span>💨 {weatherData.wind_speed} {weatherData.unit === '°C' ? 'km/h' : 'mph'}</span>
                   </div>
                 </div>
               )}
@@ -1333,114 +1308,6 @@ export default function Home() {
         )}
       </AnimatePresence>
 
-      {/* Add Money Modal */}
-      <AnimatePresence>
-        {showAddMoneyModal && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            style={{
-              position: 'fixed',
-              inset: 0,
-              background: 'rgba(0,0,0,0.6)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              zIndex: 100,
-              padding: 20,
-            }}
-            onClick={() => setShowAddMoneyModal(false)}
-          >
-            <motion.div
-              initial={{ scale: 0.9, y: 20 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 20 }}
-              style={{
-                background: 'linear-gradient(180deg, #166534 0%, #14532d 100%)',
-                borderRadius: 24,
-                padding: 24,
-                maxWidth: 360,
-                width: '100%',
-                border: '1.5px solid #22c55e',
-                boxShadow: '0 20px 60px rgba(0,0,0,0.5)',
-              }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 20 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-                  <Plus size={24} color="#22c55e" />
-                  <h2 style={{ fontSize: '1.25rem', fontWeight: 700, color: '#fff' }}>Add Money</h2>
-                </div>
-                <button
-                  onClick={() => setShowAddMoneyModal(false)}
-                  style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#86efac', fontSize: '1.5rem' }}
-                >
-                  ×
-                </button>
-              </div>
-
-              <input
-                type="number"
-                step="0.01"
-                value={quickAmount}
-                onChange={(e) => setQuickAmount(e.target.value)}
-                placeholder="Amount"
-                autoFocus
-                style={{
-                  width: '100%',
-                  padding: '16px 20px',
-                  borderRadius: 14,
-                  border: '2px solid #22c55e',
-                  background: 'rgba(255,255,255,0.1)',
-                  color: '#fff',
-                  fontSize: '1.5rem',
-                  fontWeight: 700,
-                  outline: 'none',
-                  marginBottom: 16,
-                  textAlign: 'center',
-                }}
-              />
-
-              <input
-                type="text"
-                value={quickDesc}
-                onChange={(e) => setQuickDesc(e.target.value)}
-                placeholder="Description (e.g. Paycheck, Gift)"
-                style={{
-                  width: '100%',
-                  padding: '14px 16px',
-                  borderRadius: 14,
-                  border: '1px solid #4ade80',
-                  background: 'rgba(255,255,255,0.1)',
-                  color: '#fff',
-                  fontSize: '1rem',
-                  outline: 'none',
-                  marginBottom: 20,
-                }}
-              />
-
-              <button
-                onClick={handleQuickAddMoney}
-                style={{
-                  width: '100%',
-                  padding: 16,
-                  borderRadius: 14,
-                  border: 'none',
-                  background: '#22c55e',
-                  color: '#fff',
-                  fontSize: '1.1rem',
-                  fontWeight: 700,
-                  cursor: 'pointer',
-                  boxShadow: '0 4px 12px rgba(34, 197, 94, 0.4)',
-                }}
-              >
-                Add to Account
-              </button>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }

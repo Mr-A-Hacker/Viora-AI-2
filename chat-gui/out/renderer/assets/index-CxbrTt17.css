@@ -3490,12 +3490,18 @@ html.dark .response-bubble {
   font-family: var(--font-body);
 }
 .menu-grid {
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
   grid-template-columns: repeat(3, 1fr);
   gap: 10px;
   width: 100%;
   max-width: 400px;
   animation: .4s .2s both fadeUp;
   display: grid;
+  overflow-y: auto;
+}
+.menu-grid::-webkit-scrollbar {
+  display: none;
 }
 .menu-btn {
   cursor: pointer;
@@ -3930,6 +3936,60 @@ html.dark .settings-card {
 .shutdown-btn:active {
   transform: scale(.98);
 }
+.knowledge-btn {
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+  border: none;
+  border-radius: 14px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  width: 100%;
+  margin-top: 8px;
+  padding: 16px;
+  font-size: .875rem;
+  font-weight: 600;
+  transition: all .2s;
+  display: flex;
+}
+.knowledge-btn:hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+.knowledge-btn:active:not(:disabled) {
+  transform: scale(.98);
+}
+.knowledge-btn:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+.spin-icon {
+  animation: 1s linear infinite spin;
+}
+.update-badge {
+  color: #eab308;
+  background: #eab3081f;
+  border-radius: 10px;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  font-size: .8rem;
+  display: flex;
+}
+.update-badge.up-to-date {
+  color: #22c55e;
+  background: #22c55e1f;
+}
+.update-badge.checking {
+  color: var(--accent);
+  background: #6366f11f;
+}
 .settings-version {
   color: var(--text-light);
   margin-top: auto;
@@ -4233,11 +4293,6 @@ html.dark .settings-card {
 @property --tw-ease {
   syntax: "*";
   inherits: false
-}
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
 }
 @keyframes pulse {
   50% {

@@ -443,9 +443,6 @@ def generate_frames():
         if frame is None:
             break
         
-        frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-        frame = cv2.resize(frame, (480, 800), interpolation=cv2.INTER_LINEAR)
-        
         frame_bgr = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
         ret, buffer = cv2.imencode('.jpg', frame_bgr)
         frame_bytes = buffer.tobytes()
@@ -460,8 +457,6 @@ async def video_feed():
 async def capture_image():
     try:
         frame = stream_queue.get(timeout=2.0)
-        frame = cv2.rotate(frame, cv2.ROTATE_90_CLOCKWISE)
-        frame = cv2.resize(frame, (480, 800), interpolation=cv2.INTER_LINEAR)
         
         timestamp = int(time.time())
         filename = f"capture_{timestamp}.jpg"

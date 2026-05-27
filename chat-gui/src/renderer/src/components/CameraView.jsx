@@ -7,8 +7,8 @@ import { API_BASE_URL, WS_BASE_URL } from '../config.js';
 const pendingStopTimeoutRef = { current: null };
 const STOP_DELAY_MS = 500;
 
-const STREAM_IMAGE_WIDTH = 480;
-const STREAM_IMAGE_HEIGHT = 800;
+const STREAM_IMAGE_WIDTH = 640;
+const STREAM_IMAGE_HEIGHT = 384;
 const STREAM_ASPECT = STREAM_IMAGE_WIDTH / STREAM_IMAGE_HEIGHT;
 
 export default function CameraView() {
@@ -36,7 +36,7 @@ export default function CameraView() {
 
         const startCamera = async () => {
             try {
-                console.log(`Starting camera session: ${sessionId}`);
+
                 const res = await fetch(startUrl, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
@@ -48,7 +48,7 @@ export default function CameraView() {
                         pendingStopTimeoutRef.current = null;
                     }
                     setStatus('connected');
-                    console.log("Camera started");
+
                 } else {
                     const err = await res.json().catch(() => ({}));
                     console.error("Camera start failed:", err.message || res.status);
@@ -61,13 +61,11 @@ export default function CameraView() {
         };
 
         const connectWebSocket = () => {
-            console.log('Connecting to WebSocket:', wsUrl);
+
             const ws = new WebSocket(wsUrl);
             wsRef.current = ws;
 
-            ws.onopen = () => {
-                if (isMounted) console.log('WebSocket connected (detections)');
-            };
+            ws.onopen = () => {};
 
             ws.onmessage = (event) => {
                 try {
@@ -86,13 +84,13 @@ export default function CameraView() {
             };
 
             ws.onclose = () => {
-                console.log('WebSocket disconnected (detections may stop)');
+
             };
         };
 
         startCamera().then(() => {
             connectWebSocket();
-        });
+        }).catch(() => {});
 
         return () => {
             isMounted = false;
@@ -191,7 +189,7 @@ export default function CameraView() {
             });
             const data = await res.json();
             if (data.status === 'success') {
-                console.log('Image captured:', data.filename);
+
             } else {
                 console.error('Capture failed:', data.message);
             }
@@ -219,10 +217,10 @@ export default function CameraView() {
 
         return detections.map((det, index) => {
             const [oxMin, oyMin, oxMax, oyMax] = det.bbox;
-            const sxMin = 1 - oyMax;
-            const syMin = oxMin;
-            const sxMax = 1 - oyMin;
-            const syMax = oxMax;
+            const sxMin = oxMin;
+            const syMin = oyMin;
+            const sxMax = oxMax;
+            const syMax = oyMax;
 
             const tl = imageNormToContainerNorm(sxMin, syMin);
             const br = imageNormToContainerNorm(sxMax, syMax);
@@ -240,7 +238,7 @@ export default function CameraView() {
 
             return (
                 <div
-                    key={index}
+                    key={`${det.label}-${index}`}
                     className="absolute border-2 flex flex-col items-start justify-start pointer-events-none"
                     style={{
                         left: leftPct,

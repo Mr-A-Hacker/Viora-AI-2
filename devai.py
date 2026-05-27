@@ -1265,7 +1265,7 @@ class DevAICommands:
                         else:
                             size_str = f"{size}B"
                         entries.append(f"📄 {entry} ({size_str})")
-                except:
+                except Exception:
                     entries.append(f"❓ {entry}")
             
             total_str = f" | Total: {total_size / (1024*1024):.2f}MB" if total_size > 0 else ""
@@ -1315,7 +1315,7 @@ class DevAICommands:
                                     results.append(f"{rel_path}:{i+1}: {line.rstrip()}")
                                     if matches > 150:
                                         return '\n'.join(results) + f"\n\n[...] Found {matches}+ matches (truncated)"
-                    except:
+                    except Exception:
                         continue
             if not results:
                 return f"❌ No matches for '{pattern}'"
@@ -1539,10 +1539,10 @@ class DevAICommands:
                     info.append(f"  Total: {usage.total / (1024**3):.2f} GB | Used: {usage.used / (1024**3):.2f} GB | Free: {usage.free / (1024**3):.2f} GB")
                     info.append(f"  Usage: {'█' * int(usage.percent / 5)}{'░' * (20 - int(usage.percent / 5))} {usage.percent}%")
                     info.append("")
-                except:
+                except Exception:
                     continue
             return '\n'.join(info)
-        except:
+        except Exception:
             return DevAICommands.run_command("df -h")
     
     @staticmethod
@@ -1564,7 +1564,7 @@ class DevAICommands:
             info.append(f"Total: {swap.total / (1024**3):.2f} GB")
             info.append(f"Used: {swap.used / (1024**3):.2f} GB ({swap.percent}%)")
             return '\n'.join(info)
-        except:
+        except Exception:
             return DevAICommands.run_command("free -h")
     
     @staticmethod
@@ -1579,7 +1579,7 @@ class DevAICommands:
             info.append("")
             info.append(f"Overall: {psutil.cpu_percent(interval=0.5)}%")
             return '\n'.join(info)
-        except:
+        except Exception:
             return DevAICommands.run_command("top -bn1 | head -10")
     
     @staticmethod
@@ -1594,12 +1594,12 @@ class DevAICommands:
             for proc in psutil.process_iter(['pid', 'username', 'cpu_percent', 'name', 'memory_percent']):
                 try:
                     info.append(f"{proc.info['pid']:<8} {proc.info['username'][:15]:<15} {proc.info['cpu_percent'] or 0:<8.1f} {proc.info['memory_percent'] or 0:<8.1f} {proc.info['name'][:30]:<30}")
-                except:
+                except Exception:
                     continue
                 if len(info) > limit + 3:
                     break
             return '\n'.join(info)
-        except:
+        except Exception:
             return DevAICommands.run_command(f"ps aux --sort=-%cpu | head -20")
     
     @staticmethod
@@ -1734,7 +1734,7 @@ class DevAICommands:
             try:
                 json_resp = response.json()
                 output += "```json\n" + json.dumps(json_resp, indent=2)[:5000] + "\n```"
-            except:
+            except Exception:
                 output += response.text[:5000]
             
             return output
@@ -1924,7 +1924,7 @@ class DevAICommands:
                 for i, f in enumerate(files):
                     is_last = (i == len(files) - 1)
                     items.append(f"{prefix}{'└── ' if is_last else '├── '}📄 {f}")
-            except:
+            except Exception:
                 pass
             return items
         
@@ -1956,7 +1956,7 @@ class DevAICommands:
                         total += count
                         files += 1
                         ext_stats[ext] = ext_stats.get(ext, 0) + count
-                except:
+                except Exception:
                     pass
         
         result = [f"📊 Line Count: {path}", f"📁 Total: {total} lines in {files} files", ""]
@@ -2661,8 +2661,17 @@ if x == 5:
 """
     
     @staticmethod
+    def _validate_table_name(name: str) -> str:
+        """Validate table name against SQL-injection-safe pattern.
+        Returns a safe identifier or 'users' as fallback."""
+        if name and re.match(r'^[a-zA-Z_][a-zA-Z0-9_]*$', name):
+            return name
+        return 'users'
+
+    @staticmethod
     def generate_sql(table_name: str) -> str:
         """🗄️ Generate SQL queries"""
+        table_name = DevAI._validate_table_name(table_name)
         return f"""🗄️ **SQL GENERATOR**
 
 Table: {table_name or 'users'}
@@ -3292,7 +3301,7 @@ def natural_language_to_command(message: str) -> Optional[str]:
         if match:
             try:
                 return converter(match)
-            except:
+            except Exception:
                 pass
     
     return None

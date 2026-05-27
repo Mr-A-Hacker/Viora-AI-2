@@ -1,3 +1,4 @@
+import os
 import httpx
 import subprocess
 from fastapi import APIRouter, Query
@@ -52,10 +53,13 @@ async def open_organic_maps():
     return {"msg": "Organic Maps opened!"}
 
 
-OPENCODE_PATH = "/home/admin/.opencode/bin/opencode"
+OPENCODE_PATH = os.environ.get("OPENCODE_PATH", os.path.expanduser("~/.opencode/bin/opencode"))
 
 @router.post("/open-dev")
 async def open_dev_ai():
     """Launch OpenCode (Dev AI) via subprocess."""
-    subprocess.Popen([OPENCODE_PATH])
+    try:
+        subprocess.Popen([OPENCODE_PATH])
+    except FileNotFoundError:
+        return {"msg": "OpenCode binary not found at " + OPENCODE_PATH}
     return {"msg": "Dev AI opened!"}

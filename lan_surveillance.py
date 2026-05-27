@@ -9,7 +9,7 @@ from flask import Flask, render_template, Response, request, redirect, url_for, 
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = 'viora_security_secret'
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "viora_security_secret")  # WARNING: Change default in production!
 socketio = SocketIO(app, cors_allowed_origins="*")
 
 SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin123")
@@ -45,12 +45,12 @@ def play_alarm_sound():
     if os.path.exists(sound_file):
         try:
             subprocess.Popen(["mpg123", "-q", sound_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        except:
+        except Exception:
             pass
     else:
         try:
             subprocess.Popen(["speaker-test", "-t", "sine", "-f", "440", "-l", "3"], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        except:
+        except Exception:
             pass
 
 def draw_overlay(frame, text, position=(10, 30), color=(0, 255, 0), font_scale=0.7, thickness=2):

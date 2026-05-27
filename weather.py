@@ -7,11 +7,11 @@ router = APIRouter(prefix="/weather", tags=["weather"])
 async def get_weather(lat: float = None, lon: float = None, city: str = None, unit: str = "fahrenheit"):
     """
     Fetch current weather using Open-Meteo (free, no API key needed).
-    Supports: lat/lon coordinates OR city name search OR "my location" for geolocation.
+    Supports: lat/lon coordinates OR city name search.
+    Uses IP geolocation fallback if no location provided.
     Use ?unit=celsius for Celsius, ?unit=fahrenheit (default) for Fahrenheit.
     """
     if city:
-        # Geocode city name
         geo_url = f"https://geocoding-api.open-meteo.com/v1/search?name={city}&count=1&language=en&format=json"
         async with httpx.AsyncClient(timeout=10) as client:
             resp = await client.get(geo_url)
@@ -24,17 +24,36 @@ async def get_weather(lat: float = None, lon: float = None, city: str = None, un
         lon = results[0]["longitude"]
         location_name = results[0].get("name", city)
     elif lat is None or lon is None:
-        # Default to Berlin if no location provided
-        lat = 52.52
-        lon = 13.41
-        location_name = "Berlin"
+        # IP geolocation fallback
+        try:
+            async with httpx.AsyncClient(timeout=5) as client:
+                ip_resp = await client.get("https://ip-api.com/json/?fields=lat,lon,city")
+                ip_data = ip_resp.json()
+                lat = ip_data["lat"]
+                lon = ip_data["lon"]
+                location_name = ip_data.get("city", "Your Location")
+        except Exception:
+            lat = 52.52
+            lon = 13.41
+            location_name = "Berlin"
     else:
-        location_name = "Current Location"
+        # Reverse geocode coordinates to get city name
+        try:
+            async with httpx.AsyncClient(timeout=5) as client:
+                rev = await client.get(
+                    "https://nominatim.openstreetmap.org/reverse",
+                    params={"lat": lat, "lon": lon, "format": "json"},
+                    headers={"User-Agent": "VioraAI/2.0"}
+                )
+                rev_data = rev.json()
+                addr = rev_data.get("address", {})
+                location_name = addr.get("city") or addr.get("town") or addr.get("village") or addr.get("county") or "Your Location"
+        except Exception:
+            location_name = "Your Location"
 
-    # Determine units
     use_fahrenheit = unit.lower() in ("fahrenheit", "f", "imperial")
     temp_unit = "fahrenheit" if use_fahrenheit else "celsius"
-    wind_unit = "mph" if use_fahrenheit else "mph"  # Open-Meteo uses mph for both when using imperial
+    wind_unit = "mph" if use_fahrenheit else "kmh"
 
     url = (
         "https://api.open-meteo.com/v1/forecast"

@@ -38,7 +38,7 @@ async def list_directory(path: str = ""):
                     size=stat.st_size if not os.path.isdir(item_path) else 0,
                     modified=stat.st_mtime
                 ))
-            except:
+            except Exception:
                 pass
         
         items.sort(key=lambda x: (not x.is_dir, x.name.lower()))

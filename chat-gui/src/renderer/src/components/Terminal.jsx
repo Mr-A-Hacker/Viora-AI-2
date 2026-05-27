@@ -133,7 +133,7 @@ export default function TerminalView() {
                 )}
                 
                 {history.map((item, i) => (
-                    <div key={i} className="mb-1">
+                    <div key={`${item.type}-${i}`} className="mb-1">
                         {item.type === 'command' ? (
                             <div className="text-[#00ff88]">{item.content}</div>
                         ) : item.type === 'error' ? (

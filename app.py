@@ -16,6 +16,7 @@ from terminal import router as terminal_router
 from file_manager import router as file_manager_router
 from banking import router as banking_router
 from unified_security import trigger_voice_alert, send_alarm_to_surveillance
+from knowledge import update_knowledge_async, get_knowledge, check_updates
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -95,21 +96,44 @@ async def shutdown():
     threading.Thread(target=delayed_exit, daemon=True).start()
     return {"status": "shutting down..."}
 
+@app.post("/knowledge/update")
+async def knowledge_update():
+    result = {"status": "started", "message": "Knowledge update started in background"}
+    update_knowledge_async()
+    return result
+
+
+@app.get("/knowledge")
+async def knowledge_status():
+    return get_knowledge()
+
+
+@app.get("/knowledge/check")
+async def knowledge_check():
+    return check_updates()
+
+
 @app.post("/start_surveillance")
 async def start_surveillance():
     import subprocess
     import threading
+    from pathlib import Path
+    
+    project_dir = Path(__file__).resolve().parent
+    lan_surv = project_dir / "lan_surveillance.py"
+    venv_python = project_dir / ".venv" / "bin" / "python"
     
     def run_surveillance():
         try:
+            python_path = str(venv_python) if venv_python.exists() else "python3"
             subprocess.Popen(
-                ["/home/admin/Mr-A-Hacker-pocket-Ai-version-2/venv/bin/python", "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/lan_surveillance.py"],
+                [python_path, str(lan_surv)],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
-                cwd="/home/admin/Mr-A-Hacker-pocket-Ai-version-2"
+                cwd=str(project_dir)
             )
         except Exception as e:
-            print(f"Failed to start surveillance: {e}")
+            logger.error("Failed to start surveillance: %s", e)
     
     threading.Thread(target=run_surveillance, daemon=True).start()
     return {"status": "starting", "message": "Surveillance server starting on port 5001"}

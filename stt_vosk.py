@@ -1,8 +1,11 @@
+import logging
 import queue
 import threading
 import sys
 import json
 import pyaudio
+
+logger = logging.getLogger(__name__)
 from vosk import Model, KaldiRecognizer
 
 # --- CONFIGURATION ---
@@ -46,16 +49,14 @@ class STTEngine:
 
     def load_model(self):
         if self.model is None:
-            print(f"Loading Vosk model from '{MODEL_PATH}'...")
+            logger.debug("Loading Vosk model from '%s'...", MODEL_PATH)
             try:
                 self.model = Model(MODEL_PATH)
                 self.recognizer = KaldiRecognizer(self.model, RATE)
-                print("Vosk model loaded successfully.")
+                logger.debug("Vosk model loaded successfully.")
             except Exception as e:
-                print(f"\nError loading model: {e}")
-                print("---")
-                print(f"Please double-check that this exact path contains the model files (like 'am', 'conf', 'graph', etc.):")
-                print(MODEL_PATH)
+                logger.error("Error loading model: %s", e)
+                logger.error("Please double-check that this exact path contains the model files (like 'am', 'conf', 'graph', etc.): %s", MODEL_PATH)
                 sys.exit(1)
 
     def _get_input_device_index(self):
@@ -66,9 +67,9 @@ class STTEngine:
             if dev.get('maxInputChannels') > 0:
                 try:
                     if self.p.is_format_supported(RATE, input_device=i, input_channels=CHANNELS, input_format=FORMAT):
-                        print(f"Using device {i}: {dev.get('name')} (Supports {RATE}Hz)")
+                        logger.debug("Using device %d: %s (Supports %dHz)", i, dev.get('name'), RATE)
                         return i, RATE
-                except:
+                except Exception:
                     continue
         
         # If not, find the default input device and get its default rate
@@ -76,9 +77,9 @@ class STTEngine:
             default_dev = self.p.get_default_input_device_info()
             idx = default_dev.get('index')
             rate = int(default_dev.get('defaultSampleRate'))
-            print(f"Using default device {idx}: {default_dev.get('name')} (Default rate: {rate}Hz)")
+            logger.debug("Using default device %d: %s (Default rate: %dHz)", idx, default_dev.get('name'), rate)
             return idx, rate
-        except:
+        except Exception:
             pass
 
         # Last resort: just find any input device
@@ -86,7 +87,7 @@ class STTEngine:
             dev = self.p.get_device_info_by_index(i)
             if dev.get('maxInputChannels') > 0:
                 rate = int(dev.get('defaultSampleRate'))
-                print(f"Falling back to device {i}: {dev.get('name')} (Rate: {rate}Hz)")
+                logger.debug("Falling back to device %d: %s (Rate: %dHz)", i, dev.get('name'), rate)
                 return i, rate
                 
         return None, None
@@ -106,7 +107,7 @@ class STTEngine:
             
         self.device_index, self.current_rate = self._get_input_device_index()
         if self.device_index is None:
-            print("Error: No input device found.")
+            logger.error("No input device found.")
             return
 
         self.listening = True
@@ -114,7 +115,7 @@ class STTEngine:
         self.audio_queue = queue.Queue() # Clear the queue
         self.final_text = ""
         
-        print(f"Opening Vosk stream: {self.current_rate}Hz, {CHANNELS} channels")
+        logger.debug("Opening Vosk stream: %dHz, %d channels", self.current_rate, CHANNELS)
         self.stream = self.p.open(format=FORMAT,
                         channels=CHANNELS,
                         rate=self.current_rate,
@@ -153,12 +154,12 @@ class STTEngine:
                         num_samples = int(len(audio_np) * RATE / self.current_rate)
                         audio_np = scipy.signal.resample(audio_np, num_samples)
                     else:
-                        # Simple linear interpolation fallback if scipy is missing
-                        from scipy import interpolate
-                        x_old = np.linspace(0, 1, len(audio_np))
-                        x_new = np.linspace(0, 1, int(len(audio_np) * RATE / self.current_rate))
-                        f = interpolate.interp1d(x_old, audio_np)
-                        audio_np = f(x_new)
+                        num_samples = int(len(audio_np) * RATE / self.current_rate)
+                        audio_np = np.interp(
+                            np.linspace(0, len(audio_np), num_samples),
+                            np.arange(len(audio_np)),
+                            audio_np
+                        )
                     data = audio_np.astype(np.int16).tobytes()
 
                 if self.recognizer.AcceptWaveform(data):

@@ -6,7 +6,6 @@ const CloseButton = () => {
         if (window.electron && window.electron.quit) {
             window.electron.quit();
         } else {
-            console.log('Close button clicked (Electron API not available)');
             window.close();
         }
     };

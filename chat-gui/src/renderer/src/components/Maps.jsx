@@ -243,7 +243,7 @@ export default function Maps() {
               }}>
                 {results.map((r, i) => (
                   <li
-                    key={i}
+                    key={`${r.display_name}-${i}`}
                     onClick={() => selectResult(r)}
                     style={{
                       padding: '10px 16px', cursor: 'pointer', fontSize: '.82rem',

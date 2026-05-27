@@ -31,7 +31,7 @@ export default function FileManager() {
     const [renameName, setRenameName] = useState('');
 
     useEffect(() => {
-        loadDirectory('');
+        loadDirectory('').catch(() => {});
     }, []);
 
     const loadDirectory = async (path) => {
@@ -149,7 +149,7 @@ export default function FileManager() {
 
             <div className="flex items-center gap-1 px-4 py-2 bg-[var(--surface)] border-b border-[var(--border)] text-sm overflow-x-auto">
                 {getBreadcrumbs().map((crumb, i) => (
-                    <React.Fragment key={i}>
+                    <React.Fragment key={crumb.path || 'home'}>
                         {i > 0 && <ChevronRight size={14} className="text-[var(--text-light)]" />}
                         <button
                             onClick={() => loadDirectory(crumb.path)}

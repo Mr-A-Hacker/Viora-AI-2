@@ -25,7 +25,7 @@ CAPTURES_DIR = os.environ.get("CAPTURES_DIR", "captures")
 # Chat LLM (Qwen)
 CHAT_REPO_ID = os.environ.get("CHAT_REPO_ID", "Qwen/Qwen3-0.6B-GGUF")
 CHAT_FILENAME = os.environ.get("CHAT_FILENAME", "Qwen3-0.6B-Q8_0.gguf")
-CHAT_MODEL_PATH = os.path.join(LOCAL_DIR, CHAT_FILENAME)
+CHAT_MODEL_PATH = os.path.join(LOCAL_DIR, "qwen", CHAT_FILENAME)
 
 # Tool LLM (Function Gemma)
 TOOL_REPO_ID = os.environ.get("TOOL_REPO_ID", "nlouis/functiongemma-pocket-q4_k_m")
@@ -39,7 +39,7 @@ LOG_FILE = os.environ.get("LOG_FILE", "")
 # Speech-to-text options
 USE_WHISPER = os.environ.get("USE_WHISPER", "true").lower() == "true"
 USE_VOSK = os.environ.get("USE_VOSK", "false").lower() == "true"
-VOSK_MODEL = os.environ.get("VOSK_MODEL", os.path.join(LOCAL_DIR, "vosk/vosk-model-small-en-us-0.15"))
+VOSK_MODEL = os.environ.get("VOSK_MODEL", os.path.join(LOCAL_DIR, "vosk-model-small-en-us-0.15"))
 
 # Text-to-speech
 PIPER_MODEL = os.environ.get("PIPER_MODEL", "en_US-lessac-medium.onnx")

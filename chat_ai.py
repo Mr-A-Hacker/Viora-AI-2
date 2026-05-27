@@ -19,6 +19,7 @@ from pydantic import BaseModel
 from stt_whisper import STTEngine as WhisperEngine
 from stt_vosk import STTEngine as VoskEngine
 from tts_piper import PocketAudio, split_sentences
+from knowledge import search_knowledge, format_knowledge_for_prompt
 
 logger = logging.getLogger(__name__)
 
@@ -204,10 +205,13 @@ class AIState:
     async def generate_response(self, messages, thinking=True):
         # Prepare messages (skip hidden tool-call entries so the model only sees user/result text)
         llm_messages = []
+        last_user_query = None
         for m in messages:
             if m.get("hidden"):
                 continue
             content = m["content"]
+            if m["role"] == "user":
+                last_user_query = content
             # Append mode flag
             if thinking:
                 if " /no_think" in content: content = content.replace(" /no_think", " /think")
@@ -216,6 +220,12 @@ class AIState:
                 if " /think" in content: content = content.replace(" /think", " /no_think")
                 elif " /no_think" not in content: content += " /no_think"
             llm_messages.append({"role": m["role"], "content": content})
+
+        knowledge_hits = search_knowledge(last_user_query or "") if last_user_query else []
+        if knowledge_hits:
+            knowledge_text = format_knowledge_for_prompt(knowledge_hits)
+            system_msg = {"role": "system", "content": f"Here is relevant information from a knowledge base:\n{knowledge_text}"}
+            llm_messages.insert(0, system_msg)
 
         if not any(m["role"] == "system" for m in llm_messages):
             llm_messages.insert(0, {"role": "system", "content": "You are a helpful assistant."})
@@ -425,7 +435,7 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
             while True:
                 data = await websocket.receive_json()
                 await message_queue.put(data)
-        except:
+        except Exception:
             pass
 
     receive_task = asyncio.create_task(receive_messages())
@@ -525,7 +535,7 @@ async def voice_websocket(websocket: WebSocket):
             while True:
                 data = await websocket.receive_json()
                 await message_queue.put(data)
-        except:
+        except Exception:
             pass
 
     receive_task = asyncio.create_task(receive_messages())
@@ -543,7 +553,7 @@ async def voice_websocket(websocket: WebSocket):
                     async def vosk_callback(text):
                         try:
                             await websocket.send_json({"type": "vosk_partial", "text": text})
-                        except: pass
+                        except Exception: pass
                     ai.vosk.start_listening(callback=lambda t: asyncio.run_coroutine_threadsafe(vosk_callback(t), loop))
                     await websocket.send_json({"type": "voice_status", "status": "listening"})
 
@@ -569,7 +579,12 @@ async def voice_websocket(websocket: WebSocket):
                     logger.debug("Starting Whisper Capture...")
                     abort_event.clear()
                     ai.is_recording = True
-                    ai.stt.start_capture()
+                    ok = ai.stt.start_capture()
+                    if not ok:
+                        ai.is_recording = False
+                        await websocket.send_json({"type": "voice_error", "error": "No microphone found on server"})
+                        await websocket.send_json({"type": "voice_status", "status": "idle"})
+                        continue
                     await websocket.send_json({"type": "voice_status", "status": "listening"})
                 else:
                     ai.is_recording = False
@@ -586,6 +601,65 @@ async def voice_websocket(websocket: WebSocket):
                             await ai.ai_response_and_speak(websocket, text, abort_event, message_queue)
                     else:
                         await websocket.send_json({"type": "voice_status", "status": "idle"})
+
+            elif command == "send":
+                abort_event.clear()
+                user_text = data.get("message", "")
+                conv_id = data.get("conv_id", "")
+                if not user_text or not conv_id:
+                    continue
+                conv = ai.conv_manager.get_conversation(conv_id)
+                if not conv:
+                    await websocket.send_json({"type": "error", "message": "Conversation not found"})
+                    continue
+                conv["messages"].append({"role": "user", "content": user_text, "timestamp": time.time()})
+                if len(conv["messages"]) == 1:
+                    conv["title"] = user_text[:30] + ("..." if len(user_text) > 30 else "")
+                ai.conv_manager.update_conversation(conv_id, conv["messages"])
+                try:
+                    route = _get_route(user_text)
+                    await websocket.send_json({"type": "stream_start"})
+                    if route == "function_gemma":
+                        loop = asyncio.get_event_loop()
+                        tool_call_raw, tool_result = await loop.run_in_executor(None, _run_tool_ai_subprocess, user_text)
+                        display_reply = str(tool_result) if tool_result is not None else "No tool call produced."
+                        if not abort_event.is_set():
+                            await websocket.send_json({"type": "stream_delta", "text": display_reply})
+                            await websocket.send_json({"type": "stream_final", "text": display_reply})
+                            if tool_call_raw:
+                                conv["messages"].append({"role": "assistant", "content": tool_call_raw, "timestamp": time.time(), "hidden": True})
+                            conv["messages"].append({"role": "assistant", "content": display_reply, "timestamp": time.time()})
+                            ai.conv_manager.update_conversation(conv_id, conv["messages"])
+                    else:
+                        thinking_mode = route == "qwen_thinking"
+                        full_reply = ""
+                        response = await ai.generate_response(conv["messages"], thinking=thinking_mode)
+                        for chunk in response:
+                            while not message_queue.empty():
+                                msg = await message_queue.get()
+                                if msg.get("type") == "abort":
+                                    abort_event.set()
+                            if abort_event.is_set():
+                                await websocket.send_json({"type": "stream_aborted"})
+                                break
+                            delta = chunk['choices'][0]['delta']
+                            if 'content' in delta:
+                                content = delta['content']
+                                full_reply += content
+                                display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
+                                await websocket.send_json({"type": "stream_delta", "text": display_text})
+                            await asyncio.sleep(0.01)
+                        if not abort_event.is_set():
+                            display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
+                            await websocket.send_json({"type": "stream_final", "text": display_text})
+                            conv["messages"].append({"role": "assistant", "content": full_reply, "timestamp": time.time()})
+                            ai.conv_manager.update_conversation(conv_id, conv["messages"])
+                except Exception as e:
+                    logger.exception("Voice send error: %s", e)
+                    try:
+                        await websocket.send_json({"type": "stream_error", "error": str(e)})
+                    except Exception:
+                        pass
 
             elif command == "abort":
                 logger.info("Global Abort Requested")

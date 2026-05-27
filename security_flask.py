@@ -5,10 +5,10 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECURITY_SECRET", "secret123")
+app.config['SECRET_KEY'] = os.environ.get("SECURITY_SECRET", "secret123")  # WARNING: Change default in production!
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin123")
+SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin123")  # WARNING: Change default in production!
 ALARM_COUNTDOWN_SECONDS = 10
 alarm_triggered = False
 alarm_countdown = None

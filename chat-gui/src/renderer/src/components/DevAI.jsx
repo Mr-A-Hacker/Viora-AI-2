@@ -329,10 +329,19 @@ export default function DevAI() {
     inputRef.current?.focus();
   };
 
+  const escapeHtml = (str) => {
+    return str
+      .replace(/&/g, '&amp;')
+      .replace(/</g, '&lt;')
+      .replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;')
+      .replace(/'/g, '&#x27;');
+  };
+
   const formatOutput = (text) => {
     if (!text) return '';
     return text.split('\n').map((line, i) => {
-      const formatted = line
+      const formatted = escapeHtml(line)
         .replace(/✅/g, '<span class="text-green-400">✅</span>')
         .replace(/❌/g, '<span class="text-red-400">❌</span>')
         .replace(/📄/g, '<span class="text-blue-400">📄</span>')
@@ -354,18 +363,18 @@ export default function DevAI() {
         .replace(/📌/g, '<span class="text-blue-400">📌</span>')
         .replace(/<!--/g, '<span class="text-gray-500">&lt;!--</span>')
         .replace(/-->/g, '<span class="text-gray-500">--&gt;</span>');
-      return <span key={i} className="block whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: formatted }} />;
+      return <span key={`output-${i}`} className="block whitespace-pre-wrap" dangerouslySetInnerHTML={{ __html: formatted }} />;
     });
   };
 
   const formatThinking = (thinking) => {
     if (!thinking) return '';
     return thinking.split('\n').map((line, i) => {
-      const formatted = line
+      const formatted = escapeHtml(line)
         .replace(/^[\s]*\*\*?(.*?)\*\*?:?/g, '<span class="text-purple-400 font-semibold">$1:</span>')
         .replace(/`([^`]+)`/g, '<span class="text-green-400 bg-black/30 px-1 rounded">$1</span>')
         .replace(/\*\*([^*]+)\*\*/g, '<span class="font-bold text-white">$1</span>');
-      return <span key={i} className="block" dangerouslySetInnerHTML={{ __html: formatted || '&nbsp;' }} />;
+      return <span key={`think-${i}`} className="block" dangerouslySetInnerHTML={{ __html: formatted || '&nbsp;' }} />;
     });
   };
 
@@ -602,7 +611,7 @@ export default function DevAI() {
             <div className="flex flex-wrap justify-center gap-2 max-w-xs">
               {['fix this bug', 'explain this code', 'write a function', 'debug error'].map((hint, i) => (
                 <button
-                  key={i}
+                  key={hint}
                   onClick={() => send(hint)}
                   className="px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105"
                   style={{ background: 'var(--surface)', color: 'var(--text)', border: '1px solid var(--border)' }}
@@ -617,7 +626,7 @@ export default function DevAI() {
         <AnimatePresence>
           {messages.map((msg, i) => (
             <motion.div
-              key={i}
+              key={`msg-${msg.role}-${i}`}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               className={`flex flex-col ${msg.role === 'user' ? 'items-end' : 'items-start'}`}
@@ -942,7 +951,7 @@ export default function DevAI() {
                 <div className="divide-y" style={{ borderColor: 'var(--border)' }}>
                   {commandHistory.map((cmd, i) => (
                     <button
-                      key={i}
+                      key={`${cmd}-${i}`}
                       onClick={() => { setInput(cmd); setShowHistory(false); inputRef.current?.focus(); }}
                       className="w-full text-left px-4 py-2.5 hover:bg-[var(--bg)] transition-colors"
                     >

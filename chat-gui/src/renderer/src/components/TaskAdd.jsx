@@ -58,12 +58,24 @@ export default function TaskAdd() {
     const { keyboardEnabled, focusState, setFocusState, focusedElementRef, syncInputValueRef } = useKeyboardSettings();
     const showInlineKeyboard = keyboardEnabled && !!focusState;
 
+    const scrollTimerRef = useRef(null);
+
+    useEffect(() => {
+        return () => {
+            if (scrollTimerRef.current) {
+                clearTimeout(scrollTimerRef.current);
+            }
+        };
+    }, []);
+
     const scrollFocusedIntoView = useCallback((el) => {
         if (!el) return;
-        const timer = setTimeout(() => {
+        if (scrollTimerRef.current) {
+            clearTimeout(scrollTimerRef.current);
+        }
+        scrollTimerRef.current = setTimeout(() => {
             el.scrollIntoView({ behavior: 'smooth', block: 'center' });
         }, 150);
-        return () => clearTimeout(timer);
     }, []);
 
     const bindKeyboardSync = (setState) => ({

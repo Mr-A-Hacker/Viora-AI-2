@@ -95,7 +95,7 @@ export default function MessageList({ messages, streaming, streamText }) {
             )}
 
             {messages.map((msg, i) => (
-                <MessageBubble key={i} role={msg.role} text={msg.text} />
+                <MessageBubble key={`${msg.role}-${i}`} role={msg.role} text={msg.text} />
             ))}
 
             {streaming && streamText && (

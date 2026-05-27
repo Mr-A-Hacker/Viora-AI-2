@@ -1,6 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Power, Keyboard, Moon, Sun, Volume2 } from 'lucide-react';
+import { ArrowLeft, Power, Keyboard, Moon, Sun, Volume2, BookOpen, RefreshCw, CheckCircle, AlertCircle, Bell } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config.js';
 import { useKeyboardSettings } from '../contexts/KeyboardContext.jsx';
@@ -12,6 +12,64 @@ export default function Settings() {
     const { keyboardEnabled, setKeyboardEnabled } = useKeyboardSettings();
     const { isDark, toggleDark } = useDarkMode();
     const { ttsEnabled, setTtsEnabled } = useWebSocket();
+    const [knowledgeStatus, setKnowledgeStatus] = useState('idle');
+    const [knowledgeProgress, setKnowledgeProgress] = useState({ current: 0, total: 1000 });
+    const [updateCheck, setUpdateCheck] = useState(null); // null | 'checking' | 'up_to_date' | 'update_available'
+    const pollingRef = useRef(false);
+
+    const pollUntilDone = async () => {
+        if (pollingRef.current) return;
+        pollingRef.current = true;
+        try {
+            let done = false;
+            while (!done) {
+                await new Promise(resolve => setTimeout(resolve, 2000));
+                const resp = await fetch(`${API_BASE_URL}/knowledge`);
+                if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+                const status = await resp.json();
+                setKnowledgeProgress({ current: status.progress || status.entry_count || 0, total: 1000 });
+                if (!status.updating) {
+                    setKnowledgeStatus(status.entry_count > 0 ? 'success' : 'error');
+                    done = true;
+                    // Re-check update status after completion
+                    try {
+                        const checkResp = await fetch(`${API_BASE_URL}/knowledge/check`);
+                        if (checkResp.ok) setUpdateCheck((await checkResp.json()).status);
+                    } catch {}
+                }
+            }
+        } catch (e) {
+            console.error('Polling failed:', e);
+            setKnowledgeStatus('error');
+        }
+        pollingRef.current = false;
+    };
+
+    useEffect(() => {
+        (async () => {
+            try {
+                const resp = await fetch(`${API_BASE_URL}/knowledge`);
+                if (resp.ok) {
+                    const data = await resp.json();
+                    if (data.updating) {
+                        setKnowledgeStatus('loading');
+                        pollUntilDone();
+                    } else if (data.entry_count > 0) {
+                        setKnowledgeStatus('success');
+                        setKnowledgeProgress({ current: data.entry_count, total: data.entry_count });
+                    }
+                }
+            } catch {}
+            setUpdateCheck('checking');
+            try {
+                const resp = await fetch(`${API_BASE_URL}/knowledge/check`);
+                if (resp.ok) setUpdateCheck((await resp.json()).status);
+                else setUpdateCheck('up_to_date');
+            } catch {
+                setUpdateCheck('up_to_date');
+            }
+        })().catch(() => {});
+    }, []);
 
     const handleCloseApp = async () => {
         try {
@@ -23,8 +81,20 @@ export default function Settings() {
         if (window.electron && window.electron.quit) {
             window.electron.quit();
         } else {
-            console.log('Close button clicked (Electron API not available)');
             window.close();
+        }
+    };
+
+    const handleKnowledgeUpdate = async () => {
+        setKnowledgeStatus('loading');
+        setKnowledgeProgress({ current: 0, total: 1000 });
+        try {
+            const resp = await fetch(`${API_BASE_URL}/knowledge/update`, { method: 'POST' });
+            if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+            await pollUntilDone();
+        } catch (e) {
+            console.error('Knowledge update failed:', e);
+            setKnowledgeStatus('error');
         }
     };
 
@@ -117,6 +187,50 @@ export default function Settings() {
                         <Power size={20} />
                         <span>Shutdown</span>
                     </button>
+
+                    <button
+                        onClick={handleKnowledgeUpdate}
+                        className="knowledge-btn"
+                        disabled={knowledgeStatus === 'loading'}
+                    >
+                        {knowledgeStatus === 'loading' ? (
+                            <RefreshCw size={20} className="spin-icon" />
+                        ) : knowledgeStatus === 'success' ? (
+                            <CheckCircle size={20} />
+                        ) : knowledgeStatus === 'error' ? (
+                            <AlertCircle size={20} />
+                        ) : (
+                            <BookOpen size={20} />
+                        )}
+                        <span>
+                            {knowledgeStatus === 'loading'
+                                ? `Upgrading... ${knowledgeProgress.current}/${knowledgeProgress.total}`
+                                : knowledgeStatus === 'success'
+                                    ? `Knowledge Upgraded (${knowledgeProgress.total} topics)`
+                                    : knowledgeStatus === 'error'
+                                        ? 'Upgrade Failed'
+                                        : 'Upgrade Knowledge'}
+                        </span>
+                    </button>
+
+                    {updateCheck === 'update_available' && (
+                        <div className="update-badge">
+                            <Bell size={14} />
+                            <span>New content available — upgrade above</span>
+                        </div>
+                    )}
+                    {updateCheck === 'up_to_date' && (
+                        <div className="update-badge up-to-date">
+                            <CheckCircle size={14} />
+                            <span>Knowledge is up to date</span>
+                        </div>
+                    )}
+                    {updateCheck === 'checking' && (
+                        <div className="update-badge checking">
+                            <RefreshCw size={14} className="spin-icon" />
+                            <span>Checking for updates...</span>
+                        </div>
+                    )}
                 </div>
 
                 <div className="settings-version">

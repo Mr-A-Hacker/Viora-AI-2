@@ -6,6 +6,9 @@ import { exec } from 'child_process' // Added for running Organic Maps
 // when the UI updates (e.g. after deleting a task). These come from content/browser and are harmless.
 // To reduce stderr noise you can run with: ELECTRON_DISABLE_GPU=1 (may affect performance).
 
+// Disable GPU hardware acceleration (needed in headless/VM environments)
+app.commandLine.appendSwitch('disable-gpu')
+
 // Enable touch events so finger scroll works on touchscreens (e.g. 4.3" display)
 app.commandLine.appendSwitch('enable-touch-events')
 

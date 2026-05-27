@@ -14,7 +14,7 @@ class DefuseRequest(BaseModel):
 
 def play_alarm_sound():
     try:
-        sound_file = "/home/admin/Mr-A-Hacker-pocket-Ai-version-2/static/sounds/alarm.mp3"
+        sound_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "sounds", "alarm.mp3")
         if os.path.exists(sound_file):
             subprocess.Popen(["mpg123", sound_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         else:

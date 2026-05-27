@@ -5,6 +5,7 @@ import __cjs_mod__ from "node:module";
 const __filename = import.meta.filename;
 const __dirname = import.meta.dirname;
 const require2 = __cjs_mod__.createRequire(import.meta.url);
+app.commandLine.appendSwitch("disable-gpu");
 app.commandLine.appendSwitch("enable-touch-events");
 app.commandLine.appendSwitch("enable-webview-tag");
 function createWindow() {

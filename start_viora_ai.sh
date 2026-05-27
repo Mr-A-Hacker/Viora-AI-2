@@ -1,6 +1,6 @@
 #!/bin/bash
 
-PROJECT_DIR="/home/admin/Mr-A-Hacker-pocket-Ai-version-2"
+PROJECT_DIR="$(cd "$(dirname "$0")" && pwd)"
 
 # Activate venv
 source "$PROJECT_DIR/.venv/bin/activate"

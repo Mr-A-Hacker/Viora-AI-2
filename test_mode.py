@@ -31,7 +31,7 @@ def simulate_motion():
         response = requests.get(url)
         data = response.json()
         print(f"   Detection active: {data.get('detection_active', False)}")
-    except:
+    except Exception:
         pass
 
 if __name__ == "__main__":

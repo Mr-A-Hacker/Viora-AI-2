@@ -569,6 +569,12 @@ html.dark .response-bubble {
   max-width: 400px;
   grid-template-columns: repeat(3, 1fr);
   animation: fadeUp .4s ease both .2s;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.menu-grid::-webkit-scrollbar {
+  display: none;
 }
 
 .menu-btn {
@@ -1061,6 +1067,68 @@ html.dark .settings-card {
 
 .shutdown-btn:active {
   transform: scale(.98);
+}
+
+.knowledge-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: none;
+  background: var(--accent);
+  color: white;
+  font-weight: 600;
+  font-size: .875rem;
+  cursor: pointer;
+  transition: all .2s;
+  margin-top: 8px;
+}
+
+.knowledge-btn:hover:not(:disabled) {
+  filter: brightness(1.15);
+}
+
+.knowledge-btn:active:not(:disabled) {
+  transform: scale(.98);
+}
+
+.knowledge-btn:disabled {
+  opacity: .7;
+  cursor: not-allowed;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.spin-icon {
+  animation: spin 1s linear infinite;
+}
+
+.update-badge {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 12px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  font-size: .8rem;
+  background: rgba(234, 179, 8, .12);
+  color: #eab308;
+}
+
+.update-badge.up-to-date {
+  background: rgba(34, 197, 94, .12);
+  color: #22c55e;
+}
+
+.update-badge.checking {
+  background: rgba(99, 102, 241, .12);
+  color: var(--accent);
 }
 
 .settings-version {

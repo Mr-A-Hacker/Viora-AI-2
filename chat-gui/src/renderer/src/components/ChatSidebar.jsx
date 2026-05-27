@@ -41,8 +41,8 @@ export default function ChatSidebar({ isOpen, onClose }) {
 
     const saveRename = async (e, id) => {
         e.stopPropagation();
-        if (editTitle.strip()) {
-            await renameConversation(id, editTitle.strip());
+        if (editTitle.trim()) {
+            await renameConversation(id, editTitle.trim());
         }
         setEditingId(null);
         setEditTitle('');

@@ -71,7 +71,7 @@ def get_ram_usage(model_name):
                     # 'size' is usually bytes in VRAM/RAM
                     model_mem_gb = m.get('size', 0) / (1024 ** 3)
                     break
-    except:
+    except Exception:
         pass
 
     return system_used_gb, model_mem_gb
@@ -127,7 +127,7 @@ def run_benchmark(model_name, prompt, think=False):
                 # Parse Chunk
                 try:
                     chunk = json.loads(line.decode('utf-8'))
-                except:
+                except Exception:
                     continue
                 
                 # Accumulate response text

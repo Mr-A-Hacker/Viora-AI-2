@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Optional
 
 import requests
-from flask import Flask
+from flask import Flask, jsonify, request
 from flask_socketio import SocketIO
 
 PROJECT_ROOT = Path(__file__).resolve().parent
@@ -136,7 +136,7 @@ def get_surveillance_status():
             timeout=5
         )
         return response.json() if response.status_code == 200 else {}
-    except:
+    except Exception:
         return {}
 
 
@@ -281,9 +281,6 @@ def api_start_surveillance():
 def api_stop_surveillance():
     """Stop the surveillance system."""
     return jsonify(stop_surveillance())
-
-
-from flask import jsonify, request
 
 
 def connect_to_surveillance():

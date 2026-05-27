@@ -22680,7 +22680,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$17 = [
+const __iconNode$19 = [
   [
     "path",
     {
@@ -22689,14 +22689,14 @@ const __iconNode$17 = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$17);
+const Activity = createLucideIcon("activity", __iconNode$19);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$16 = [
+const __iconNode$18 = [
   ["circle", { cx: "12", cy: "13", r: "8", key: "3y4lt7" }],
   ["path", { d: "M12 9v4l2 2", key: "1c63tq" }],
   ["path", { d: "M5 3 2 6", key: "18tl5t" }],
@@ -22704,7 +22704,29 @@ const __iconNode$16 = [
   ["path", { d: "M6.38 18.7 4 21", key: "17xu3x" }],
   ["path", { d: "M17.64 18.67 20 21", key: "kv2oe2" }]
 ];
-const AlarmClock = createLucideIcon("alarm-clock", __iconNode$16);
+const AlarmClock = createLucideIcon("alarm-clock", __iconNode$18);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$17 = [
+  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
+  ["path", { d: "M19 12H5", key: "x3x0zl" }]
+];
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$17);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$16 = [
+  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
+  ["path", { d: "M12 19V5", key: "x0mq9r" }]
+];
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$16);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22712,10 +22734,11 @@ const AlarmClock = createLucideIcon("alarm-clock", __iconNode$16);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$15 = [
-  ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
-  ["path", { d: "M19 12H5", key: "x3x0zl" }]
+  ["path", { d: "M4.5 3h15", key: "c7n0jr" }],
+  ["path", { d: "M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3", key: "m1uhx7" }],
+  ["path", { d: "M6 14h12", key: "4cwo0f" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$15);
+const Beaker = createLucideIcon("beaker", __iconNode$15);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22723,10 +22746,16 @@ const ArrowLeft = createLucideIcon("arrow-left", __iconNode$15);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$14 = [
-  ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
-  ["path", { d: "M12 19V5", key: "x0mq9r" }]
+  ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
+  [
+    "path",
+    {
+      d: "M3.262 15.326A1 1 0 0 0 4 17h16a1 1 0 0 0 .74-1.673C19.41 13.956 18 12.499 18 8A6 6 0 0 0 6 8c0 4.499-1.411 5.956-2.738 7.326",
+      key: "11g9vi"
+    }
+  ]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$14);
+const Bell = createLucideIcon("bell", __iconNode$14);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22734,18 +22763,6 @@ const ArrowUp = createLucideIcon("arrow-up", __iconNode$14);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$13 = [
-  ["path", { d: "M4.5 3h15", key: "c7n0jr" }],
-  ["path", { d: "M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3", key: "m1uhx7" }],
-  ["path", { d: "M6 14h12", key: "4cwo0f" }]
-];
-const Beaker = createLucideIcon("beaker", __iconNode$13);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$12 = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -22755,14 +22772,14 @@ const __iconNode$12 = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$12);
+const BookOpen = createLucideIcon("book-open", __iconNode$13);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$11 = [
+const __iconNode$12 = [
   ["path", { d: "M12 8V4H8", key: "hb8ula" }],
   ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
   ["path", { d: "M2 14h2", key: "vft8re" }],
@@ -22770,14 +22787,14 @@ const __iconNode$11 = [
   ["path", { d: "M15 13v2", key: "1xurst" }],
   ["path", { d: "M9 13v2", key: "rq6x2g" }]
 ];
-const Bot = createLucideIcon("bot", __iconNode$11);
+const Bot = createLucideIcon("bot", __iconNode$12);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$10 = [
+const __iconNode$11 = [
   ["path", { d: "M12 18V5", key: "adv99a" }],
   ["path", { d: "M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4", key: "1e3is1" }],
   ["path", { d: "M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5", key: "1gqd8o" }],
@@ -22787,14 +22804,14 @@ const __iconNode$10 = [
   ["path", { d: "M6 18a4 4 0 0 1-2-7.464", key: "k1g0md" }],
   ["path", { d: "M6.003 5.125a4 4 0 0 0-2.526 5.77", key: "q97ue3" }]
 ];
-const Brain = createLucideIcon("brain", __iconNode$10);
+const Brain = createLucideIcon("brain", __iconNode$11);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$$ = [
+const __iconNode$10 = [
   ["path", { d: "M12 20v-9", key: "1qisl0" }],
   ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z", key: "uouzyp" }],
   ["path", { d: "M14.12 3.88 16 2", key: "qol33r" }],
@@ -22807,14 +22824,14 @@ const __iconNode$$ = [
   ["path", { d: "m8 2 1.88 1.88", key: "fmnt4t" }],
   ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13", key: "1vgav8" }]
 ];
-const Bug = createLucideIcon("bug", __iconNode$$);
+const Bug = createLucideIcon("bug", __iconNode$10);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$_ = [
+const __iconNode$$ = [
   [
     "path",
     {
@@ -22824,39 +22841,51 @@ const __iconNode$_ = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("camera", __iconNode$_);
+const Camera = createLucideIcon("camera", __iconNode$$);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Z = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$Z);
+const __iconNode$_ = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$_);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Y = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$Y);
+const __iconNode$Z = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$Z);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$X = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$X);
+const __iconNode$Y = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$Y);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$W = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$W);
+const __iconNode$X = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
+const ChevronUp = createLucideIcon("chevron-up", __iconNode$X);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$W = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$W);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22864,11 +22893,10 @@ const ChevronUp = createLucideIcon("chevron-up", __iconNode$W);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$V = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$V);
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$V);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -24540,9 +24568,6 @@ function Home() {
   const [newBill, setNewBill] = reactExports.useState({ name: "", amount: "", due_date: "", category: "Other" });
   const [newSavingsGoal, setNewSavingsGoal] = reactExports.useState({ name: "", target: "", icon: "💰" });
   const [activeTab, setActiveTab] = reactExports.useState("accounts");
-  const [showAddMoneyModal, setShowAddMoneyModal] = reactExports.useState(false);
-  const [quickAmount, setQuickAmount] = reactExports.useState("");
-  const [quickDesc, setQuickDesc] = reactExports.useState("");
   const fetchSecurityStatus = async () => {
     try {
       const resp = await fetch("http://localhost:8000/security/status");
@@ -24642,28 +24667,6 @@ function Home() {
   const handleBankingClick = () => {
     setShowBankingModal(true);
     fetchBankAccounts();
-  };
-  const handleQuickAddMoney = async () => {
-    if (!quickAmount || !quickDesc) return;
-    try {
-      await fetch("http://localhost:8000/banking/transaction", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          amount: parseFloat(quickAmount),
-          description: quickDesc,
-          type: "credit",
-          account: "My Checking",
-          category: "Income"
-        })
-      });
-      setQuickAmount("");
-      setQuickDesc("");
-      setShowAddMoneyModal(false);
-      fetchBankAccounts();
-    } catch (err) {
-      console.error("Failed to add money:", err);
-    }
   };
   const addOwing = async (e) => {
     e.preventDefault();
@@ -24806,10 +24809,13 @@ function Home() {
       if (city) {
         url += `?city=${encodeURIComponent(city)}`;
       } else if (navigator.geolocation) {
-        const pos = await new Promise((resolve, reject) => {
-          navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5e3 });
-        });
-        url += `?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+        try {
+          const pos = await new Promise((resolve, reject) => {
+            navigator.geolocation.getCurrentPosition(resolve, reject, { timeout: 5e3 });
+          });
+          url += `?lat=${pos.coords.latitude}&lon=${pos.coords.longitude}`;
+        } catch {
+        }
       }
       const resp = await fetch(url);
       const data = await resp.json();
@@ -24842,35 +24848,37 @@ function Home() {
     fetchWeather();
   };
   const pressTimer = reactExports.useRef(null);
-  const [isHoldMode, setIsHoldMode] = reactExports.useState(false);
+  const isHoldMode = reactExports.useRef(false);
+  reactExports.useEffect(() => {
+    return () => {
+      if (pressTimer.current) {
+        clearTimeout(pressTimer.current);
+      }
+    };
+  }, []);
   const handleMouseDown = () => {
-    console.log("[Voice] Mouse down, starting timer...");
-    setIsHoldMode(false);
+    isHoldMode.current = false;
     pressTimer.current = setTimeout(() => {
-      console.log("[Voice] Long press detected, starting Vosk...");
-      setIsHoldMode(true);
+      isHoldMode.current = true;
       startVosk();
     }, 400);
   };
   const handleMouseUp = () => {
-    console.log("[Voice] Mouse up, isHoldMode:", isHoldMode);
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
       pressTimer.current = null;
     }
-    if (isHoldMode) {
-      console.log("[Voice] Stopping Vosk...");
+    if (isHoldMode.current) {
       stopVosk();
-      setIsHoldMode(false);
+      isHoldMode.current = false;
     } else {
-      console.log("[Voice] Toggle voice (short press)...");
       toggleVoice();
     }
   };
   const handleMouseLeave = () => {
-    if (isHoldMode) {
+    if (isHoldMode.current) {
       stopVosk();
-      setIsHoldMode(false);
+      isHoldMode.current = false;
     }
     if (pressTimer.current) {
       clearTimeout(pressTimer.current);
@@ -24935,7 +24943,7 @@ function Home() {
                     fontSize: "clamp(1.1rem, 4vw, 1.5rem)",
                     letterSpacing: "-.02em"
                   },
-                  children: "Add Money"
+                  children: "Viora AI"
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -25043,11 +25051,12 @@ function Home() {
         /* @__PURE__ */ jsxRuntimeExports.jsxs(
           "div",
           {
-            className: "grid gap-3 z-10 w-full max-w-[460px] px-4",
+            className: "menu-grid grid gap-3 z-10 w-full max-w-[460px] px-4",
             style: {
               gridTemplateColumns: "repeat(3, 1fr)",
-              gridTemplateRows: "repeat(2, 1fr)",
-              animation: "fadeUp .4s ease both .2s"
+              animation: "fadeUp .4s ease both .2s",
+              maxHeight: 360,
+              paddingBottom: 8
             },
             children: [
               /* @__PURE__ */ jsxRuntimeExports.jsx(MenuButton, { icon: MessageCircle, label: "CHAT", onClick: () => navigate("/chat"), color: AI_COLOR }),
@@ -25104,15 +25113,6 @@ function Home() {
                   label: "FILES",
                   onClick: () => navigate("/files"),
                   color: "#8b5cf6"
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                MenuButton,
-                {
-                  icon: Plus,
-                  label: "ADD MONEY",
-                  onClick: () => setShowAddMoneyModal(true),
-                  color: "#22c55e"
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -25252,7 +25252,8 @@ function Home() {
                       /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { children: [
                         "💨 ",
                         weatherData.wind_speed,
-                        " mph"
+                        " ",
+                        weatherData.unit === "°C" ? "km/h" : "mph"
                       ] })
                     ] })
                   ] })
@@ -25847,122 +25848,6 @@ function Home() {
                       ] })
                     ] })
                   ] })
-                ]
-              }
-            )
-          }
-        ) }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: showAddMoneyModal && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          motion.div,
-          {
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            exit: { opacity: 0 },
-            style: {
-              position: "fixed",
-              inset: 0,
-              background: "rgba(0,0,0,0.6)",
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-              zIndex: 100,
-              padding: 20
-            },
-            onClick: () => setShowAddMoneyModal(false),
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              motion.div,
-              {
-                initial: { scale: 0.9, y: 20 },
-                animate: { scale: 1, y: 0 },
-                exit: { scale: 0.9, y: 20 },
-                style: {
-                  background: "linear-gradient(180deg, #166534 0%, #14532d 100%)",
-                  borderRadius: 24,
-                  padding: 24,
-                  maxWidth: 360,
-                  width: "100%",
-                  border: "1.5px solid #22c55e",
-                  boxShadow: "0 20px 60px rgba(0,0,0,0.5)"
-                },
-                onClick: (e) => e.stopPropagation(),
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", justifyContent: "space-between", marginBottom: 20 }, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { style: { display: "flex", alignItems: "center", gap: 8 }, children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Plus, { size: 24, color: "#22c55e" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontSize: "1.25rem", fontWeight: 700, color: "#fff" }, children: "Add Money" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "button",
-                      {
-                        onClick: () => setShowAddMoneyModal(false),
-                        style: { background: "none", border: "none", cursor: "pointer", color: "#86efac", fontSize: "1.5rem" },
-                        children: "×"
-                      }
-                    )
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      type: "number",
-                      step: "0.01",
-                      value: quickAmount,
-                      onChange: (e) => setQuickAmount(e.target.value),
-                      placeholder: "Amount",
-                      autoFocus: true,
-                      style: {
-                        width: "100%",
-                        padding: "16px 20px",
-                        borderRadius: 14,
-                        border: "2px solid #22c55e",
-                        background: "rgba(255,255,255,0.1)",
-                        color: "#fff",
-                        fontSize: "1.5rem",
-                        fontWeight: 700,
-                        outline: "none",
-                        marginBottom: 16,
-                        textAlign: "center"
-                      }
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "input",
-                    {
-                      type: "text",
-                      value: quickDesc,
-                      onChange: (e) => setQuickDesc(e.target.value),
-                      placeholder: "Description (e.g. Paycheck, Gift)",
-                      style: {
-                        width: "100%",
-                        padding: "14px 16px",
-                        borderRadius: 14,
-                        border: "1px solid #4ade80",
-                        background: "rgba(255,255,255,0.1)",
-                        color: "#fff",
-                        fontSize: "1rem",
-                        outline: "none",
-                        marginBottom: 20
-                      }
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      onClick: handleQuickAddMoney,
-                      style: {
-                        width: "100%",
-                        padding: 16,
-                        borderRadius: 14,
-                        border: "none",
-                        background: "#22c55e",
-                        color: "#fff",
-                        fontSize: "1.1rem",
-                        fontWeight: 700,
-                        cursor: "pointer",
-                        boxShadow: "0 4px 12px rgba(34, 197, 94, 0.4)"
-                      },
-                      children: "Add to Account"
-                    }
-                  )
                 ]
               }
             )
@@ -38764,7 +38649,7 @@ function MessageList({ messages, streaming, streamText }) {
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xl font-['Syne'] font-semibold text-[var(--text)]", children: "Start a conversation" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-sm text-[var(--text-light)] font-['Plus_Jakarta_Sans']", children: "Ask me anything!" })
         ] }),
-        messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(MessageBubble, { role: msg.role, text: msg.text }, i)),
+        messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(MessageBubble, { role: msg.role, text: msg.text }, `${msg.role}-${i}`)),
         streaming && streamText && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start animate-message-in", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] bg-[var(--surface)] text-[var(--text)] rounded-2xl rounded-bl-md border border-[var(--border)] shadow-sm", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[11px] uppercase tracking-wider mb-2 opacity-70 text-[var(--ai-color)] font-semibold", children: "Viora AI" }),
           thoughtText && /* @__PURE__ */ jsxRuntimeExports.jsxs(ThoughtBlock, { children: [
@@ -38990,8 +38875,8 @@ function ChatSidebar({ isOpen, onClose }) {
   };
   const saveRename = async (e, id2) => {
     e.stopPropagation();
-    if (editTitle.strip()) {
-      await renameConversation(id2, editTitle.strip());
+    if (editTitle.trim()) {
+      await renameConversation(id2, editTitle.trim());
     }
     setEditingId(null);
     setEditTitle("");
@@ -39525,8 +39410,8 @@ function ChatInterface() {
 }
 const pendingStopTimeoutRef = { current: null };
 const STOP_DELAY_MS = 500;
-const STREAM_IMAGE_WIDTH = 480;
-const STREAM_IMAGE_HEIGHT = 800;
+const STREAM_IMAGE_WIDTH = 640;
+const STREAM_IMAGE_HEIGHT = 384;
 function CameraView() {
   const navigate = useNavigate();
   const [status, setStatus] = reactExports.useState("connecting");
@@ -39549,7 +39434,6 @@ function CameraView() {
     const sessionId = Math.random().toString(36).substring(7);
     const startCamera = async () => {
       try {
-        console.log(`Starting camera session: ${sessionId}`);
         const res = await fetch(startUrl, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
@@ -39561,7 +39445,6 @@ function CameraView() {
             pendingStopTimeoutRef.current = null;
           }
           setStatus("connected");
-          console.log("Camera started");
         } else {
           const err = await res.json().catch(() => ({}));
           console.error("Camera start failed:", err.message || res.status);
@@ -39573,11 +39456,9 @@ function CameraView() {
       }
     };
     const connectWebSocket = () => {
-      console.log("Connecting to WebSocket:", wsUrl);
       const ws = new WebSocket(wsUrl);
       wsRef.current = ws;
       ws.onopen = () => {
-        if (isMounted) console.log("WebSocket connected (detections)");
       };
       ws.onmessage = (event) => {
         try {
@@ -39594,11 +39475,11 @@ function CameraView() {
         if (isMounted) setStatus("error");
       };
       ws.onclose = () => {
-        console.log("WebSocket disconnected (detections may stop)");
       };
     };
     startCamera().then(() => {
       connectWebSocket();
+    }).catch(() => {
     });
     return () => {
       isMounted = false;
@@ -39691,7 +39572,6 @@ function CameraView() {
       });
       const data = await res.json();
       if (data.status === "success") {
-        console.log("Image captured:", data.filename);
       } else {
         console.error("Capture failed:", data.message);
       }
@@ -39716,10 +39596,10 @@ function CameraView() {
     if (cw < 10 || ch < 10) return null;
     return detections.map((det, index2) => {
       const [oxMin, oyMin, oxMax, oyMax] = det.bbox;
-      const sxMin = 1 - oyMax;
-      const syMin = oxMin;
-      const sxMax = 1 - oyMin;
-      const syMax = oxMax;
+      const sxMin = oxMin;
+      const syMin = oyMin;
+      const sxMax = oxMax;
+      const syMax = oyMax;
       const tl = imageNormToContainerNorm(sxMin, syMin);
       const br = imageNormToContainerNorm(sxMax, syMax);
       const left = Math.max(0, Math.min(1, tl.x));
@@ -39757,7 +39637,7 @@ function CameraView() {
             }
           )
         },
-        index2
+        `${det.label}-${index2}`
       );
     });
   };
@@ -39917,7 +39797,8 @@ function Gallery() {
   const [showChatModal, setShowChatModal] = reactExports.useState(false);
   const [chatPrompt, setChatPrompt] = reactExports.useState("");
   reactExports.useEffect(() => {
-    fetchImages();
+    fetchImages().catch(() => {
+    });
   }, []);
   const fetchImages = async () => {
     setError(null);
@@ -40185,6 +40066,64 @@ function Settings() {
   const { keyboardEnabled, setKeyboardEnabled } = useKeyboardSettings();
   const { isDark, toggleDark } = useDarkMode();
   const { ttsEnabled, setTtsEnabled } = useWebSocket();
+  const [knowledgeStatus, setKnowledgeStatus] = reactExports.useState("idle");
+  const [knowledgeProgress, setKnowledgeProgress] = reactExports.useState({ current: 0, total: 1e3 });
+  const [updateCheck, setUpdateCheck] = reactExports.useState(null);
+  const pollingRef = reactExports.useRef(false);
+  const pollUntilDone = async () => {
+    if (pollingRef.current) return;
+    pollingRef.current = true;
+    try {
+      let done = false;
+      while (!done) {
+        await new Promise((resolve) => setTimeout(resolve, 2e3));
+        const resp = await fetch(`${API_BASE_URL}/knowledge`);
+        if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+        const status = await resp.json();
+        setKnowledgeProgress({ current: status.progress || status.entry_count || 0, total: 1e3 });
+        if (!status.updating) {
+          setKnowledgeStatus(status.entry_count > 0 ? "success" : "error");
+          done = true;
+          try {
+            const checkResp = await fetch(`${API_BASE_URL}/knowledge/check`);
+            if (checkResp.ok) setUpdateCheck((await checkResp.json()).status);
+          } catch {
+          }
+        }
+      }
+    } catch (e) {
+      console.error("Polling failed:", e);
+      setKnowledgeStatus("error");
+    }
+    pollingRef.current = false;
+  };
+  reactExports.useEffect(() => {
+    (async () => {
+      try {
+        const resp = await fetch(`${API_BASE_URL}/knowledge`);
+        if (resp.ok) {
+          const data = await resp.json();
+          if (data.updating) {
+            setKnowledgeStatus("loading");
+            pollUntilDone();
+          } else if (data.entry_count > 0) {
+            setKnowledgeStatus("success");
+            setKnowledgeProgress({ current: data.entry_count, total: data.entry_count });
+          }
+        }
+      } catch {
+      }
+      setUpdateCheck("checking");
+      try {
+        const resp = await fetch(`${API_BASE_URL}/knowledge/check`);
+        if (resp.ok) setUpdateCheck((await resp.json()).status);
+        else setUpdateCheck("up_to_date");
+      } catch {
+        setUpdateCheck("up_to_date");
+      }
+    })().catch(() => {
+    });
+  }, []);
   const handleCloseApp = async () => {
     try {
       await fetch(`${API_BASE_URL}/shutdown`, { method: "POST" });
@@ -40194,8 +40133,19 @@ function Settings() {
     if (window.electron && window.electron.quit) {
       window.electron.quit();
     } else {
-      console.log("Close button clicked (Electron API not available)");
       window.close();
+    }
+  };
+  const handleKnowledgeUpdate = async () => {
+    setKnowledgeStatus("loading");
+    setKnowledgeProgress({ current: 0, total: 1e3 });
+    try {
+      const resp = await fetch(`${API_BASE_URL}/knowledge/update`, { method: "POST" });
+      if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
+      await pollUntilDone();
+    } catch (e) {
+      console.error("Knowledge update failed:", e);
+      setKnowledgeStatus("error");
     }
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -40287,7 +40237,31 @@ function Settings() {
                   /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Shutdown" })
                 ]
               }
-            )
+            ),
+            /* @__PURE__ */ jsxRuntimeExports.jsxs(
+              "button",
+              {
+                onClick: handleKnowledgeUpdate,
+                className: "knowledge-btn",
+                disabled: knowledgeStatus === "loading",
+                children: [
+                  knowledgeStatus === "loading" ? /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { size: 20, className: "spin-icon" }) : knowledgeStatus === "success" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { size: 20 }) : knowledgeStatus === "error" ? /* @__PURE__ */ jsxRuntimeExports.jsx(CircleAlert, { size: 20 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(BookOpen, { size: 20 }),
+                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: knowledgeStatus === "loading" ? `Upgrading... ${knowledgeProgress.current}/${knowledgeProgress.total}` : knowledgeStatus === "success" ? `Knowledge Upgraded (${knowledgeProgress.total} topics)` : knowledgeStatus === "error" ? "Upgrade Failed" : "Upgrade Knowledge" })
+                ]
+              }
+            ),
+            updateCheck === "update_available" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "update-badge", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(Bell, { size: 14 }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "New content available — upgrade above" })
+            ] }),
+            updateCheck === "up_to_date" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "update-badge up-to-date", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(CircleCheckBig, { size: 14 }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Knowledge is up to date" })
+            ] }),
+            updateCheck === "checking" && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "update-badge checking", children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsx(RefreshCw, { size: 14, className: "spin-icon" }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { children: "Checking for updates..." })
+            ] })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "settings-version", children: "Viora AI v1.0.0" })
         ] })
@@ -40624,7 +40598,7 @@ function Maps() {
                       onMouseLeave: (e) => e.currentTarget.style.background = "transparent",
                       children: r.display_name
                     },
-                    i
+                    `${r.display_name}-${i}`
                   )) }),
                   searchError && /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "#dc2626", fontSize: ".78rem", marginTop: 6, fontWeight: 500 }, children: searchError })
                 ]
@@ -41036,18 +41010,21 @@ function DevAI() {
     setInput(prompt2);
     inputRef.current?.focus();
   };
+  const escapeHtml = (str) => {
+    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
+  };
   const formatOutput = (text2) => {
     if (!text2) return "";
     return text2.split("\n").map((line, i) => {
-      const formatted = line.replace(/✅/g, '<span class="text-green-400">✅</span>').replace(/❌/g, '<span class="text-red-400">❌</span>').replace(/📄/g, '<span class="text-blue-400">📄</span>').replace(/📁/g, '<span class="text-yellow-400">📁</span>').replace(/📂/g, '<span class="text-purple-400">📂</span>').replace(/🔍/g, '<span class="text-cyan-400">🔍</span>').replace(/🌐/g, '<span class="text-blue-400">🌐</span>').replace(/🌳/g, '<span class="text-green-400">🌳</span>').replace(/🖥️/g, '<span class="text-gray-400">🖥️</span>').replace(/💻/g, '<span class="text-blue-400">💻</span>').replace(/🧠/g, '<span class="text-pink-400">🧠</span>').replace(/💾/g, '<span class="text-orange-400">💾</span>').replace(/⚡/g, '<span class="text-yellow-400">⚡</span>').replace(/📊/g, '<span class="text-indigo-400">📊</span>').replace(/🔒/g, '<span class="text-red-400">🔒</span>').replace(/🔧/g, '<span class="text-orange-400">🔧</span>').replace(/🐛/g, '<span class="text-red-400">🐛</span>').replace(/💡/g, '<span class="text-yellow-400">💡</span>').replace(/📌/g, '<span class="text-blue-400">📌</span>').replace(/<!--/g, '<span class="text-gray-500">&lt;!--</span>').replace(/-->/g, '<span class="text-gray-500">--&gt;</span>');
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block whitespace-pre-wrap", dangerouslySetInnerHTML: { __html: formatted } }, i);
+      const formatted = escapeHtml(line).replace(/✅/g, '<span class="text-green-400">✅</span>').replace(/❌/g, '<span class="text-red-400">❌</span>').replace(/📄/g, '<span class="text-blue-400">📄</span>').replace(/📁/g, '<span class="text-yellow-400">📁</span>').replace(/📂/g, '<span class="text-purple-400">📂</span>').replace(/🔍/g, '<span class="text-cyan-400">🔍</span>').replace(/🌐/g, '<span class="text-blue-400">🌐</span>').replace(/🌳/g, '<span class="text-green-400">🌳</span>').replace(/🖥️/g, '<span class="text-gray-400">🖥️</span>').replace(/💻/g, '<span class="text-blue-400">💻</span>').replace(/🧠/g, '<span class="text-pink-400">🧠</span>').replace(/💾/g, '<span class="text-orange-400">💾</span>').replace(/⚡/g, '<span class="text-yellow-400">⚡</span>').replace(/📊/g, '<span class="text-indigo-400">📊</span>').replace(/🔒/g, '<span class="text-red-400">🔒</span>').replace(/🔧/g, '<span class="text-orange-400">🔧</span>').replace(/🐛/g, '<span class="text-red-400">🐛</span>').replace(/💡/g, '<span class="text-yellow-400">💡</span>').replace(/📌/g, '<span class="text-blue-400">📌</span>').replace(/<!--/g, '<span class="text-gray-500">&lt;!--</span>').replace(/-->/g, '<span class="text-gray-500">--&gt;</span>');
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block whitespace-pre-wrap", dangerouslySetInnerHTML: { __html: formatted } }, `output-${i}`);
     });
   };
   const formatThinking = (thinking) => {
     if (!thinking) return "";
     return thinking.split("\n").map((line, i) => {
-      const formatted = line.replace(/^[\s]*\*\*?(.*?)\*\*?:?/g, '<span class="text-purple-400 font-semibold">$1:</span>').replace(/`([^`]+)`/g, '<span class="text-green-400 bg-black/30 px-1 rounded">$1</span>').replace(/\*\*([^*]+)\*\*/g, '<span class="font-bold text-white">$1</span>');
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block", dangerouslySetInnerHTML: { __html: formatted || "&nbsp;" } }, i);
+      const formatted = escapeHtml(line).replace(/^[\s]*\*\*?(.*?)\*\*?:?/g, '<span class="text-purple-400 font-semibold">$1:</span>').replace(/`([^`]+)`/g, '<span class="text-green-400 bg-black/30 px-1 rounded">$1</span>').replace(/\*\*([^*]+)\*\*/g, '<span class="font-bold text-white">$1</span>');
+      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block", dangerouslySetInnerHTML: { __html: formatted || "&nbsp;" } }, `think-${i}`);
     });
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -41314,7 +41291,7 @@ function DevAI() {
                 style: { background: "var(--surface)", color: "var(--text)", border: "1px solid var(--border)" },
                 children: hint
               },
-              i
+              hint
             )) })
           ] }),
           /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -41435,7 +41412,7 @@ function DevAI() {
                 )
               ] })
             },
-            i
+            `msg-${msg.role}-${i}`
           )) }),
           loading && /* @__PURE__ */ jsxRuntimeExports.jsx(
             motion.div,
@@ -41646,7 +41623,7 @@ function DevAI() {
                       className: "w-full text-left px-4 py-2.5 hover:bg-[var(--bg)] transition-colors",
                       children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { style: { color: "var(--text)", fontSize: ".8rem", fontFamily: "monospace" }, children: cmd })
                     },
-                    i
+                    `${cmd}-${i}`
                   )) }) })
                 ]
               }
@@ -41957,12 +41934,22 @@ function TaskAdd() {
   const { onFocus: onKeyboardFocus, onBlur: onKeyboardBlur } = useFocusableInput(false);
   const { keyboardEnabled, focusState, setFocusState, focusedElementRef, syncInputValueRef } = useKeyboardSettings();
   const showInlineKeyboard = keyboardEnabled && !!focusState;
+  const scrollTimerRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    return () => {
+      if (scrollTimerRef.current) {
+        clearTimeout(scrollTimerRef.current);
+      }
+    };
+  }, []);
   const scrollFocusedIntoView = reactExports.useCallback((el) => {
     if (!el) return;
-    const timer = setTimeout(() => {
+    if (scrollTimerRef.current) {
+      clearTimeout(scrollTimerRef.current);
+    }
+    scrollTimerRef.current = setTimeout(() => {
       el.scrollIntoView({ behavior: "smooth", block: "center" });
     }, 150);
-    return () => clearTimeout(timer);
   }, []);
   const bindKeyboardSync = (setState) => ({
     onFocus: (e) => {
@@ -42733,7 +42720,7 @@ function TerminalView() {
             "@",
             systemInfo.cwd
           ] }),
-          history2.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-1", children: item.type === "command" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#00ff88]", children: item.content }) : item.type === "error" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#ff6b6b] whitespace-pre-wrap", children: item.content }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#e0e0e0] whitespace-pre-wrap", children: item.content }) }, i)),
+          history2.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-1", children: item.type === "command" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#00ff88]", children: item.content }) : item.type === "error" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#ff6b6b] whitespace-pre-wrap", children: item.content }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#e0e0e0] whitespace-pre-wrap", children: item.content }) }, `${item.type}-${i}`)),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: bottomRef })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("form", { onSubmit: executeCommand, className: "p-4 bg-[#16213e] border-t border-[#0f3460]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
@@ -42792,7 +42779,8 @@ function FileManager() {
   const [renameItem, setRenameItem] = reactExports.useState(null);
   const [renameName, setRenameName] = reactExports.useState("");
   reactExports.useEffect(() => {
-    loadDirectory("");
+    loadDirectory("").catch(() => {
+    });
   }, []);
   const loadDirectory = async (path2) => {
     setLoading(true);
@@ -42905,7 +42893,7 @@ function FileManager() {
               children: crumb.name
             }
           )
-        ] }, i)) }),
+        ] }, crumb.path || "home")) }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 overflow-auto", children: loading ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center h-full", children: "Loading..." }) : items.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center h-full text-[var(--text-light)]", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx(Folder, { size: 48, className: "mb-2 opacity-50" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("p", { children: "Empty folder" })

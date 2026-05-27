@@ -19,7 +19,7 @@ export default function Gallery() {
     const [chatPrompt, setChatPrompt] = useState('');
 
     useEffect(() => {
-        fetchImages();
+        fetchImages().catch(() => {});
     }, []);
 
     const fetchImages = async () => {

@@ -1,10 +1,13 @@
 import collections
+import logging
 import queue
 import threading
 import numpy as np
 import pyaudio
 import time
 from faster_whisper import WhisperModel
+
+logger = logging.getLogger(__name__)
 
 # --- CONFIGURATION ---
 MODEL_SIZE = "tiny"         # Tiny is fastest for Pi 5
@@ -33,9 +36,9 @@ class STTEngine:
 
     def load_model(self):
         if self.model is None:
-            print(f"Loading Whisper model '{MODEL_SIZE}'...")
+            logger.info("Loading Whisper model '%s'...", MODEL_SIZE)
             self.model = WhisperModel(MODEL_SIZE, device=DEVICE, compute_type=COMPUTE_TYPE, cpu_threads=4)
-            print("Whisper model loaded.")
+            logger.info("Whisper model loaded.")
 
     def _mic_callback(self, in_data, frame_count, time_info, status):
         if self.listening:
@@ -63,7 +66,7 @@ class STTEngine:
         
         self.thread = threading.Thread(target=self._process_audio, daemon=True)
         self.thread.start()
-        print("STT Started Listening")
+        logger.info("STT Started Listening")
 
     def stop_listening(self):
         self.listening = False
@@ -72,7 +75,7 @@ class STTEngine:
             self.stream.close()
             self.stream = None
         # We don't join the thread immediately to avoid UI blocking, it will exit loop
-        print("STT Stopped Listening")
+        logger.info("STT Stopped Listening")
 
     def _process_audio(self):
         # Buffer to hold current "phrase"
@@ -136,42 +139,42 @@ class STTEngine:
             if dev.get('maxInputChannels') > 0:
                 try:
                     if self.p.is_format_supported(RATE, input_device=i, input_channels=CHANNELS, input_format=FORMAT):
-                        print(f"Using device {i}: {dev.get('name')} (Supports {RATE}Hz)")
+                        logger.info("Using device %d: %s (Supports %dHz)", i, dev.get('name'), RATE)
                         return i
-                except:
+                except Exception:
                     continue
         
         # If not, find the default input device
         try:
             default_dev = self.p.get_default_input_device_info()
             idx = default_dev.get('index')
-            print(f"Using default device {idx}: {default_dev.get('name')}")
+            logger.info("Using default device %d: %s", idx, default_dev.get('name'))
             return idx
-        except:
+        except Exception:
             pass
 
         # Last resort: just find any input device
         for i in range(self.p.get_device_count()):
             dev = self.p.get_device_info_by_index(i)
             if dev.get('maxInputChannels') > 0:
-                print(f"Falling back to device {i}: {dev.get('name')}")
+                logger.info("Falling back to device %d: %s", i, dev.get('name'))
                 return i
                 
         return None
 
     def start_capture(self):
-        if self.listening: return
+        if self.listening: return True
         
         device_index = self._get_input_device_index()
         if device_index is None:
-            print("Error: No input device found.")
-            return
+            logger.error("No input device found.")
+            return False
 
         # Whisper needs exactly 16000Hz and Mono
         self.current_rate = RATE
         self.current_channels = CHANNELS
         
-        print(f"Opening stream for Whisper: {self.current_rate}Hz, {self.current_channels} channels")
+        logger.info("Opening stream for Whisper: %dHz, %d channels", self.current_rate, self.current_channels)
 
         self.listening = True
         self.audio_frames = []
@@ -187,10 +190,11 @@ class STTEngine:
                             frames_per_buffer=CHUNK_SIZE,
                             stream_callback=self._capture_callback)
         except Exception as e:
-            print(f"Failed to open PyAudio stream natively at {self.current_rate}Hz: {e}")
+            logger.error("Failed to open PyAudio stream natively at %dHz: %s", self.current_rate, e)
             self.listening = False
-            return
-        print("Capture Started")
+            return False
+        logger.info("Capture Started")
+        return True
 
     def _capture_callback(self, in_data, frame_count, time_info, status):
         if self.listening:
@@ -204,7 +208,7 @@ class STTEngine:
             self.stream.close()
             self.stream = None
         
-        print(f"Capture Stopped. Frames: {len(self.audio_frames)}")
+        logger.info("Capture Stopped. Frames: %d", len(self.audio_frames))
         if not self.audio_frames:
             return ""
         
@@ -226,7 +230,7 @@ class STTEngine:
         segments, _ = self.model.transcribe(audio_np, beam_size=1, language="en", vad_filter=True)
         
         text = " ".join([s.text for s in segments]).strip()
-        print(f"Transcription ({time.time()-start_t:.2f}s): {text}")
+        logger.info("Transcription (%.2fs): %s", time.time() - start_t, text)
         return text
 
     def terminate(self):
