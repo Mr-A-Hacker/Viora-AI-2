@@ -47,7 +47,7 @@
 
 <div align="center">
 
-[🌟 Overview](#-overview) • [✨ Features](#-features) • [📋 Requirements](#-requirements) • [⚡ Quick Start](#-quick-start) • [🔧 Installation](#-installation) • [🏗 Architecture](#-architecture) • [🖥 Interface](#-the-viora-interface) • [⚙️ Configuration](#-configuration) • [🌐 Offline Capabilities](#-offline-capabilities) • [🛠 Troubleshooting](#-troubleshooting) • [🎨 Customization](#-customization) • [🧪 Testing](#-testing) • [🗺 Roadmap](#-roadmap) • [🙏 Credits](#-credits)
+[🌟 Overview](#-overview) • [✨ Features](#-features) • [📋 Requirements](#-requirements) • [⚡ Quick Start](#-quick-start) • [🔧 Installation](#-installation) • [🏗 Architecture](#-architecture) • [🖥 Interface](#-the-viora-interface) • [🌐 API Reference](#-api-reference) • [⚙️ Configuration](#-configuration) • [📁 Project Structure](#-project-structure) • [🌐 Offline Capabilities](#-offline-capabilities) • [🧪 Testing](#-testing) • [🛠 Troubleshooting](#-troubleshooting) • [🎨 Customization](#-customization) • [🗺 Roadmap](#-roadmap) • [🙏 Credits](#-credits)
 
 </div>
 
@@ -63,7 +63,7 @@
 
 Built by **Mr-A-Hacker** and optimized for **Raspberry Pi 4/5** and Linux, Viora is the AI assistant that privacy-conscious hackers, tinkerers, and makers have been waiting for.
 
-Talk to it with your voice. Show it things with your camera. Ask it to remember tasks. Check the weather, open maps, write code — all from a beautiful, touch-friendly interface that runs locally.
+Talk to it with your voice. Show it things with your camera. Ask it to remember tasks. Check the weather, open maps, write code — all from a beautiful, touch-friendly Electron interface that runs locally.
 
 This isn't a demo. This is a real AI assistant you actually own.
 
@@ -78,7 +78,8 @@ This isn't a demo. This is a real AI assistant you actually own.
 ║  🎤 Voice     ✅  ONLINE     ║
 ║  👁  Vision   ✅  ONLINE     ║
 ║  📝 Agent     ✅  RUNNING    ║
-║  🌦 Weather   ✅  SYNCED     ║
+║  🌤 Weather   ✅  SYNCED     ║
+║  🧠 Knowledge ✅  READY      ║
 ║  🤖 Dev AI    ✅  READY      ║
 ║  ──────────────────────────  ║
 ║  ▶  Listening...             ║
@@ -88,22 +89,6 @@ This isn't a demo. This is a real AI assistant you actually own.
 </td>
 </tr>
 </table>
-
----
-
-## 🌐 Language Breakdown
-
-<div align="center">
-
-| Language | Usage | Bar |
-|----------|-------|-----|
-| 🐍 Python | 56.2% | `████████████████████░░░░░░░░░░░░░` |
-| ⚙️ C | 38.6% | `██████████████░░░░░░░░░░░░░░░░░░░` |
-| 🌐 JavaScript | 2.8% | `█░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░` |
-| ➕ C++ | 0.7% | `░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░` |
-| 🔤 Other | 1.7% | `░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░░` |
-
-</div>
 
 ---
 
@@ -118,6 +103,7 @@ Converse naturally with Viora AI using **voice or text**. Powered by **Qwen 0.6B
 - Multi-turn context with conversation history
 - Conversations saved to `conversations.json` automatically
 - Semantic routing sends your prompt to the right model automatically
+- Knowledge injection — relevant web-fetched content is injected into the AI's context
 
 ---
 
@@ -133,6 +119,7 @@ Two speech-to-text engines, switchable in settings:
 - Tap the mic, speak, and Viora responds in her own voice
 - Real-time partial transcription — see words as you speak them
 - Configurable via `.env` — enable one or both simultaneously
+- Error feedback when no microphone is detected
 
 ---
 
@@ -141,9 +128,9 @@ Two speech-to-text engines, switchable in settings:
 **Piper TTS** gives Viora a natural, low-latency voice. She sounds like a real assistant — not a robotic synthesizer.
 
 - Multiple voice models available (swap in `/models/piper/`)
-- Low latency: audio starts playing while text is still streaming
-- Customizable speed, pitch, and voice model
+- Low latency — audio starts playing while text is still streaming
 - Runs 100% offline, no internet required
+- Outputs to any ALSA audio device
 
 ---
 
@@ -151,18 +138,11 @@ Two speech-to-text engines, switchable in settings:
 
 Connect any USB webcam or Raspberry Pi Camera Module and Viora gains vision:
 
-- **Live video streaming** via MJPEG
+- **Live video streaming** via MJPEG at 480x800 (optimized for portrait display)
 - **Photo capture** saved to `/captures/`
 - **Hailo AI Object Detection** — real-time object identification using the Hailo-8 NPU
-- Send captured images to the chat for AI analysis
-- Supports Raspberry Pi Camera Module 3 for best quality
-
-```python
-# Example: Viora describes what she sees
-You   > "What do you see?"
-Viora > "I can see a desk with a laptop, a coffee mug, and what
-          appears to be a Raspberry Pi 5 board connected to a camera."
-```
+- Supports Raspberry Pi Camera Module 3 and generic USB cameras
+- Camera feed auto-rotates and resizes for the display
 
 ---
 
@@ -197,21 +177,25 @@ Viora > "Got it! I'll remind you every day at 9:00 AM to water the plants."
 
 Real-time weather powered by **Open-Meteo** — completely free, no API key required:
 
-- Current temperature, conditions, humidity, and wind speed
-- Clean, readable weather cards in the UI
-- Graceful offline message when no internet is available
-- Auto-detects your location (or set manually in `.env`)
+- Current temperature, feels-like, humidity, wind speed, and precipitation
+- WMO weather code mapping with emoji descriptions (☀️🌤️⛅☁️🌧️⛈️❄️)
+- **IP geolocation auto-detect** — no configuration needed, finds your city automatically
+- **City search** — type any city name to get its weather
+- **Reverse geocode** — when using GPS coordinates, shows the actual city name
+- Supports both Fahrenheit and Celsius
+- Wind speed displayed in mph (Fahrenheit) or km/h (Celsius)
+- Works in the Home screen modal or as a full-page component
 
 ---
 
 ### 🗺 Maps — *Navigate Offline*
 
-Launches **Organic Maps** — a beautiful, privacy-respecting offline map app:
+Search any location using **Nominatim OpenStreetMap** and launch **Organic Maps** — a privacy-respecting offline map app:
 
 - No Google. No tracking. No ads.
 - Full offline navigation — maps stored on-device
+- Reverse geocoding: coordinates → address
 - Perfect for hiking, cycling, travel, or when data is unavailable
-- One-tap launch from the Viora home screen
 
 ---
 
@@ -221,14 +205,72 @@ A fully integrated coding assistant powered by **OpenCode**:
 
 - Ask Viora to write, debug, explain, or refactor code
 - Supports Python, JavaScript, Bash, C, C++, and more
+- Real-time streaming output with syntax highlighting
 - Runs 100% offline — your code never leaves your machine
-- Integrated directly into the Viora UI — no terminal needed
 
-```
-You   > "Write a Python script to monitor CPU temperature on a Raspberry Pi"
-Viora > "Here's a Python script using the vcgencmd tool..."
-         [streams complete, syntax-highlighted code directly in UI]
-```
+---
+
+### 🧠 Knowledge — *Stays Current*
+
+Viora can upgrade her knowledge by fetching the latest content from multiple sources:
+
+| Source | Content | Count |
+|--------|---------|-------|
+| **Hacker News** | Top & new stories | ~200 |
+| **Reddit** | Hot posts from 19 subreddits | ~280 |
+| **YouTube** | Search results via DDGS | ~0-50 |
+| **LinkedIn** | Recent posts via DDGS | ~0-10 |
+| **Wikipedia** | Trending pages | fill to 1000 |
+
+- **Upgrade button** in Settings — one tap fetches fresh content
+- **Progress tracking** — shows "Upgrading... N/1000" in real-time
+- **Automatic injection** — relevant knowledge is injected into chat context when you ask about a topic
+- **Deduplication** — no duplicate articles across consecutive upgrades
+- **Update check** — lightweight check compares latest HN story ID to know if new content is available
+- **Persistent status** — leaving and returning to Settings shows the current state
+
+---
+
+### 🛡 Security — *Home Surveillance*
+
+Turn your Pi into a security system:
+
+- Motion detection with voice alerts
+- LAN surveillance server
+- Alarm and notification system
+- Works with connected cameras
+
+---
+
+### 🖥 Terminal — *Built-in Shell*
+
+Run system commands directly from the Viora UI:
+
+- Full terminal emulator
+- Real-time output streaming
+- No SSH needed — access your Pi's shell from the app
+
+---
+
+### 📁 File Manager — *Browse & Manage Files*
+
+Full file management without leaving the app:
+
+- Browse directories
+- Create, rename, and delete files
+- Navigate the filesystem
+
+---
+
+### 🎮 Games — *Built-in Fun*
+
+Play games directly in the Viora interface.
+
+---
+
+### 🏦 Banking — *Finance Dashboard*
+
+View account balances and transactions.
 
 ---
 
@@ -241,7 +283,20 @@ Full control over every aspect of Viora:
 - Change the Piper voice model
 - Enable/disable camera features
 - Manage and clear conversation history
-- Configure all feature toggles from a clean UI
+- **Upgrade Knowledge** button with progress tracking
+- Update check indicator showing whether new content is available
+- All configuration toggles from a clean UI
+
+---
+
+### 📱 Additional Features
+
+| Feature | Description |
+|---------|-------------|
+| **GPIO Control** | Control Raspberry Pi GPIO pins from the UI |
+| **Heartbeat Monitor** | System health monitoring |
+| **Virtual Keyboard** | On-screen keyboard for touchscreens |
+| **Avatar** | Animated Viora orb with voice-reactive glow |
 
 ---
 
@@ -270,13 +325,14 @@ Full control over every aspect of Viora:
 | CMake | any | `sudo apt install cmake` |
 | OpenBLAS | system | `sudo apt install libopenblas-dev liblapack-dev` |
 
-### Optional
+### Optional Dependencies
 
 | Tool | Purpose |
 |------|---------|
 | Hugging Face account | Downloading LLM models (free) |
 | OpenCode | Dev AI coding assistant |
 | Hailo SDK | Hardware-accelerated object detection |
+| Flatpak + Organic Maps | Offline maps navigation |
 
 ---
 
@@ -298,40 +354,39 @@ pip install -r requirements.txt
 
 # 4. Install system dependencies
 sudo apt-get update && sudo apt-get install -y \
-  portaudio19-dev cmake libopenblas-dev liblapack-dev
+  portaudio19-dev cmake libopenblas-dev liblapack-dev ffmpeg espeak-ng
 
 # 5. Install frontend
 cd chat-gui && npm install && cd ..
 
-# 6. Configure
+# 6. Download AI models (see full installation below)
+# The app will auto-download Whisper and warn about missing models
+
+# 7. Configure
 cp .env.example .env
 nano .env   # Edit your settings
 
-# 7. LAUNCH 🚀
+# 8. LAUNCH 🚀
 ./start_viora_ai.sh
 ```
 
-Then open **http://localhost:5173** in your browser.
+Then open **http://localhost:5173** in your browser, or use the Electron desktop app.
 
 ---
 
-## 🔧 Installation
+## 🔧 Full Installation
 
-### Step 1 — Clone
+### Step 1 — Clone & Setup
 
 ```bash
 git clone https://github.com/Mr-A-Hacker/Viora-AI-2.git
 cd Viora-AI-2
-```
 
-### Step 2 — Python Virtual Environment
-
-```bash
 python3 -m venv .venv
 source .venv/bin/activate
 ```
 
-### Step 3 — Install Dependencies
+### Step 2 — Install Dependencies
 
 ```bash
 pip install -r requirements.txt
@@ -341,7 +396,7 @@ sudo apt-get install -y \
   portaudio19-dev cmake libopenblas-dev liblapack-dev ffmpeg espeak-ng
 ```
 
-### Step 4 — Install Frontend
+### Step 3 — Frontend
 
 ```bash
 cd chat-gui
@@ -349,7 +404,7 @@ npm install
 cd ..
 ```
 
-### Step 5 — Download AI Models
+### Step 4 — Download AI Models
 
 **LLM — Qwen 0.6B GGUF (Chat Brain)**
 ```bash
@@ -383,20 +438,20 @@ unzip vosk-model-small-en-us-0.15.zip
 cd ../..
 ```
 
-### Step 6 — Configure
+### Step 5 — Configure
 
 ```bash
 cp .env.example .env
 nano .env
 ```
 
-### Step 7 — Install OpenCode (Dev AI)
+### Step 6 — Install OpenCode (Dev AI)
 
 ```bash
 curl -fsSL https://opencode.ai/install.sh | sh
 ```
 
-### Step 8 — Launch 🚀
+### Step 7 — Launch 🚀
 
 ```bash
 # One-command launch (recommended)
@@ -430,47 +485,48 @@ update-desktop-database ~/.local/share/applications/
 ### System Overview
 
 ```
-┌─────────────────────────────────────────────────────────────────────────┐
-│                    VIORA AI v2 — FULL SYSTEM                            │
-│                                                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │              ELECTRON / BROWSER FRONTEND (React + Vite)          │   │
-│  │                                                                  │   │
-│  │  ┌─────────┐ ┌─────────┐ ┌────────┐ ┌────────┐ ┌───────────┐  │   │
-│  │  │  CHAT   │ │  VISION │ │ AGENT  │ │GALLERY │ │  DEV AI   │  │   │
-│  │  │  + TTS  │ │ + Hailo │ │ Tasks  │ │ Photos │ │ OpenCode  │  │   │
-│  │  └────┬────┘ └────┬────┘ └───┬────┘ └───┬────┘ └─────┬─────┘  │   │
-│  │       └───────────┴──────────┴───────────┴─────────────┘        │   │
-│  │                   WebSocket + REST (HTTP)                        │   │
-│  └───────────────────────────┬──────────────────────────────────────┘   │
-│                              │                                           │
-│                              ▼                                           │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │              FASTAPI BACKEND  (app.py)                           │   │
-│  │                                                                  │   │
-│  │   /ws/chat    /ws/voice    /camera/*    /weather    /tasks       │   │
-│  │        │           │                                             │   │
-│  │  ┌─────▼───────────▼──────────────────────────────────────┐     │   │
-│  │  │              chat_ai.py  (Core Pipeline)                │     │   │
-│  │  │                                                         │     │   │
-│  │  │  Input → [STT: Whisper/Vosk] → [Semantic Router]        │     │   │
-│  │  │       → [Qwen 0.6B / Function Gemma] → [Piper TTS]      │     │   │
-│  │  │       → Stream to UI + conversations.json               │     │   │
-│  │  └─────────────────────────────────────────────────────────┘     │   │
-│  │                                                                  │   │
-│  │  weather.py    maps.py    devai.py    task_scheduler.py          │   │
-│  │  Open-Meteo    Organic    OpenCode    APScheduler                │   │
-│  └──────────────────────────────────────────────────────────────────┘   │
-│                                                                         │
-│  ┌──────────────────────────────────────────────────────────────────┐   │
-│  │     AI MODELS  (100% local)                                      │   │
-│  │  🧠 Qwen 0.6B Q8   🎤 Whisper Tiny   🔇 Vosk   🗣 Piper TTS     │   │
-│  │  🔧 Function Gemma                   👁 Hailo OD (optional)      │   │
-│  └──────────────────────────────────────────────────────────────────┘   │
-└─────────────────────────────────────────────────────────────────────────┘
+┌──────────────────────────────────────────────────────────────────────────────┐
+│                    VIORA AI v2 — FULL SYSTEM                                 │
+│                                                                              │
+│  ┌──────────────────────────────────────────────────────────────────────┐    │
+│  │              ELECTRON DESKTOP APP (React + Vite + Framer Motion)     │    │
+│  │                                                                      │    │
+│  │  Home │ Chat │ Vision │ Gallery │ Tasks │ Weather │ Maps │ Dev AI   │    │
+│  │  Settings │ Terminal │ Files │ GPIO │ Heartbeat │ Banking │ Games   │    │
+│  │  └──────────────────────────────────────────────────────────────┘   │    │
+│  │                             │ WebSocket + REST                       │    │
+│  └─────────────────────────────┬────────────────────────────────────────┘    │
+│                                │                                              │
+│                                ▼                                              │
+│  ┌──────────────────────────────────────────────────────────────────────┐    │
+│  │              FASTAPI BACKEND  (app.py — port 8000)                    │    │
+│  │                                                                      │    │
+│  │   /ws/chat    /ws/voice    /weather/*    /maps/*    /knowledge/*    │    │
+│  │   /camera/*   /files/*     /security/*   /terminal   /tasks/*       │    │
+│  │   /banking    /games       /devai        /gpio       /health        │    │
+│  │                                                                      │    │
+│  │  ┌────────────────────────────────────────────────────────────┐      │    │
+│  │  │              chat_ai.py  (Core Pipeline)                    │      │    │
+│  │  │  Input → [STT: Whisper/Vosk] → [Semantic Router]           │      │    │
+│  │  │       → [Qwen 0.6B / Function Gemma] → [Piper TTS]        │      │    │
+│  │  │       → Stream to UI + conversations.json + knowledge      │      │    │
+│  │  └────────────────────────────────────────────────────────────┘      │    │
+│  │                                                                      │    │
+│  │  weather.py   maps.py   knowledge.py   devai.py   task_scheduler.py │    │
+│  │  Open-Meteo   Nominatim HN/Reddit/Wiki  OpenCode   APScheduler     │    │
+│  │                                                                      │    │
+│  │  camera_stream.py   file_manager.py   banking.py   games.py         │    │
+│  └──────────────────────────────────────────────────────────────────────┘    │
+│                                                                              │
+│  ┌──────────────────────────────────────────────────────────────────────┐    │
+│  │     AI MODELS  (100% local)                                          │    │
+│  │  🧠 Qwen 0.6B Q8   🎤 Whisper Tiny   🔇 Vosk   🗣 Piper TTS        │    │
+│  │  🔧 Function Gemma (tool calling)    👁 Hailo OD (optional)          │    │
+│  └──────────────────────────────────────────────────────────────────────┘    │
+└──────────────────────────────────────────────────────────────────────────────┘
 ```
 
-### Voice Pipeline (Step-by-Step)
+### Voice Pipeline
 
 ```
 User speaks
@@ -480,10 +536,10 @@ User speaks
 │   Mic captures audio │
 └──────────┬───────────┘
            │
-    ┌──────▼───────┐
-    │ Whisper Tiny │  ←── Fast, accurate (internet for first download)
-    │   OR  Vosk   │  ←── Fully offline, always private
-    └──────┬───────┘
+     ┌─────▼───────┐
+     │ Whisper Tiny│  ←── Fast, accurate (internet for first download)
+     │   OR  Vosk  │  ←── Fully offline, always private
+     └─────┬───────┘
            │  transcript
            ▼
 ┌──────────────────────┐
@@ -502,6 +558,7 @@ User speaks
       │              ┌───▼─────────────┐
       │              │ weather / maps  │
       │              │ tasks / devai   │
+      │              │ knowledge search│
       │              └───┬─────────────┘
       └──────────┬───────┘
                  │  response (streaming)
@@ -526,7 +583,7 @@ User speaks
 │                                             │
 │           ╭─────────────╮                  │
 │           │    ◉ VIORA  │  ← Animated      │
-│           │    Avatar   │    glowing orb   │
+│           │    Avatar    │    glowing orb   │
 │           ╰─────────────╯                  │
 │                                             │
 │  ╔══════════╗  ╔══════════╗  ╔══════════╗  │
@@ -535,22 +592,124 @@ User speaks
 │  ╚══════════╝  ╚══════════╝  ╚══════════╝  │
 │                                             │
 │  ╔══════════╗  ╔══════════╗  ╔══════════╗  │
-│  ║🖼 GALLERY║  ║ 🗺 MAPS  ║  ║🤖 DEV AI ║  │
-│  ║  gray    ║  ║  green   ║  ║  orange  ║  │
+│  ║🖼 GALLERY║  ║ 🌦WEAHER║  ║ 🗺 MAPS  ║  │
+│  ║  gray    ║  ║  cyan    ║  ║  green   ║  │
 │  ╚══════════╝  ╚══════════╝  ╚══════════╝  │
 │                                             │
-│     [🌦 Weather]          [⚙️ Settings]     │
+│  ╔══════════╗  ╔══════════╗  ╔══════════╗  │
+│  ║ 🎮 GAMES ║  ║🤖 DEV AI║  ║ 🛡SECURI║  │
+│  ║  pink    ║  ║ orange   ║  ║  red     ║  │
+│  ╚══════════╝  ╚══════════╝  ╚══════════╝  │
+│                                             │
+│  ╔══════════╗  ╔══════════╗  ╔══════════╗  │
+│  ║ ⌨ TERM  ║  ║ 📁 FILES║  ║ 💰 BANK  ║  │
+│  ║  gray    ║  ║  gray    ║  ║  blue    ║  │
+│  ╚══════════╝  ╚══════════╝  ╚══════════╝  │
+│                                             │
+│     [⚙️ Settings]    [🧠 Upgrade Knowledge]│
 └─────────────────────────────────────────────┘
 ```
 
-| Button | Color | What It Does |
-|--------|-------|--------------|
-| 💬 CHAT | Purple | Talk to Viora with voice or text |
-| 📷 VISION | Cyan | Live camera + Hailo object detection |
-| 📝 AGENT | Pink | Schedule and manage tasks |
-| 🖼 GALLERY | Gray | Browse and manage captured photos |
-| 🗺 MAPS | Green | Launch Organic Maps for offline navigation |
-| 🤖 DEV AI | Orange | OpenCode coding assistant |
+### Frontend Routes
+
+| Route | Page | Purpose |
+|-------|------|---------|
+| `/` | Home | Main menu with all feature buttons + modals |
+| `/chat` | ChatInterface | Full chat with voice input + streaming responses |
+| `/camera` | CameraView | Live camera with object detection overlay + capture |
+| `/gallery` | Gallery | Browse, view, delete, and share captured photos |
+| `/tasks` | TaskManager | View/manage scheduled tasks |
+| `/tasks/add` | TaskAdd | Create or edit a scheduled task |
+| `/maps` | Maps | Search locations + launch Organic Maps |
+| `/terminal` | Terminal | Built-in shell emulator |
+| `/files` | FileManager | Browse and manage filesystem |
+| `/settings` | Settings | All configuration + Knowledge Upgrade button |
+| `/devai` | DevAI | OpenCode coding assistant |
+| `/gpio` | GPIOControl | Raspberry Pi GPIO pin control |
+| `/heartbeat` | HeartbeatManager | System health monitoring |
+
+---
+
+## 🌐 API Reference
+
+All endpoints are served from `http://localhost:8000`.
+
+### Core
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/health` | Health check — returns `{"status": "ok"}` |
+| WS | `/ws/chat/{conv_id}` | Chat WebSocket — streaming conversation |
+| WS | `/ws/voice` | Voice WebSocket — mic input + speech |
+
+### Weather
+
+| Method | Endpoint | Parameters | Description |
+|--------|----------|------------|-------------|
+| GET | `/weather` | `lat`, `lon`, `city`, `unit` | Current weather via Open-Meteo. Supports IP geolocation (no params), city search (`?city=London`), or GPS coordinates (`?lat=...&lon=...`). Reverse geocodes lat/lon to city name. Default `unit=fahrenheit`. |
+
+**Example responses:**
+
+```json
+// IP auto-detect (no params)
+{"temperature":67.8,"feels_like":68.6,"humidity":66,"wind_speed":6.2,
+ "precipitation":0.0,"description":"Clear sky","emoji":"☀️",
+ "unit":"°F","timezone":"Europe/Berlin","location":"Berlin"}
+
+// City search with Celsius
+// GET /weather?city=Tokyo&unit=celsius
+{"temperature":21.8,"feels_like":24.5,"humidity":83,"wind_speed":4.4,
+ "precipitation":0.0,"description":"Mainly clear","emoji":"🌤️",
+ "unit":"°C","timezone":"Asia/Tokyo","location":"Tokyo"}
+```
+
+### Maps
+
+| Method | Endpoint | Parameters | Description |
+|--------|----------|------------|-------------|
+| GET | `/maps/search` | `q` (query) | Search places via Nominatim OpenStreetMap |
+| GET | `/maps/reverse` | `lat`, `lon` | Reverse geocode coordinates → address |
+| POST | `/maps/open` | — | Launch Organic Maps via Flatpak |
+
+### Knowledge
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| POST | `/knowledge/update` | Start knowledge upgrade in background |
+| GET | `/knowledge` | Current knowledge status (entry count, running state) |
+| GET | `/knowledge/check` | Lightweight check for new content (compares HN IDs) |
+
+### Camera
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/video_feed` | MJPEG video stream |
+| POST | `/camera/start` | Start camera session |
+| POST | `/camera/stop` | Stop camera session |
+| POST | `/camera/capture` | Capture and save a photo |
+| POST | `/camera/detection/start` | Start object detection |
+| POST | `/camera/detection/stop` | Stop object detection |
+| WS | `/ws/detections` | Real-time detection results |
+
+### Files
+
+| Method | Endpoint | Parameters | Description |
+|--------|----------|------------|-------------|
+| GET | `/files/list` | `path` | List directory contents |
+| POST | `/files/create` | `path`, `is_dir` | Create file or folder |
+| POST | `/files/delete` | `path` | Delete file/folder |
+| POST | `/files/rename` | `old_path`, `new_name` | Rename file/folder |
+
+### Other
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/tasks` | List scheduled tasks |
+| GET | `/games` | List available games |
+| GET | `/banking` | Banking dashboard |
+| POST | `/start_surveillance` | Start LAN surveillance server |
+| POST | `/security/motion_detected` | Motion detection webhook |
+| POST | `/maps/open-dev` | Launch OpenCode |
 
 ---
 
@@ -582,7 +741,7 @@ PIPER_MODEL=en_US-lessac-medium.onnx
 PIPER_SPEED=1.0
 
 # ─── Camera ───────────────────────────────────────────────────────────────
-CAMERA_DEVICE=0
+CAMERA_INDEX=-1                  # -1 = auto-detect, or specify device number
 CAMERA_WIDTH=1280
 CAMERA_HEIGHT=720
 
@@ -597,11 +756,7 @@ ENABLE_CAMERA=true
 ENABLE_TTS=true
 ENABLE_STT=true
 ENABLE_LLM=true
-ENABLE_HAILO=false         # Set true if Hailo-8 NPU connected
-
-# ─── Weather ──────────────────────────────────────────────────────────────
-LATITUDE=51.5074
-LONGITUDE=-0.1278
+ENABLE_HAILO=false               # Set true if Hailo-8 NPU connected
 ```
 
 ---
@@ -610,12 +765,12 @@ LONGITUDE=-0.1278
 
 ```
 Viora-AI-2/
-│
 ├── 📄 README.md
 ├── 📄 requirements.txt             ← Python dependencies
 ├── 📄 .env.example                 ← Config template
+├── 📄 .env                         ← Your local config (gitignored)
 │
-├── 🚀 app.py                       ← FastAPI backend (all endpoints)
+├── 🚀 app.py                       ← FastAPI backend (all endpoints + routers)
 ├── 🧠 chat_ai.py                   ← Core pipeline: STT → LLM → TTS
 ├── 🎤 stt_whisper.py               ← Whisper speech recognition
 ├── 🎤 stt_vosk.py                  ← Vosk offline STT
@@ -623,13 +778,27 @@ Viora-AI-2/
 ├── 🔀 semantic_router_ai.py        ← Prompt routing (chat/think/tool)
 ├── 🔧 tool_ai.py                   ← Function Gemma tool calling
 ├── 📅 task_scheduler.py            ← APScheduler task management
-├── 🌦 weather.py                   ← Open-Meteo weather integration
-├── 🗺 maps.py                      ← Organic Maps launcher
+├── 🌦 weather.py                   ← Open-Meteo weather (IP geo + reverse geocode)
+├── 🗺 maps.py                      ← Nominatim search + Organic Maps launcher
+├── 🧠 knowledge.py                 ← HN + Reddit + Wikipedia knowledge fetcher
 ├── 🤖 devai.py                     ← OpenCode Dev AI endpoint
-├── 📷 camera_stream.py             ← MJPEG camera + Hailo OD
+├── 📷 camera_stream.py             ← MJPEG camera + Hailo object detection
 ├── 🎮 games.py                     ← Games module
+├── 📁 file_manager.py              ← Filesystem browsing API
+├── 🏦 banking.py                   ← Banking dashboard
+├── 🛡 security.py                  ← Security/disarm API
+├── 🛡 security_flask.py            ← Flask security server (legacy)
+├── 🛡 unified_security.py          ↑ Voice alerts for security events
+├── 🛡 lan_surveillance.py         ↑ LAN surveillance server
+├── 🛡 ai_security_camera.py        ↑ AI-powered camera detection
 ├── ⚡ speed_test.py                ← Performance benchmarks
-├── ⚙️ config.py                    ← Centralized config
+├── ⚙️ config.py                    ← Centralized config from .env
+├── 🤖 agent.py                     ← Agent logic
+├── 💻 code_ai.py                   ← Code AI helper
+├── 📝 test_mode.py                 ← Test mode controller
+├── 📝 test_audio.py                ← Audio system test
+├── 📝 test_gemma.py                ← LLM response quality test
+├── 📝 test_viora_ai.py             ← Integration tests
 │
 ├── 🛠 tools.json                   ← Tool definitions for function calling
 ├── 💬 conversations.json           ← Saved chat history
@@ -638,22 +807,50 @@ Viora-AI-2/
 ├── 🖥 viora-ai.desktop             ← Linux desktop shortcut
 ├── 🚀 start_viora_ai.sh            ← One-click launcher
 │
-├── 🖥 chat-gui/                    ← Electron + React frontend
-│   └── src/
-│       ├── App.jsx                 ← Router + main app
-│       ├── index.css               ← Purple Viora theme
-│       └── components/
-│           ├── Home.jsx            ← Landing / main menu
-│           ├── ChatInterface/      ← Chat UI + mic button
-│           ├── CameraView/         ← Live camera + OD overlay
-│           ├── Gallery/            ← Photo gallery
-│           ├── TaskManager/        ← Agent/scheduler UI
-│           ├── Settings/           ← Configuration panel
-│           ├── Maps/               ← Maps launcher
-│           ├── DevAI/              ← OpenCode integration
-│           ├── Weather/            ← Weather display
-│           ├── Avatar.jsx          ← Animated Viora avatar
-│           └── StatusBar.jsx       ← CPU/RAM/Temp bar
+├── 🖥 chat-gui/                    ← Electron + React + Vite frontend
+│   ├── package.json
+│   ├── electron.vite.config.js
+│   ├── src/
+│   │   ├── main/index.js           ← Electron main process
+│   │   ├── preload/index.mjs       ← Electron preload
+│   │   └── renderer/
+│   │       ├── index.html
+│   │       ├── App.jsx             ← Router + main app layout
+│   │       ├── index.css           ← Purple Viora theme + Tailwind
+│   │       ├── config.js           ← API/WS URL configuration
+│   │       └── components/
+│   │           ├── Home.jsx            ← Landing / main menu with modals
+│   │           ├── ChatInterface.jsx   ← Full chat UI + mic button
+│   │           ├── ChatHeader.jsx      ← Chat header with back button
+│   │           ├── ChatInput.jsx       ← Chat text input
+│   │           ├── ChatSidebar.jsx     ← Conversation history sidebar
+│   │           ├── MessageList.jsx     ← Message list with markdown rendering
+│   │           ├── MessageBubble.jsx   ← Individual message bubble
+│   │           ├── CameraView.jsx      ← Live camera + OD overlay + capture
+│   │           ├── Gallery.jsx         ← Photo gallery
+│   │           ├── Settings.jsx        ← Configuration + Knowledge Upgrade
+│   │           ├── Weather.jsx         ← Full weather page component
+│   │           ├── Maps.jsx            ← Maps search + launch
+│   │           ├── DevAI.jsx           ← OpenCode integration
+│   │           ├── Terminal.jsx        ← Terminal emulator
+│   │           ├── FileManager.jsx     ← File browser
+│   │           ├── TaskManager.jsx     ← Task scheduler list
+│   │           ├── TaskAdd.jsx         ← Create/edit tasks
+│   │           ├── Avatar.jsx          ← Animated Viora avatar
+│   │           ├── StatusBar.jsx       ← CPU/RAM/Temp bar
+│   │           ├── VirtualKeyboard.jsx ← On-screen keyboard
+│   │           ├── HeartbeatManager.jsx← System health
+│   │           ├── GPIOControl.jsx     ← GPIO pin control
+│   │           ├── ConnectionBar.jsx   ← Connection status bar
+│   │           ├── ErrorBoundary.jsx   ← Error boundary wrapper
+│   │           ├── ErrorMessage.jsx    ← Error display component
+│   │           ├── LoadingSpinner.jsx  ← Loading indicator
+│   │           ├── MiniChat.jsx        ← Compact chat view
+│   │           └── CloseButton.jsx     ← Reusable close button
+│   └── out/                         ← Built output (gitignored)
+│       ├── main/
+│       ├── preload/
+│       └── renderer/
 │
 ├── 📦 models/                      ← AI models (download separately)
 │   ├── qwen/                       ← Qwen 0.6B GGUF
@@ -681,11 +878,31 @@ Viora-AI-2/
 | 👁 Object detection | ✅ | ✅ | Runs on NPU locally |
 | 📅 Scheduled tasks | ✅ | ✅ | Local APScheduler |
 | 🖼 Photo gallery | ✅ | ✅ | Local storage |
-| 🗺 Organic Maps | ✅ | ✅ | Offline maps |
-| 🌦 Weather | ✅ | ❌ | Requires Open-Meteo API |
+| 📁 File manager | ✅ | ✅ | Local filesystem |
+| ⌨ Terminal | ✅ | ✅ | Local shell |
+| 🎮 Games | ✅ | ✅ | Local |
+| 🏦 Banking | ✅ | ✅ | Local data |
 | 🤖 Dev AI (OpenCode) | ✅ | ✅ | Local LLM |
+| 🗺 Maps search | ✅ | ⚠️ | Requires Nominatim API for search; maps app works offline |
+| 🌦 Weather | ✅ | ❌ | Requires Open-Meteo API |
+| 🧠 Knowledge upgrade | ✅ | ❌ | Requires HN/Reddit/Wikipedia APIs |
+| 🌐 Web search (YouTube/LinkedIn) | ✅ | ❌ | Requires DuckDuckGo search |
 
 </div>
+
+---
+
+## 🧪 Testing
+
+```bash
+source .venv/bin/activate
+
+pytest tests/ -v                  # Full test suite
+python test_viora_ai.py           # Integration tests
+python test_audio.py              # Audio system
+python test_gemma.py              # LLM response quality
+python speed_test.py              # Performance benchmarks
+```
 
 ---
 
@@ -699,10 +916,17 @@ export XAUTHORITY=/home/pi/.Xauthority
 ./start_viora_ai.sh
 ```
 
+### GPU / Electron Crashes (Headless/VM)
+
+```bash
+# Add --disable-gpu if running in a headless environment
+cd chat-gui
+npx electron . --disable-gpu --no-sandbox
+```
+
 ### Vosk Model Not Found
 
 ```bash
-# Check the path is correct in .env
 ls models/vosk/
 # Should show: vosk-model-small-en-us-0.15/
 
@@ -737,14 +961,6 @@ sudo raspi-config  # Advanced → Audio → HDMI
 amixer cset numid=3 1
 ```
 
-### OpenCode Not Found
-
-```bash
-opencode --version
-curl -fsSL https://opencode.ai/install.sh | sh
-grep OPENCODE_PATH devai.py
-```
-
 ### Out of Memory on Pi 4 (4GB)
 
 ```bash
@@ -758,13 +974,13 @@ MAX_TOKENS=512
 sudo systemctl stop bluetooth avahi-daemon
 ```
 
-### Whisper Fails to Download
+### Knowledge Upgrade Returns 0 Entries
 
 ```bash
-USE_WHISPER=false
-USE_VOSK=true
-# Or download manually:
-huggingface-cli download openai/whisper-tiny --local-dir models/whisper/
+# Test sources manually
+curl -s https://hacker-news.firebaseio.com/v0/newstories.json | head -5
+# If blocked (DNS hijacking), YouTube/LinkedIn/DDGS searches will return 0
+# HN and Reddit should still work
 ```
 
 ---
@@ -824,20 +1040,6 @@ Then implement the handler in `tool_ai.py`. The AI picks it up automatically on 
 
 ---
 
-## 🧪 Testing
-
-```bash
-source .venv/bin/activate
-
-pytest tests/ -v                  # Full test suite
-python test_viora_ai.py           # Integration tests
-python test_audio.py              # Audio system
-python test_gemma.py              # LLM response quality
-python speed_test.py              # Performance benchmarks
-```
-
----
-
 ## 🗺 Roadmap
 
 ```
@@ -857,6 +1059,12 @@ python speed_test.py              # Performance benchmarks
 - [ ] Custom wake word ("Hey Viora")
 - [ ] Fine-tuned Viora personality model
 - [ ] Multi-agent task execution
+- [ ] Music/media player
+- [ ] Notes/memo pad
+- [ ] Alarms and timers
+- [ ] System monitor dashboard (CPU/RAM/disk/temp graphs)
+- [ ] Translation tool
+- [ ] QR code scanner
 
 ---
 
@@ -916,9 +1124,14 @@ Built with 💜 by **Mr-A-Hacker**. Engineered for offline AI, Raspberry Pi, and
 | **Organic Maps** | Offline navigation |
 | **OpenCode** | Dev AI assistant |
 | **Open-Meteo** | Free weather API |
+| **Nominatim (OpenStreetMap)** | Geocoding |
+| **ip-api.com** | IP geolocation |
+| **Hacker News API** | Knowledge source |
+| **Reddit API** | Knowledge source |
+| **Wikipedia API** | Knowledge source |
 | **Hailo** | NPU object detection |
 | **FastAPI** | Python web backend |
-| **React + Vite** | Frontend framework |
+| **React + Vite + Electron** | Frontend framework |
 
 ---
 

@@ -7,7 +7,6 @@ import CameraView from './components/CameraView';
 import Gallery from './components/Gallery';
 import Settings from './components/Settings';
 import Maps from './components/Maps';
-import DevAI from './components/DevAI';
 import StatusBar from './components/StatusBar';
 import TaskManager from './components/TaskManager';
 import TaskAdd from './components/TaskAdd';
@@ -49,7 +48,6 @@ const AnimatedRoutes = () => {
         <Route path="/files" element={<FileManager />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/maps" element={<Maps />} />
-        <Route path="/devai" element={<DevAI />} />
       </Routes>
     </AnimatePresence>
   );

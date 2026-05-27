@@ -626,12 +626,6 @@ export default function Home() {
           color="#9ece6a"
         />
         <MenuButton
-          icon={Bot}
-          label="DEV AI"
-          onClick={() => navigate('/devai')}
-          color="#f97316"
-        />
-        <MenuButton
           icon={Shield}
           label="SECURITY"
           onClick={() => { fetchSecurityStatus(); setShowSecurityModal(true); }}

@@ -22680,7 +22680,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$19 = [
+const __iconNode$T = [
   [
     "path",
     {
@@ -22689,14 +22689,14 @@ const __iconNode$19 = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$19);
+const Activity = createLucideIcon("activity", __iconNode$T);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$18 = [
+const __iconNode$S = [
   ["circle", { cx: "12", cy: "13", r: "8", key: "3y4lt7" }],
   ["path", { d: "M12 9v4l2 2", key: "1c63tq" }],
   ["path", { d: "M5 3 2 6", key: "18tl5t" }],
@@ -22704,48 +22704,36 @@ const __iconNode$18 = [
   ["path", { d: "M6.38 18.7 4 21", key: "17xu3x" }],
   ["path", { d: "M17.64 18.67 20 21", key: "kv2oe2" }]
 ];
-const AlarmClock = createLucideIcon("alarm-clock", __iconNode$18);
+const AlarmClock = createLucideIcon("alarm-clock", __iconNode$S);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$17 = [
+const __iconNode$R = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$17);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$R);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$16 = [
+const __iconNode$Q = [
   ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
   ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$16);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$Q);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$15 = [
-  ["path", { d: "M4.5 3h15", key: "c7n0jr" }],
-  ["path", { d: "M6 3v16a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V3", key: "m1uhx7" }],
-  ["path", { d: "M6 14h12", key: "4cwo0f" }]
-];
-const Beaker = createLucideIcon("beaker", __iconNode$15);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$14 = [
+const __iconNode$P = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -22755,14 +22743,14 @@ const __iconNode$14 = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$14);
+const Bell = createLucideIcon("bell", __iconNode$P);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$13 = [
+const __iconNode$O = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -22772,66 +22760,14 @@ const __iconNode$13 = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$13);
+const BookOpen = createLucideIcon("book-open", __iconNode$O);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$12 = [
-  ["path", { d: "M12 8V4H8", key: "hb8ula" }],
-  ["rect", { width: "16", height: "12", x: "4", y: "8", rx: "2", key: "enze0r" }],
-  ["path", { d: "M2 14h2", key: "vft8re" }],
-  ["path", { d: "M20 14h2", key: "4cs60a" }],
-  ["path", { d: "M15 13v2", key: "1xurst" }],
-  ["path", { d: "M9 13v2", key: "rq6x2g" }]
-];
-const Bot = createLucideIcon("bot", __iconNode$12);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$11 = [
-  ["path", { d: "M12 18V5", key: "adv99a" }],
-  ["path", { d: "M15 13a4.17 4.17 0 0 1-3-4 4.17 4.17 0 0 1-3 4", key: "1e3is1" }],
-  ["path", { d: "M17.598 6.5A3 3 0 1 0 12 5a3 3 0 1 0-5.598 1.5", key: "1gqd8o" }],
-  ["path", { d: "M17.997 5.125a4 4 0 0 1 2.526 5.77", key: "iwvgf7" }],
-  ["path", { d: "M18 18a4 4 0 0 0 2-7.464", key: "efp6ie" }],
-  ["path", { d: "M19.967 17.483A4 4 0 1 1 12 18a4 4 0 1 1-7.967-.517", key: "1gq6am" }],
-  ["path", { d: "M6 18a4 4 0 0 1-2-7.464", key: "k1g0md" }],
-  ["path", { d: "M6.003 5.125a4 4 0 0 0-2.526 5.77", key: "q97ue3" }]
-];
-const Brain = createLucideIcon("brain", __iconNode$11);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$10 = [
-  ["path", { d: "M12 20v-9", key: "1qisl0" }],
-  ["path", { d: "M14 7a4 4 0 0 1 4 4v3a6 6 0 0 1-12 0v-3a4 4 0 0 1 4-4z", key: "uouzyp" }],
-  ["path", { d: "M14.12 3.88 16 2", key: "qol33r" }],
-  ["path", { d: "M21 21a4 4 0 0 0-3.81-4", key: "1b0z45" }],
-  ["path", { d: "M21 5a4 4 0 0 1-3.55 3.97", key: "5cxbf6" }],
-  ["path", { d: "M22 13h-4", key: "1jl80f" }],
-  ["path", { d: "M3 21a4 4 0 0 1 3.81-4", key: "1fjd4g" }],
-  ["path", { d: "M3 5a4 4 0 0 0 3.55 3.97", key: "1d7oge" }],
-  ["path", { d: "M6 13H2", key: "82j7cp" }],
-  ["path", { d: "m8 2 1.88 1.88", key: "fmnt4t" }],
-  ["path", { d: "M9 7.13V6a3 3 0 1 1 6 0v1.13", key: "1vgav8" }]
-];
-const Bug = createLucideIcon("bug", __iconNode$10);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$$ = [
+const __iconNode$N = [
   [
     "path",
     {
@@ -22841,136 +22777,104 @@ const __iconNode$$ = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("camera", __iconNode$$);
+const Camera = createLucideIcon("camera", __iconNode$N);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$_ = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$_);
+const __iconNode$M = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$M);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Z = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$Z);
+const __iconNode$L = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$L);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Y = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$Y);
+const __iconNode$K = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$K);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$X = [["path", { d: "m18 15-6-6-6 6", key: "153udz" }]];
-const ChevronUp = createLucideIcon("chevron-up", __iconNode$X);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$W = [
+const __iconNode$J = [
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
   ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
   ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$W);
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$J);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$V = [
+const __iconNode$I = [
   ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
   ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$V);
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$I);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$U = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["path", { d: "M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3", key: "1u773s" }],
-  ["path", { d: "M12 17h.01", key: "p32p05" }]
-];
-const CircleQuestionMark = createLucideIcon("circle-question-mark", __iconNode$U);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$T = [
+const __iconNode$H = [
   ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
   ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$T);
+const Clock = createLucideIcon("clock", __iconNode$H);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$S = [
-  ["path", { d: "M10.94 5.274A7 7 0 0 1 15.71 10h1.79a4.5 4.5 0 0 1 4.222 6.057", key: "1uxyv8" }],
-  ["path", { d: "M18.796 18.81A4.5 4.5 0 0 1 17.5 19H9A7 7 0 0 1 5.79 5.78", key: "99tcn7" }],
-  ["path", { d: "m2 2 20 20", key: "1ooewy" }]
-];
-const CloudOff = createLucideIcon("cloud-off", __iconNode$S);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$R = [
+const __iconNode$G = [
   ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
 ];
-const Cloud = createLucideIcon("cloud", __iconNode$R);
+const Cloud = createLucideIcon("cloud", __iconNode$G);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Q = [
+const __iconNode$F = [
   ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
   ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
 ];
-const Code = createLucideIcon("code", __iconNode$Q);
+const Code = createLucideIcon("code", __iconNode$F);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$P = [
+const __iconNode$E = [
   ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
   ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
 ];
-const Copy = createLucideIcon("copy", __iconNode$P);
+const Copy = createLucideIcon("copy", __iconNode$E);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$O = [
+const __iconNode$D = [
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M17 20v2", key: "1rnc9c" }],
@@ -22986,85 +22890,25 @@ const __iconNode$O = [
   ["rect", { x: "4", y: "4", width: "16", height: "16", rx: "2", key: "1vbyd7" }],
   ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "1", key: "z9xiuo" }]
 ];
-const Cpu = createLucideIcon("cpu", __iconNode$O);
+const Cpu = createLucideIcon("cpu", __iconNode$D);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$N = [
+const __iconNode$C = [
   ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
   ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
 ];
-const CreditCard = createLucideIcon("credit-card", __iconNode$N);
+const CreditCard = createLucideIcon("credit-card", __iconNode$C);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$M = [
-  ["path", { d: "M12 15V3", key: "m9g1x1" }],
-  ["path", { d: "M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4", key: "ih7n3h" }],
-  ["path", { d: "m7 10 5 5 5-5", key: "brsn70" }]
-];
-const Download = createLucideIcon("download", __iconNode$M);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$L = [
-  ["path", { d: "M15 3h6v6", key: "1q9fwt" }],
-  ["path", { d: "M10 14 21 3", key: "gplh6r" }],
-  ["path", { d: "M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6", key: "a6xqqp" }]
-];
-const ExternalLink = createLucideIcon("external-link", __iconNode$L);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$K = [
-  [
-    "path",
-    {
-      d: "M2.062 12.348a1 1 0 0 1 0-.696 10.75 10.75 0 0 1 19.876 0 1 1 0 0 1 0 .696 10.75 10.75 0 0 1-19.876 0",
-      key: "1nclc0"
-    }
-  ],
-  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
-];
-const Eye = createLucideIcon("eye", __iconNode$K);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$J = [
-  [
-    "path",
-    {
-      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
-      key: "1oefj6"
-    }
-  ],
-  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
-  ["path", { d: "M10 12.5 8 15l2 2.5", key: "1tg20x" }],
-  ["path", { d: "m14 12.5 2 2.5-2 2.5", key: "yinavb" }]
-];
-const FileCode = createLucideIcon("file-code", __iconNode$J);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$I = [
+const __iconNode$B = [
   [
     "path",
     {
@@ -23076,34 +22920,14 @@ const __iconNode$I = [
   ["path", { d: "M9 15h6", key: "cctwl0" }],
   ["path", { d: "M12 18v-6", key: "17g6i2" }]
 ];
-const FilePlus = createLucideIcon("file-plus", __iconNode$I);
+const FilePlus = createLucideIcon("file-plus", __iconNode$B);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$H = [
-  [
-    "path",
-    {
-      d: "M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z",
-      key: "1oefj6"
-    }
-  ],
-  ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }],
-  ["path", { d: "M10 9H8", key: "b1mrlr" }],
-  ["path", { d: "M16 13H8", key: "t4e002" }],
-  ["path", { d: "M16 17H8", key: "z1uh3a" }]
-];
-const FileText = createLucideIcon("file-text", __iconNode$H);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$G = [
+const __iconNode$A = [
   [
     "path",
     {
@@ -23113,30 +22937,14 @@ const __iconNode$G = [
   ],
   ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }]
 ];
-const File = createLucideIcon("file", __iconNode$G);
+const File = createLucideIcon("file", __iconNode$A);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$F = [
-  [
-    "path",
-    {
-      d: "m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2",
-      key: "usdka0"
-    }
-  ]
-];
-const FolderOpen = createLucideIcon("folder-open", __iconNode$F);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$E = [
+const __iconNode$z = [
   ["path", { d: "M12 10v6", key: "1bos4e" }],
   ["path", { d: "M9 13h6", key: "1uhe8q" }],
   [
@@ -23147,14 +22955,14 @@ const __iconNode$E = [
     }
   ]
 ];
-const FolderPlus = createLucideIcon("folder-plus", __iconNode$E);
+const FolderPlus = createLucideIcon("folder-plus", __iconNode$z);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$D = [
+const __iconNode$y = [
   [
     "path",
     {
@@ -23163,14 +22971,14 @@ const __iconNode$D = [
     }
   ]
 ];
-const Folder = createLucideIcon("folder", __iconNode$D);
+const Folder = createLucideIcon("folder", __iconNode$y);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$x = [
   ["line", { x1: "6", x2: "10", y1: "11", y2: "11", key: "1gktln" }],
   ["line", { x1: "8", x2: "8", y1: "9", y2: "13", key: "qnk9ow" }],
   ["line", { x1: "15", x2: "15.01", y1: "12", y2: "12", key: "krot7o" }],
@@ -23183,39 +22991,14 @@ const __iconNode$C = [
     }
   ]
 ];
-const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$C);
+const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$x);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$B = [
-  ["line", { x1: "6", x2: "6", y1: "3", y2: "15", key: "17qcm7" }],
-  ["circle", { cx: "18", cy: "6", r: "3", key: "1h7g24" }],
-  ["circle", { cx: "6", cy: "18", r: "3", key: "fqmcym" }],
-  ["path", { d: "M18 9a9 9 0 0 1-9 9", key: "n2h4wq" }]
-];
-const GitBranch = createLucideIcon("git-branch", __iconNode$B);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$A = [
-  ["path", { d: "M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8", key: "1357e3" }],
-  ["path", { d: "M3 3v5h5", key: "1xhq8a" }],
-  ["path", { d: "M12 7v5l4 2", key: "1fdv2h" }]
-];
-const History = createLucideIcon("history", __iconNode$A);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$z = [
+const __iconNode$w = [
   ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
     "path",
@@ -23225,26 +23008,26 @@ const __iconNode$z = [
     }
   ]
 ];
-const House = createLucideIcon("house", __iconNode$z);
+const House = createLucideIcon("house", __iconNode$w);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$v = [
   ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", ry: "2", key: "1m3agn" }],
   ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }],
   ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }]
 ];
-const Image = createLucideIcon("image", __iconNode$y);
+const Image = createLucideIcon("image", __iconNode$v);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [
+const __iconNode$u = [
   ["path", { d: "M10 8h.01", key: "1r9ogq" }],
   ["path", { d: "M12 12h.01", key: "1mp3jc" }],
   ["path", { d: "M14 8h.01", key: "1primd" }],
@@ -23255,47 +23038,7 @@ const __iconNode$x = [
   ["path", { d: "M8 12h.01", key: "czm47f" }],
   ["rect", { width: "20", height: "16", x: "2", y: "4", rx: "2", key: "18n3k1" }]
 ];
-const Keyboard = createLucideIcon("keyboard", __iconNode$x);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$w = [
-  [
-    "path",
-    {
-      d: "M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5",
-      key: "1gvzjb"
-    }
-  ],
-  ["path", { d: "M9 18h6", key: "x1upvd" }],
-  ["path", { d: "M10 22h4", key: "ceow96" }]
-];
-const Lightbulb = createLucideIcon("lightbulb", __iconNode$w);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$v = [
-  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
-  ["path", { d: "M7 11V7a5 5 0 0 1 9.9-1", key: "1mm8w8" }]
-];
-const LockOpen = createLucideIcon("lock-open", __iconNode$v);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$u = [
-  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
-  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
-];
-const Lock = createLucideIcon("lock", __iconNode$u);
+const Keyboard = createLucideIcon("keyboard", __iconNode$u);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23303,6 +23046,28 @@ const Lock = createLucideIcon("lock", __iconNode$u);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$t = [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 9.9-1", key: "1mm8w8" }]
+];
+const LockOpen = createLucideIcon("lock-open", __iconNode$t);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$s = [
+  ["rect", { width: "18", height: "11", x: "3", y: "11", rx: "2", ry: "2", key: "1w4ew1" }],
+  ["path", { d: "M7 11V7a5 5 0 0 1 10 0v4", key: "fwvmzm" }]
+];
+const Lock = createLucideIcon("lock", __iconNode$s);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$r = [
   [
     "path",
     {
@@ -23312,37 +23077,7 @@ const __iconNode$t = [
   ],
   ["circle", { cx: "12", cy: "10", r: "3", key: "ilqhr7" }]
 ];
-const MapPin = createLucideIcon("map-pin", __iconNode$t);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$s = [
-  [
-    "path",
-    {
-      d: "M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z",
-      key: "169xi5"
-    }
-  ],
-  ["path", { d: "M15 5.764v15", key: "1pn4in" }],
-  ["path", { d: "M9 3.236v15", key: "1uimfh" }]
-];
-const Map$1 = createLucideIcon("map", __iconNode$s);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$r = [
-  ["path", { d: "M4 5h16", key: "1tepv9" }],
-  ["path", { d: "M4 12h16", key: "1lakjw" }],
-  ["path", { d: "M4 19h16", key: "1djgab" }]
-];
-const Menu = createLucideIcon("menu", __iconNode$r);
+const MapPin = createLucideIcon("map-pin", __iconNode$r);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23353,12 +23088,14 @@ const __iconNode$q = [
   [
     "path",
     {
-      d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
-      key: "1sd12s"
+      d: "M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z",
+      key: "169xi5"
     }
-  ]
+  ],
+  ["path", { d: "M15 5.764v15", key: "1pn4in" }],
+  ["path", { d: "M9 3.236v15", key: "1uimfh" }]
 ];
-const MessageCircle = createLucideIcon("message-circle", __iconNode$q);
+const Map$1 = createLucideIcon("map", __iconNode$q);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23366,15 +23103,11 @@ const MessageCircle = createLucideIcon("message-circle", __iconNode$q);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$p = [
-  [
-    "path",
-    {
-      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
-      key: "18887p"
-    }
-  ]
+  ["path", { d: "M4 5h16", key: "1tepv9" }],
+  ["path", { d: "M4 12h16", key: "1lakjw" }],
+  ["path", { d: "M4 19h16", key: "1djgab" }]
 ];
-const MessageSquare = createLucideIcon("message-square", __iconNode$p);
+const Menu = createLucideIcon("menu", __iconNode$p);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23382,11 +23115,15 @@ const MessageSquare = createLucideIcon("message-square", __iconNode$p);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$o = [
-  ["path", { d: "M12 19v3", key: "npa21l" }],
-  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
-  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
+  [
+    "path",
+    {
+      d: "M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719",
+      key: "1sd12s"
+    }
+  ]
 ];
-const Mic = createLucideIcon("mic", __iconNode$o);
+const MessageCircle = createLucideIcon("message-circle", __iconNode$o);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23397,12 +23134,12 @@ const __iconNode$n = [
   [
     "path",
     {
-      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
-      key: "kfwtm"
+      d: "M22 17a2 2 0 0 1-2 2H6.828a2 2 0 0 0-1.414.586l-2.202 2.202A.71.71 0 0 1 2 21.286V5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2z",
+      key: "18887p"
     }
   ]
 ];
-const Moon = createLucideIcon("moon", __iconNode$n);
+const MessageSquare = createLucideIcon("message-square", __iconNode$n);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23410,16 +23147,11 @@ const Moon = createLucideIcon("moon", __iconNode$n);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$m = [
-  ["path", { d: "M13 21h8", key: "1jsn5i" }],
-  [
-    "path",
-    {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
-    }
-  ]
+  ["path", { d: "M12 19v3", key: "npa21l" }],
+  ["path", { d: "M19 10v2a7 7 0 0 1-14 0v-2", key: "1vc78b" }],
+  ["rect", { x: "9", y: "2", width: "6", height: "13", rx: "3", key: "s6n7sd" }]
 ];
-const PenLine = createLucideIcon("pen-line", __iconNode$m);
+const Mic = createLucideIcon("mic", __iconNode$m);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23430,13 +23162,12 @@ const __iconNode$l = [
   [
     "path",
     {
-      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
-      key: "1a8usu"
+      d: "M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401",
+      key: "kfwtm"
     }
-  ],
-  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+  ]
 ];
-const Pencil = createLucideIcon("pencil", __iconNode$l);
+const Moon = createLucideIcon("moon", __iconNode$l);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23444,6 +23175,40 @@ const Pencil = createLucideIcon("pencil", __iconNode$l);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$k = [
+  ["path", { d: "M13 21h8", key: "1jsn5i" }],
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ]
+];
+const PenLine = createLucideIcon("pen-line", __iconNode$k);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$j = [
+  [
+    "path",
+    {
+      d: "M21.174 6.812a1 1 0 0 0-3.986-3.987L3.842 16.174a2 2 0 0 0-.5.83l-1.321 4.352a.5.5 0 0 0 .623.622l4.353-1.32a2 2 0 0 0 .83-.497z",
+      key: "1a8usu"
+    }
+  ],
+  ["path", { d: "m15 5 4 4", key: "1mk7zo" }]
+];
+const Pencil = createLucideIcon("pencil", __iconNode$j);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$i = [
   [
     "path",
     {
@@ -23452,29 +23217,7 @@ const __iconNode$k = [
     }
   ]
 ];
-const Play = createLucideIcon("play", __iconNode$k);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$j = [
-  ["path", { d: "M5 12h14", key: "1ays0h" }],
-  ["path", { d: "M12 5v14", key: "s699le" }]
-];
-const Plus = createLucideIcon("plus", __iconNode$j);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$i = [
-  ["path", { d: "M12 2v10", key: "mnfbl" }],
-  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
-];
-const Power = createLucideIcon("power", __iconNode$i);
+const Play = createLucideIcon("play", __iconNode$i);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23482,12 +23225,10 @@ const Power = createLucideIcon("power", __iconNode$i);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$h = [
-  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
-  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
-  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
-  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+  ["path", { d: "M5 12h14", key: "1ays0h" }],
+  ["path", { d: "M12 5v14", key: "s699le" }]
 ];
-const RefreshCw = createLucideIcon("refresh-cw", __iconNode$h);
+const Plus = createLucideIcon("plus", __iconNode$h);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23495,6 +23236,30 @@ const RefreshCw = createLucideIcon("refresh-cw", __iconNode$h);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$g = [
+  ["path", { d: "M12 2v10", key: "mnfbl" }],
+  ["path", { d: "M18.4 6.6a9 9 0 1 1-12.77.04", key: "obofu9" }]
+];
+const Power = createLucideIcon("power", __iconNode$g);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$f = [
+  ["path", { d: "M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8", key: "v9h5vc" }],
+  ["path", { d: "M21 3v5h-5", key: "1q7to0" }],
+  ["path", { d: "M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16", key: "3uifl3" }],
+  ["path", { d: "M8 16H3v5", key: "1cv678" }]
+];
+const RefreshCw = createLucideIcon("refresh-cw", __iconNode$f);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$e = [
   [
     "path",
     {
@@ -23505,31 +23270,7 @@ const __iconNode$g = [
   ["path", { d: "M17 21v-7a1 1 0 0 0-1-1H8a1 1 0 0 0-1 1v7", key: "1ydtos" }],
   ["path", { d: "M7 3v4a1 1 0 0 0 1 1h7", key: "t51u73" }]
 ];
-const Save = createLucideIcon("save", __iconNode$g);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$f = [
-  ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
-  ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
-  ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
-  ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
-];
-const Scan = createLucideIcon("scan", __iconNode$f);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$e = [
-  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
-  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
-];
-const Search = createLucideIcon("search", __iconNode$e);
+const Save = createLucideIcon("save", __iconNode$e);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23537,16 +23278,12 @@ const Search = createLucideIcon("search", __iconNode$e);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$d = [
-  [
-    "path",
-    {
-      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
-      key: "1ffxy3"
-    }
-  ],
-  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
+  ["path", { d: "M3 7V5a2 2 0 0 1 2-2h2", key: "aa7l1z" }],
+  ["path", { d: "M17 3h2a2 2 0 0 1 2 2v2", key: "4qcy5o" }],
+  ["path", { d: "M21 17v2a2 2 0 0 1-2 2h-2", key: "6vwrx8" }],
+  ["path", { d: "M7 21H5a2 2 0 0 1-2-2v-2", key: "ioqczr" }]
 ];
-const Send = createLucideIcon("send", __iconNode$d);
+const Scan = createLucideIcon("scan", __iconNode$d);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23554,16 +23291,10 @@ const Send = createLucideIcon("send", __iconNode$d);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$c = [
-  [
-    "path",
-    {
-      d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
-      key: "1i5ecw"
-    }
-  ],
-  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+  ["path", { d: "m21 21-4.34-4.34", key: "14j7rj" }],
+  ["circle", { cx: "11", cy: "11", r: "8", key: "4ej97u" }]
 ];
-const Settings$1 = createLucideIcon("settings", __iconNode$c);
+const Search = createLucideIcon("search", __iconNode$c);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23574,12 +23305,13 @@ const __iconNode$b = [
   [
     "path",
     {
-      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
-      key: "oel41y"
+      d: "M14.536 21.686a.5.5 0 0 0 .937-.024l6.5-19a.496.496 0 0 0-.635-.635l-19 6.5a.5.5 0 0 0-.024.937l7.93 3.18a2 2 0 0 1 1.112 1.11z",
+      key: "1ffxy3"
     }
-  ]
+  ],
+  ["path", { d: "m21.854 2.147-10.94 10.939", key: "12cjpa" }]
 ];
-const Shield = createLucideIcon("shield", __iconNode$b);
+const Send = createLucideIcon("send", __iconNode$b);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23587,6 +23319,39 @@ const Shield = createLucideIcon("shield", __iconNode$b);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$a = [
+  [
+    "path",
+    {
+      d: "M9.671 4.136a2.34 2.34 0 0 1 4.659 0 2.34 2.34 0 0 0 3.319 1.915 2.34 2.34 0 0 1 2.33 4.033 2.34 2.34 0 0 0 0 3.831 2.34 2.34 0 0 1-2.33 4.033 2.34 2.34 0 0 0-3.319 1.915 2.34 2.34 0 0 1-4.659 0 2.34 2.34 0 0 0-3.32-1.915 2.34 2.34 0 0 1-2.33-4.033 2.34 2.34 0 0 0 0-3.831A2.34 2.34 0 0 1 6.35 6.051a2.34 2.34 0 0 0 3.319-1.915",
+      key: "1i5ecw"
+    }
+  ],
+  ["circle", { cx: "12", cy: "12", r: "3", key: "1v7zrd" }]
+];
+const Settings$1 = createLucideIcon("settings", __iconNode$a);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$9 = [
+  [
+    "path",
+    {
+      d: "M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z",
+      key: "oel41y"
+    }
+  ]
+];
+const Shield = createLucideIcon("shield", __iconNode$9);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$8 = [
   ["path", { d: "M7 18v-6a5 5 0 1 1 10 0v6", key: "pcx96s" }],
   [
     "path",
@@ -23599,43 +23364,7 @@ const __iconNode$a = [
   ["path", { d: "m4.929 4.929.707.707", key: "1i51kw" }],
   ["path", { d: "M12 12v6", key: "3ahymv" }]
 ];
-const Siren = createLucideIcon("siren", __iconNode$a);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$9 = [
-  [
-    "path",
-    {
-      d: "M11.017 2.814a1 1 0 0 1 1.966 0l1.051 5.558a2 2 0 0 0 1.594 1.594l5.558 1.051a1 1 0 0 1 0 1.966l-5.558 1.051a2 2 0 0 0-1.594 1.594l-1.051 5.558a1 1 0 0 1-1.966 0l-1.051-5.558a2 2 0 0 0-1.594-1.594l-5.558-1.051a1 1 0 0 1 0-1.966l5.558-1.051a2 2 0 0 0 1.594-1.594z",
-      key: "1s2grr"
-    }
-  ],
-  ["path", { d: "M20 2v4", key: "1rf3ol" }],
-  ["path", { d: "M22 4h-4", key: "gwowj6" }],
-  ["circle", { cx: "4", cy: "20", r: "2", key: "6kqj1y" }]
-];
-const Sparkles = createLucideIcon("sparkles", __iconNode$9);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$8 = [
-  ["path", { d: "M12 3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7", key: "1m0v6g" }],
-  [
-    "path",
-    {
-      d: "M18.375 2.625a1 1 0 0 1 3 3l-9.013 9.014a2 2 0 0 1-.853.505l-2.873.84a.5.5 0 0 1-.62-.62l.84-2.873a2 2 0 0 1 .506-.852z",
-      key: "ohrbg2"
-    }
-  ]
-];
-const SquarePen = createLucideIcon("square-pen", __iconNode$8);
+const Siren = createLucideIcon("siren", __iconNode$8);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -24084,7 +23813,6 @@ const port = "8000";
 const base = `${host}:${port}`;
 const API_BASE_URL = `http://${base}`;
 const WS_BASE_URL = `ws://${base}`;
-const API_URL = API_BASE_URL;
 const WS_URL = `${WS_BASE_URL}/ws/voice`;
 const CHAT_WS_URL = `${WS_BASE_URL}/ws/chat`;
 async function apiFetch(path2, options = {}) {
@@ -25074,15 +24802,6 @@ function Home() {
                     await fetch("http://localhost:8000/maps/open", { method: "POST" });
                   },
                   color: "#9ece6a"
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                MenuButton,
-                {
-                  icon: Bot,
-                  label: "DEV AI",
-                  onClick: () => navigate("/devai"),
-                  color: "#f97316"
                 }
               ),
               /* @__PURE__ */ jsxRuntimeExports.jsx(
@@ -40269,7 +39988,7 @@ function Settings() {
     }
   );
 }
-const API$1 = "http://127.0.0.1:8000";
+const API = "http://127.0.0.1:8000";
 function Maps() {
   const [loading, setLoading] = reactExports.useState(false);
   const [status, setStatus] = reactExports.useState(null);
@@ -40280,7 +39999,7 @@ function Maps() {
     setLoading(true);
     setStatus(null);
     try {
-      const res = await fetch(`${API$1}/maps/open`, { method: "POST" });
+      const res = await fetch(`${API}/maps/open`, { method: "POST" });
       const data = await res.json();
       setStatus({ ok: true, msg: data.msg || "Organic Maps opened!" });
     } catch {
@@ -40296,7 +40015,7 @@ function Maps() {
     setSearchError(null);
     setResults([]);
     try {
-      const res = await fetch(`${API$1}/maps/search?q=${encodeURIComponent(search2)}`);
+      const res = await fetch(`${API}/maps/search?q=${encodeURIComponent(search2)}`);
       const data = await res.json();
       if (!Array.isArray(data) || data.length === 0) setSearchError("No results found");
       else setResults(data);
@@ -40707,929 +40426,6 @@ function Maps() {
             )
           ] })
         ] })
-      ]
-    }
-  );
-}
-const API = API_URL;
-const DEBUG_PROMPTS = [
-  { label: "Debug Error", prompt: "Find and fix this bug: ", icon: Bug },
-  { label: "Explain Code", prompt: "Explain this code: ", icon: Code },
-  { label: "Fix Bug", prompt: "Find and fix the bug in: ", icon: Zap },
-  { label: "Review Code", prompt: "Review this code for issues: ", icon: Eye }
-];
-const PROJECT_ACTIONS = [
-  { label: "Analyze Project", prompt: "Analyze this entire project. Show me: 1) Project structure, 2) Tech stack, 3) Main entry points, 4) Dependencies, 5) What it does", icon: FolderOpen },
-  { label: "Add Feature", prompt: "Add a new feature to this project: ", icon: Plus },
-  { label: "Refactor", prompt: "Refactor and improve this code: ", icon: PenLine },
-  { label: "Create API", prompt: "Create a new API endpoint for: ", icon: Code },
-  { label: "Add Tests", prompt: "Add unit tests for: ", icon: FileCode },
-  { label: "Fix Issues", prompt: "Find and fix all issues in: ", icon: Zap },
-  { label: "Plan + Write", prompt: "PLAN_WRITE /path/to/file:reason for change:code to write", icon: SquarePen }
-];
-const SCRIPT_ACTIONS = [
-  { label: "Python Script", prompt: "Write a production-ready Python script with argparse, logging, and error handling for: ", icon: FileCode },
-  { label: "Bash Script", prompt: "Write a professional bash script with usage function and error handling for: ", icon: Terminal },
-  { label: "Node Script", prompt: "Write a Node.js script with async/await and proper error handling for: ", icon: FileCode },
-  { label: "API Script", prompt: "Write a REST API client script in Python with requests library for: ", icon: Code }
-];
-const QUICK_ACTIONS = [
-  { label: "📊 System", cmd: "SYSTEM_INFO", icon: Cpu },
-  { label: "💾 Memory", cmd: "MEMORY_USAGE", icon: Cpu },
-  { label: "⚡ CPU", cmd: "CPU_USAGE", icon: Cpu },
-  { label: "🌳 Tree", cmd: "PROJECT_STRUCTURE .", icon: FolderOpen },
-  { label: "📝 Lines", cmd: "COUNT_LINES .", icon: Activity },
-  { label: "🔀 Status", cmd: "GIT_STATUS", icon: GitBranch },
-  { label: "🔀 Diff", cmd: "GIT_DIFF", icon: GitBranch },
-  { label: "🌐 Net", cmd: "NETWORK_INFO", icon: Cpu }
-];
-const AI_ACTIONS = [
-  { label: "🔍 Index", cmd: "INDEX .", icon: Search },
-  { label: "📝 Search", prompt: "SEARCH ", icon: Search },
-  { label: "🐛 Bugs", prompt: "ANALYZE_BUGS ", icon: Bug },
-  { label: "📊 Complex", prompt: "ANALYZE_COMPLEXITY ", icon: Activity },
-  { label: "💡 Suggest", prompt: "SUGGEST ", icon: Lightbulb }
-];
-const CODE_ACTIONS = [
-  { label: "🧠 Generate", prompt: "GENERATE_CODE ", icon: Code },
-  { label: "🔧 Fix", prompt: "FIX_CODE ", icon: Bug },
-  { label: "⚡ Complete", prompt: "COMPLETE_CODE ", icon: Code },
-  { label: "🧪 Tests", prompt: "GENERATE_TESTS ", icon: Beaker },
-  { label: "📚 Docs", prompt: "GENERATE_DOCS ", icon: FileText },
-  { label: "🔐 Security", prompt: "SECURITY_SCAN ", icon: Shield },
-  { label: "📖 Explain", prompt: "EXPLAIN_CODE ", icon: BookOpen },
-  { label: "📝 README", prompt: "GENERATE_README ", icon: FileText },
-  { label: "🔄 Refactor", prompt: "REFACTOR_CODE ", icon: RefreshCw },
-  { label: "⚡ Optimize", prompt: "OPTIMIZE_CODE ", icon: Zap }
-];
-const DEV_ACTIONS = [
-  { label: "🐳 Docker", prompt: "GENERATE_DOCKER ", icon: Code },
-  { label: "🔧 CI/CD", prompt: "WRITE_CI ", icon: Code },
-  { label: "🗄️ SQL", prompt: "GENERATE_SQL ", icon: Code },
-  { label: "🌐 API", prompt: "GENERATE_API ", icon: Code },
-  { label: "🚀 Deploy", prompt: "DEPLOY_APP ", icon: Code },
-  { label: "🤖 Bot", prompt: "CREATE_BOT ", icon: Code },
-  { label: "🔄 Workflow", prompt: "GENERATE_WORKFLOW ", icon: Code },
-  { label: "🔧 Migrate", prompt: "MIGRATE_DB ", icon: Code }
-];
-const WEB_SEARCH_PRESETS = [
-  { label: "🔍 Python", cmd: "WEB_SEARCH python asyncio tutorial 2024", icon: Search },
-  { label: "🔍 React", cmd: "WEB_SEARCH react 19 new features 2024", icon: Search },
-  { label: "🔍 FastAPI", cmd: "WEB_SEARCH fastapi best practices 2024", icon: Search },
-  { label: "🔍 Linux", cmd: "WEB_SEARCH linux server setup guide", icon: Search },
-  { label: "🔍 Git", cmd: "WEB_SEARCH git advanced tips tricks", icon: Search }
-];
-const ONLINE_ACTIONS = [
-  { label: "📖 Read URL", prompt: "READ_URL ", icon: ExternalLink },
-  { label: "📥 Download", prompt: "DOWNLOAD ", icon: Download },
-  { label: "🐍 Pip List", cmd: "CHECK_INSTALLED pip", icon: Download },
-  { label: "📦 NPM List", cmd: "RUN npm list -g --depth=0", icon: Download },
-  { label: "🔧 Install", prompt: "PIP_INSTALL ", icon: Download }
-];
-function DevAI() {
-  const navigate = useNavigate();
-  const [input, setInput] = reactExports.useState("");
-  const [messages, setMessages] = reactExports.useState([]);
-  const [loading, setLoading] = reactExports.useState(false);
-  const [isOffline, setIsOffline] = reactExports.useState(null);
-  const [offlineMode, setOfflineMode] = reactExports.useState(true);
-  const [showHelp, setShowHelp] = reactExports.useState(false);
-  const [commandHistory, setCommandHistory] = reactExports.useState([]);
-  const [historyIndex, setHistoryIndex] = reactExports.useState(-1);
-  const [copiedIndex, setCopiedIndex] = reactExports.useState(null);
-  const [showHistory, setShowHistory] = reactExports.useState(false);
-  const [showAllThinking, setShowAllThinking] = reactExports.useState(false);
-  const [debugMode, setDebugMode] = reactExports.useState(false);
-  const [debugInput, setDebugInput] = reactExports.useState("");
-  const [currentThinking, setCurrentThinking] = reactExports.useState("");
-  const bottomRef = reactExports.useRef(null);
-  const inputRef = reactExports.useRef(null);
-  reactExports.useRef({});
-  reactExports.useEffect(() => {
-    fetch(`${API}/devai/status`).then((r) => r.json()).then((d) => {
-      setIsOffline(!d.status?.includes("ready"));
-      setOfflineMode(d.offline !== false);
-    }).catch(() => setIsOffline(true));
-  }, []);
-  reactExports.useEffect(() => {
-    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [messages, currentThinking]);
-  const send = async (text2, skipHistory = false) => {
-    const trimmed = text2.trim();
-    if (!trimmed || loading) return;
-    if (!skipHistory) {
-      setCommandHistory((prev) => [trimmed, ...prev.slice(0, 49)]);
-      setHistoryIndex(-1);
-    }
-    const userMsg = { role: "user", text: trimmed };
-    const assistantMsg = { role: "assistant", text: "", thinking: "", showThinking: true };
-    setMessages((prev) => [...prev, userMsg, assistantMsg]);
-    setInput("");
-    setLoading(true);
-    setCurrentThinking("🤔 Analyzing your request and planning...");
-    setDebugInput("");
-    try {
-      const response = await fetch(`${API}/devai/chat/stream`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ message: trimmed, stream: true })
-      });
-      const reader = response.body.getReader();
-      const decoder = new TextDecoder();
-      let fullResponse = "";
-      let thinkingBuffer = "";
-      let inThinking = false;
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value);
-        const lines = chunk.split("\n");
-        for (const line of lines) {
-          if (line.startsWith("data: ")) {
-            const data = line.slice(6);
-            if (data === "[DONE]") continue;
-            const hasBrainStart = data.includes("<think>");
-            const hasBrainStart2 = data.includes("<think>");
-            const hasBrainEnd2 = data.includes("</think>");
-            if (hasBrainStart || hasBrainStart2) {
-              inThinking = true;
-              const idx1 = data.indexOf("<think>");
-              const idx2 = data.indexOf("<think>");
-              const idx = idx1 >= 0 ? idx1 : idx2;
-              let content2 = data.substring(idx + 6);
-              thinkingBuffer = content2;
-              if (thinkingBuffer) {
-                setCurrentThinking(thinkingBuffer);
-              }
-            } else if (hasBrainEnd || hasBrainEnd2) {
-              inThinking = false;
-              const idx1 = data.indexOf("</think>");
-              const idx2 = data.indexOf("</think>");
-              const idx = idx1 >= 0 ? idx1 : idx2;
-              let content2 = data.substring(0, idx);
-              thinkingBuffer += content2;
-              setCurrentThinking("");
-              setMessages((prev) => {
-                const updated = [...prev];
-                updated[updated.length - 1] = {
-                  ...updated[updated.length - 1],
-                  thinking: thinkingBuffer,
-                  showThinking: true
-                };
-                return updated;
-              });
-            } else if (inThinking) {
-              thinkingBuffer += data;
-              setCurrentThinking(thinkingBuffer + "...");
-            } else {
-              fullResponse += data;
-              setMessages((prev) => {
-                const updated = [...prev];
-                updated[updated.length - 1] = {
-                  ...updated[updated.length - 1],
-                  text: fullResponse
-                };
-                return updated;
-              });
-            }
-          }
-        }
-      }
-      if (thinkingBuffer) {
-        setMessages((prev) => {
-          const updated = [...prev];
-          updated[updated.length - 1] = {
-            ...updated[updated.length - 1],
-            thinking: thinkingBuffer,
-            showThinking: true
-          };
-          return updated;
-        });
-      }
-    } catch (err) {
-      setMessages((prev) => {
-        const updated = [...prev];
-        updated[updated.length - 1] = {
-          ...updated[updated.length - 1],
-          text: "Failed to reach Dev AI Pro. Is the backend running?"
-        };
-        return updated;
-      });
-    } finally {
-      setLoading(false);
-      setCurrentThinking("");
-    }
-  };
-  const handleKeyDown = (e) => {
-    if (e.key === "Enter" && !e.shiftKey) {
-      e.preventDefault();
-      send(input);
-    }
-    if (e.key === "ArrowUp" && e.target.tagName !== "TEXTAREA") {
-      e.preventDefault();
-      if (historyIndex < commandHistory.length - 1) {
-        const newIndex = historyIndex + 1;
-        setHistoryIndex(newIndex);
-        setInput(commandHistory[newIndex]);
-      }
-    }
-    if (e.key === "ArrowDown" && e.target.tagName !== "TEXTAREA") {
-      e.preventDefault();
-      if (historyIndex > 0) {
-        const newIndex = historyIndex - 1;
-        setHistoryIndex(newIndex);
-        setInput(commandHistory[newIndex]);
-      } else if (historyIndex === 0) {
-        setHistoryIndex(-1);
-        setInput("");
-      }
-    }
-  };
-  const copyToClipboard = (text2, index2) => {
-    navigator.clipboard.writeText(text2);
-    setCopiedIndex(index2);
-    setTimeout(() => setCopiedIndex(null), 2e3);
-  };
-  const downloadText = (text2, filename = "output.txt") => {
-    const blob = new Blob([text2], { type: "text/plain" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = filename;
-    document.body.appendChild(a);
-    a.click();
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
-  };
-  const extractCodeBlocks = (text2) => {
-    const codeBlockRegex = /```(\w+)?\n([\s\S]*?)```/g;
-    const blocks = [];
-    let match;
-    while ((match = codeBlockRegex.exec(text2)) !== null) {
-      blocks.push({
-        language: match[1] || "txt",
-        code: match[2].trim()
-      });
-    }
-    return blocks;
-  };
-  const downloadCode = (code2, language, index2) => {
-    const extensions = {
-      python: "py",
-      javascript: "js",
-      typescript: "ts",
-      bash: "sh",
-      shell: "sh",
-      html: "html",
-      css: "css",
-      json: "json",
-      markdown: "md",
-      sql: "sql",
-      go: "go",
-      rust: "rs",
-      java: "java",
-      c: "c",
-      cpp: "cpp"
-    };
-    const ext = extensions[language.toLowerCase()] || "txt";
-    const filename = `devai_script_${index2 + 1}.${ext}`;
-    downloadText(code2, filename);
-  };
-  const toggleThinking = (index2) => {
-    setMessages((prev) => {
-      const updated = [...prev];
-      if (updated[index2] && updated[index2].role === "assistant") {
-        updated[index2] = { ...updated[index2], showThinking: !updated[index2].showThinking };
-      }
-      return updated;
-    });
-  };
-  const handleDebug = (type) => {
-    const prompt2 = DEBUG_PROMPTS.find((p) => p.label === type)?.prompt || "";
-    setDebugMode(true);
-    setInput(prompt2);
-    inputRef.current?.focus();
-  };
-  const escapeHtml = (str) => {
-    return str.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#x27;");
-  };
-  const formatOutput = (text2) => {
-    if (!text2) return "";
-    return text2.split("\n").map((line, i) => {
-      const formatted = escapeHtml(line).replace(/✅/g, '<span class="text-green-400">✅</span>').replace(/❌/g, '<span class="text-red-400">❌</span>').replace(/📄/g, '<span class="text-blue-400">📄</span>').replace(/📁/g, '<span class="text-yellow-400">📁</span>').replace(/📂/g, '<span class="text-purple-400">📂</span>').replace(/🔍/g, '<span class="text-cyan-400">🔍</span>').replace(/🌐/g, '<span class="text-blue-400">🌐</span>').replace(/🌳/g, '<span class="text-green-400">🌳</span>').replace(/🖥️/g, '<span class="text-gray-400">🖥️</span>').replace(/💻/g, '<span class="text-blue-400">💻</span>').replace(/🧠/g, '<span class="text-pink-400">🧠</span>').replace(/💾/g, '<span class="text-orange-400">💾</span>').replace(/⚡/g, '<span class="text-yellow-400">⚡</span>').replace(/📊/g, '<span class="text-indigo-400">📊</span>').replace(/🔒/g, '<span class="text-red-400">🔒</span>').replace(/🔧/g, '<span class="text-orange-400">🔧</span>').replace(/🐛/g, '<span class="text-red-400">🐛</span>').replace(/💡/g, '<span class="text-yellow-400">💡</span>').replace(/📌/g, '<span class="text-blue-400">📌</span>').replace(/<!--/g, '<span class="text-gray-500">&lt;!--</span>').replace(/-->/g, '<span class="text-gray-500">--&gt;</span>');
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block whitespace-pre-wrap", dangerouslySetInnerHTML: { __html: formatted } }, `output-${i}`);
-    });
-  };
-  const formatThinking = (thinking) => {
-    if (!thinking) return "";
-    return thinking.split("\n").map((line, i) => {
-      const formatted = escapeHtml(line).replace(/^[\s]*\*\*?(.*?)\*\*?:?/g, '<span class="text-purple-400 font-semibold">$1:</span>').replace(/`([^`]+)`/g, '<span class="text-green-400 bg-black/30 px-1 rounded">$1</span>').replace(/\*\*([^*]+)\*\*/g, '<span class="font-bold text-white">$1</span>');
-      return /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "block", dangerouslySetInnerHTML: { __html: formatted || "&nbsp;" } }, `think-${i}`);
-    });
-  };
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
-    "div",
-    {
-      className: "relative w-full h-full flex flex-col overflow-hidden",
-      style: { background: "var(--bg)", fontFamily: "var(--font-body)", color: "var(--text)" },
-      children: [
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "ambient-bg" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "blob blob-1" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "blob blob-2" }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "flex-shrink-0 flex items-center gap-2 px-3 py-2 z-10",
-            style: {
-              background: "var(--surface)",
-              backdropFilter: "blur(14px)",
-              borderBottom: "1.5px solid var(--border)"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: () => navigate("/"),
-                  className: "p-2 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all flex items-center justify-center min-h-[44px] min-w-[44px]",
-                  "aria-label": "Back",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { size: 20 })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "w-10 h-10 rounded-xl flex items-center justify-center text-lg",
-                  style: { background: "var(--ai-bg)" },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Sparkles, { size: 20, style: { color: "var(--ai-color)" } })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-w-0", children: [
-                /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem" }, children: "Dev AI Pro" }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mt-1", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "button",
-                    {
-                      onClick: () => setOfflineMode(!offlineMode),
-                      className: "flex items-center gap-1.5 px-3 py-1 rounded-full text-xs font-medium transition-all hover:scale-105",
-                      style: {
-                        background: offlineMode ? "rgba(34,197,94,.2)" : "rgba(59,130,246,.2)",
-                        color: offlineMode ? "#22c55e" : "#3b82f6",
-                        border: `2px solid ${offlineMode ? "#22c55e" : "#3b82f6"}`
-                      },
-                      children: [
-                        offlineMode ? /* @__PURE__ */ jsxRuntimeExports.jsx(CloudOff, { size: 12 }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Cloud, { size: 12 }),
-                        offlineMode ? "OFFLINE" : "ONLINE"
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".6rem", color: "var(--text-mid)" }, children: offlineMode ? "Local AI" : "Cloud AI" })
-                ] })
-              ] }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: () => setShowHistory(true),
-                  className: "p-2 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all flex items-center justify-center min-h-[44px] min-w-[44px]",
-                  "aria-label": "History",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(History, { size: 18 })
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: () => setShowHelp(true),
-                  className: "p-2 rounded-xl border-2 border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)] transition-all flex items-center justify-center min-h-[44px] min-w-[44px]",
-                  "aria-label": "Help",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(CircleQuestionMark, { size: 18 })
-                }
-              )
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-shrink-0 px-2 py-2 flex flex-col gap-2", style: { background: "var(--surface)" }, children: [
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "PROJECT:" }),
-            PROJECT_ACTIONS.map(({ label, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => {
-                  setInput(prompt2);
-                  inputRef.current?.focus();
-                },
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(124,58,237,.15)", color: "#7c3aed", border: "1px solid rgba(124,58,237,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "SCRIPT:" }),
-            SCRIPT_ACTIONS.map(({ label, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => {
-                  setInput(prompt2);
-                  inputRef.current?.focus();
-                },
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(34,197,94,.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "DEBUG:" }),
-            DEBUG_PROMPTS.map(({ label, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => handleDebug(label),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(239,68,68,.15)", color: "#ef4444", border: "1px solid rgba(239,68,68,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "var(--text-mid)", whiteSpace: "nowrap" }, children: "QUICK:" }),
-            QUICK_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "var(--ai-bg)", color: "var(--ai-color)", border: "1px solid var(--ai-color)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#a855f7", whiteSpace: "nowrap" }, children: "🤖 AI:" }),
-            AI_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(168,85,247,.15)", color: "#a855f7", border: "1px solid rgba(168,85,247,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#10b981", whiteSpace: "nowrap" }, children: "💻 CODE:" }),
-            CODE_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(16,185,129,.15)", color: "#10b981", border: "1px solid rgba(16,185,129,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#f59e0b", whiteSpace: "nowrap" }, children: "🛠️ DEV:" }),
-            DEV_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(245,158,11,.15)", color: "#f59e0b", border: "1px solid rgba(245,158,11,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#3b82f6", whiteSpace: "nowrap" }, children: "🌐 SEARCH:" }),
-            WEB_SEARCH_PRESETS.map(({ label, cmd, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => send(cmd, true),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(59,130,246,.15)", color: "#3b82f6", border: "1px solid rgba(59,130,246,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] }),
-          offlineMode === false && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 overflow-x-auto scrollbar-hide", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem", color: "#3b82f6", whiteSpace: "nowrap" }, children: "🌐 ONLINE:" }),
-            ONLINE_ACTIONS.map(({ label, cmd, prompt: prompt2, icon: Icon2 }) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              "button",
-              {
-                onClick: () => prompt2 ? (setInput(prompt2), inputRef.current?.focus()) : send(cmd, true),
-                disabled: loading,
-                className: "flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium whitespace-nowrap transition-all disabled:opacity-50 hover:scale-105",
-                style: { background: "rgba(59,130,246,.15)", color: "#3b82f6", border: "1px solid rgba(59,130,246,.3)" },
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(Icon2, { size: 11 }),
-                  label
-                ]
-              },
-              label
-            ))
-          ] })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 min-h-0 overflow-y-auto p-3 flex flex-col gap-3 scroller-ai touch-scroll-y", children: [
-          messages.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 flex flex-col items-center justify-center gap-3 text-center py-10", children: [
-            /* @__PURE__ */ jsxRuntimeExports.jsx(
-              motion.div,
-              {
-                initial: { opacity: 0, scale: 0.8 },
-                animate: { opacity: 1, scale: 1 },
-                className: "w-18 h-18 rounded-2xl flex items-center justify-center",
-                style: { background: "var(--ai-bg)" },
-                children: /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 36, style: { color: "var(--ai-color)" } })
-              }
-            ),
-            /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem", marginBottom: 4 }, children: "Dev AI Pro" }),
-              /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { color: "var(--text-mid)", fontSize: ".8rem", maxWidth: 260, lineHeight: 1.5 }, children: "Your smart coding assistant. Ask anything - I'll show my thinking!" })
-            ] }),
-            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex flex-wrap justify-center gap-2 max-w-xs", children: ["fix this bug", "explain this code", "write a function", "debug error"].map((hint, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-              "button",
-              {
-                onClick: () => send(hint),
-                className: "px-3 py-1.5 rounded-full text-xs font-medium transition-all hover:scale-105",
-                style: { background: "var(--surface)", color: "var(--text)", border: "1px solid var(--border)" },
-                children: hint
-              },
-              hint
-            )) })
-          ] }),
-          /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.div,
-            {
-              initial: { opacity: 0, y: 10 },
-              animate: { opacity: 1, y: 0 },
-              className: `flex flex-col ${msg.role === "user" ? "items-end" : "items-start"}`,
-              children: msg.role === "user" ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "max-w-[85%] px-4 py-2.5 rounded-2xl text-sm",
-                  style: {
-                    background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
-                    color: "#fff",
-                    borderRadius: "18px 18px 4px 18px"
-                  },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "whitespace-pre-wrap break-words text-xs leading-relaxed", style: { fontFamily: "var(--font-body)" }, children: msg.text })
-                }
-              ) : /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "w-full max-w-[95%]", children: [
-                msg.thinking && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "mb-2", children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                    "div",
-                    {
-                      className: "flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs",
-                      style: { background: "rgba(168,85,247,.25)", color: "#a855f7", border: "1px solid rgba(168,85,247,.5)" },
-                      children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-bold", children: "🧠 Thinking" }),
-                        msg.showThinking && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "button",
-                          {
-                            onClick: () => toggleThinking(i),
-                            className: "ml-auto hover:opacity-70",
-                            children: /* @__PURE__ */ jsxRuntimeExports.jsx(ChevronUp, { size: 12 })
-                          }
-                        )
-                      ]
-                    }
-                  ),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: msg.thinking && /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    motion.div,
-                    {
-                      initial: { opacity: 0, height: 0 },
-                      animate: { opacity: 1, height: "auto" },
-                      exit: { opacity: 0, height: 0 },
-                      className: "mt-2 p-3 rounded-xl overflow-hidden",
-                      style: { background: "rgba(0,0,0,.6)", border: "1px solid rgba(168,85,247,.3)" },
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "text-xs leading-relaxed whitespace-pre-wrap font-mono", style: { color: "#e9d5ff" }, children: formatThinking(msg.thinking) })
-                    }
-                  ) })
-                ] }),
-                /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                  "div",
-                  {
-                    className: "px-4 py-3 rounded-2xl",
-                    style: {
-                      background: "var(--surface)",
-                      color: "var(--text)",
-                      border: "1.5px solid var(--border)",
-                      borderRadius: "18px 18px 18px 4px"
-                    },
-                    children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex justify-end gap-2 mb-2", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          "button",
-                          {
-                            onClick: () => downloadText(msg.text, `devai_response_${i + 1}.txt`),
-                            className: "p-1.5 rounded hover:bg-[var(--bg)] transition-colors flex items-center gap-1",
-                            title: "Download",
-                            style: { color: "var(--text-mid)" },
-                            children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(Download, { size: 12 }),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem" }, children: "Txt" })
-                            ]
-                          }
-                        ),
-                        extractCodeBlocks(msg.text).length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                          "button",
-                          {
-                            onClick: () => {
-                              const blocks = extractCodeBlocks(msg.text);
-                              if (blocks.length === 1) {
-                                downloadCode(blocks[0].code, blocks[0].language, i);
-                              } else {
-                                blocks.forEach((block, bi) => downloadCode(block.code, block.language, i + bi));
-                              }
-                            },
-                            className: "p-1.5 rounded hover:bg-[var(--bg)] transition-colors flex items-center gap-1",
-                            title: "Download Code",
-                            style: { color: "var(--ai-color)" },
-                            children: [
-                              /* @__PURE__ */ jsxRuntimeExports.jsx(Save, { size: 12 }),
-                              /* @__PURE__ */ jsxRuntimeExports.jsx("span", { style: { fontSize: ".65rem" }, children: "Code" })
-                            ]
-                          }
-                        ),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(
-                          "button",
-                          {
-                            onClick: () => copyToClipboard(msg.text, i),
-                            className: "p-1.5 rounded hover:bg-[var(--bg)] transition-colors flex items-center gap-1",
-                            title: "Copy",
-                            style: { color: "var(--text-mid)" },
-                            children: copiedIndex === i ? /* @__PURE__ */ jsxRuntimeExports.jsx(Check, { size: 12, className: "text-green-400" }) : /* @__PURE__ */ jsxRuntimeExports.jsx(Copy, { size: 12 })
-                          }
-                        )
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "pre",
-                        {
-                          className: "whitespace-pre-wrap break-words text-xs leading-relaxed font-mono",
-                          style: { color: "var(--text)" },
-                          children: formatOutput(msg.text)
-                        }
-                      )
-                    ]
-                  }
-                )
-              ] })
-            },
-            `msg-${msg.role}-${i}`
-          )) }),
-          loading && /* @__PURE__ */ jsxRuntimeExports.jsx(
-            motion.div,
-            {
-              initial: { opacity: 0, y: 10 },
-              animate: { opacity: 1, y: 0 },
-              className: "flex flex-col items-start w-full",
-              children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                motion.div,
-                {
-                  initial: { opacity: 0, scale: 0.95 },
-                  animate: { opacity: 1, scale: 1 },
-                  className: "p-4 rounded-2xl w-full",
-                  style: {
-                    background: "linear-gradient(135deg, rgba(124,58,237,.25), rgba(139,92,246,.2))",
-                    border: "2px solid rgba(168,85,247,.6)",
-                    boxShadow: "0 0 30px rgba(168,85,247,.4)"
-                  },
-                  children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-3", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 18, className: "text-purple-400 animate-pulse" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-bold text-purple-300", children: "🤔 Dev AI is Thinking..." }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs(
-                        motion.div,
-                        {
-                          animate: { opacity: [0.4, 1, 0.4] },
-                          transition: { repeat: Infinity, duration: 1.5 },
-                          className: "ml-auto flex gap-1",
-                          children: [
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2 h-2 rounded-full bg-purple-400" }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2 h-2 rounded-full bg-purple-400", style: { animationDelay: "0.2s" } }),
-                            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "w-2 h-2 rounded-full bg-purple-400", style: { animationDelay: "0.4s" } })
-                          ]
-                        }
-                      )
-                    ] }),
-                    currentThinking ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-                      "pre",
-                      {
-                        className: "text-xs leading-relaxed whitespace-pre-wrap font-mono p-3 rounded-lg",
-                        style: {
-                          color: "#e9d5ff",
-                          maxHeight: 250,
-                          overflow: "auto",
-                          background: "rgba(0,0,0,.4)",
-                          textShadow: "0 0 10px rgba(168,85,247,.5)",
-                          border: "1px solid rgba(168,85,247,.3)"
-                        },
-                        children: currentThinking
-                      }
-                    ) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-xs text-purple-300/70 italic p-2", children: "Analyzing your request and formulating a response..." })
-                  ]
-                }
-              )
-            }
-          ),
-          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: bottomRef })
-        ] }),
-        /* @__PURE__ */ jsxRuntimeExports.jsxs(
-          "div",
-          {
-            className: "flex-shrink-0 flex items-end gap-2 px-3 py-3 z-10",
-            style: {
-              background: "var(--surface)",
-              backdropFilter: "blur(14px)",
-              borderTop: "1.5px solid var(--border)"
-            },
-            children: [
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "div",
-                {
-                  className: "flex-1 rounded-2xl px-3 py-2 flex items-end border",
-                  style: {
-                    background: "var(--surface)",
-                    borderColor: "var(--border)"
-                  },
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "textarea",
-                    {
-                      ref: inputRef,
-                      value: input,
-                      onChange: (e) => setInput(e.target.value),
-                      onKeyDown: handleKeyDown,
-                      placeholder: "Ask me anything... (code, debug, explain)",
-                      rows: 1,
-                      className: "flex-1 border-none bg-transparent resize-none outline-none text-sm",
-                      style: {
-                        color: "var(--text)",
-                        fontFamily: "monospace",
-                        lineHeight: 1.5,
-                        maxHeight: 100
-                      },
-                      onInput: (e) => {
-                        e.target.style.height = "auto";
-                        e.target.style.height = Math.min(e.target.scrollHeight, 100) + "px";
-                      }
-                    }
-                  )
-                }
-              ),
-              /* @__PURE__ */ jsxRuntimeExports.jsx(
-                "button",
-                {
-                  onClick: () => send(input),
-                  disabled: !input.trim() || loading,
-                  className: "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl cursor-pointer transition-all disabled:opacity-40 hover:scale-105",
-                  style: {
-                    background: "linear-gradient(135deg, #7c3aed, #6d28d9)",
-                    color: "#fff"
-                  },
-                  "aria-label": "Send",
-                  children: /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { size: 18 })
-                }
-              )
-            ]
-          }
-        ),
-        showHelp && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          motion.div,
-          {
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            className: "fixed inset-0 z-50 flex items-center justify-center p-2",
-            style: { background: "rgba(0,0,0,0.7)" },
-            onClick: () => setShowHelp(false),
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              motion.div,
-              {
-                initial: { scale: 0.9, opacity: 0 },
-                animate: { scale: 1, opacity: 1 },
-                className: "w-full max-w-lg max-h-[80vh] overflow-hidden rounded-2xl",
-                style: { background: "var(--surface)", border: "1.5px solid var(--border)" },
-                onClick: (e) => e.stopPropagation(),
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-4 py-3 border-b", style: { borderColor: "var(--border)" }, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 800, color: "var(--ai-color)", fontSize: "1rem" }, children: "Dev AI Pro Help" }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setShowHelp(false), className: "p-1.5 rounded-lg hover:bg-[var(--bg)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 18, style: { color: "var(--text-mid)" } }) })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-4 overflow-y-auto max-h-[68vh]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "space-y-4", children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 rounded-xl", style: { background: "rgba(168,85,247,.1)", border: "1px solid rgba(168,85,247,.3)" }, children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-2", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Brain, { size: 16, className: "text-purple-400" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-sm", style: { color: "var(--text)" }, children: "💡 Show My Thinking" })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".75rem", color: "var(--text-mid)" }, children: 'Click "See My Thinking" on any response to see how I analyzed your question!' })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "p-3 rounded-xl", style: { background: "rgba(239,68,68,.1)", border: "1px solid rgba(239,68,68,.3)" }, children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2 mb-2", children: [
-                        /* @__PURE__ */ jsxRuntimeExports.jsx(Bug, { size: 16, className: "text-red-400" }),
-                        /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "font-semibold text-sm", style: { color: "var(--text)" }, children: "🐛 Debug Mode" })
-                      ] }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("p", { style: { fontSize: ".75rem", color: "var(--text-mid)" }, children: "Use debug buttons to: Debug Error, Explain Code, Fix Bug, Review Code" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "font-semibold text-sm mb-2", style: { color: "var(--ai-color)" }, children: "Quick Commands" }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-2", children: QUICK_ACTIONS.map(({ label, cmd }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                        "button",
-                        {
-                          onClick: () => {
-                            send(cmd, true);
-                            setShowHelp(false);
-                          },
-                          className: "text-left px-3 py-2 rounded-lg text-xs",
-                          style: { background: "var(--bg)", color: "var(--text)" },
-                          children: label
-                        },
-                        label
-                      )) })
-                    ] })
-                  ] }) })
-                ]
-              }
-            )
-          }
-        ),
-        showHistory && /* @__PURE__ */ jsxRuntimeExports.jsx(
-          motion.div,
-          {
-            initial: { opacity: 0 },
-            animate: { opacity: 1 },
-            className: "fixed inset-0 z-50 flex items-center justify-center p-2",
-            style: { background: "rgba(0,0,0,0.7)" },
-            onClick: () => setShowHistory(false),
-            children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
-              motion.div,
-              {
-                initial: { scale: 0.9, opacity: 0 },
-                animate: { scale: 1, opacity: 1 },
-                className: "w-full max-w-md max-h-[70vh] overflow-hidden rounded-2xl",
-                style: { background: "var(--surface)", border: "1.5px solid var(--border)" },
-                onClick: (e) => e.stopPropagation(),
-                children: [
-                  /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center justify-between px-4 py-3 border-b", style: { borderColor: "var(--border)" }, children: [
-                    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
-                      /* @__PURE__ */ jsxRuntimeExports.jsx(History, { size: 16, style: { color: "var(--ai-color)" } }),
-                      /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { style: { fontFamily: "var(--font-head)", fontWeight: 700, color: "var(--text)", fontSize: ".95rem" }, children: "History" })
-                    ] }),
-                    /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => setShowHistory(false), className: "p-1.5 rounded-lg hover:bg-[var(--bg)]", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 16, style: { color: "var(--text-mid)" } }) })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "overflow-y-auto max-h-[55vh]", children: commandHistory.length === 0 ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "p-8 text-center", style: { color: "var(--text-mid)", fontSize: ".85rem" }, children: "No history yet" }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "divide-y", style: { borderColor: "var(--border)" }, children: commandHistory.map((cmd, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(
-                    "button",
-                    {
-                      onClick: () => {
-                        setInput(cmd);
-                        setShowHistory(false);
-                        inputRef.current?.focus();
-                      },
-                      className: "w-full text-left px-4 py-2.5 hover:bg-[var(--bg)] transition-colors",
-                      children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { style: { color: "var(--text)", fontSize: ".8rem", fontFamily: "monospace" }, children: cmd })
-                    },
-                    `${cmd}-${i}`
-                  )) }) })
-                ]
-              }
-            )
-          }
-        )
       ]
     }
   );
@@ -43036,8 +41832,7 @@ const AnimatedRoutes = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/terminal", element: /* @__PURE__ */ jsxRuntimeExports.jsx(TerminalView, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/files", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FileManager, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/settings", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/maps", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Maps, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/devai", element: /* @__PURE__ */ jsxRuntimeExports.jsx(DevAI, {}) })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/maps", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Maps, {}) })
   ] }, location.pathname) });
 };
 function App() {
