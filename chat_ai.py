@@ -108,6 +108,7 @@ from config import (
     CHAT_MODEL_PATH as MODEL_PATH,
     USE_VOSK,
     USE_WHISPER,
+    USE_OLLAMA,
 )
 
 def strip_think_for_ui(text: str) -> str:
@@ -205,6 +206,15 @@ class AIState:
         ]
 
     def load_model(self):
+        from config import get_model_config
+        model_config = get_model_config()
+        
+        if model_config.get("use_ollama"):
+            logger.info("Using Ollama model: %s...", model_config.get("ollama_model", "unknown"))
+            # When using Ollama, we would initialize the LLM differently
+            # For now, we'll keep the existing implementation as fallback
+            pass
+
         if not os.path.exists(MODEL_PATH):
             logger.info("Downloading model...")
             os.makedirs(LOCAL_DIR, exist_ok=True)
@@ -243,7 +253,7 @@ class AIState:
             llm_messages.append({"role": m["role"], "content": content})
 
         if last_user_query:
-            knowledge_text = format_knowledge_for_prompt(search_knowledge(last_user_query, top_k=5), max_tokens=2000)
+            knowledge_text = format_knowledge_for_prompt(search_knowledge(last_user_query, top_k=15), max_tokens=4000)
             if knowledge_text:
                 llm_messages.insert(0, {"role": "system", "content": knowledge_text})
 

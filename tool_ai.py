@@ -25,7 +25,7 @@ _URL_OPENER = urllib.request.build_opener()
 _URL_OPENER.addheaders = [("User-Agent", "VioraAI/1.0 (Raspberry Pi)")]
 
 # 1. Model configuration (from config)
-from config import LOCAL_DIR, TOOLS_PATH, TOOL_REPO_ID, TOOL_FILENAME, TOOL_MODEL_PATH
+from config import LOCAL_DIR, TOOLS_PATH, TOOL_REPO_ID, TOOL_FILENAME, TOOL_MODEL_PATH, get_model_config
 
 REPO_ID = TOOL_REPO_ID
 FILENAME = TOOL_FILENAME

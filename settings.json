@@ -1,0 +1,40 @@
+{
+  "ollama": {
+    "enabled": false,
+    "model": "gemma2:2b",
+    "url": "http://localhost:11434",
+    "timeout": 30,
+    "max_tokens": 512
+  },
+  "whisper": {
+    "enabled": true,
+    "model": "whisper"
+  },
+  "vosk": {
+    "enabled": false,
+    "model": "./models/vosk-model-small-en-us-0.15"
+  },
+  "backend": {
+    "model": "qwen2.5-1.5b-instruct-q4_k_m",
+    "tools": "functiongemma-pocket-q4_k_m.gguf",
+    "use_thinking": true,
+    "thinking_temp": 0.4,
+    "non_thinking_temp": 0.5
+  },
+  "paths": {
+    "models_dir": "./models",
+    "conversations_file": "conversations.json",
+    "tools_file": "tools.json",
+    "jobs_file": "task_jobs.json",
+    "captures_dir": "captures"
+  },
+  "server": {
+    "port": 8000,
+    "host": "0.0.0.0"
+  },
+  "ui": {
+    "auto_reconnect": true,
+    "show_advanced_options": false,
+    "enable_voice_control": true
+  }
+}
