@@ -31,6 +31,7 @@ class STTEngine:
         self.p = pyaudio.PyAudio()
         self.live_thread = None
         self.audio_frames = []
+        self.audio_buffer = []
         self.current_rate = RATE
         self.current_channels = CHANNELS
 
@@ -56,11 +57,12 @@ class STTEngine:
         self.listening = True
         self.audio_queue = queue.Queue() # Clear queue
         
+        device_index = self._get_input_device_index() or 0
         self.stream = self.p.open(format=FORMAT,
                         channels=CHANNELS,
                         rate=RATE,
                         input=True,
-                        input_device_index=0,
+                        input_device_index=device_index,
                         frames_per_buffer=CHUNK_SIZE,
                         stream_callback=self._mic_callback)
         
@@ -78,55 +80,27 @@ class STTEngine:
         logger.info("STT Stopped Listening")
 
     def _process_audio(self):
-        # Buffer to hold current "phrase"
-        MAX_BUFFER_LEN = 100 # ~3 seconds of audio
-        audio_buffer = collections.deque(maxlen=MAX_BUFFER_LEN)
+        audio_buffer = []
         
         while self.listening:
             try:
-                # Get data from queue with timeout to allow checking self.listening
                 data = self.audio_queue.get(timeout=0.5)
                 audio_buffer.append(data)
                 
-                # Drain pending
                 while not self.audio_queue.empty():
                     audio_buffer.append(self.audio_queue.get())
-
-                # Transcribe if we have enough data? 
-                # Actually, for a "Push to Talk" style, we might want to just accumulate 
-                # and transcribe ONLY when stopped or periodically?
-                # The user request said: "start to transcribe my voice then when I press it again it stops transcription then that transcription is sent"
-                # This implies we should ACCUMULATE audio while listening, and transcribe AT THE END.
-                
-                # However, for long sentences, intermediate transcription is nice.
-                # But for simplicity and satisfying "sent to ai model... when I press it again it stops",
-                # let's just keep accumulating in a larger buffer?
-                # If we use deque with maxlen, we lose start.
-                # Let's switch to a list for the full session if it's push-to-talk.
-                # Wait, if I speak for 10 seconds, deque(100) (approx 3s) will lose info.
-                
-                # REVISION: creating a full buffer for the session.
-                pass 
             except queue.Empty:
                 continue
-        
-        # End of listening loop - Final Transcription
-        if len(audio_buffer) > 0:
-            full_audio = b''.join(audio_buffer)
-            # We need to preserve ALL audio for the final query? 
-            # The existing code used a deque for rolling window.
-            # But the user interaction model is "Press Start -> Speak -> Press Stop -> Transcribe".
-            # So I should probably capture EVERYTHING between Start and Stop.
-        else:
-            return
+
+        if audio_buffer:
+            self.audio_buffer = audio_buffer
 
     def transcribe_accumulated(self):
-        """
-        Actually, let's change the strategy.
-        _mic_callback fills a buffer.
-        When stop_listening is called, we process that buffer.
-        """
-        pass # Re-implementing logic below
+        if not self.audio_buffer:
+            return ""
+        text = self._transcribe_buffer(self.audio_buffer)
+        self.audio_buffer = []
+        return text
 
     # RETHINKING IMPLEMENTATION FOR USER REQUEST:
     # "press it, it start to transcribe... press it again it stops... then that transcription is sent"
@@ -221,11 +195,7 @@ class STTEngine:
         
         # Convert to float32
         audio_np = np.frombuffer(current_audio, dtype=np.int16).astype(np.float32) / 32768.0
-        
-        # We now capture exactly at 16000Hz, 1 channel so we don't need expensive resampling.
-        # Just convert to float32
-        audio_np = np.frombuffer(current_audio, dtype=np.int16).astype(np.float32) / 32768.0
-        
+
         # Transcribe
         segments, _ = self.model.transcribe(audio_np, beam_size=1, language="en", vad_filter=True)
         

@@ -3,7 +3,6 @@
 Test Mode - Triggers dummy events for overlay testing
 """
 import requests
-import time
 import sys
 
 def trigger_test_mode():

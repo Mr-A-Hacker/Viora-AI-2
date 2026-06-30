@@ -10,7 +10,6 @@ from vosk import Model, KaldiRecognizer
 
 # --- CONFIGURATION ---
 import os
-from pathlib import Path
 
 try:
     from dotenv import load_dotenv
@@ -19,7 +18,7 @@ except ImportError:
     pass
 
 LOCAL_DIR = os.environ.get("LOCAL_DIR", "./models")
-MODEL_PATH = os.environ.get("VOSK_MODEL", os.path.join(LOCAL_DIR, "vosk/vosk-model-small-en-us-0.15"))
+MODEL_PATH = os.environ.get("VOSK_MODEL", os.path.join(LOCAL_DIR, "vosk-model-small-en-us-0.15"))
 
 CHUNK_SIZE = 4000           # Frames per buffer
 FORMAT = pyaudio.paInt16    # 16-bit PCM

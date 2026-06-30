@@ -1,15 +1,13 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ArrowLeft, RefreshCw, AlertCircle, Image as GalleryIcon, Camera, Scan } from 'lucide-react';
+import { ArrowLeft, RefreshCw, AlertCircle, Image as GalleryIcon, Scan } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL, WS_BASE_URL } from '../config.js';
-
-const pendingStopTimeoutRef = { current: null };
-const STOP_DELAY_MS = 500;
 
 const STREAM_IMAGE_WIDTH = 640;
 const STREAM_IMAGE_HEIGHT = 384;
 const STREAM_ASPECT = STREAM_IMAGE_WIDTH / STREAM_IMAGE_HEIGHT;
+const STOP_DELAY_MS = 500;
 
 export default function CameraView() {
     const navigate = useNavigate();
@@ -19,6 +17,7 @@ export default function CameraView() {
     const [detectionError, setDetectionError] = useState(null);
     const [flash, setFlash] = useState(false);
     const wsRef = useRef(null);
+    const pendingStopTimeoutRef = useRef(null);
     const videoContainerRef = useRef(null);
     const [containerSize, setContainerSize] = useState({ width: 1, height: 1 });
 
@@ -189,7 +188,7 @@ export default function CameraView() {
             });
             const data = await res.json();
             if (data.status === 'success') {
-
+                // capture succeeded
             } else {
                 console.error('Capture failed:', data.message);
             }

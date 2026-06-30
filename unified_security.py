@@ -8,15 +8,13 @@ Flow:
 3. Viora AI asks: "Do I sound the alarm?"
 4. If user says yes -> Trigger alarm on surveillance system
 """
-import asyncio
-import json
 import logging
 import os
 import subprocess
+import sys
 import threading
 import time
 from pathlib import Path
-from typing import Optional
 
 import requests
 from flask import Flask, jsonify, request
@@ -26,7 +24,7 @@ PROJECT_ROOT = Path(__file__).resolve().parent
 
 logger = logging.getLogger(__name__)
 
-SURVEILLANCE_PORT = 5051
+SURVEILLANCE_PORT = 5001
 VIORA_PORT = 8000
 
 app = Flask(__name__)
@@ -151,7 +149,7 @@ def start_surveillance():
         surveillance_path = PROJECT_ROOT / "lan_surveillance.py"
         if surveillance_path.exists():
             _surveillance_process = subprocess.Popen(
-                ["/usr/bin/python3", str(surveillance_path)],
+                [    sys.executable, str(surveillance_path)],
                 stdout=subprocess.DEVNULL,
                 stderr=subprocess.DEVNULL,
                 cwd=str(PROJECT_ROOT)
@@ -332,7 +330,7 @@ def start_polling_surveillance():
                         handle_alarm_defused({"source": "poll"})
                     last_alarm_state = current_alarm
                 
-                motion = status.get("motion_detected") or status.get("motion_detected")
+                motion = status.get("motion_detected") or status.get("detection_active")
                 if motion and not state.get("motion_detected"):
                     handle_detection_alert({"type": "motion", "source": "poll"})
                     

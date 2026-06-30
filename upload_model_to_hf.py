@@ -17,7 +17,7 @@ from pathlib import Path
 from huggingface_hub import HfApi, create_repo
 
 # Default paths
-MODEL_PATH = Path(__file__).parent / "functiongemma-pocket-q4_k_m.gguf"
+MODEL_PATH = Path(__file__).parent / "models" / "functiongemma-pocket-q4_k_m.gguf"
 REPO_TYPE = "model"
 
 

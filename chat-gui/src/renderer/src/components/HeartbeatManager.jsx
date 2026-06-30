@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Clock, Activity, Power, Save } from 'lucide-react';
+import { ArrowLeft, Activity, Save } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 import { useFocusableInput } from '../contexts/KeyboardContext.jsx';
@@ -12,10 +12,8 @@ export default function HeartbeatManager() {
     const [status, setStatus] = useState({ active: false, schedule: null });
     const [intervalStart, setIntervalStart] = useState(30);
 
-    const checkStatus = () => sendMessage("heartbeat.get", {});
-
     useEffect(() => {
-        checkStatus();
+        sendMessage("heartbeat.get", {});
 
         const removeStatusListener = addEventListener("heartbeat_status", (data) => {
             setStatus(data.status);
@@ -27,8 +25,8 @@ export default function HeartbeatManager() {
             }
         });
 
-        const removeUpdateListener = addEventListener("heartbeat_updated", (data) => {
-            checkStatus();
+        const removeUpdateListener = addEventListener("heartbeat_updated", () => {
+            sendMessage("heartbeat.get", {});
         });
 
         return () => {

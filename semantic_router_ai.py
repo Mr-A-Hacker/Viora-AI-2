@@ -11,7 +11,6 @@ Hugging Face the first time. We cache it under the project models dir so it only
 """
 import os
 import re
-import sys
 import time
 from pathlib import Path
 

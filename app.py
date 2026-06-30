@@ -14,8 +14,22 @@ from security import router as security_router
 from terminal import router as terminal_router
 from file_manager import router as file_manager_router
 from banking import router as banking_router
+from videos import router as videos_router
+from vision import router as vision_router
 from unified_security import trigger_voice_alert, send_alarm_to_surveillance
-from knowledge import update_knowledge_async, get_knowledge, check_updates
+from knowledge import (
+    update_knowledge_async,
+    get_knowledge,
+    check_updates,
+    ingest_directory,
+    ingest_text,
+    fetch_and_ingest,
+    search,
+    stats as kb_stats,
+    delete_by_source,
+    delete_all,
+    rebuild_index,
+)
 
 setup_logging()
 logger = logging.getLogger(__name__)
@@ -45,6 +59,8 @@ app.include_router(security_router)
 app.include_router(terminal_router)
 app.include_router(file_manager_router)
 app.include_router(banking_router)
+app.include_router(videos_router)
+app.include_router(vision_router)
 
 @app.get("/health")
 async def health():
@@ -109,6 +125,64 @@ async def knowledge_status():
 @app.get("/knowledge/check")
 async def knowledge_check():
     return check_updates()
+
+
+@app.post("/knowledge/ingest/dir")
+async def knowledge_ingest_dir(dir_path: str, recursive: bool = True):
+    """Ingest all supported text files from a directory."""
+    return ingest_directory(dir_path, recursive=recursive)
+
+
+@app.post("/knowledge/ingest/text")
+async def knowledge_ingest_text(title: str = "Untitled", content: str = "", source: str = "manual"):
+    """Add raw text to the knowledge base."""
+    if not content:
+        return {"status": "error", "message": "content is required"}
+    return ingest_text(content, title=title, source=source)
+
+
+@app.post("/knowledge/ingest/url")
+async def knowledge_ingest_url(url: str):
+    """Fetch a web page and add it to the knowledge base."""
+    if not url:
+        return {"status": "error", "message": "url is required"}
+    return fetch_and_ingest(url)
+
+
+@app.get("/knowledge/search")
+async def knowledge_search(q: str = "", top_k: int = 5):
+    """Search the knowledge base."""
+    if not q:
+        return {"results": []}
+    results = search(q, top_k=top_k)
+    return {"results": results}
+
+
+@app.get("/knowledge/stats")
+async def knowledge_stats():
+    """Knowledge base statistics."""
+    return kb_stats()
+
+
+@app.delete("/knowledge/source/{source:path}")
+async def knowledge_delete_source(source: str):
+    """Delete all entries with the given source."""
+    n = delete_by_source(source)
+    return {"deleted": n}
+
+
+@app.delete("/knowledge/all")
+async def knowledge_delete_all():
+    """Delete all knowledge base entries."""
+    n = delete_all()
+    return {"deleted": n}
+
+
+@app.post("/knowledge/rebuild")
+async def knowledge_rebuild():
+    """Rebuild the search index."""
+    n = rebuild_index()
+    return {"status": "ok", "documents": n}
 
 
 @app.post("/start_surveillance")

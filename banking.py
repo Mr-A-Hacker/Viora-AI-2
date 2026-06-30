@@ -64,7 +64,7 @@ async def add_transaction(request: dict):
     amount = float(request.get("amount", 0))
     description = request.get("description", "")
     trans_type = request.get("type", "debit")
-    account_name = request.get("account", "My Checking")
+    account_name = request.get("account", "Main Checking")
     category = request.get("category", "Other")
     
     data = load_data()

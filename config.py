@@ -4,7 +4,6 @@ Reads from environment (and optional .env file) with sensible defaults.
 """
 import logging
 import os
-from pathlib import Path
 
 try:
     from dotenv import load_dotenv

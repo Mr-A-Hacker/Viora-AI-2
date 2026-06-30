@@ -29,6 +29,7 @@ export function WebSocketProvider({ children }) {
 
     const wsRef = useRef(null);
     const reconnectTimer = useRef(null);
+    const connectRef = useRef(null);
 
     const addEventListener = useCallback((type, callback) => {
         if (!eventListeners.current[type]) {
@@ -41,6 +42,28 @@ export function WebSocketProvider({ children }) {
             eventListeners.current[type] = eventListeners.current[type].filter(cb => cb !== callback);
         };
     }, []);
+
+    const speakTts = useCallback((text, force = false) => {
+        if (!ttsEnabled || !text) return;
+        
+        if ('speechSynthesis' in window) {
+            const utterance = new SpeechSynthesisUtterance(text);
+            utterance.rate = 1.0;
+            utterance.pitch = 1.0;
+            utterance.volume = 1.0;
+            
+            const voices = window.speechSynthesis.getVoices();
+            const englishVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female')) 
+                || voices.find(v => v.lang.startsWith('en'))
+                || voices[0];
+            if (englishVoice) utterance.voice = englishVoice;
+            
+            if (force) {
+                window.speechSynthesis.cancel();
+            }
+            window.speechSynthesis.speak(utterance);
+        }
+    }, [ttsEnabled]);
 
     const handleServerMessage = useCallback((data) => {
         // 1. Dispatch to generic listeners first
@@ -57,7 +80,12 @@ export function WebSocketProvider({ children }) {
                         role: m.role,
                         text: m.text,
                     }));
-                setMessages(history);
+                setMessages((prev) => {
+                    // Keep any local messages not yet in history (e.g. user just sent before WS connected)
+                    const historyTexts = new Set(history.map(m => m.role + '::' + m.text));
+                    const extra = prev.filter(m => !historyTexts.has(m.role + '::' + m.text));
+                    return [...history, ...extra];
+                });
                 break;
             }
             case 'stream_start':
@@ -147,7 +175,7 @@ export function WebSocketProvider({ children }) {
             default:
                 break;
         }
-    }, []);
+    }, [speakTts, ttsEnabled]);
 
     const connect = useCallback(() => {
         if (reconnectTimer.current) {
@@ -171,7 +199,7 @@ export function WebSocketProvider({ children }) {
         ws.onclose = () => {
             setConnStatus('disconnected');
             wsRef.current = null;
-            reconnectTimer.current = setTimeout(connect, 3000);
+            reconnectTimer.current = setTimeout(connectRef.current, 3000);
         };
 
         ws.onmessage = (event) => {
@@ -183,6 +211,10 @@ export function WebSocketProvider({ children }) {
             }
         };
     }, [handleServerMessage]);
+
+    useEffect(() => {
+        connectRef.current = connect;
+    });
 
     const fetchConversations = useCallback(async () => {
         try {
@@ -245,7 +277,10 @@ export function WebSocketProvider({ children }) {
     const chatWsRef = useRef(null);
     const chatReconnectTimer = useRef(null);
     const currentConvIdRef = useRef(currentConvId);
-    currentConvIdRef.current = currentConvId;
+    const connectChatRef = useRef(null);
+    useEffect(() => {
+        currentConvIdRef.current = currentConvId;
+    }, [currentConvId]);
 
     const connectChat = useCallback((convId) => {
         if (!convId) {
@@ -275,7 +310,7 @@ export function WebSocketProvider({ children }) {
             chatReconnectTimer.current = setTimeout(() => {
                 chatReconnectTimer.current = null;
                 if (currentConvIdRef.current === convId) {
-                    connectChat(convId);
+                    connectChatRef.current(convId);
                 }
             }, 2000);
         };
@@ -288,6 +323,10 @@ export function WebSocketProvider({ children }) {
             }
         };
     }, [handleServerMessage]);
+
+    useEffect(() => {
+        connectChatRef.current = connectChat;
+    });
 
     useEffect(() => {
         connect();
@@ -314,7 +353,6 @@ export function WebSocketProvider({ children }) {
             targetWs.send(JSON.stringify({ type, ...payload }));
         } else {
             console.warn("WS not connected, cannot send", type);
-            alert("Not connected to backend. Please refresh the page.");
         }
     }, []);
     const sendVoiceCommand = useCallback((type, payload = {}) => {
@@ -355,28 +393,6 @@ export function WebSocketProvider({ children }) {
     const toggleThinking = useCallback(() => {
         setThinking(prev => !prev);
     }, []);
-
-    const speakTts = useCallback((text, force = false) => {
-        if (!ttsEnabled || !text) return;
-        
-        if ('speechSynthesis' in window) {
-            const utterance = new SpeechSynthesisUtterance(text);
-            utterance.rate = 1.0;
-            utterance.pitch = 1.0;
-            utterance.volume = 1.0;
-            
-            const voices = window.speechSynthesis.getVoices();
-            const englishVoice = voices.find(v => v.lang.startsWith('en') && v.name.includes('Female')) 
-                || voices.find(v => v.lang.startsWith('en'))
-                || voices[0];
-            if (englishVoice) utterance.voice = englishVoice;
-            
-            if (force) {
-                window.speechSynthesis.cancel();
-            }
-            window.speechSynthesis.speak(utterance);
-        }
-    }, [ttsEnabled]);
 
     const value = {
         connStatus,

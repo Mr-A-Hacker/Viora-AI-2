@@ -59,7 +59,11 @@ app.whenReady().then(() => {
     // Handle starting surveillance server
     ipcMain.handle('start-surveillance', async () => {
         return new Promise((resolve, reject) => {
-            exec('cd /home/admin/Mr-A-Hacker-pocket-Ai-version-2 && /home/admin/Mr-A-Hacker-pocket-Ai-version-2/venv/bin/python lan_surveillance.py &', (error) => {
+            const projectDir = join(__dirname, '..', '..', '..');
+            const pythonPath = join(projectDir, '.venv', 'bin', 'python');
+            const scriptPath = join(projectDir, 'lan_surveillance.py');
+            const cmd = `cd "${projectDir}" && "${pythonPath}" "${scriptPath}" &`;
+            exec(cmd, (error) => {
                 if (error) {
                     console.error('Failed to start surveillance:', error);
                     reject(error);

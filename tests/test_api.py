@@ -1,6 +1,6 @@
 """API tests using FastAPI TestClient. SKIP_MODEL_LOAD is set in conftest so models are not loaded."""
-import os
 
+import os
 import pytest
 
 # Ensure SKIP_MODEL_LOAD is set before importing app (conftest sets it)

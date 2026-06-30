@@ -20,8 +20,29 @@ from stt_whisper import STTEngine as WhisperEngine
 from stt_vosk import STTEngine as VoskEngine
 from tts_piper import PocketAudio, split_sentences
 from knowledge import search_knowledge, format_knowledge_for_prompt
+from pathlib import Path
 
 logger = logging.getLogger(__name__)
+
+UPLOAD_DIR = Path(__file__).resolve().parent / "uploads"
+
+def get_image_description(filename: str) -> str:
+    path = UPLOAD_DIR / filename
+    if not path.exists():
+        return "(image file not found)"
+    try:
+        from PIL import Image
+        img = Image.open(path)
+        w, h = img.size
+        fmt = img.format or "unknown"
+        mode = img.mode
+        size_kb = path.stat().st_size / 1024
+        parts = [f"{w}x{h}px", fmt, f"{size_kb:.0f}KB", f"mode={mode}"]
+        return ", ".join(parts)
+    except ImportError:
+        return "image"
+    except Exception as e:
+        return f"(error: {e})"
 
 
 # Semantic router: route prompt to qwen_basic / qwen_thinking / function_gemma
@@ -180,7 +201,7 @@ class AIState:
         self.is_recording = False
         self.is_vosk_recording = False
         self.voice_messages = [
-            {"role": "system", "content": "You are a helpful assistant. Keep your responses concise for text-to-speech."}
+            {"role": "system", "content": "You are Viora, a thoughtful AI assistant with emotional intelligence. Detect the user's mood and respond with appropriate warmth, empathy, or enthusiasm. Match their energy — be cheerful when they're happy, calm when they're stressed, excited when they're curious. Think step by step. Provide thorough, well-reasoned, accurate answers."}
         ]
 
     def load_model(self):
@@ -190,7 +211,7 @@ class AIState:
             hf_hub_download(repo_id=REPO_ID, filename=FILENAME, local_dir=LOCAL_DIR)
 
         logger.info("Loading LLM...")
-        self.llm = Llama(model_path=MODEL_PATH, n_ctx=4096, n_threads=4, verbose=False)
+        self.llm = Llama(model_path=MODEL_PATH, n_ctx=4096, n_threads=4, use_mmap=True, verbose=False)
         
         if USE_WHISPER:
             logger.info("Loading Whisper...")
@@ -221,18 +242,17 @@ class AIState:
                 elif " /no_think" not in content: content += " /no_think"
             llm_messages.append({"role": m["role"], "content": content})
 
-        knowledge_hits = search_knowledge(last_user_query or "") if last_user_query else []
-        if knowledge_hits:
-            knowledge_text = format_knowledge_for_prompt(knowledge_hits)
-            system_msg = {"role": "system", "content": f"Here is relevant information from a knowledge base:\n{knowledge_text}"}
-            llm_messages.insert(0, system_msg)
+        if last_user_query:
+            knowledge_text = format_knowledge_for_prompt(search_knowledge(last_user_query, top_k=5), max_tokens=2000)
+            if knowledge_text:
+                llm_messages.insert(0, {"role": "system", "content": knowledge_text})
 
         if not any(m["role"] == "system" for m in llm_messages):
-            llm_messages.insert(0, {"role": "system", "content": "You are a helpful assistant."})
+            llm_messages.insert(0, {"role": "system", "content": "You are Viora, a thoughtful AI assistant with emotional intelligence. Detect the user's mood and respond with appropriate warmth, empathy, or enthusiasm. Use relevant emojis naturally to match the tone — 🎉 for excitement, 🤔 for thinking, 😊 for warmth, 💡 for ideas, 🌟 for encouragement. Match their energy: be cheerful when they're happy, calm when they're stressed, excited when they're curious. Think step by step. Provide thorough, well-reasoned, accurate answers."})
 
         # Sampling params based on thinking mode
-        current_temp = 0.6 if thinking else 0.7
-        current_top_p = 0.95 if thinking else 0.8
+        current_temp = 0.4 if thinking else 0.5
+        current_top_p = 0.9 if thinking else 0.85
 
         loop = asyncio.get_event_loop()
         response = await loop.run_in_executor(None, lambda: self.llm.create_chat_completion(
@@ -240,9 +260,10 @@ class AIState:
             max_tokens=2048,
             temperature=current_temp,
             top_p=current_top_p,
-            top_k=20,
-            min_p=0.0,
-            presence_penalty=1.5,
+            top_k=40,
+            min_p=0.05,
+            presence_penalty=0.3,
+            frequency_penalty=0.1,
             stream=True
         ))
         return response
@@ -388,6 +409,39 @@ async def delete_conversation(conv_id: str):
     ai.conv_manager.delete_conversation(conv_id)
     return {"status": "success"}
 
+class ChatBody(BaseModel):
+    message: str
+
+@router.post("/chat")
+async def chat_endpoint(body: ChatBody):
+    """Simple non-streaming chat endpoint for agent.py and external tools."""
+    conv = ai.conv_manager.create_conversation(title=body.message[:30])
+    conv["messages"].append({"role": "user", "content": body.message, "timestamp": time.time()})
+
+    try:
+        route = _get_route(body.message)
+        if route == "function_gemma":
+            tool_call_raw, tool_result = await asyncio.get_event_loop().run_in_executor(
+                None, _run_tool_ai_subprocess, body.message
+            )
+            reply = str(tool_result) if tool_result is not None else "No tool call produced."
+        else:
+            thinking = route == "qwen_thinking"
+            response = await ai.generate_response(conv["messages"], thinking=thinking)
+            reply = ""
+            for chunk in response:
+                delta = chunk.get("choices", [{}])[0].get("delta", {})
+                if "content" in delta:
+                    reply += delta["content"]
+            reply = strip_think_for_ui(reply)
+
+        conv["messages"].append({"role": "assistant", "content": reply, "timestamp": time.time()})
+        ai.conv_manager.update_conversation(conv["id"], conv["messages"])
+        return {"response": reply}
+    except Exception as e:
+        logger.exception("Chat endpoint error: %s", e)
+        raise HTTPException(status_code=500, detail=str(e))
+
 # Task REST endpoints
 @router.get("/tasks")
 async def list_tasks():
@@ -447,10 +501,20 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
             if data["type"] == "send":
                 abort_event.clear()
                 user_text = data.get("message", "")
-                if not user_text:
-                    continue
+                images = data.get("images") or []
 
-                conv["messages"].append({"role": "user", "content": user_text, "timestamp": time.time()})
+                # Build image context block
+                image_block = ""
+                if images:
+                    image_block = "\n[Attached images:\n"
+                    for fname in images:
+                        desc = get_image_description(fname)
+                        image_block += f"  - {fname}: {desc}\n"
+                    image_block += "]\n"
+
+                final_text = image_block + user_text if image_block else user_text
+
+                conv["messages"].append({"role": "user", "content": final_text, "timestamp": time.time()})
 
                 if len(conv["messages"]) == 1:
                     conv["title"] = user_text[:30] + ("..." if len(user_text) > 30 else "")
@@ -478,7 +542,7 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
                             conv["messages"].append({"role": "assistant", "content": display_reply, "timestamp": time.time()})
                             ai.conv_manager.update_conversation(conv_id, conv["messages"])
                     else:
-                        # Qwen path: use route to set thinking, not UI toggle
+                        # Qwen path: use route to determine thinking
                         thinking_mode = route == "qwen_thinking"
                         full_reply = ""
                         response = await ai.generate_response(conv["messages"], thinking=thinking_mode)
@@ -497,14 +561,12 @@ async def chat_websocket_endpoint(websocket: WebSocket, conv_id: str):
                             if 'content' in delta:
                                 content = delta['content']
                                 full_reply += content
-                                display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
-                                await websocket.send_json({"type": "stream_delta", "text": display_text})
+                                await websocket.send_json({"type": "stream_delta", "text": strip_think_for_ui(full_reply)})
 
                             await asyncio.sleep(0.01)
 
                         if not abort_event.is_set():
-                            display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
-                            await websocket.send_json({"type": "stream_final", "text": display_text})
+                            await websocket.send_json({"type": "stream_final", "text": strip_think_for_ui(full_reply)})
                             conv["messages"].append({"role": "assistant", "content": full_reply, "timestamp": time.time()})
                             ai.conv_manager.update_conversation(conv_id, conv["messages"])
                 except Exception as e:
@@ -646,11 +708,11 @@ async def voice_websocket(websocket: WebSocket):
                             if 'content' in delta:
                                 content = delta['content']
                                 full_reply += content
-                                display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
+                                display_text = strip_think_for_ui(full_reply)
                                 await websocket.send_json({"type": "stream_delta", "text": display_text})
                             await asyncio.sleep(0.01)
                         if not abort_event.is_set():
-                            display_text = full_reply if thinking_mode else strip_think_for_ui(full_reply)
+                            display_text = strip_think_for_ui(full_reply)
                             await websocket.send_json({"type": "stream_final", "text": display_text})
                             conv["messages"].append({"role": "assistant", "content": full_reply, "timestamp": time.time()})
                             ai.conv_manager.update_conversation(conv_id, conv["messages"])
@@ -687,9 +749,7 @@ async def voice_websocket(websocket: WebSocket):
                         job = add_job(name=name, description=description, schedule=schedule, payload=payload)
                         await websocket.send_json({"type": "task_added", "result": True, "job": job})
                 except Exception as e:
-                    logger.warning("[task.add] %s", e)
-                    import traceback
-                    traceback.print_exc()
+                    logger.exception("[task.add] %s", e)
                     await websocket.send_json({"type": "task_added", "result": False, "error": str(e)})
 
             elif command == "task.update":
@@ -711,9 +771,7 @@ async def voice_websocket(websocket: WebSocket):
                         else:
                             await websocket.send_json({"type": "task_updated", "result": False, "error": "Job not found"})
                 except Exception as e:
-                    logger.warning("[task.update] %s", e)
-                    import traceback
-                    traceback.print_exc()
+                    logger.exception("[task.update] %s", e)
                     await websocket.send_json({"type": "task_updated", "result": False, "error": str(e)})
 
             elif command == "task.remove":
@@ -731,7 +789,5 @@ async def voice_websocket(websocket: WebSocket):
         logger.info("Voice client disconnected")
     except Exception as e:
         logger.exception("Voice WebSocket error: %s", e)
-        import traceback
-        traceback.print_exc()
     finally:
         receive_task.cancel()

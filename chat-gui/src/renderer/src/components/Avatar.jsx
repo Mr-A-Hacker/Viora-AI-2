@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function Avatar({
@@ -14,7 +14,8 @@ export default function Avatar({
 
     const [expression, setExpression] = useState('neutral');
     const [blink, setBlink] = useState(false);
-    const glitch = false;
+    const blinkTimerRef = useRef(null);
+    const exprTimerRef = useRef(null);
 
     useEffect(() => {
         if (externalExpression) {
@@ -27,10 +28,13 @@ export default function Avatar({
         const interval = setInterval(() => {
             if (Math.random() > 0.7) {
                 setBlink(true);
-                setTimeout(() => setBlink(false), 150);
+                blinkTimerRef.current = setTimeout(() => setBlink(false), 150);
             }
         }, 2000);
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            if (blinkTimerRef.current) clearTimeout(blinkTimerRef.current);
+        };
     }, [animate, expression]);
 
     useEffect(() => {
@@ -41,21 +45,14 @@ export default function Avatar({
                 const exprs = ['happy', 'thinking', 'surprised', 'neutral'];
                 const nextExpr = exprs[Math.floor(Math.random() * exprs.length)];
                 setExpression(nextExpr);
-                setTimeout(() => setExpression('neutral'), 2000 + Math.random() * 2000);
+                exprTimerRef.current = setTimeout(() => setExpression('neutral'), 2000 + Math.random() * 2000);
             }
         }, 4000);
-        return () => clearInterval(interval);
+        return () => {
+            clearInterval(interval);
+            if (exprTimerRef.current) clearTimeout(exprTimerRef.current);
+        };
     }, [animate, expression]);
-
-    const c = {
-        primary: 'var(--ai-color)',
-        secondary: 'var(--ai-color)',
-        accent: 'var(--ai-color)',
-        dark: '#1a1b26',
-        screen: '#24283b',
-        eye: '#00ffff',
-        highlight: '#ffffff'
-    };
 
     const containerStyle = {
         width: isSmall ? '48px' : (isXl ? '176px' : '160px'),
@@ -117,7 +114,7 @@ export default function Avatar({
     const effectiveExpression = externalExpression != null && externalExpression !== '' ? externalExpression : expression;
     const isThinking = effectiveExpression === 'thinking' || effectiveExpression === 'processing';
 
-    const getEyeScale = (side) => {
+    const getEyeScale = () => {
         if (blink) return { scaleY: 0.1 };
 
         switch (expression) {
@@ -162,7 +159,7 @@ export default function Avatar({
             >
                 <motion.div
                     variants={glitchVariants}
-                    animate={glitch ? "glitch" : "idle"}
+                    animate="idle"
                     className="relative w-full h-full"
                 >
                     <motion.div

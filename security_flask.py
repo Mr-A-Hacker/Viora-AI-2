@@ -5,10 +5,14 @@ from flask import Flask, render_template, request, redirect, url_for, jsonify
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECURITY_SECRET", "secret123")  # WARNING: Change default in production!
+app.config['SECRET_KEY'] = os.environ.get("SECURITY_SECRET")
+if not app.config['SECRET_KEY']:
+    raise RuntimeError("SECURITY_SECRET environment variable must be set")
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin123")  # WARNING: Change default in production!
+SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD")
+if not SECURITY_PASSWORD:
+    raise RuntimeError("SECURITY_PASSWORD environment variable must be set")
 ALARM_COUNTDOWN_SECONDS = 10
 alarm_triggered = False
 alarm_countdown = None
@@ -16,7 +20,7 @@ detection_active = False
 
 def play_alarm_sound():
     try:
-        sound_file = os.path.join(os.path.dirname(__file__), "static/sounds/alarm.mp3")
+        sound_file = os.path.join(os.path.dirname(__file__), "static/sounds/alarm.wav")
         if os.path.exists(sound_file):
             subprocess.Popen(["mpg123", "-q", sound_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         else:

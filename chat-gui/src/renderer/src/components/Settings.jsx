@@ -16,14 +16,16 @@ export default function Settings() {
     const [knowledgeProgress, setKnowledgeProgress] = useState({ current: 0, total: 1000 });
     const [updateCheck, setUpdateCheck] = useState(null); // null | 'checking' | 'up_to_date' | 'update_available'
     const pollingRef = useRef(false);
+    const mountedRef = useRef(true);
 
     const pollUntilDone = async () => {
         if (pollingRef.current) return;
         pollingRef.current = true;
         try {
             let done = false;
-            while (!done) {
+            while (!done && mountedRef.current) {
                 await new Promise(resolve => setTimeout(resolve, 2000));
+                if (!mountedRef.current) return;
                 const resp = await fetch(`${API_BASE_URL}/knowledge`);
                 if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
                 const status = await resp.json();
@@ -31,25 +33,27 @@ export default function Settings() {
                 if (!status.updating) {
                     setKnowledgeStatus(status.entry_count > 0 ? 'success' : 'error');
                     done = true;
-                    // Re-check update status after completion
                     try {
                         const checkResp = await fetch(`${API_BASE_URL}/knowledge/check`);
                         if (checkResp.ok) setUpdateCheck((await checkResp.json()).status);
-                    } catch {}
+                    } catch (e) {
+                        console.error('Update check after poll failed:', e);
+                    }
                 }
             }
         } catch (e) {
             console.error('Polling failed:', e);
-            setKnowledgeStatus('error');
+            if (mountedRef.current) setKnowledgeStatus('error');
         }
         pollingRef.current = false;
     };
 
     useEffect(() => {
+        mountedRef.current = true;
         (async () => {
             try {
                 const resp = await fetch(`${API_BASE_URL}/knowledge`);
-                if (resp.ok) {
+                if (resp.ok && mountedRef.current) {
                     const data = await resp.json();
                     if (data.updating) {
                         setKnowledgeStatus('loading');
@@ -59,16 +63,19 @@ export default function Settings() {
                         setKnowledgeProgress({ current: data.entry_count, total: data.entry_count });
                     }
                 }
-            } catch {}
-            setUpdateCheck('checking');
+            } catch (e) {
+                console.error('Initial knowledge fetch failed:', e);
+            }
+            if (mountedRef.current) setUpdateCheck('checking');
             try {
                 const resp = await fetch(`${API_BASE_URL}/knowledge/check`);
-                if (resp.ok) setUpdateCheck((await resp.json()).status);
-                else setUpdateCheck('up_to_date');
+                if (resp.ok && mountedRef.current) setUpdateCheck((await resp.json()).status);
+                else if (mountedRef.current) setUpdateCheck('up_to_date');
             } catch {
-                setUpdateCheck('up_to_date');
+                if (mountedRef.current) setUpdateCheck('up_to_date');
             }
-        })().catch(() => {});
+        })();
+        return () => { mountedRef.current = false; };
     }, []);
 
     const handleCloseApp = async () => {

@@ -23,16 +23,12 @@ export default function FileManager() {
     const [currentPath, setCurrentPath] = useState('');
     const [items, setItems] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [basePath, setBasePath] = useState('');
+    const [, setBasePath] = useState('');
     const [showNewDialog, setShowNewDialog] = useState(false);
     const [newName, setNewName] = useState('');
     const [newIsDir, setNewIsDir] = useState(false);
     const [renameItem, setRenameItem] = useState(null);
     const [renameName, setRenameName] = useState('');
-
-    useEffect(() => {
-        loadDirectory('').catch(() => {});
-    }, []);
 
     const loadDirectory = async (path) => {
         setLoading(true);
@@ -47,6 +43,10 @@ export default function FileManager() {
         }
         setLoading(false);
     };
+
+    useEffect(() => {
+        loadDirectory('').catch(() => {});
+    }, [loadDirectory]);
 
     const navigateTo = (item) => {
         if (item.is_dir) {

@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-
-const API = 'http://127.0.0.1:8000'
+import { API_BASE_URL } from '../config.js'
 
 export default function Weather() {
   const [weather, setWeather] = useState(null)
@@ -16,7 +15,7 @@ export default function Weather() {
     setLoading(true)
     setError(null)
     try {
-      const res = await fetch(`${API}/weather?lat=${lat}&lon=${lon}`)
+      const res = await fetch(`${API_BASE_URL}/weather?lat=${lat}&lon=${lon}`)
       if (!res.ok) throw new Error('Weather fetch failed')
       const data = await res.json()
       setWeather(data)
@@ -46,7 +45,7 @@ export default function Weather() {
     if (!search.trim()) return
     setSearching(true)
     try {
-      const res = await fetch(`${API}/maps/search?q=${encodeURIComponent(search)}`)
+      const res = await fetch(`${API_BASE_URL}/maps/search?q=${encodeURIComponent(search)}`)
       const results = await res.json()
       if (results.length === 0) { setError('Location not found'); return }
       const { lat, lon, display_name } = results[0]

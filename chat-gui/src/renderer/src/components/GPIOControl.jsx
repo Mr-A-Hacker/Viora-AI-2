@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { useWebSocket } from '../contexts/WebSocketContext';
+import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 import { ArrowLeft, RefreshCw, Zap, Activity } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import LoadingSpinner from './LoadingSpinner';

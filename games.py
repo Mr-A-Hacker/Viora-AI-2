@@ -1,17 +1,19 @@
 import os
+import shlex
 import subprocess
-from typing import Any
-from fastapi import APIRouter
 from pathlib import Path
+from typing import Any
+from fastapi import APIRouter, HTTPException
 
 router = APIRouter(prefix="/games", tags=["games"])
 
+HOME = os.environ.get("HOME", "/home/admin")
 GAME_DIRECTORIES = [
     "/opt",
     "/usr/games",
     "/usr/local/games",
-    "/home/admin/Games",
-    "/home/admin/.local/share/applications",
+    os.path.join(HOME, "Games"),
+    os.path.join(HOME, ".local", "share", "applications"),
 ]
 
 COMMON_GAMES = {
@@ -82,6 +84,11 @@ async def list_games():
     
     return {"games": all_games}
 
+ALLOWED_EXECUTABLES = set(
+    g["executable"] if os.path.isabs(g["executable"]) else g["executable"]
+    for g in COMMON_GAMES.values()
+)
+
 @router.post("/launch")
 async def launch_game(payload: Any = None):
     game_id = payload.get("game_id")
@@ -97,11 +104,12 @@ async def launch_game(payload: Any = None):
     if not executable:
         return {"success": False, "error": "No executable specified"}
     
+    if executable not in ALLOWED_EXECUTABLES:
+        return {"success": False, "error": f"Executable '{executable}' is not in the allowed list"}
+    
     try:
-        if os.path.isabs(executable):
-            subprocess.Popen([executable], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
-        else:
-            subprocess.Popen(executable, shell=True, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
+        args = shlex.split(executable)
+        subprocess.Popen(args, stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         return {"success": True, "message": f"Launched {game_id}"}
     except Exception as e:
         return {"success": False, "error": str(e)}

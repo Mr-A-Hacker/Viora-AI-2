@@ -12584,16 +12584,16 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
     let delta = nextIndex == null ? null : nextIndex - index2;
     index2 = nextIndex;
     if (listener) {
-      listener({ action, location: history2.location, delta });
+      listener({ action, location: history.location, delta });
     }
   }
   function push2(to, state) {
     action = "PUSH";
-    let location = createLocation(history2.location, to, state);
+    let location = createLocation(history.location, to, state);
     if (validateLocation) validateLocation(location, to);
     index2 = getIndex() + 1;
     let historyState = getHistoryState(location, index2);
-    let url = history2.createHref(location);
+    let url = history.createHref(location);
     try {
       globalHistory.pushState(historyState, "", url);
     } catch (error) {
@@ -12603,25 +12603,25 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
       window2.location.assign(url);
     }
     if (v5Compat && listener) {
-      listener({ action, location: history2.location, delta: 1 });
+      listener({ action, location: history.location, delta: 1 });
     }
   }
   function replace2(to, state) {
     action = "REPLACE";
-    let location = createLocation(history2.location, to, state);
+    let location = createLocation(history.location, to, state);
     if (validateLocation) validateLocation(location, to);
     index2 = getIndex();
     let historyState = getHistoryState(location, index2);
-    let url = history2.createHref(location);
+    let url = history.createHref(location);
     globalHistory.replaceState(historyState, "", url);
     if (v5Compat && listener) {
-      listener({ action, location: history2.location, delta: 0 });
+      listener({ action, location: history.location, delta: 0 });
     }
   }
   function createURL(to) {
     return createBrowserURLImpl(to);
   }
-  let history2 = {
+  let history = {
     get action() {
       return action;
     },
@@ -12657,7 +12657,7 @@ function getUrlBasedHistory(getLocation, createHref2, validateLocation, options 
       return globalHistory.go(n);
     }
   };
-  return history2;
+  return history;
 }
 function createBrowserURLImpl(to, isAbsolute = false) {
   let base2 = "http://localhost";
@@ -14364,10 +14364,10 @@ function HashRouter({
   if (historyRef.current == null) {
     historyRef.current = createHashHistory({ window: window2, v5Compat: true });
   }
-  let history2 = historyRef.current;
+  let history = historyRef.current;
   let [state, setStateImpl] = reactExports.useState({
-    action: history2.action,
-    location: history2.location
+    action: history.action,
+    location: history.location
   });
   let setState = reactExports.useCallback(
     (newState) => {
@@ -14379,7 +14379,7 @@ function HashRouter({
     },
     [unstable_useTransitions]
   );
-  reactExports.useLayoutEffect(() => history2.listen(setState), [history2, setState]);
+  reactExports.useLayoutEffect(() => history.listen(setState), [history, setState]);
   return /* @__PURE__ */ reactExports.createElement(
     Router,
     {
@@ -14387,7 +14387,7 @@ function HashRouter({
       children,
       location: state.location,
       navigationType: state.action,
-      navigator: history2,
+      navigator: history,
       unstable_useTransitions
     }
   );
@@ -21644,29 +21644,29 @@ function transformPoint(info, transformPagePoint) {
 function subtractPoint(a, b) {
   return { x: a.x - b.x, y: a.y - b.y };
 }
-function getPanInfo({ point: point2 }, history2) {
+function getPanInfo({ point: point2 }, history) {
   return {
     point: point2,
-    delta: subtractPoint(point2, lastDevicePoint(history2)),
-    offset: subtractPoint(point2, startDevicePoint(history2)),
-    velocity: getVelocity(history2, 0.1)
+    delta: subtractPoint(point2, lastDevicePoint(history)),
+    offset: subtractPoint(point2, startDevicePoint(history)),
+    velocity: getVelocity(history, 0.1)
   };
 }
-function startDevicePoint(history2) {
-  return history2[0];
+function startDevicePoint(history) {
+  return history[0];
 }
-function lastDevicePoint(history2) {
-  return history2[history2.length - 1];
+function lastDevicePoint(history) {
+  return history[history.length - 1];
 }
-function getVelocity(history2, timeDelta) {
-  if (history2.length < 2) {
+function getVelocity(history, timeDelta) {
+  if (history.length < 2) {
     return { x: 0, y: 0 };
   }
-  let i = history2.length - 1;
+  let i = history.length - 1;
   let timestampedPoint = null;
-  const lastPoint = lastDevicePoint(history2);
+  const lastPoint = lastDevicePoint(history);
   while (i >= 0) {
-    timestampedPoint = history2[i];
+    timestampedPoint = history[i];
     if (lastPoint.timestamp - timestampedPoint.timestamp > /* @__PURE__ */ secondsToMilliseconds(timeDelta)) {
       break;
     }
@@ -21675,8 +21675,8 @@ function getVelocity(history2, timeDelta) {
   if (!timestampedPoint) {
     return { x: 0, y: 0 };
   }
-  if (timestampedPoint === history2[0] && history2.length > 2 && lastPoint.timestamp - timestampedPoint.timestamp > /* @__PURE__ */ secondsToMilliseconds(timeDelta) * 2) {
-    timestampedPoint = history2[1];
+  if (timestampedPoint === history[0] && history.length > 2 && lastPoint.timestamp - timestampedPoint.timestamp > /* @__PURE__ */ secondsToMilliseconds(timeDelta) * 2) {
+    timestampedPoint = history[1];
   }
   const time2 = /* @__PURE__ */ millisecondsToSeconds(lastPoint.timestamp - timestampedPoint.timestamp);
   if (time2 === 0) {
@@ -22680,7 +22680,7 @@ const createLucideIcon = (iconName, iconNode) => {
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$T = [
+const __iconNode$W = [
   [
     "path",
     {
@@ -22689,14 +22689,14 @@ const __iconNode$T = [
     }
   ]
 ];
-const Activity = createLucideIcon("activity", __iconNode$T);
+const Activity = createLucideIcon("activity", __iconNode$W);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$S = [
+const __iconNode$V = [
   ["circle", { cx: "12", cy: "13", r: "8", key: "3y4lt7" }],
   ["path", { d: "M12 9v4l2 2", key: "1c63tq" }],
   ["path", { d: "M5 3 2 6", key: "18tl5t" }],
@@ -22704,36 +22704,36 @@ const __iconNode$S = [
   ["path", { d: "M6.38 18.7 4 21", key: "17xu3x" }],
   ["path", { d: "M17.64 18.67 20 21", key: "kv2oe2" }]
 ];
-const AlarmClock = createLucideIcon("alarm-clock", __iconNode$S);
+const AlarmClock = createLucideIcon("alarm-clock", __iconNode$V);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$R = [
+const __iconNode$U = [
   ["path", { d: "m12 19-7-7 7-7", key: "1l729n" }],
   ["path", { d: "M19 12H5", key: "x3x0zl" }]
 ];
-const ArrowLeft = createLucideIcon("arrow-left", __iconNode$R);
+const ArrowLeft = createLucideIcon("arrow-left", __iconNode$U);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$Q = [
+const __iconNode$T = [
   ["path", { d: "m5 12 7-7 7 7", key: "hav0vg" }],
   ["path", { d: "M12 19V5", key: "x0mq9r" }]
 ];
-const ArrowUp = createLucideIcon("arrow-up", __iconNode$Q);
+const ArrowUp = createLucideIcon("arrow-up", __iconNode$T);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$P = [
+const __iconNode$S = [
   ["path", { d: "M10.268 21a2 2 0 0 0 3.464 0", key: "vwvbt9" }],
   [
     "path",
@@ -22743,14 +22743,14 @@ const __iconNode$P = [
     }
   ]
 ];
-const Bell = createLucideIcon("bell", __iconNode$P);
+const Bell = createLucideIcon("bell", __iconNode$S);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$O = [
+const __iconNode$R = [
   ["path", { d: "M12 7v14", key: "1akyts" }],
   [
     "path",
@@ -22760,14 +22760,14 @@ const __iconNode$O = [
     }
   ]
 ];
-const BookOpen = createLucideIcon("book-open", __iconNode$O);
+const BookOpen = createLucideIcon("book-open", __iconNode$R);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$N = [
+const __iconNode$Q = [
   [
     "path",
     {
@@ -22777,31 +22777,65 @@ const __iconNode$N = [
   ],
   ["circle", { cx: "12", cy: "13", r: "3", key: "1vg3eu" }]
 ];
-const Camera = createLucideIcon("camera", __iconNode$N);
+const Camera = createLucideIcon("camera", __iconNode$Q);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$M = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
-const Check = createLucideIcon("check", __iconNode$M);
+const __iconNode$P = [["path", { d: "M20 6 9 17l-5-5", key: "1gmf2c" }]];
+const Check = createLucideIcon("check", __iconNode$P);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$L = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
-const ChevronLeft = createLucideIcon("chevron-left", __iconNode$L);
+const __iconNode$O = [["path", { d: "m15 18-6-6 6-6", key: "1wnfg3" }]];
+const ChevronLeft = createLucideIcon("chevron-left", __iconNode$O);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$K = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
-const ChevronRight = createLucideIcon("chevron-right", __iconNode$K);
+const __iconNode$N = [["path", { d: "m9 18 6-6-6-6", key: "mthhwq" }]];
+const ChevronRight = createLucideIcon("chevron-right", __iconNode$N);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$M = [
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
+  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
+  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+];
+const CircleAlert = createLucideIcon("circle-alert", __iconNode$M);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$L = [
+  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
+  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+];
+const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$L);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$K = [
+  ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
+  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
+];
+const Clock = createLucideIcon("clock", __iconNode$K);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22809,11 +22843,9 @@ const ChevronRight = createLucideIcon("chevron-right", __iconNode$K);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$J = [
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }],
-  ["line", { x1: "12", x2: "12", y1: "8", y2: "12", key: "1pkeuh" }],
-  ["line", { x1: "12", x2: "12.01", y1: "16", y2: "16", key: "4dfq90" }]
+  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
 ];
-const CircleAlert = createLucideIcon("circle-alert", __iconNode$J);
+const Cloud = createLucideIcon("cloud", __iconNode$J);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22821,10 +22853,10 @@ const CircleAlert = createLucideIcon("circle-alert", __iconNode$J);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$I = [
-  ["path", { d: "M21.801 10A10 10 0 1 1 17 3.335", key: "yps3ct" }],
-  ["path", { d: "m9 11 3 3L22 4", key: "1pflzl" }]
+  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
+  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
 ];
-const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$I);
+const Code = createLucideIcon("code", __iconNode$I);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22832,10 +22864,10 @@ const CircleCheckBig = createLucideIcon("circle-check-big", __iconNode$I);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$H = [
-  ["path", { d: "M12 6v6l4 2", key: "mmk7yg" }],
-  ["circle", { cx: "12", cy: "12", r: "10", key: "1mglay" }]
+  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
+  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
 ];
-const Clock = createLucideIcon("clock", __iconNode$H);
+const Copy = createLucideIcon("copy", __iconNode$H);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -22843,38 +22875,6 @@ const Clock = createLucideIcon("clock", __iconNode$H);
  * See the LICENSE file in the root directory of this source tree.
  */
 const __iconNode$G = [
-  ["path", { d: "M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9Z", key: "p7xjir" }]
-];
-const Cloud = createLucideIcon("cloud", __iconNode$G);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$F = [
-  ["path", { d: "m16 18 6-6-6-6", key: "eg8j8" }],
-  ["path", { d: "m8 6-6 6 6 6", key: "ppft3o" }]
-];
-const Code = createLucideIcon("code", __iconNode$F);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$E = [
-  ["rect", { width: "14", height: "14", x: "8", y: "8", rx: "2", ry: "2", key: "17jyea" }],
-  ["path", { d: "M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2", key: "zix9uf" }]
-];
-const Copy = createLucideIcon("copy", __iconNode$E);
-/**
- * @license lucide-react v0.563.0 - ISC
- *
- * This source code is licensed under the ISC license.
- * See the LICENSE file in the root directory of this source tree.
- */
-const __iconNode$D = [
   ["path", { d: "M12 20v2", key: "1lh1kg" }],
   ["path", { d: "M12 2v2", key: "tus03m" }],
   ["path", { d: "M17 20v2", key: "1rnc9c" }],
@@ -22890,25 +22890,25 @@ const __iconNode$D = [
   ["rect", { x: "4", y: "4", width: "16", height: "16", rx: "2", key: "1vbyd7" }],
   ["rect", { x: "8", y: "8", width: "8", height: "8", rx: "1", key: "z9xiuo" }]
 ];
-const Cpu = createLucideIcon("cpu", __iconNode$D);
+const Cpu = createLucideIcon("cpu", __iconNode$G);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$C = [
+const __iconNode$F = [
   ["rect", { width: "20", height: "14", x: "2", y: "5", rx: "2", key: "ynyp8z" }],
   ["line", { x1: "2", x2: "22", y1: "10", y2: "10", key: "1b3vmo" }]
 ];
-const CreditCard = createLucideIcon("credit-card", __iconNode$C);
+const CreditCard = createLucideIcon("credit-card", __iconNode$F);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$B = [
+const __iconNode$E = [
   [
     "path",
     {
@@ -22920,14 +22920,14 @@ const __iconNode$B = [
   ["path", { d: "M9 15h6", key: "cctwl0" }],
   ["path", { d: "M12 18v-6", key: "17g6i2" }]
 ];
-const FilePlus = createLucideIcon("file-plus", __iconNode$B);
+const FilePlus = createLucideIcon("file-plus", __iconNode$E);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$A = [
+const __iconNode$D = [
   [
     "path",
     {
@@ -22937,14 +22937,47 @@ const __iconNode$A = [
   ],
   ["path", { d: "M14 2v5a1 1 0 0 0 1 1h5", key: "wfsgrz" }]
 ];
-const File = createLucideIcon("file", __iconNode$A);
+const File = createLucideIcon("file", __iconNode$D);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$z = [
+const __iconNode$C = [
+  ["rect", { width: "18", height: "18", x: "3", y: "3", rx: "2", key: "afitv7" }],
+  ["path", { d: "M7 3v18", key: "bbkbws" }],
+  ["path", { d: "M3 7.5h4", key: "zfgn84" }],
+  ["path", { d: "M3 12h18", key: "1i2n21" }],
+  ["path", { d: "M3 16.5h4", key: "1230mu" }],
+  ["path", { d: "M17 3v18", key: "in4fa5" }],
+  ["path", { d: "M17 7.5h4", key: "myr1c1" }],
+  ["path", { d: "M17 16.5h4", key: "go4c1d" }]
+];
+const Film = createLucideIcon("film", __iconNode$C);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$B = [
+  [
+    "path",
+    {
+      d: "m6 14 1.5-2.9A2 2 0 0 1 9.24 10H20a2 2 0 0 1 1.94 2.5l-1.54 6a2 2 0 0 1-1.95 1.5H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h3.9a2 2 0 0 1 1.69.9l.81 1.2a2 2 0 0 0 1.67.9H18a2 2 0 0 1 2 2v2",
+      key: "usdka0"
+    }
+  ]
+];
+const FolderOpen = createLucideIcon("folder-open", __iconNode$B);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$A = [
   ["path", { d: "M12 10v6", key: "1bos4e" }],
   ["path", { d: "M9 13h6", key: "1uhe8q" }],
   [
@@ -22955,14 +22988,14 @@ const __iconNode$z = [
     }
   ]
 ];
-const FolderPlus = createLucideIcon("folder-plus", __iconNode$z);
+const FolderPlus = createLucideIcon("folder-plus", __iconNode$A);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$y = [
+const __iconNode$z = [
   [
     "path",
     {
@@ -22971,14 +23004,14 @@ const __iconNode$y = [
     }
   ]
 ];
-const Folder = createLucideIcon("folder", __iconNode$y);
+const Folder = createLucideIcon("folder", __iconNode$z);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$x = [
+const __iconNode$y = [
   ["line", { x1: "6", x2: "10", y1: "11", y2: "11", key: "1gktln" }],
   ["line", { x1: "8", x2: "8", y1: "9", y2: "13", key: "qnk9ow" }],
   ["line", { x1: "15", x2: "15.01", y1: "12", y2: "12", key: "krot7o" }],
@@ -22991,14 +23024,14 @@ const __iconNode$x = [
     }
   ]
 ];
-const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$x);
+const Gamepad2 = createLucideIcon("gamepad-2", __iconNode$y);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
  * This source code is licensed under the ISC license.
  * See the LICENSE file in the root directory of this source tree.
  */
-const __iconNode$w = [
+const __iconNode$x = [
   ["path", { d: "M15 21v-8a1 1 0 0 0-1-1h-4a1 1 0 0 0-1 1v8", key: "5wwlr5" }],
   [
     "path",
@@ -23008,7 +23041,21 @@ const __iconNode$w = [
     }
   ]
 ];
-const House = createLucideIcon("house", __iconNode$w);
+const House = createLucideIcon("house", __iconNode$x);
+/**
+ * @license lucide-react v0.563.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */
+const __iconNode$w = [
+  ["path", { d: "M16 5h6", key: "1vod17" }],
+  ["path", { d: "M19 2v6", key: "4bpg5p" }],
+  ["path", { d: "M21 11.5V19a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h7.5", key: "1ue2ih" }],
+  ["path", { d: "m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21", key: "1xmnt7" }],
+  ["circle", { cx: "9", cy: "9", r: "2", key: "af1f0g" }]
+];
+const ImagePlus = createLucideIcon("image-plus", __iconNode$w);
 /**
  * @license lucide-react v0.563.0 - ISC
  *
@@ -23485,6 +23532,8 @@ function Avatar({
   const scale2 = isSmall ? 0.4 : isXl ? 1.3 : 1;
   const [expression, setExpression] = reactExports.useState("neutral");
   const [blink, setBlink] = reactExports.useState(false);
+  const blinkTimerRef = reactExports.useRef(null);
+  const exprTimerRef = reactExports.useRef(null);
   reactExports.useEffect(() => {
     if (externalExpression) {
       setExpression(externalExpression);
@@ -23495,10 +23544,13 @@ function Avatar({
     const interval = setInterval(() => {
       if (Math.random() > 0.7) {
         setBlink(true);
-        setTimeout(() => setBlink(false), 150);
+        blinkTimerRef.current = setTimeout(() => setBlink(false), 150);
       }
     }, 2e3);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (blinkTimerRef.current) clearTimeout(blinkTimerRef.current);
+    };
   }, [animate, expression]);
   reactExports.useEffect(() => {
     if (!animate || expression !== "neutral" && expression !== "idle") return;
@@ -23508,10 +23560,13 @@ function Avatar({
         const exprs = ["happy", "thinking", "surprised", "neutral"];
         const nextExpr = exprs[Math.floor(Math.random() * exprs.length)];
         setExpression(nextExpr);
-        setTimeout(() => setExpression("neutral"), 2e3 + Math.random() * 2e3);
+        exprTimerRef.current = setTimeout(() => setExpression("neutral"), 2e3 + Math.random() * 2e3);
       }
     }, 4e3);
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      if (exprTimerRef.current) clearTimeout(exprTimerRef.current);
+    };
   }, [animate, expression]);
   const containerStyle = {
     width: isSmall ? "48px" : isXl ? "176px" : "160px",
@@ -23569,7 +23624,7 @@ function Avatar({
   };
   const effectiveExpression = externalExpression != null && externalExpression !== "" ? externalExpression : expression;
   const isThinking = effectiveExpression === "thinking" || effectiveExpression === "processing";
-  const getEyeScale = (side) => {
+  const getEyeScale = () => {
     if (blink) return { scaleY: 0.1 };
     switch (expression) {
       case "happy":
@@ -23865,6 +23920,7 @@ function WebSocketProvider({ children }) {
   const eventListeners = reactExports.useRef({});
   const wsRef = reactExports.useRef(null);
   const reconnectTimer = reactExports.useRef(null);
+  const connectRef = reactExports.useRef(null);
   const addEventListener = reactExports.useCallback((type, callback) => {
     if (!eventListeners.current[type]) {
       eventListeners.current[type] = [];
@@ -23874,17 +23930,37 @@ function WebSocketProvider({ children }) {
       eventListeners.current[type] = eventListeners.current[type].filter((cb) => cb !== callback);
     };
   }, []);
+  const speakTts = reactExports.useCallback((text2, force = false) => {
+    if (!ttsEnabled || !text2) return;
+    if ("speechSynthesis" in window) {
+      const utterance = new SpeechSynthesisUtterance(text2);
+      utterance.rate = 1;
+      utterance.pitch = 1;
+      utterance.volume = 1;
+      const voices = window.speechSynthesis.getVoices();
+      const englishVoice = voices.find((v) => v.lang.startsWith("en") && v.name.includes("Female")) || voices.find((v) => v.lang.startsWith("en")) || voices[0];
+      if (englishVoice) utterance.voice = englishVoice;
+      if (force) {
+        window.speechSynthesis.cancel();
+      }
+      window.speechSynthesis.speak(utterance);
+    }
+  }, [ttsEnabled]);
   const handleServerMessage = reactExports.useCallback((data) => {
     if (eventListeners.current[data.type]) {
       eventListeners.current[data.type].forEach((cb) => cb(data));
     }
     switch (data.type) {
       case "history": {
-        const history2 = (data.messages || []).filter((m) => !m.hidden).map((m) => ({
+        const history = (data.messages || []).filter((m) => !m.hidden).map((m) => ({
           role: m.role,
           text: m.text
         }));
-        setMessages(history2);
+        setMessages((prev) => {
+          const historyTexts = new Set(history.map((m) => m.role + "::" + m.text));
+          const extra = prev.filter((m) => !historyTexts.has(m.role + "::" + m.text));
+          return [...history, ...extra];
+        });
         break;
       }
       case "stream_start":
@@ -23971,7 +24047,7 @@ function WebSocketProvider({ children }) {
         setTimeout(() => setIsVoiceStreaming(false), 2e3);
         break;
     }
-  }, []);
+  }, [speakTts, ttsEnabled]);
   const connect = reactExports.useCallback(() => {
     if (reconnectTimer.current) {
       clearTimeout(reconnectTimer.current);
@@ -23991,7 +24067,7 @@ function WebSocketProvider({ children }) {
     ws.onclose = () => {
       setConnStatus("disconnected");
       wsRef.current = null;
-      reconnectTimer.current = setTimeout(connect, 3e3);
+      reconnectTimer.current = setTimeout(connectRef.current, 3e3);
     };
     ws.onmessage = (event) => {
       try {
@@ -24002,6 +24078,9 @@ function WebSocketProvider({ children }) {
       }
     };
   }, [handleServerMessage]);
+  reactExports.useEffect(() => {
+    connectRef.current = connect;
+  });
   const fetchConversations = reactExports.useCallback(async () => {
     try {
       setLastApiError(null);
@@ -24059,7 +24138,10 @@ function WebSocketProvider({ children }) {
   const chatWsRef = reactExports.useRef(null);
   const chatReconnectTimer = reactExports.useRef(null);
   const currentConvIdRef = reactExports.useRef(currentConvId);
-  currentConvIdRef.current = currentConvId;
+  const connectChatRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    currentConvIdRef.current = currentConvId;
+  }, [currentConvId]);
   const connectChat = reactExports.useCallback((convId) => {
     if (!convId) {
       setChatConnStatus("disconnected");
@@ -24086,7 +24168,7 @@ function WebSocketProvider({ children }) {
       chatReconnectTimer.current = setTimeout(() => {
         chatReconnectTimer.current = null;
         if (currentConvIdRef.current === convId) {
-          connectChat(convId);
+          connectChatRef.current(convId);
         }
       }, 2e3);
     };
@@ -24099,6 +24181,9 @@ function WebSocketProvider({ children }) {
       }
     };
   }, [handleServerMessage]);
+  reactExports.useEffect(() => {
+    connectChatRef.current = connectChat;
+  });
   reactExports.useEffect(() => {
     connect();
     fetchConversations();
@@ -24121,7 +24206,6 @@ function WebSocketProvider({ children }) {
       targetWs.send(JSON.stringify({ type, ...payload }));
     } else {
       console.warn("WS not connected, cannot send", type);
-      alert("Not connected to backend. Please refresh the page.");
     }
   }, []);
   const sendVoiceCommand = reactExports.useCallback((type, payload = {}) => {
@@ -24157,22 +24241,6 @@ function WebSocketProvider({ children }) {
   const toggleThinking = reactExports.useCallback(() => {
     setThinking((prev) => !prev);
   }, []);
-  const speakTts = reactExports.useCallback((text2, force = false) => {
-    if (!ttsEnabled || !text2) return;
-    if ("speechSynthesis" in window) {
-      const utterance = new SpeechSynthesisUtterance(text2);
-      utterance.rate = 1;
-      utterance.pitch = 1;
-      utterance.volume = 1;
-      const voices = window.speechSynthesis.getVoices();
-      const englishVoice = voices.find((v) => v.lang.startsWith("en") && v.name.includes("Female")) || voices.find((v) => v.lang.startsWith("en")) || voices[0];
-      if (englishVoice) utterance.voice = englishVoice;
-      if (force) {
-        window.speechSynthesis.cancel();
-      }
-      window.speechSynthesis.speak(utterance);
-    }
-  }, [ttsEnabled]);
   const value = {
     connStatus,
     connect,
@@ -24298,7 +24366,7 @@ function Home() {
   const [activeTab, setActiveTab] = reactExports.useState("accounts");
   const fetchSecurityStatus = async () => {
     try {
-      const resp = await fetch("http://localhost:8000/security/status");
+      const resp = await fetch(`${API_BASE_URL}/security/status`);
       const data = await resp.json();
       setSecurityStatus(data.status || "disarmed");
     } catch (err) {
@@ -24308,7 +24376,7 @@ function Home() {
   const triggerAlarm = async () => {
     setSecurityLoading(true);
     try {
-      await fetch("http://localhost:8000/security/manual_alarm", { method: "POST" });
+      await fetch(`${API_BASE_URL}/security/manual_alarm`, { method: "POST" });
       setSecurityStatus("alarm");
     } catch (err) {
       console.error("Failed to trigger alarm:", err);
@@ -24320,7 +24388,7 @@ function Home() {
     e.preventDefault();
     setDefuseError("");
     try {
-      const resp = await fetch("http://localhost:8000/security/defuse", {
+      const resp = await fetch(`${API_BASE_URL}/security/defuse`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ password: defusePassword })
@@ -24332,14 +24400,14 @@ function Home() {
       } else {
         setDefuseError(data.message || "Incorrect password");
       }
-    } catch (err) {
+    } catch {
       setDefuseError("Connection error");
     }
   };
   const fetchGames = async () => {
     setGamesLoading(true);
     try {
-      const resp = await fetch("http://localhost:8000/games");
+      const resp = await fetch(`${API_BASE_URL}/games`);
       const data = await resp.json();
       setGamesList(data.games || []);
     } catch (err) {
@@ -24350,7 +24418,7 @@ function Home() {
   };
   const launchGame = async (game) => {
     try {
-      await fetch("http://localhost:8000/games/launch", {
+      await fetch(`${API_BASE_URL}/games/launch`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ game_id: game.id, executable: game.executable })
@@ -24362,7 +24430,7 @@ function Home() {
   const fetchBankAccounts = async () => {
     setBankLoading(true);
     try {
-      const resp = await fetch("http://localhost:8000/banking/accounts");
+      const resp = await fetch(`${API_BASE_URL}/banking/accounts`);
       const data = await resp.json();
       setBankAccounts(data);
     } catch (err) {
@@ -24375,7 +24443,7 @@ function Home() {
     e.preventDefault();
     if (!newTransaction.amount || !newTransaction.description) return;
     try {
-      await fetch("http://localhost:8000/banking/transaction", {
+      await fetch(`${API_BASE_URL}/banking/transaction`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24400,7 +24468,7 @@ function Home() {
     e.preventDefault();
     if (!newOwing.person || !newOwing.amount || !newOwing.reason) return;
     try {
-      await fetch("http://localhost:8000/banking/owing", {
+      await fetch(`${API_BASE_URL}/banking/owing`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24417,7 +24485,7 @@ function Home() {
   };
   const deleteOwing = async (id2) => {
     try {
-      await fetch(`http://localhost:8000/banking/owing/${id2}`, { method: "DELETE" });
+      await fetch(`${API_BASE_URL}/banking/owing/${id2}`, { method: "DELETE" });
       fetchBankAccounts();
     } catch (err) {
       console.error("Failed to delete owing:", err);
@@ -24427,7 +24495,7 @@ function Home() {
     e.preventDefault();
     if (!newOwedToMe.person || !newOwedToMe.amount || !newOwedToMe.reason) return;
     try {
-      await fetch("http://localhost:8000/banking/owed_to_me", {
+      await fetch(`${API_BASE_URL}/banking/owed_to_me`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24444,7 +24512,7 @@ function Home() {
   };
   const deleteOwedToMe = async (id2) => {
     try {
-      await fetch(`http://localhost:8000/banking/owed_to_me/${id2}`, { method: "DELETE" });
+      await fetch(`${API_BASE_URL}/banking/owed_to_me/${id2}`, { method: "DELETE" });
       fetchBankAccounts();
     } catch (err) {
       console.error("Failed to delete owed to me:", err);
@@ -24454,7 +24522,7 @@ function Home() {
     e.preventDefault();
     if (!newBill.name || !newBill.amount || !newBill.due_date) return;
     try {
-      await fetch("http://localhost:8000/banking/bills", {
+      await fetch(`${API_BASE_URL}/banking/bills`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24472,7 +24540,7 @@ function Home() {
   };
   const toggleBillPaid = async (id2) => {
     try {
-      await fetch(`http://localhost:8000/banking/bills/${id2}`, { method: "PUT" });
+      await fetch(`${API_BASE_URL}/banking/bills/${id2}`, { method: "PUT" });
       fetchBankAccounts();
     } catch (err) {
       console.error("Failed to toggle bill:", err);
@@ -24480,7 +24548,7 @@ function Home() {
   };
   const deleteBill = async (id2) => {
     try {
-      await fetch(`http://localhost:8000/banking/bills/${id2}`, { method: "DELETE" });
+      await fetch(`${API_BASE_URL}/banking/bills/${id2}`, { method: "DELETE" });
       fetchBankAccounts();
     } catch (err) {
       console.error("Failed to delete bill:", err);
@@ -24490,7 +24558,7 @@ function Home() {
     e.preventDefault();
     if (!newSavingsGoal.name || !newSavingsGoal.target) return;
     try {
-      await fetch("http://localhost:8000/banking/savings", {
+      await fetch(`${API_BASE_URL}/banking/savings`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -24507,7 +24575,7 @@ function Home() {
   };
   const addToSavingsGoal = async (goalId, amount) => {
     try {
-      await fetch(`http://localhost:8000/banking/savings/${goalId}/add`, {
+      await fetch(`${API_BASE_URL}/banking/savings/${goalId}/add`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ amount: parseFloat(amount) })
@@ -24519,7 +24587,7 @@ function Home() {
   };
   const deleteSavingsGoal = async (id2) => {
     try {
-      await fetch(`http://localhost:8000/banking/savings/${id2}`, { method: "DELETE" });
+      await fetch(`${API_BASE_URL}/banking/savings/${id2}`, { method: "DELETE" });
       fetchBankAccounts();
     } catch (err) {
       console.error("Failed to delete savings goal:", err);
@@ -24533,7 +24601,7 @@ function Home() {
     setWeatherLoading(true);
     setWeatherError(null);
     try {
-      let url = "http://localhost:8000/weather";
+      let url = `${API_BASE_URL}/weather`;
       if (city) {
         url += `?city=${encodeURIComponent(city)}`;
       } else if (navigator.geolocation) {
@@ -24799,7 +24867,11 @@ function Home() {
                   icon: Map$1,
                   label: "MAPS",
                   onClick: async () => {
-                    await fetch("http://localhost:8000/maps/open", { method: "POST" });
+                    try {
+                      await fetch(`${API_BASE_URL}/maps/open`, { method: "POST" });
+                    } catch (e) {
+                      console.error("Failed to open maps:", e);
+                    }
                   },
                   color: "#9ece6a"
                 }
@@ -24841,6 +24913,15 @@ function Home() {
                   label: "BANKING",
                   onClick: handleBankingClick,
                   color: "#0ea5e9"
+                }
+              ),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                MenuButton,
+                {
+                  icon: Film,
+                  label: "VIDEOS",
+                  onClick: () => navigate("/videos"),
+                  color: "#ef4444"
                 }
               )
             ]
@@ -25592,7 +25673,7 @@ function readStored$1() {
 function writeStored$1(enabled) {
   try {
     localStorage.setItem(STORAGE_KEY$1, enabled ? "1" : "0");
-  } catch (_) {
+  } catch {
   }
 }
 function DarkModeProvider({ children }) {
@@ -38249,7 +38330,7 @@ function MessageBubble({ text: text2, role }) {
     thoughts.push(match[1]);
   }
   mainContent = text2.replace(thinkRegex, "").trim();
-  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex animate-message-in ${isUser ? "justify-end" : "justify-start"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
+  return /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: `flex animate-msg-in ${isUser ? "justify-end" : "justify-start"}`, children: /* @__PURE__ */ jsxRuntimeExports.jsxs(
     "div",
     {
       className: `max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] ${isUser ? "bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white rounded-2xl rounded-br-md shadow-lg shadow-[var(--ai-color)]/20" : "bg-[var(--surface)] text-[var(--text)] rounded-2xl rounded-bl-md border border-[var(--border)] shadow-sm"}`,
@@ -38261,7 +38342,7 @@ function MessageBubble({ text: text2, role }) {
           {
             remarkPlugins: [remarkGfm],
             components: {
-              a: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
+              a: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx(
                 "a",
                 {
                   ...props,
@@ -38270,22 +38351,22 @@ function MessageBubble({ text: text2, role }) {
                   className: "underline decoration-1 underline-offset-2 text-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white transition-colors rounded px-0.5"
                 }
               ),
-              code: ({ node: node2, inline, className, children, ...props }) => {
+              code: ({ inline, className, children, ...props }) => {
                 const match2 = /language-(\w+)/.exec(className || "");
                 return !inline ? /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "border border-[var(--border)] my-3 rounded-xl overflow-hidden bg-[var(--bg)]", children: [
                   /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "px-4 py-2 text-xs font-medium uppercase bg-[var(--border)]/50 text-[var(--text-mid)] font-['Plus_Jakarta_Sans']", children: match2 ? match2[1] : "code" }),
                   /* @__PURE__ */ jsxRuntimeExports.jsx("pre", { className: "p-4 overflow-x-auto", children: /* @__PURE__ */ jsxRuntimeExports.jsx("code", { className: `font-mono text-sm text-[var(--text)] ${className}`, ...props, children }) })
                 ] }) : /* @__PURE__ */ jsxRuntimeExports.jsx("code", { className: "font-mono text-sm px-2 py-0.5 bg-[var(--ai-bg)] rounded-md text-[var(--ai-color)]", ...props, children });
               },
-              ul: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "list-disc list-outside ml-5 my-3 space-y-1", ...props }),
-              ol: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "list-decimal list-outside ml-5 my-3 space-y-1", ...props }),
-              li: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "pl-1 marker:text-[var(--ai-color)]", ...props }),
-              h1: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-xl font-['Syne'] font-bold mt-4 mb-2 first:mt-0 text-[var(--text)]", ...props }),
-              h2: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-['Syne'] font-semibold mt-3 mb-2 first:mt-0 text-[var(--text)]", ...props }),
-              h3: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-base font-semibold mt-2 mb-1 first:mt-0", ...props }),
-              p: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-3 last:mb-0", ...props }),
-              blockquote: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("blockquote", { className: "border-l-4 border-[var(--ai-color)]/50 pl-4 py-1 my-3 italic bg-[var(--ai-bg)] rounded-r-xl text-[var(--text-mid)]", ...props }),
-              img: ({ node: node2, ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("img", { ...props, className: "rounded-xl border border-[var(--border)] max-w-full my-3 shadow-md" })
+              ul: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ul", { className: "list-disc list-outside ml-5 my-3 space-y-1", ...props }),
+              ol: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("ol", { className: "list-decimal list-outside ml-5 my-3 space-y-1", ...props }),
+              li: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("li", { className: "pl-1 marker:text-[var(--ai-color)]", ...props }),
+              h1: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h1", { className: "text-xl font-['Syne'] font-bold mt-4 mb-2 first:mt-0 text-[var(--text)]", ...props }),
+              h2: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h2", { className: "text-lg font-['Syne'] font-semibold mt-3 mb-2 first:mt-0 text-[var(--text)]", ...props }),
+              h3: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("h3", { className: "text-base font-semibold mt-2 mb-1 first:mt-0", ...props }),
+              p: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("p", { className: "mb-3 last:mb-0", ...props }),
+              blockquote: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("blockquote", { className: "border-l-4 border-[var(--ai-color)]/50 pl-4 py-1 my-3 italic bg-[var(--ai-bg)] rounded-r-xl text-[var(--text-mid)]", ...props }),
+              img: ({ ...props }) => /* @__PURE__ */ jsxRuntimeExports.jsx("img", { ...props, className: "rounded-xl border border-[var(--border)] max-w-full my-3 shadow-md" })
             },
             children: mainContent
           }
@@ -38369,7 +38450,7 @@ function MessageList({ messages, streaming, streamText }) {
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-sm text-[var(--text-light)] font-['Plus_Jakarta_Sans']", children: "Ask me anything!" })
         ] }),
         messages.map((msg, i) => /* @__PURE__ */ jsxRuntimeExports.jsx(MessageBubble, { role: msg.role, text: msg.text }, `${msg.role}-${i}`)),
-        streaming && streamText && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start animate-message-in", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] bg-[var(--surface)] text-[var(--text)] rounded-2xl rounded-bl-md border border-[var(--border)] shadow-sm", children: [
+        streaming && streamText && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start animate-msg-in", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] bg-[var(--surface)] text-[var(--text)] rounded-2xl rounded-bl-md border border-[var(--border)] shadow-sm", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[11px] uppercase tracking-wider mb-2 opacity-70 text-[var(--ai-color)] font-semibold", children: "Viora AI" }),
           thoughtText && /* @__PURE__ */ jsxRuntimeExports.jsxs(ThoughtBlock, { children: [
             thoughtText,
@@ -38381,7 +38462,7 @@ function MessageList({ messages, streaming, streamText }) {
             (!thoughtText || hasCompleteThink) && /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "animate-pulse", children: "▊" })
           ] })
         ] }) }),
-        streaming && !streamText && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start animate-message-in", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 px-5 py-5 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-sm", children: [
+        streaming && !streamText && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex justify-start animate-msg-in", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex gap-2 px-5 py-5 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-sm", children: [
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0s]" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0.15s]" }),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0.3s]" })
@@ -38405,7 +38486,7 @@ function readStored() {
 function writeStored(enabled) {
   try {
     localStorage.setItem(STORAGE_KEY, String(enabled));
-  } catch (_) {
+  } catch {
   }
 }
 function KeyboardProvider({ children }) {
@@ -38460,11 +38541,15 @@ function useFocusableInput(isChatInput) {
 }
 function ChatInput({ onSend, onAbort, onMicPress, isRecording, streaming, disabled }) {
   const [text2, setText] = reactExports.useState("");
+  const [images, setImages] = reactExports.useState([]);
+  const [uploading, setUploading] = reactExports.useState(false);
   const textareaRef = reactExports.useRef(null);
+  const fileInputRef = reactExports.useRef(null);
   const { onFocus: onKeyboardFocus, onBlur: onKeyboardBlur } = useFocusableInput(true);
   const { syncInputValueRef } = useKeyboardSettings();
   reactExports.useEffect(() => {
     if (!syncInputValueRef) return;
+    syncInputValueRef.current = (value) => setText(value ?? "");
     return () => {
       syncInputValueRef.current = null;
     };
@@ -38485,15 +38570,45 @@ function ChatInput({ onSend, onAbort, onMicPress, isRecording, streaming, disabl
     },
     [onKeyboardBlur, syncInputValueRef]
   );
+  const handleInput = reactExports.useCallback((e) => {
+    setText(e.target.value);
+    const el = e.target;
+    el.style.height = "auto";
+    el.style.height = Math.min(el.scrollHeight, 120) + "px";
+  }, []);
+  const handleImageSelect = reactExports.useCallback(async (e) => {
+    const files = Array.from(e.target.files || []);
+    if (!files.length) return;
+    setUploading(true);
+    const uploaded = [];
+    for (const file of files) {
+      try {
+        const form = new FormData();
+        form.append("file", file);
+        const res = await fetch("http://127.0.0.1:8000/vision/upload", { method: "POST", body: form });
+        const data = await res.json();
+        uploaded.push(data);
+      } catch (err) {
+        console.error("Upload failed:", err);
+      }
+    }
+    setImages((prev) => [...prev, ...uploaded]);
+    setUploading(false);
+    if (fileInputRef.current) fileInputRef.current.value = "";
+  }, []);
+  const removeImage = reactExports.useCallback((index2) => {
+    setImages((prev) => prev.filter((_, i) => i !== index2));
+  }, []);
   const handleSend = reactExports.useCallback(() => {
     const trimmed = text2.trim();
-    if (!trimmed || streaming || disabled) return;
-    onSend(trimmed);
+    if (!trimmed && !images.length || streaming || disabled) return;
+    onSend(trimmed, images.map((img) => img.filename));
     setText("");
+    setImages([]);
     if (textareaRef.current) {
       textareaRef.current.style.height = "auto";
     }
-  }, [text2, streaming, disabled, onSend]);
+  }, [text2, images, streaming, disabled, onSend]);
   const handleKeyDown = reactExports.useCallback(
     (e) => {
       if (e.key === "Enter" && !e.shiftKey) {
@@ -38503,59 +38618,75 @@ function ChatInput({ onSend, onAbort, onMicPress, isRecording, streaming, disabl
     },
     [handleSend]
   );
-  const handleInput = reactExports.useCallback((e) => {
-    setText(e.target.value);
-    const el = e.target;
-    el.style.height = "auto";
-    el.style.height = Math.min(el.scrollHeight, 120) + "px";
-  }, []);
-  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-[72px] px-4 py-3 bg-[var(--surface)]/80 backdrop-blur-lg border-t border-[var(--border)] flex items-end gap-3 pb-[max(12px,env(safe-area-inset-bottom,12px))]", "data-chat-input-bar": true, children: [
-    /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 ai-input bg-[var(--bg)] rounded-2xl px-4 py-3 flex items-end border border-[var(--border)] focus-within:border-[var(--ai-color)] focus-within:shadow-[0_0_0_3px_var(--ai-bg)] transition-all duration-200", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "textarea",
-      {
-        ref: textareaRef,
-        className: "flex-1 border-none bg-transparent text-[var(--text)] font-['Plus_Jakarta_Sans'] text-base leading-relaxed min-h-[28px] max-h-[120px] resize-none outline-none py-0.5 placeholder:text-[var(--text-light)]",
-        value: text2,
-        onChange: handleInput,
-        onKeyDown: handleKeyDown,
-        onFocus,
-        onBlur,
-        placeholder: "Message Viora AI...",
-        rows: 1,
-        disabled,
-        autoComplete: "off",
-        autoCorrect: "off"
-      }
-    ) }),
-    streaming ? /* @__PURE__ */ jsxRuntimeExports.jsx(
-      "button",
-      {
-        className: "ai-btn w-12 h-12 rounded-2xl bg-red-500 text-white flex items-center justify-center cursor-pointer hover:bg-red-600 active:scale-95 transition-all duration-200 shadow-lg shadow-red-500/25",
-        onClick: onAbort,
-        "aria-label": "Stop response",
-        children: /* @__PURE__ */ jsxRuntimeExports.jsx(Square, { size: 18, fill: "currentColor" })
-      }
-    ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(jsxRuntimeExports.Fragment, { children: [
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "min-h-[72px] px-4 py-3 bg-[var(--surface)]/80 backdrop-blur-lg border-t border-[var(--border)] flex flex-col items-end gap-3 pb-[max(12px,env(safe-area-inset-bottom,12px))]", "data-chat-input-bar": true, children: [
+    images.length > 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-wrap gap-2 w-full", children: [
+      images.map((img, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "relative group", children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsx("img", { src: `http://127.0.0.1:8000/vision/uploads/${img.filename}`, alt: "", className: "w-16 h-16 rounded-xl object-cover border border-[var(--border)]" }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx("button", { onClick: () => removeImage(i), className: "absolute -top-1.5 -right-1.5 w-5 h-5 bg-red-500 text-white rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity", children: /* @__PURE__ */ jsxRuntimeExports.jsx(X, { size: 12 }) })
+      ] }, i)),
+      uploading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-16 h-16 rounded-xl bg-[var(--bg)] border border-[var(--border)] flex items-center justify-center text-[var(--text-light)] text-xs", children: "..." })
+    ] }),
+    /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-end gap-3 w-full", children: [
+      /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex-1 ai-input bg-[var(--bg)] rounded-2xl px-4 py-3 flex items-end border border-[var(--border)] focus-within:border-[var(--ai-color)] focus-within:shadow-[0_0_0_3px_var(--ai-bg)] transition-all duration-200", children: /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "textarea",
+        {
+          ref: textareaRef,
+          className: "flex-1 border-none bg-transparent text-[var(--text)] font-['Plus_Jakarta_Sans'] text-base leading-relaxed min-h-[28px] max-h-[120px] resize-none outline-none py-0.5 placeholder:text-[var(--text-light)]",
+          value: text2,
+          onChange: handleInput,
+          onKeyDown: handleKeyDown,
+          onFocus,
+          onBlur,
+          placeholder: "Message Viora AI...",
+          rows: 1,
+          disabled,
+          autoComplete: "off",
+          autoCorrect: "off"
+        }
+      ) }),
+      /* @__PURE__ */ jsxRuntimeExports.jsx("input", { ref: fileInputRef, type: "file", accept: "image/png,image/jpeg,image/webp,image/gif", multiple: true, className: "hidden", onChange: handleImageSelect }),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
           type: "button",
-          onClick: onMicPress,
-          "aria-label": isRecording ? "Stop recording" : "Record voice message",
-          disabled,
-          className: `flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl touch-manipulation transition-all duration-200 active:scale-95 border-2 disabled:cursor-not-allowed ${isRecording ? "bg-red-500 border-red-400 text-white shadow-lg shadow-red-500/25 animate-pulse" : "bg-transparent border-[var(--border)] text-[var(--text-mid)] hover:border-[#38bdf8] hover:text-[#38bdf8] disabled:opacity-40"}`,
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Mic, { size: 20 })
+          onClick: () => fileInputRef.current?.click(),
+          disabled: disabled || streaming,
+          className: "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl touch-manipulation transition-all duration-200 active:scale-95 border-2 disabled:cursor-not-allowed disabled:opacity-40 bg-[var(--surface)] border-[var(--border)] text-[var(--text-mid)] hover:border-[var(--ai-color)] hover:text-[var(--ai-color)]",
+          "aria-label": "Attach image",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(ImagePlus, { size: 20 })
         }
       ),
       /* @__PURE__ */ jsxRuntimeExports.jsx(
         "button",
         {
           type: "button",
-          className: "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl cursor-pointer active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed touch-manipulation bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[#7c3aed]/30",
+          onClick: onMicPress,
+          "aria-label": isRecording ? "Stop recording" : "Record voice message",
+          disabled: disabled || streaming,
+          className: `flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl touch-manipulation transition-all duration-200 active:scale-95 border-2 disabled:cursor-not-allowed disabled:opacity-40 ${isRecording ? "bg-red-500 border-red-400 text-white shadow-lg shadow-red-500/25 animate-pulse" : "bg-[var(--surface)] border-[var(--ai-color)] text-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white"}`,
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Mic, { size: 20 })
+        }
+      ),
+      streaming ? /* @__PURE__ */ jsxRuntimeExports.jsx(
+        "button",
+        {
+          className: "flex-shrink-0 flex items-center justify-center w-12 h-12 rounded-2xl bg-red-500 text-white cursor-pointer hover:bg-red-600 active:scale-95 transition-all duration-200 shadow-lg shadow-red-500/25",
+          onClick: onAbort,
+          "aria-label": "Stop response",
+          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Square, { size: 18, fill: "currentColor" })
+        }
+      ) : /* @__PURE__ */ jsxRuntimeExports.jsxs(
+        "button",
+        {
+          type: "button",
+          className: "flex-shrink-0 flex items-center justify-center gap-1.5 w-auto px-4 h-12 rounded-2xl cursor-pointer active:scale-95 transition-all duration-200 disabled:opacity-40 disabled:cursor-not-allowed touch-manipulation bg-gradient-to-br from-[#7c3aed] to-[#6d28d9] text-white shadow-lg shadow-[#7c3aed]/30",
           onClick: handleSend,
           disabled: !text2.trim() || disabled,
           "aria-label": "Send message",
-          children: /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { size: 18, className: "translate-x-0.5" })
+          children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-sm font-semibold", children: "Send" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Send, { size: 16 })
+          ]
         }
       )
     ] })
@@ -39127,10 +39258,9 @@ function ChatInterface() {
     }
   );
 }
-const pendingStopTimeoutRef = { current: null };
-const STOP_DELAY_MS = 500;
 const STREAM_IMAGE_WIDTH = 640;
 const STREAM_IMAGE_HEIGHT = 384;
+const STOP_DELAY_MS = 500;
 function CameraView() {
   const navigate = useNavigate();
   const [status, setStatus] = reactExports.useState("connecting");
@@ -39139,6 +39269,7 @@ function CameraView() {
   const [detectionError, setDetectionError] = reactExports.useState(null);
   const [flash, setFlash] = reactExports.useState(false);
   const wsRef = reactExports.useRef(null);
+  const pendingStopTimeoutRef = reactExports.useRef(null);
   const videoContainerRef = reactExports.useRef(null);
   const [containerSize, setContainerSize] = reactExports.useState({ width: 1, height: 1 });
   const videoFeedUrl = `${API_BASE_URL}/video_feed`;
@@ -39789,13 +39920,15 @@ function Settings() {
   const [knowledgeProgress, setKnowledgeProgress] = reactExports.useState({ current: 0, total: 1e3 });
   const [updateCheck, setUpdateCheck] = reactExports.useState(null);
   const pollingRef = reactExports.useRef(false);
+  const mountedRef = reactExports.useRef(true);
   const pollUntilDone = async () => {
     if (pollingRef.current) return;
     pollingRef.current = true;
     try {
       let done = false;
-      while (!done) {
+      while (!done && mountedRef.current) {
         await new Promise((resolve) => setTimeout(resolve, 2e3));
+        if (!mountedRef.current) return;
         const resp = await fetch(`${API_BASE_URL}/knowledge`);
         if (!resp.ok) throw new Error(`HTTP ${resp.status}`);
         const status = await resp.json();
@@ -39806,21 +39939,23 @@ function Settings() {
           try {
             const checkResp = await fetch(`${API_BASE_URL}/knowledge/check`);
             if (checkResp.ok) setUpdateCheck((await checkResp.json()).status);
-          } catch {
+          } catch (e) {
+            console.error("Update check after poll failed:", e);
           }
         }
       }
     } catch (e) {
       console.error("Polling failed:", e);
-      setKnowledgeStatus("error");
+      if (mountedRef.current) setKnowledgeStatus("error");
     }
     pollingRef.current = false;
   };
   reactExports.useEffect(() => {
+    mountedRef.current = true;
     (async () => {
       try {
         const resp = await fetch(`${API_BASE_URL}/knowledge`);
-        if (resp.ok) {
+        if (resp.ok && mountedRef.current) {
           const data = await resp.json();
           if (data.updating) {
             setKnowledgeStatus("loading");
@@ -39830,18 +39965,21 @@ function Settings() {
             setKnowledgeProgress({ current: data.entry_count, total: data.entry_count });
           }
         }
-      } catch {
+      } catch (e) {
+        console.error("Initial knowledge fetch failed:", e);
       }
-      setUpdateCheck("checking");
+      if (mountedRef.current) setUpdateCheck("checking");
       try {
         const resp = await fetch(`${API_BASE_URL}/knowledge/check`);
-        if (resp.ok) setUpdateCheck((await resp.json()).status);
-        else setUpdateCheck("up_to_date");
+        if (resp.ok && mountedRef.current) setUpdateCheck((await resp.json()).status);
+        else if (mountedRef.current) setUpdateCheck("up_to_date");
       } catch {
-        setUpdateCheck("up_to_date");
+        if (mountedRef.current) setUpdateCheck("up_to_date");
       }
-    })().catch(() => {
-    });
+    })();
+    return () => {
+      mountedRef.current = false;
+    };
   }, []);
   const handleCloseApp = async () => {
     try {
@@ -39988,18 +40126,18 @@ function Settings() {
     }
   );
 }
-const API = "http://127.0.0.1:8000";
 function Maps() {
+  const navigate = useNavigate();
   const [loading, setLoading] = reactExports.useState(false);
   const [status, setStatus] = reactExports.useState(null);
   const [search2, setSearch] = reactExports.useState("");
   const [results, setResults] = reactExports.useState([]);
   const [searchError, setSearchError] = reactExports.useState(null);
-  const launchMaps = async (query) => {
+  const launchMaps = async () => {
     setLoading(true);
     setStatus(null);
     try {
-      const res = await fetch(`${API}/maps/open`, { method: "POST" });
+      const res = await fetch(`${API_BASE_URL}/maps/open`, { method: "POST" });
       const data = await res.json();
       setStatus({ ok: true, msg: data.msg || "Organic Maps opened!" });
     } catch {
@@ -40015,7 +40153,7 @@ function Maps() {
     setSearchError(null);
     setResults([]);
     try {
-      const res = await fetch(`${API}/maps/search?q=${encodeURIComponent(search2)}`);
+      const res = await fetch(`${API_BASE_URL}/maps/search?q=${encodeURIComponent(search2)}`);
       const data = await res.json();
       if (!Array.isArray(data) || data.length === 0) setSearchError("No results found");
       else setResults(data);
@@ -40097,7 +40235,7 @@ function Maps() {
             /* @__PURE__ */ jsxRuntimeExports.jsx(
               "button",
               {
-                onClick: () => history.back(),
+                onClick: () => navigate(-1),
                 style: {
                   width: 34,
                   height: 34,
@@ -41096,9 +41234,8 @@ function HeartbeatManager() {
   const { onFocus: onKeyboardFocus, onBlur: onKeyboardBlur } = useFocusableInput(false);
   const [status, setStatus] = reactExports.useState({ active: false, schedule: null });
   const [intervalStart, setIntervalStart] = reactExports.useState(30);
-  const checkStatus = () => sendMessage("heartbeat.get", {});
   reactExports.useEffect(() => {
-    checkStatus();
+    sendMessage("heartbeat.get", {});
     const removeStatusListener = addEventListener("heartbeat_status", (data) => {
       setStatus(data.status);
       if (data.status.schedule) {
@@ -41108,8 +41245,8 @@ function HeartbeatManager() {
         }
       }
     });
-    const removeUpdateListener = addEventListener("heartbeat_updated", (data) => {
-      checkStatus();
+    const removeUpdateListener = addEventListener("heartbeat_updated", () => {
+      sendMessage("heartbeat.get", {});
     });
     return () => {
       removeStatusListener();
@@ -41397,7 +41534,7 @@ const GPIOControl = () => {
 };
 function TerminalView() {
   const navigate = useNavigate();
-  const [history2, setHistory] = reactExports.useState([]);
+  const [history, setHistory] = reactExports.useState([]);
   const [input, setInput] = reactExports.useState("");
   const [isExecuting, setIsExecuting] = reactExports.useState(false);
   const [systemInfo, setSystemInfo] = reactExports.useState(null);
@@ -41408,7 +41545,7 @@ function TerminalView() {
   }, []);
   reactExports.useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, [history2]);
+  }, [history]);
   const fetchSystemInfo = async () => {
     try {
       const res = await fetch(`${API_BASE_URL}/terminal/info`);
@@ -41453,7 +41590,7 @@ function TerminalView() {
   };
   const clearHistory = () => setHistory([]);
   const copyOutput = () => {
-    const text2 = history2.map((h) => h.content).join("\n");
+    const text2 = history.map((h) => h.content).join("\n");
     navigator.clipboard.writeText(text2);
   };
   return /* @__PURE__ */ jsxRuntimeExports.jsxs(
@@ -41516,7 +41653,7 @@ function TerminalView() {
             "@",
             systemInfo.cwd
           ] }),
-          history2.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-1", children: item.type === "command" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#00ff88]", children: item.content }) : item.type === "error" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#ff6b6b] whitespace-pre-wrap", children: item.content }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#e0e0e0] whitespace-pre-wrap", children: item.content }) }, `${item.type}-${i}`)),
+          history.map((item, i) => /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "mb-1", children: item.type === "command" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#00ff88]", children: item.content }) : item.type === "error" ? /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#ff6b6b] whitespace-pre-wrap", children: item.content }) : /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-[#e0e0e0] whitespace-pre-wrap", children: item.content }) }, `${item.type}-${i}`)),
           /* @__PURE__ */ jsxRuntimeExports.jsx("div", { ref: bottomRef })
         ] }),
         /* @__PURE__ */ jsxRuntimeExports.jsx("form", { onSubmit: executeCommand, className: "p-4 bg-[#16213e] border-t border-[#0f3460]", children: /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex items-center gap-2", children: [
@@ -41568,16 +41705,12 @@ function FileManager() {
   const [currentPath, setCurrentPath] = reactExports.useState("");
   const [items, setItems] = reactExports.useState([]);
   const [loading, setLoading] = reactExports.useState(true);
-  const [basePath, setBasePath] = reactExports.useState("");
+  const [, setBasePath] = reactExports.useState("");
   const [showNewDialog, setShowNewDialog] = reactExports.useState(false);
   const [newName, setNewName] = reactExports.useState("");
   const [newIsDir, setNewIsDir] = reactExports.useState(false);
   const [renameItem, setRenameItem] = reactExports.useState(null);
   const [renameName, setRenameName] = reactExports.useState("");
-  reactExports.useEffect(() => {
-    loadDirectory("").catch(() => {
-    });
-  }, []);
   const loadDirectory = async (path2) => {
     setLoading(true);
     try {
@@ -41591,6 +41724,10 @@ function FileManager() {
     }
     setLoading(false);
   };
+  reactExports.useEffect(() => {
+    loadDirectory("").catch(() => {
+    });
+  }, [loadDirectory]);
   const navigateTo = (item) => {
     if (item.is_dir) {
       loadDirectory(item.path);
@@ -41778,6 +41915,122 @@ function FileManager() {
     }
   );
 }
+function VideoPlayer() {
+  const navigate = useNavigate();
+  const [videos, setVideos] = reactExports.useState([]);
+  const [loading, setLoading] = reactExports.useState(true);
+  const [error, setError] = reactExports.useState(null);
+  const [playing, setPlaying] = reactExports.useState(null);
+  const videoRef = reactExports.useRef(null);
+  reactExports.useEffect(() => {
+    fetch(`${API_BASE_URL}/videos/list`).then((r) => r.json()).then((data) => {
+      setVideos(data.videos || []);
+      setLoading(false);
+    }).catch((e) => {
+      setError(e.message);
+      setLoading(false);
+    });
+  }, []);
+  const playVideo = (name2) => {
+    setPlaying(name2);
+  };
+  const closePlayer = () => {
+    setPlaying(null);
+    if (videoRef.current) {
+      videoRef.current.pause();
+      videoRef.current.src = "";
+    }
+  };
+  return /* @__PURE__ */ jsxRuntimeExports.jsxs(
+    motion.div,
+    {
+      initial: { opacity: 0 },
+      animate: { opacity: 1 },
+      exit: { opacity: 0 },
+      className: "relative w-full h-full overflow-hidden bg-black flex flex-col",
+      children: [
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute top-0 left-0 right-0 z-50 p-4 flex items-center gap-3 bg-gradient-to-b from-black/80 to-transparent pointer-events-none", children: [
+          /* @__PURE__ */ jsxRuntimeExports.jsx(
+            "button",
+            {
+              onClick: () => navigate("/"),
+              className: "pointer-events-auto p-2 rounded-xl flex items-center justify-center bg-black/40 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all",
+              children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { size: 22 })
+            }
+          ),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white font-bold text-lg font-['Syne']", children: "Videos" }),
+          /* @__PURE__ */ jsxRuntimeExports.jsxs("span", { className: "text-white/50 text-sm ml-auto", children: [
+            videos.length,
+            " files"
+          ] })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex-1 overflow-y-auto pt-20 pb-4 px-4", children: [
+          loading && /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "flex items-center justify-center h-48", children: /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-white/50 animate-pulse", children: "Loading videos..." }) }),
+          error && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center h-48 text-center", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(FolderOpen, { size: 48, className: "text-red-400 mb-3" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-red-400", children: error })
+          ] }),
+          !loading && !error && videos.length === 0 && /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "flex flex-col items-center justify-center h-48 text-center", children: [
+            /* @__PURE__ */ jsxRuntimeExports.jsx(Film, { size: 48, className: "text-white/20 mb-3" }),
+            /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-white/40", children: "No videos found in ~/Downloads" })
+          ] }),
+          /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "grid grid-cols-2 gap-3", children: videos.map((v, i) => /* @__PURE__ */ jsxRuntimeExports.jsxs(
+            motion.button,
+            {
+              initial: { opacity: 0, y: 10 },
+              animate: { opacity: 1, y: 0 },
+              transition: { delay: i * 0.03 },
+              onClick: () => playVideo(v.name),
+              className: "bg-white/5 hover:bg-white/10 rounded-xl p-3 text-left border border-white/10 transition-all active:scale-95",
+              children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "w-full aspect-video bg-black/40 rounded-lg mb-2 flex items-center justify-center", children: /* @__PURE__ */ jsxRuntimeExports.jsx(Play, { size: 32, className: "text-white/30" }) }),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("div", { className: "text-white text-sm font-medium truncate", children: v.name }),
+                /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "text-white/40 text-xs mt-1", children: [
+                  v.size_mb,
+                  " MB"
+                ] })
+              ]
+            },
+            v.name
+          )) })
+        ] }),
+        /* @__PURE__ */ jsxRuntimeExports.jsx(AnimatePresence, { children: playing && /* @__PURE__ */ jsxRuntimeExports.jsxs(
+          motion.div,
+          {
+            initial: { opacity: 0, y: "100%" },
+            animate: { opacity: 1, y: 0 },
+            exit: { opacity: 0, y: "100%" },
+            className: "absolute inset-0 z-50 bg-black flex flex-col",
+            children: [
+              /* @__PURE__ */ jsxRuntimeExports.jsxs("div", { className: "absolute top-0 left-0 right-0 z-10 p-4 flex items-center bg-gradient-to-b from-black/80 to-transparent", children: [
+                /* @__PURE__ */ jsxRuntimeExports.jsx(
+                  "button",
+                  {
+                    onClick: closePlayer,
+                    className: "p-2 rounded-xl bg-black/40 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all",
+                    children: /* @__PURE__ */ jsxRuntimeExports.jsx(ArrowLeft, { size: 22 })
+                  }
+                ),
+                /* @__PURE__ */ jsxRuntimeExports.jsx("span", { className: "text-white text-sm ml-3 truncate", children: playing })
+              ] }),
+              /* @__PURE__ */ jsxRuntimeExports.jsx(
+                "video",
+                {
+                  ref: videoRef,
+                  controls: true,
+                  autoPlay: true,
+                  className: "w-full h-full object-contain",
+                  src: `${API_BASE_URL}/videos/stream/${encodeURIComponent(playing)}`,
+                  children: "Your browser does not support the video tag."
+                }
+              )
+            ]
+          }
+        ) })
+      ]
+    }
+  );
+}
 class ErrorBoundary extends React$2.Component {
   state = { hasError: false, error: null };
   static getDerivedStateFromError(error) {
@@ -41832,7 +42085,8 @@ const AnimatedRoutes = () => {
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/terminal", element: /* @__PURE__ */ jsxRuntimeExports.jsx(TerminalView, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/files", element: /* @__PURE__ */ jsxRuntimeExports.jsx(FileManager, {}) }),
     /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/settings", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Settings, {}) }),
-    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/maps", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Maps, {}) })
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/maps", element: /* @__PURE__ */ jsxRuntimeExports.jsx(Maps, {}) }),
+    /* @__PURE__ */ jsxRuntimeExports.jsx(Route, { path: "/videos", element: /* @__PURE__ */ jsxRuntimeExports.jsx(VideoPlayer, {}) })
   ] }, location.pathname) });
 };
 function App() {

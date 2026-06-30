@@ -11,7 +11,7 @@ from pathlib import Path
 import cv2
 import glob
 import psutil
-from fastapi import APIRouter, Response, WebSocket, WebSocketDisconnect
+from fastapi import APIRouter, WebSocket, WebSocketDisconnect
 from fastapi.responses import StreamingResponse
 
 logger = logging.getLogger(__name__)
@@ -209,6 +209,7 @@ def _run_detection_worker():
     labels = []
     config_data = {}
     width = height = 640
+    retry_count = 0
 
     try:
         from hailo_od.hailo_inference import HailoInfer
@@ -258,6 +259,11 @@ def _run_detection_worker():
             except Exception as e:
                 logger.warning("[detection] model load failed: %s", e)
                 time.sleep(1)
+                retry_count += 1
+                if retry_count > 30:
+                    logger.error("[detection] giving up after 30 retries")
+                    detection_enabled.value = False
+                    return
                 continue
 
         try:
@@ -433,13 +439,16 @@ async def stop_camera():
 
 def generate_frames():
     while True:
+        if stop_event.is_set():
+            break
         try:
             frame = stream_queue.get(timeout=1.0)
         except Exception:
-            if camera_process and not camera_process.is_alive():
+            proc = camera_process
+            if proc is None or not proc.is_alive():
                 break
             continue
-            
+
         if frame is None:
             break
         
@@ -468,8 +477,7 @@ async def capture_image():
         logger.info("Captured: %s", save_path)
         return {"status": "success", "filename": filename}
     except Exception as e:
-        import traceback
-        traceback.print_exc()
+        logger.exception("Capture failed")
         return {"status": "error", "message": f"Capture failed: {str(e)}"}
 
 @router.post("/camera/detection/start")

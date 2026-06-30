@@ -1,20 +1,21 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
-
-const API = 'http://127.0.0.1:8000'
+import { useNavigate } from 'react-router-dom'
+import { API_BASE_URL } from '../config.js'
 
 export default function Maps() {
+  const navigate = useNavigate()
   const [loading, setLoading] = useState(false)
   const [status, setStatus]   = useState(null)
   const [search, setSearch]   = useState('')
   const [results, setResults] = useState([])
   const [searchError, setSearchError] = useState(null)
 
-  const launchMaps = async (query) => {
+  const launchMaps = async () => {
     setLoading(true)
     setStatus(null)
     try {
-      const res  = await fetch(`${API}/maps/open`, { method: 'POST' })
+      const res  = await fetch(`${API_BASE_URL}/maps/open`, { method: 'POST' })
       const data = await res.json()
       setStatus({ ok: true, msg: data.msg || 'Organic Maps opened!' })
     } catch {
@@ -31,7 +32,7 @@ export default function Maps() {
     setSearchError(null)
     setResults([])
     try {
-      const res  = await fetch(`${API}/maps/search?q=${encodeURIComponent(search)}`)
+      const res  = await fetch(`${API_BASE_URL}/maps/search?q=${encodeURIComponent(search)}`)
       const data = await res.json()
       if (!Array.isArray(data) || data.length === 0) setSearchError('No results found')
       else setResults(data)
@@ -99,7 +100,7 @@ export default function Maps() {
           backdropFilter: 'blur(14px)', minHeight: 56,
         }}>
           <button
-            onClick={() => history.back()}
+            onClick={() => navigate(-1)}
             style={{
               width: 34, height: 34, borderRadius: 10, flexShrink: 0, border: '1.5px solid #ede9f8',
               background: '#fff', cursor: 'pointer', display: 'flex', alignItems: 'center',

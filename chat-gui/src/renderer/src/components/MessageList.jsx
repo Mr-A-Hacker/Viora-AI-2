@@ -99,7 +99,7 @@ export default function MessageList({ messages, streaming, streamText }) {
             ))}
 
             {streaming && streamText && (
-                <div className="flex justify-start animate-message-in">
+                <div className="flex justify-start animate-msg-in">
                     <div className="max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] bg-[var(--surface)] text-[var(--text)] rounded-2xl rounded-bl-md border border-[var(--border)] shadow-sm">
                         <div className="text-[11px] uppercase tracking-wider mb-2 opacity-70 text-[var(--ai-color)] font-semibold">
                             Viora AI
@@ -117,7 +117,7 @@ export default function MessageList({ messages, streaming, streamText }) {
             )}
 
             {streaming && !streamText && (
-                <div className="flex justify-start animate-message-in">
+                <div className="flex justify-start animate-msg-in">
                     <div className="flex gap-2 px-5 py-5 bg-[var(--surface)] border border-[var(--border)] rounded-2xl shadow-sm">
                         <div className="w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0s]" />
                         <div className="w-2.5 h-2.5 bg-[var(--ai-color)] rounded-full animate-bounce [animation-delay:0.15s]" />

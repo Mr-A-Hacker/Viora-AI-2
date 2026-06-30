@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef } from 'react';
-import { X, Minimize2, Trash2 } from 'lucide-react';
+import { Minimize2, Trash2 } from 'lucide-react';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 import MessageList from './MessageList';
 import ChatInput from './ChatInput';
@@ -38,7 +38,7 @@ export default function MiniChat({ onClose, className }) {
     }, [sendMessage, setMessages]);
 
     return (
-        <div className={`flex flex-col h-full bg-[var(--bg)] text-[var(--text)] font-['Plus_Jakarta_Sans)] ${className}`}>
+        <div className={`flex flex-col h-full bg-[var(--bg)] text-[var(--text)] font-['Plus_Jakarta_Sans'] ${className}`}>
             <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border)] bg-[var(--surface)]/80 backdrop-blur-lg">
                 <span className="text-sm font-['Syne'] font-semibold text-[var(--text)]">Assistant</span>
                 <div className="flex items-center gap-4">

@@ -17,7 +17,7 @@ function readStored() {
 function writeStored(enabled) {
     try {
         localStorage.setItem(STORAGE_KEY, String(enabled));
-    } catch (_) {}
+    } catch { /* ignore */ }
 }
 
 export function KeyboardProvider({ children }) {

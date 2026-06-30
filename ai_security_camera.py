@@ -8,7 +8,6 @@ eventlet.monkey_patch()
 
 import os
 import sys
-import json
 import time
 import threading
 import logging
@@ -30,8 +29,12 @@ logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(levelname)s - %(
 logger = logging.getLogger(__name__)
 
 app = Flask(__name__, template_folder='templates', static_folder='static')
-app.config['SECRET_KEY'] = os.environ.get('SECURITY_SECRET', 'MR-A-TACTICAL-KEY-2024')
-app.config['SECURITY_PASSWORD'] = os.environ.get('SECURITY_PASSWORD', 'admin1')
+app.config['SECRET_KEY'] = os.environ.get('SECURITY_SECRET')
+if not app.config['SECRET_KEY']:
+    raise RuntimeError("SECURITY_SECRET environment variable must be set")
+app.config['SECURITY_PASSWORD'] = os.environ.get('SECURITY_PASSWORD')
+if not app.config['SECURITY_PASSWORD']:
+    raise RuntimeError("SECURITY_PASSWORD environment variable must be set")
 socketio = SocketIO(app, cors_allowed_origins="*", async_mode='eventlet')
 
 RECORDINGS_DIR = PROJECT_ROOT / 'recordings'

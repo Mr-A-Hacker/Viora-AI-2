@@ -6,7 +6,8 @@ from pydantic import BaseModel
 
 router = APIRouter(prefix="/files", tags=["files"])
 
-BASE_DIR = os.environ.get("FILE_MANAGER_ROOT", "/home/admin")
+PROJECT_ROOT = Path(__file__).resolve().parent
+BASE_DIR = os.path.abspath(os.environ.get("FILE_MANAGER_ROOT", str(PROJECT_ROOT)))
 
 class FileItem(BaseModel):
     name: str
@@ -15,9 +16,15 @@ class FileItem(BaseModel):
     size: int
     modified: float
 
+def safe_resolve(user_path: str) -> str:
+    resolved = os.path.abspath(os.path.join(BASE_DIR, user_path))
+    if not resolved.startswith(BASE_DIR + os.sep) and resolved != BASE_DIR:
+        raise HTTPException(status_code=403, detail="Path traversal blocked")
+    return resolved
+
 @router.get("/list")
 async def list_directory(path: str = ""):
-    target = os.path.join(BASE_DIR, path) if path else BASE_DIR
+    target = safe_resolve(path) if path else BASE_DIR
     
     if not os.path.exists(target):
         raise HTTPException(status_code=404, detail="Path not found")
@@ -48,7 +55,7 @@ async def list_directory(path: str = ""):
 
 @router.get("/read")
 async def read_file(path: str):
-    target = os.path.join(BASE_DIR, path)
+    target = safe_resolve(path)
     
     if not os.path.exists(target):
         raise HTTPException(status_code=404, detail="File not found")
@@ -65,7 +72,7 @@ async def read_file(path: str):
 
 @router.post("/create")
 async def create_file(path: str, is_dir: bool = False):
-    target = os.path.join(BASE_DIR, path)
+    target = safe_resolve(path)
     
     try:
         if is_dir:
@@ -80,7 +87,7 @@ async def create_file(path: str, is_dir: bool = False):
 
 @router.delete("/delete")
 async def delete_file(path: str):
-    target = os.path.join(BASE_DIR, path)
+    target = safe_resolve(path)
     
     if not os.path.exists(target):
         raise HTTPException(status_code=404, detail="Path not found")
@@ -99,7 +106,7 @@ async def delete_file(path: str):
 
 @router.post("/rename")
 async def rename_file(old_path: str, new_name: str):
-    old_target = os.path.join(BASE_DIR, old_path)
+    old_target = safe_resolve(old_path)
     new_target = os.path.join(os.path.dirname(old_target), new_name)
     
     if not os.path.exists(old_target):

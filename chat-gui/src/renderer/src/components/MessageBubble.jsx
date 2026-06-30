@@ -36,7 +36,7 @@ export default function MessageBubble({ text, role }) {
     mainContent = text.replace(thinkRegex, '').trim();
 
     return (
-        <div className={`flex animate-message-in ${isUser ? 'justify-end' : 'justify-start'}`}>
+        <div className={`flex animate-msg-in ${isUser ? 'justify-end' : 'justify-start'}`}>
             <div
                 className={`max-w-[85%] px-5 py-4 text-[15px] leading-relaxed break-words font-['Plus_Jakarta_Sans'] ${
                     isUser
@@ -60,7 +60,7 @@ export default function MessageBubble({ text, role }) {
                     <ReactMarkdown
                         remarkPlugins={[remarkGfm]}
                         components={{
-                            a: ({ node, ...props }) => (
+                            a: ({ ...props }) => (
                                 <a
                                     {...props}
                                     target="_blank"
@@ -68,7 +68,7 @@ export default function MessageBubble({ text, role }) {
                                     className="underline decoration-1 underline-offset-2 text-[var(--ai-color)] hover:bg-[var(--ai-color)] hover:text-white transition-colors rounded px-0.5"
                                 />
                             ),
-                            code: ({ node, inline, className, children, ...props }) => {
+                            code: ({ inline, className, children, ...props }) => {
                                 const match = /language-(\w+)/.exec(className || '');
                                 return !inline ? (
                                     <div className="border border-[var(--border)] my-3 rounded-xl overflow-hidden bg-[var(--bg)]">
@@ -87,31 +87,31 @@ export default function MessageBubble({ text, role }) {
                                     </code>
                                 );
                             },
-                            ul: ({ node, ...props }) => (
+                            ul: ({ ...props }) => (
                                 <ul className="list-disc list-outside ml-5 my-3 space-y-1" {...props} />
                             ),
-                            ol: ({ node, ...props }) => (
+                            ol: ({ ...props }) => (
                                 <ol className="list-decimal list-outside ml-5 my-3 space-y-1" {...props} />
                             ),
-                            li: ({ node, ...props }) => (
+                            li: ({ ...props }) => (
                                 <li className="pl-1 marker:text-[var(--ai-color)]" {...props} />
                             ),
-                            h1: ({ node, ...props }) => (
+                            h1: ({ ...props }) => (
                                 <h1 className="text-xl font-['Syne'] font-bold mt-4 mb-2 first:mt-0 text-[var(--text)]" {...props} />
                             ),
-                            h2: ({ node, ...props }) => (
+                            h2: ({ ...props }) => (
                                 <h2 className="text-lg font-['Syne'] font-semibold mt-3 mb-2 first:mt-0 text-[var(--text)]" {...props} />
                             ),
-                            h3: ({ node, ...props }) => (
+                            h3: ({ ...props }) => (
                                 <h3 className="text-base font-semibold mt-2 mb-1 first:mt-0" {...props} />
                             ),
-                            p: ({ node, ...props }) => (
+                            p: ({ ...props }) => (
                                 <p className="mb-3 last:mb-0" {...props} />
                             ),
-                            blockquote: ({ node, ...props }) => (
+                            blockquote: ({ ...props }) => (
                                 <blockquote className="border-l-4 border-[var(--ai-color)]/50 pl-4 py-1 my-3 italic bg-[var(--ai-bg)] rounded-r-xl text-[var(--text-mid)]" {...props} />
                             ),
-                            img: ({ node, ...props }) => (
+                            img: ({ ...props }) => (
                                 <img {...props} className="rounded-xl border border-[var(--border)] max-w-full my-3 shadow-md" />
                             )
                         }}

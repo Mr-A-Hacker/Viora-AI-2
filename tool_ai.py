@@ -210,7 +210,7 @@ def run_get_weather(arguments: dict) -> str:
         geo_data = json.loads(_http_get(geo_url))
         results = geo_data.get("results") or []
         if not results:
-            return f"Weather: no location found for '{location}'."
+            return f"Weather: no location found for \'{location}\'."
         lat = results[0]["latitude"]
         lon = results[0]["longitude"]
         name = results[0].get("name", location)
@@ -247,7 +247,7 @@ def run_get_weather(arguments: dict) -> str:
         return (
             f"Weather for {name}: {conditions}, {temp}°C, humidity {humidity}%, wind {wind} km/h."
         )
-    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError, KeyError) as e:
+    except (urllib.error.URLError, urllib.error.HTTPError, json.JSONDecodeError) as e:
         return f"Weather for {location}: error — {e}"
 
 
@@ -417,15 +417,12 @@ def run_read_url(arguments: dict) -> str:
             return f"URL content: no readable text found at {url}"
         return f"URL content from {url}:\n{text[:4000]}"
     except ImportError:
-        try:
-            html = _http_get(url, timeout=15.0)
-            text = re.sub(r'<[^>]+>', ' ', html)
-            text = re.sub(r'\s+', ' ', text).strip()
-            if not text:
-                return f"URL content: no readable text found at {url}"
-            return f"URL content from {url}:\n{text[:4000]}"
-        except Exception as e:
-            return f"URL error: {e}"
+        html = _http_get(url, timeout=15.0)
+        text = re.sub(r'<[^>]+>', ' ', html)
+        text = re.sub(r'\s+', ' ', text).strip()
+        if not text:
+            return f"URL content: no readable text found at {url}"
+        return f"URL content from {url}:\n{text[:4000]}"
     except Exception as e:
         return f"URL error: {e}"
 

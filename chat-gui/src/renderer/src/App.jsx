@@ -14,6 +14,7 @@ import HeartbeatManager from './components/HeartbeatManager';
 import GPIOControl from './components/GPIOControl';
 import Terminal from './components/Terminal';
 import FileManager from './components/FileManager';
+import VideoPlayer from './components/VideoPlayer';
 import ErrorBoundary from './components/ErrorBoundary';
 import VirtualKeyboard from './components/VirtualKeyboard';
 import { WebSocketProvider } from './contexts/WebSocketContext';
@@ -48,6 +49,7 @@ const AnimatedRoutes = () => {
         <Route path="/files" element={<FileManager />} />
         <Route path="/settings" element={<Settings />} />
         <Route path="/maps" element={<Maps />} />
+        <Route path="/videos" element={<VideoPlayer />} />
       </Routes>
     </AnimatePresence>
   );

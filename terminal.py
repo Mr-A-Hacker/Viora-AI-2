@@ -1,6 +1,6 @@
 import os
-import subprocess
 import shlex
+import subprocess
 from fastapi import APIRouter, HTTPException
 from pydantic import BaseModel
 
@@ -13,7 +13,13 @@ class CommandRequest(BaseModel):
     cwd: str = None
 
 def is_safe_command(cmd: str) -> bool:
-    cmd_lower = cmd.lower().strip()
+    if not cmd or not cmd.strip():
+        return False
+    stripped = cmd.strip()
+    for ch in ('`', '$', '\\', '\n', '\t', ';', '&', '|'):
+        if ch in stripped:
+            return False
+    cmd_lower = stripped.lower()
     for blocked in BLOCKED_COMMANDS:
         if blocked in cmd_lower:
             return False
@@ -26,9 +32,10 @@ async def execute_command(request: CommandRequest):
     
     try:
         cwd = request.cwd or os.getcwd()
+        args = shlex.split(request.command)
         result = subprocess.run(
-            request.command,
-            shell=True,
+            args,
+            shell=False,
             cwd=cwd,
             capture_output=True,
             text=True,

@@ -19,7 +19,7 @@ function readStored() {
 function writeStored(enabled) {
     try {
         localStorage.setItem(STORAGE_KEY, enabled ? '1' : '0');
-    } catch (_) {}
+    } catch { /* ignore */ }
 }
 
 export function DarkModeProvider({ children }) {

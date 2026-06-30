@@ -8,7 +8,7 @@ import logging
 import os
 import time
 import uuid
-from typing import Any, Callable, Dict, List, Optional
+from typing import Any, List, Optional
 
 from config import JOBS_FILE
 

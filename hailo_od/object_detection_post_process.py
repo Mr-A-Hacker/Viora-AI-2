@@ -4,7 +4,6 @@ Expects raw Hailo YOLO-style output: list of per-class arrays, each det = [bbox,
 """
 import cv2
 import numpy as np
-import os
 from collections import deque
 
 from .toolbox import id_to_color

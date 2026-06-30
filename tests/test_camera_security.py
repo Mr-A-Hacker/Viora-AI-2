@@ -11,6 +11,7 @@ from unittest.mock import patch, MagicMock
 import pytest
 
 os.environ.setdefault("SKIP_MODEL_LOAD", "1")
+os.environ.setdefault("SECURITY_PASSWORD", "test123")
 
 PROJECT_ROOT = Path(__file__).resolve().parent.parent
 if str(PROJECT_ROOT) not in sys.path:
@@ -126,7 +127,7 @@ def test_security_stop_alarm(security_client):
 
 
 def test_security_defuse_correct_password(security_client):
-    resp = security_client.post("/security/defuse", json={"password": "admin1"})
+    resp = security_client.post("/security/defuse", json={"password": "test123"})
     assert resp.status_code == 200
     assert resp.json()["status"] == "defused"
 
@@ -173,7 +174,7 @@ def test_camera_start_via_app(app_client):
 
 
 def test_security_defuse_via_app(app_client):
-    resp = app_client.post("/security/defuse", json={"password": "admin1"})
+    resp = app_client.post("/security/defuse", json={"password": "test123"})
     assert resp.status_code == 200
     assert resp.json()["status"] == "defused"
 

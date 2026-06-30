@@ -6,7 +6,9 @@ from pydantic import BaseModel
 
 router = APIRouter(prefix="/security", tags=["security"])
 
-SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin1")
+SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD")
+if not SECURITY_PASSWORD:
+    raise RuntimeError("SECURITY_PASSWORD environment variable must be set")
 _security_status = "disarmed"
 
 class DefuseRequest(BaseModel):
@@ -14,7 +16,7 @@ class DefuseRequest(BaseModel):
 
 def play_alarm_sound():
     try:
-        sound_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "sounds", "alarm.mp3")
+        sound_file = os.path.join(os.path.dirname(os.path.abspath(__file__)), "static", "sounds", "alarm.wav")
         if os.path.exists(sound_file):
             subprocess.Popen(["mpg123", sound_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
         else:

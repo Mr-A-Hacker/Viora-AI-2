@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Bot, Cloud, MapPin, Search, Gamepad2, Shield, Siren, Lock, Unlock, Terminal, Folder, CreditCard } from 'lucide-react';
+import { MessageCircle, Settings, Camera, Image as GalleryIcon, Code, Map, Cloud, MapPin, Search, Gamepad2, Shield, Siren, Lock, Unlock, Terminal, Folder, CreditCard, Film } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import Avatar from './Avatar';
+import { API_BASE_URL } from '../config';
 import { useWebSocket } from '../contexts/WebSocketContext.jsx';
 import { useRef, useState, useEffect } from 'react';
 
@@ -106,7 +107,7 @@ export default function Home() {
 
   const fetchSecurityStatus = async () => {
     try {
-      const resp = await fetch('http://localhost:8000/security/status');
+      const resp = await fetch(`${API_BASE_URL}/security/status`);
       const data = await resp.json();
       setSecurityStatus(data.status || 'disarmed');
     } catch (err) {
@@ -117,7 +118,7 @@ export default function Home() {
   const triggerAlarm = async () => {
     setSecurityLoading(true);
     try {
-      await fetch('http://localhost:8000/security/manual_alarm', { method: 'POST' });
+      await fetch(`${API_BASE_URL}/security/manual_alarm`, { method: 'POST' });
       setSecurityStatus('alarm');
     } catch (err) {
       console.error('Failed to trigger alarm:', err);
@@ -130,7 +131,7 @@ export default function Home() {
     e.preventDefault();
     setDefuseError('');
     try {
-      const resp = await fetch('http://localhost:8000/security/defuse', {
+      const resp = await fetch(`${API_BASE_URL}/security/defuse`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ password: defusePassword })
@@ -142,7 +143,7 @@ export default function Home() {
       } else {
         setDefuseError(data.message || 'Incorrect password');
       }
-    } catch (err) {
+    } catch {
       setDefuseError('Connection error');
     }
   };
@@ -150,7 +151,7 @@ export default function Home() {
   const fetchGames = async () => {
     setGamesLoading(true);
     try {
-      const resp = await fetch('http://localhost:8000/games');
+      const resp = await fetch(`${API_BASE_URL}/games`);
       const data = await resp.json();
       setGamesList(data.games || []);
     } catch (err) {
@@ -162,7 +163,7 @@ export default function Home() {
 
   const launchGame = async (game) => {
     try {
-      await fetch('http://localhost:8000/games/launch', {
+      await fetch(`${API_BASE_URL}/games/launch`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ game_id: game.id, executable: game.executable })
@@ -175,7 +176,7 @@ export default function Home() {
   const fetchBankAccounts = async () => {
     setBankLoading(true);
     try {
-      const resp = await fetch('http://localhost:8000/banking/accounts');
+      const resp = await fetch(`${API_BASE_URL}/banking/accounts`);
       const data = await resp.json();
       setBankAccounts(data);
     } catch (err) {
@@ -189,7 +190,7 @@ export default function Home() {
     e.preventDefault();
     if (!newTransaction.amount || !newTransaction.description) return;
     try {
-      await fetch('http://localhost:8000/banking/transaction', {
+      await fetch(`${API_BASE_URL}/banking/transaction`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -216,7 +217,7 @@ export default function Home() {
     e.preventDefault();
     if (!newOwing.person || !newOwing.amount || !newOwing.reason) return;
     try {
-      await fetch('http://localhost:8000/banking/owing', {
+      await fetch(`${API_BASE_URL}/banking/owing`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -234,7 +235,7 @@ export default function Home() {
 
   const deleteOwing = async (id) => {
     try {
-      await fetch(`http://localhost:8000/banking/owing/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/banking/owing/${id}`, { method: 'DELETE' });
       fetchBankAccounts();
     } catch (err) {
       console.error('Failed to delete owing:', err);
@@ -245,7 +246,7 @@ export default function Home() {
     e.preventDefault();
     if (!newOwedToMe.person || !newOwedToMe.amount || !newOwedToMe.reason) return;
     try {
-      await fetch('http://localhost:8000/banking/owed_to_me', {
+      await fetch(`${API_BASE_URL}/banking/owed_to_me`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -263,7 +264,7 @@ export default function Home() {
 
   const deleteOwedToMe = async (id) => {
     try {
-      await fetch(`http://localhost:8000/banking/owed_to_me/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/banking/owed_to_me/${id}`, { method: 'DELETE' });
       fetchBankAccounts();
     } catch (err) {
       console.error('Failed to delete owed to me:', err);
@@ -274,7 +275,7 @@ export default function Home() {
     e.preventDefault();
     if (!newBill.name || !newBill.amount || !newBill.due_date) return;
     try {
-      await fetch('http://localhost:8000/banking/bills', {
+      await fetch(`${API_BASE_URL}/banking/bills`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -293,7 +294,7 @@ export default function Home() {
 
   const toggleBillPaid = async (id) => {
     try {
-      await fetch(`http://localhost:8000/banking/bills/${id}`, { method: 'PUT' });
+      await fetch(`${API_BASE_URL}/banking/bills/${id}`, { method: 'PUT' });
       fetchBankAccounts();
     } catch (err) {
       console.error('Failed to toggle bill:', err);
@@ -302,7 +303,7 @@ export default function Home() {
 
   const deleteBill = async (id) => {
     try {
-      await fetch(`http://localhost:8000/banking/bills/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/banking/bills/${id}`, { method: 'DELETE' });
       fetchBankAccounts();
     } catch (err) {
       console.error('Failed to delete bill:', err);
@@ -313,7 +314,7 @@ export default function Home() {
     e.preventDefault();
     if (!newSavingsGoal.name || !newSavingsGoal.target) return;
     try {
-      await fetch('http://localhost:8000/banking/savings', {
+      await fetch(`${API_BASE_URL}/banking/savings`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -331,7 +332,7 @@ export default function Home() {
 
   const addToSavingsGoal = async (goalId, amount) => {
     try {
-      await fetch(`http://localhost:8000/banking/savings/${goalId}/add`, {
+      await fetch(`${API_BASE_URL}/banking/savings/${goalId}/add`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: parseFloat(amount) })
@@ -344,7 +345,7 @@ export default function Home() {
 
   const deleteSavingsGoal = async (id) => {
     try {
-      await fetch(`http://localhost:8000/banking/savings/${id}`, { method: 'DELETE' });
+      await fetch(`${API_BASE_URL}/banking/savings/${id}`, { method: 'DELETE' });
       fetchBankAccounts();
     } catch (err) {
       console.error('Failed to delete savings goal:', err);
@@ -360,7 +361,7 @@ export default function Home() {
     setWeatherLoading(true);
     setWeatherError(null);
     try {
-      let url = 'http://localhost:8000/weather';
+      let url = `${API_BASE_URL}/weather`;
       if (city) {
         url += `?city=${encodeURIComponent(city)}`;
       } else if (navigator.geolocation) {
@@ -622,7 +623,7 @@ export default function Home() {
         <MenuButton
           icon={Map}
           label="MAPS"
-          onClick={async () => { await fetch('http://localhost:8000/maps/open', { method: 'POST' }); }}
+          onClick={async () => { try { await fetch(`${API_BASE_URL}/maps/open`, { method: 'POST' }); } catch (e) { console.error('Failed to open maps:', e); } }}
           color="#9ece6a"
         />
         <MenuButton
@@ -648,6 +649,12 @@ export default function Home() {
           label="BANKING"
           onClick={handleBankingClick}
           color="#0ea5e9"
+        />
+        <MenuButton
+          icon={Film}
+          label="VIDEOS"
+          onClick={() => navigate('/videos')}
+          color="#ef4444"
         />
       </div>
 

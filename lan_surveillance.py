@@ -1,18 +1,20 @@
 import os
 import cv2
 import time
-import threading
 import datetime
 import subprocess
-import numpy as np
 from flask import Flask, render_template, Response, request, redirect, url_for, jsonify
 from flask_socketio import SocketIO
 
 app = Flask(__name__)
-app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY", "viora_security_secret")  # WARNING: Change default in production!
+app.config['SECRET_KEY'] = os.environ.get("SECRET_KEY")
+if not app.config['SECRET_KEY']:
+    raise RuntimeError("SECRET_KEY environment variable must be set")  # WARNING: Change default in production!
 socketio = SocketIO(app, cors_allowed_origins="*")
 
-SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD", "admin123")
+SECURITY_PASSWORD = os.environ.get("SECURITY_PASSWORD")
+if not SECURITY_PASSWORD:
+    raise RuntimeError("SECURITY_PASSWORD environment variable must be set")
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 SOUNDS_DIR = os.path.join(BASE_DIR, "static", "sounds")
 LOG_DIR = os.path.join(BASE_DIR, "logs")
@@ -41,7 +43,7 @@ def log_event(event_type, details):
     socketio.emit('log_event', {'event': event_type, 'details': details, 'time': timestamp})
 
 def play_alarm_sound():
-    sound_file = os.path.join(SOUNDS_DIR, "alarm.mp3")
+    sound_file = os.path.join(SOUNDS_DIR, "alarm.wav")
     if os.path.exists(sound_file):
         try:
             subprocess.Popen(["mpg123", "-q", sound_file], stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)

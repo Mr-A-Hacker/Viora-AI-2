@@ -4,6 +4,8 @@
  * Override with VITE_API_HOST and VITE_API_PORT for dev (e.g. remote backend).
  */
 const getHost = () => {
+    const envHost = typeof import.meta !== 'undefined' ? import.meta.env.VITE_API_HOST : null;
+    if (envHost) return envHost;
     if (typeof window !== 'undefined') {
         const h = window.location.hostname;
         if (h && h !== 'localhost' && h !== '127.0.0.1' && h !== '0.0.0.0') {
@@ -14,7 +16,7 @@ const getHost = () => {
 };
 
 const host = getHost();
-const port = '8000';
+const port = typeof import.meta !== 'undefined' ? (import.meta.env.VITE_API_PORT || '8000') : '8000';
 
 const base = `${host}:${port}`;
 export const API_BASE_URL = `http://${base}`;

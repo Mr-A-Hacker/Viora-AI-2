@@ -16,6 +16,9 @@ import pytest
 
 # Skip loading models when running tests (set before app import)
 os.environ["SKIP_MODEL_LOAD"] = "1"
+os.environ["SECURITY_PASSWORD"] = "test123"
+os.environ["SECRET_KEY"] = "test-secret-key"
+os.environ["SECURITY_SECRET"] = "test-security-secret"
 
 # Use a temp file for conversations in API tests so we don't touch project data
 _temp_conv_file = tempfile.NamedTemporaryFile(mode="w", suffix=".json", delete=False)

@@ -1,6 +1,4 @@
 """Tests for ConversationManager (no FastAPI, no LLM)."""
-import json
-import os
 
 import pytest
 

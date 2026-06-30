@@ -1,4 +1,4 @@
-import React, { useState, useRef, useCallback, useEffect } from 'react';
+import React, { useState, useCallback, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import ChatHeader from './ChatHeader';
 import ConnectionBar from './ConnectionBar';
@@ -119,11 +119,6 @@ export default function ChatInterface() {
     const reset = useCallback(() => {
         sendMessage('reset');
     }, [sendMessage]);
-
-    const handleNewChat = async () => {
-        const conv = await createConversation();
-        if (conv) setCurrentConvId(conv.id);
-    };
 
     return (
         <motion.div
