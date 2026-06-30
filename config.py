@@ -72,6 +72,25 @@ ENV_VAR_MAPPING = {
 }
 
 # Public configuration variables for backward compatibility
+PORT = int(os.environ.get("PORT", "8000"))
+CAPTURES_DIR = os.environ.get("CAPTURES_DIR", "captures")
+CONVERSATIONS_FILE = os.environ.get("CONVERSATIONS_FILE", "conversations.json")
+TOOLS_PATH = os.environ.get("TOOLS_PATH", "tools.json")
+JOBS_FILE = os.environ.get("JOBS_FILE", "task_jobs.json")
+LOCAL_DIR = os.environ.get("LOCAL_DIR", "./models")
+
+CHAT_REPO_ID = os.environ.get("CHAT_REPO_ID", "Qwen/Qwen2.5-1.5B-Instruct-GGUF")
+CHAT_FILENAME = os.environ.get("CHAT_FILENAME", "qwen2.5-1.5b-instruct-q4_k_m.gguf")
+CHAT_MODEL_DIR = os.environ.get("CHAT_MODEL_DIR", "qwen2")
+CHAT_MODEL_PATH = os.path.join(LOCAL_DIR, CHAT_MODEL_DIR, CHAT_FILENAME)
+
+TOOL_REPO_ID = os.environ.get("TOOL_REPO_ID", "nlouis/functiongemma-pocket-q4_k_m")
+TOOL_FILENAME = os.environ.get("TOOL_FILENAME", "functiongemma-pocket-q4_k_m.gguf")
+TOOL_MODEL_PATH = os.path.join(LOCAL_DIR, TOOL_FILENAME)
+
+LOG_LEVEL = os.environ.get("LOG_LEVEL", "INFO")
+LOG_FILE = os.environ.get("LOG_FILE", "")
+
 USE_OLLAMA = os.environ.get("USE_OLLAMA", "false").lower() == "true"
 USE_WHISPER = os.environ.get("USE_WHISPER", "true").lower() == "true"
 USE_VOSK = os.environ.get("USE_VOSK", "false").lower() == "true"
@@ -80,6 +99,8 @@ OLLAMA_MODEL = os.environ.get("OLLAMA_MODEL", "gemma2:2b")
 OLLAMA_URL = os.environ.get("OLLAMA_URL", "http://localhost:11434")
 OLLAMA_TIMEOUT = int(os.environ.get("OLLAMA_TIMEOUT", "30"))
 OLLAMA_MAX_TOKENS = int(os.environ.get("OLLAMA_MAX_TOKENS", "512"))
+
+PIPER_MODEL = os.environ.get("PIPER_MODEL", "en_US-lessac-medium.onnx")
 
 
 def _load_from_env_to_settings(settings: Dict[str, Any]) -> Dict[str, Any]:

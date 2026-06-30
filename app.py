@@ -4,7 +4,7 @@ import uvicorn
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.staticfiles import StaticFiles
-from config import PORT, CAPTURES_DIR, setup_logging
+from config import PORT, CAPTURES_DIR, setup_logging, get_model_config, is_ollama_enabled, toggle_ollama
 from camera_stream import router as camera_router
 from chat_ai import router as chat_router, ai as ai_state
 from weather import router as weather_router
@@ -183,6 +183,41 @@ async def knowledge_rebuild():
     """Rebuild the search index."""
     n = rebuild_index()
     return {"status": "ok", "documents": n}
+
+
+# ─── Ollama Settings ────────────────────────────────────────────
+
+@app.get("/settings/ollama")
+async def get_ollama_settings():
+    """Get current Ollama configuration."""
+    model_config = get_model_config()
+    return {
+        "enabled": model_config.get("use_ollama", False),
+        "model": model_config.get("ollama_model", "gemma2:2b"),
+        "url": model_config.get("ollama_url", "http://localhost:11434"),
+        "timeout": model_config.get("ollama_timeout", 30),
+        "max_tokens": model_config.get("ollama_max_tokens", 512),
+    }
+
+
+@app.post("/settings/ollama")
+async def set_ollama_settings(data: dict):
+    """Toggle Ollama integration on/off."""
+    enabled = data.get("enabled", False)
+    if toggle_ollama(enabled):
+        return {"status": "success", "enabled": enabled, "reload_required": True}
+    return {"status": "error", "message": "Failed to toggle Ollama"}
+
+
+@app.post("/settings/ollama/reload")
+async def reload_model():
+    """Reload the AI model (called after settings change)."""
+    try:
+        ai_state.reload_model()
+        return {"status": "success", "message": "Model reloaded"}
+    except Exception as e:
+        logger.error(f"Model reload failed: {e}")
+        return {"status": "error", "message": str(e)}
 
 
 @app.post("/start_surveillance")

@@ -1,14 +1,24 @@
 [
   {
-    "id": "a28a6c52-6b49-434d-bc65-f8737bc2cc28",
-    "title": "New Chat",
-    "messages": [],
-    "updated_at": 1782839272.0859933
-  },
-  {
-    "id": "cd7a1bef-ecfe-46f3-9509-058a10a244e2",
-    "title": "New Chat",
-    "messages": [],
-    "updated_at": 1782839277.0694108
+    "id": "2f8394e5-ebc4-461c-b2d8-735f5a11639c",
+    "title": "How are you?",
+    "messages": [
+      {
+        "role": "user",
+        "content": "How are you?",
+        "timestamp": 1782852109.7500825
+      },
+      {
+        "role": "assistant",
+        "content": "I'm an artificial intelligence, I don't have feelings. How can I assist you today?",
+        "timestamp": 1782852123.1820734
+      },
+      {
+        "role": "user",
+        "content": "What is one plus one?",
+        "timestamp": 1782853677.544024
+      }
+    ],
+    "updated_at": 1782853677.5440319
   }
 ]

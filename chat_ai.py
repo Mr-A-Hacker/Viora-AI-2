@@ -22,6 +22,14 @@ from tts_piper import PocketAudio, split_sentences
 from knowledge import search_knowledge, format_knowledge_for_prompt
 from pathlib import Path
 
+# Optional Ollama support
+try:
+    import ollama
+    OLLAMA_AVAILABLE = True
+except ImportError:
+    OLLAMA_AVAILABLE = False
+    ollama = None
+
 logger = logging.getLogger(__name__)
 
 UPLOAD_DIR = Path(__file__).resolve().parent / "uploads"
@@ -195,6 +203,12 @@ class ConversationManager:
 class AIState:
     def __init__(self):
         self.llm = None
+        self.ollama_client = None
+        self.use_ollama = False
+        self.ollama_model = "gemma2:2b"
+        self.ollama_url = "http://localhost:11434"
+        self.ollama_timeout = 30
+        self.ollama_max_tokens = 512
         self.stt = WhisperEngine()
         self.vosk = VoskEngine()
         self.tts = PocketAudio()
@@ -209,20 +223,40 @@ class AIState:
         from config import get_model_config
         model_config = get_model_config()
         
-        if model_config.get("use_ollama"):
-            logger.info("Using Ollama model: %s...", model_config.get("ollama_model", "unknown"))
-            # When using Ollama, we would initialize the LLM differently
-            # For now, we'll keep the existing implementation as fallback
-            pass
-
-        if not os.path.exists(MODEL_PATH):
-            logger.info("Downloading model...")
-            os.makedirs(LOCAL_DIR, exist_ok=True)
-            hf_hub_download(repo_id=REPO_ID, filename=FILENAME, local_dir=LOCAL_DIR)
-
-        logger.info("Loading LLM...")
-        self.llm = Llama(model_path=MODEL_PATH, n_ctx=4096, n_threads=4, use_mmap=True, verbose=False)
+        self.use_ollama = model_config.get("use_ollama", False)
+        self.ollama_model = model_config.get("ollama_model", "gemma2:2b")
+        self.ollama_url = model_config.get("ollama_url", "http://localhost:11434")
+        self.ollama_timeout = model_config.get("ollama_timeout", 30)
+        self.ollama_max_tokens = model_config.get("ollama_max_tokens", 512)
         
+        if self.use_ollama:
+            if not OLLAMA_AVAILABLE:
+                logger.error("ollama package not installed, falling back to Qwen")
+                self.use_ollama = False
+            else:
+                try:
+                    # Test connection
+                    self.ollama_client = ollama.Client(host=self.ollama_url)
+                    self.ollama_client.list()
+                    logger.info(f"Ollama connected: {self.ollama_model}")
+                except Exception as e:
+                    logger.error(f"Ollama connection failed: {e}, falling back to Qwen")
+                    self.use_ollama = False
+        
+        if not self.use_ollama:
+            # Original Qwen loading logic
+            if not os.path.exists(MODEL_PATH):
+                logger.info("Downloading model...")
+                os.makedirs(LOCAL_DIR, exist_ok=True)
+                hf_hub_download(repo_id=REPO_ID, filename=FILENAME, local_dir=LOCAL_DIR)
+
+            logger.info("Loading LLM...")
+            self.llm = Llama(model_path=MODEL_PATH, n_ctx=4096, n_threads=4, use_mmap=True, verbose=False)
+            logger.info("Chat AI Ready (Qwen).")
+        else:
+            logger.info(f"Chat AI Ready (Ollama: {self.ollama_model}).")
+        
+        # Load STT/TTS regardless of LLM backend
         if USE_WHISPER:
             logger.info("Loading Whisper...")
             self.stt.load_model()
@@ -233,7 +267,54 @@ class AIState:
         
         logger.info("Chat AI Ready.")
 
+    logger.info("Chat AI Ready.")
+
+    def reload_model(self):
+        """Reload the model (called when settings change)."""
+        logger.info("Reloading model...")
+        self.load_model()
+
+    async def _generate_ollama(self, messages):
+        """Generate response using Ollama."""
+        # Prepare messages for Ollama (remove /think tokens for gemma)
+        ollama_messages = []
+        for m in messages:
+            if m.get("hidden"):
+                continue
+            content = m["content"]
+            # Remove /think /no_think tokens for Ollama
+            content = content.replace(" /think", "").replace(" /no_think", "")
+            ollama_messages.append({"role": m["role"], "content": content})
+        
+        loop = asyncio.get_event_loop()
+        
+        def _ollama_generate():
+            return self.ollama_client.chat(
+                model=self.ollama_model,
+                messages=ollama_messages,
+                options={
+                    "num_predict": self.ollama_max_tokens,
+                    "temperature": 0.7,
+                    "top_p": 0.9,
+                }
+            )
+        
+        try:
+            response = await loop.run_in_executor(None, _ollama_generate)
+            # Return as stream-like format to match existing code
+            content = response.get("message", {}).get("content", "")
+            yield {"choices": [{"delta": {"content": content}}]}
+        except Exception as e:
+            logger.error(f"Ollama generation failed: {e}")
+            yield {"choices": [{"delta": {"content": f"[Ollama Error: {e}]"}}]}
+
     async def generate_response(self, messages, thinking=True):
+        # Use Ollama if enabled
+        if self.use_ollama:
+            async for chunk in self._generate_ollama(messages):
+                yield chunk
+            return
+        
         # Prepare messages (skip hidden tool-call entries so the model only sees user/result text)
         llm_messages = []
         last_user_query = None
@@ -276,7 +357,15 @@ class AIState:
             frequency_penalty=0.1,
             stream=True
         ))
-        return response
+        
+        if thinking:
+            for chunk in response.get("choices", []):
+                if "delta" in chunk:
+                    if chunk["delta"].get("content"):
+                        yield {"choices": [{"delta": {"content": chunk["delta"]["content"]}}]}
+        else:
+            for chunk in response.get("choices", []):
+                yield chunk
 
     async def ai_response_and_speak(self, websocket: WebSocket, text: str, abort_event: asyncio.Event, message_queue: asyncio.Queue):
         """
