@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
-import { ArrowLeft, Power, Keyboard, Moon, Sun, Volume2, BookOpen, RefreshCw, CheckCircle, AlertCircle, Bell } from 'lucide-react';
+import { ArrowLeft, Power, Keyboard, Moon, Sun, Volume2, BookOpen, RefreshCw, CheckCircle, AlertCircle, Bell, Brain } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { API_BASE_URL } from '../config.js';
 import { useKeyboardSettings } from '../contexts/KeyboardContext.jsx';
@@ -17,6 +17,29 @@ export default function Settings() {
     const [updateCheck, setUpdateCheck] = useState(null); // null | 'checking' | 'up_to_date' | 'update_available'
     const pollingRef = useRef(false);
     const mountedRef = useRef(true);
+
+    // Ollama settings
+    const [ollamaEnabled, setOllamaEnabled] = useState(false);
+    const [ollamaLoading, setOllamaLoading] = useState(false);
+    const [activeBrain, setActiveBrain] = useState('Loading...');
+
+    // Fetch Ollama status on mount
+    useEffect(() => {
+        const fetchOllama = async () => {
+            try {
+                const res = await fetch(`${API_BASE_URL}/settings/ollama`);
+                if (res.ok) {
+                    const data = await res.json();
+                    setOllamaEnabled(data.enabled);
+                    setActiveBrain(data.enabled ? 'Ollama (gemma2:2b)' : 'Original (Qwen 1.5B)');
+                }
+            } catch (e) {
+                console.error('Failed to fetch Ollama settings:', e);
+                setActiveBrain('Original (Qwen 1.5B)');
+            }
+        };
+        fetchOllama();
+    }, []);
 
     const pollUntilDone = async () => {
         if (pollingRef.current) return;
@@ -105,6 +128,37 @@ export default function Settings() {
         }
     };
 
+    const handleOllamaToggle = async () => {
+        setOllamaLoading(true);
+        try {
+            const res = await fetch(`${API_BASE_URL}/settings/ollama`, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ enabled: !ollamaEnabled })
+            });
+            const data = await res.json();
+            if (data.status === 'success') {
+                setOllamaEnabled(!ollamaEnabled);
+                setActiveBrain(!ollamaEnabled ? 'Ollama (gemma2:2b)' : 'Original (Qwen 1.5B)');
+                
+                // Auto-reload model if backend says so
+                if (data.reload_required) {
+                    setTimeout(async () => {
+                        try {
+                            await fetch(`${API_BASE_URL}/settings/ollama/reload`, { method: 'POST' });
+                        } catch (e) {
+                            console.error('Model reload failed:', e);
+                        }
+                    }, 1000);
+                }
+            }
+        } catch (e) {
+            console.error('Failed to toggle Ollama:', e);
+        } finally {
+            setOllamaLoading(false);
+        }
+    };
+
     return (
         <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -186,6 +240,52 @@ export default function Settings() {
                             <span className={`settings-toggle-knob ${ttsEnabled ? 'on' : ''}`} />
                         </button>
                     </div>
+
+                    {/* Active Brain Indicator */}
+                    <div className="settings-row" style={{ marginTop: '8px' }}>
+                        <div className="settings-row-label" style={{ flex: 1 }}>
+                            <div className="settings-icon">
+                                <Brain size={20} />
+                            </div>
+                            <div>
+                                <strong>Active Brain</strong>
+                                <span className="settings-desc">{activeBrain}</span>
+                            </div>
+                        </div>
+                        <div style={{ color: 'var(--accent)', fontWeight: 600, fontSize: '13px' }}>
+                            {ollamaEnabled ? '🧠 Ollama' : '⚡ Qwen'}
+                        </div>
+                    </div>
+
+                    {/* Ollama Toggle */}
+                    <div className="settings-row">
+                        <div className="settings-row-label">
+                            <div className="settings-icon">
+                                <Brain size={20} />
+                            </div>
+                            <div>
+                                <strong>Ollama Brain (gemma2:2b)</strong>
+                                <span className="settings-desc">Switch to local Ollama model instead of Qwen</span>
+                            </div>
+                        </div>
+                        <button
+                            type="button"
+                            role="switch"
+                            aria-checked={ollamaEnabled}
+                            onClick={handleOllamaToggle}
+                            disabled={ollamaLoading}
+                            className={`settings-toggle ${ollamaEnabled ? 'active' : ''}`}
+                        >
+                            <span className={`settings-toggle-knob ${ollamaEnabled ? 'on' : ''}`} />
+                        </button>
+                    </div>
+
+                    {ollamaLoading && (
+                        <div className="update-badge checking" style={{ marginTop: '8px' }}>
+                            <RefreshCw size={14} className="spin-icon" />
+                            <span>Switching brain... {ollamaEnabled ? 'Loading Ollama' : 'Loading Qwen'}</span>
+                        </div>
+                    )}
 
                     <button
                         onClick={handleCloseApp}
