@@ -1167,3 +1167,6 @@ Built with 💜 by **Mr-A-Hacker**. Engineered for offline AI, Raspberry Pi, and
 ⭐ **If Viora AI helped you, drop a star — it means the world!** ⭐
 
 </div>
+<img width="1408" height="768" alt="Gemini_Generated_Image_ddanssddanssddan (1)" src="https://github.com/user-attachments/assets/3978919f-1d81-482d-9b4f-3941468ce7f6" />
+<img width="1408" height="768" alt="Gemini_Generated_Image_ddanssddanssddan (2)" src="https://github.com/user-attachments/assets/f04ff46c-a0a8-4414-853f-1a90be3c19d6" />
+<img width="1408" height="768" alt="Gemini_Generated_Image_ddanssddanssddan" src="https://github.com/user-attachments/assets/3a0ed6ad-d9b2-44ea-9862-a2b6d87467cd" />
