@@ -1,4 +1,9 @@
 > ## 👋 Start Here
+> A Viora AI project focused on a personal-assistant experience. **For users:** explore its AI and local-computing work.
+
+---
+
+> ## 👋 Start Here
 > A Viora AI project focused on building a personal assistant experience. **For users:** explore the project's AI, local-computing, and Raspberry Pi-oriented work.
 >
 > **Safety & privacy:** Use security, network, camera, and data-collection features only with appropriate authorization and consent.
