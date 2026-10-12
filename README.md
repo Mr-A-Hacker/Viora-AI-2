@@ -4,6 +4,8 @@
 
 </div>
 
+[🗺️ Project Roadmap](docs/ROADMAP.md)
+
 > ## 👋 Start Here
 > A Viora AI project focused on a personal-assistant experience. **For users:** explore its AI and local-computing work.
 
