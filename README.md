@@ -1,3 +1,9 @@
+<div align="center">
+
+![Viora AI banner](docs/readme-banner.svg)
+
+</div>
+
 > ## 👋 Start Here
 > A Viora AI project focused on a personal-assistant experience. **For users:** explore its AI and local-computing work.
 
